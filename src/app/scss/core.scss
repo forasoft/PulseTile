@@ -1,0 +1,23 @@
+@import 'base';
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: url("/app/assets/images/site-bg2.png") center 100px no-repeat #fff;
+  background-size: cover;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}

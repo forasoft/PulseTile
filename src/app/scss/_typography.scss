@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Hero";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../assets/fonts/Hero.eot?") format("eot"),
+       url("../assets/fonts/Hero.woff") format("woff"),
+       url("../assets/fonts/Hero.ttf") format("truetype"),
+       url("../assets/fonts/Hero.svg") format("svg");
+}
+
+html, body {
+  font-family: "Hero", Helvetica, Arial, sans-serif;
+}

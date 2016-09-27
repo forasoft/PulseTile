@@ -1,0 +1,180 @@
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+
+
+//=========================================================
+//  ENVIRONMENT VARS
+//---------------------------------------------------------
+const NODE_ENV = process.env.NODE_ENV;
+
+const ENV_DEVELOPMENT = NODE_ENV === 'development';
+const ENV_PRODUCTION = NODE_ENV === 'production';
+const ENV_TEST = NODE_ENV === 'test';
+
+const HOST = process.env.HOST || 'localhost';
+const PORT = process.env.PORT || 9000;
+
+const API_URL = process.env.API_URL || 'http://localhost:19191';
+
+
+//=========================================================
+//  CONFIG
+//---------------------------------------------------------
+const config = {
+  resolve: {
+    extensions: ['', '.js'],
+    modulesDirectories: ['node_modules'],
+    root: path.resolve('./src')
+  },
+
+  module: {
+    loaders: [
+      {test: /\.js$/, exclude: /node_modules/, loader: 'ng-annotate!babel'},
+      {test: /\.html$/, loader: 'html'},
+      {test: /\.(woff|woff2)/, loader: 'url?prefix=fonts/&limit=10000&mimetype=application/font-woff&name=assets/fonts/[name].[ext]'},
+      {test: /\.(ttf|eot|svg)/, loader: 'file?name=assets/fonts/[name].[ext]'},
+      {test: /\.(jpg|png|jpeg|gif)$/, loader: 'url?limit=25000/&name=assets/images/[name].[ext]' }
+      /*{test: /\.woff(\?.*)?$/,loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'},
+      {test: /\.woff2(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2' },
+      {test: /\.otf(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype' },
+      {test: /\.ttf(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream' },
+      {test: /\.eot(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]' },
+      {test: /\.svg(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
+      {test: /\.(png|jpg)$/, loader: 'url?limit=8192'}*/
+    ]
+  },
+
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
+    })
+  ],
+
+  postcss: [
+    autoprefixer({ browsers: ['last 3 versions'] })
+  ],
+
+  sassLoader: {
+    outputStyle: 'compressed',
+    precision: 10,
+    sourceComments: false,
+    includePaths: [
+      './src/app/scss'
+    ]
+  }
+};
+
+
+//=====================================
+//  DEVELOPMENT or PRODUCTION
+//-------------------------------------
+if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
+  config.entry = {
+    index: [
+      'bootstrap-loader',
+      './src/app/index'
+    ],
+    vendor: './src/app/vendor'
+  };
+
+  config.output = {
+    filename: '[name].js',
+    path: path.resolve('./dist'),
+    publicPath: '/'
+  };
+
+  config.plugins.push(
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      hash: true,
+      inject: 'body',
+      favicon: './src/favicon.png',
+      template: './src/index.html'
+    })
+  );
+}
+
+
+//=====================================
+//  DEVELOPMENT
+//-------------------------------------
+if (ENV_DEVELOPMENT) {
+  config.devtool = 'cheap-module-source-map';
+
+  config.entry.index.unshift(`webpack-dev-server/client?http://${HOST}:${PORT}`);
+
+  config.module.loaders.push(
+    {test: /\.scss$/, loader: 'style!css!postcss!sass'}
+  );
+
+  config.devServer = {
+    contentBase: './src',
+    host: HOST,
+    port: PORT,
+    publicPath: config.output.publicPath,
+    stats: {
+      cached: true,
+      cachedAssets: true,
+      chunks: true,
+      chunkModules: false,
+      colors: true,
+      hash: false,
+      reasons: true,
+      timings: true,
+      version: false
+    },
+    proxy: {
+      '/api/*': {
+        target: API_URL
+      }
+    },
+    historyApiFallback: true
+  };
+}
+
+
+//=====================================
+//  PRODUCTION
+//-------------------------------------
+if (ENV_PRODUCTION) {
+  config.devtool = 'source-map';
+
+  config.module.loaders.push(
+    {test: /\.scss$/, loader: ExtractTextPlugin.extract('css?-autoprefixer!postcss!sass')}
+  );
+
+  config.plugins.push(
+    new ExtractTextPlugin('styles.css'),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: true,
+      compress: {
+        dead_code: true, // eslint-disable-line camelcase
+        screw_ie8: true, // eslint-disable-line camelcase
+        unused: true,
+        warnings: false
+      }
+    })
+  );
+}
+
+
+//=====================================
+//  TEST
+//-------------------------------------
+if (ENV_TEST) {
+  config.devtool = 'inline-source-map';
+
+  config.module.loaders.push(
+    {test: /\.scss$/, loader: 'style!css!postcss!sass'}
+  );
+}
+
+module.exports = config;

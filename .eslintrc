@@ -1,0 +1,23 @@
+{
+    "parser": "babel-eslint",
+    "plugins": ["angular"],
+    "extends": "eslint:recommended",
+    "rules": {
+        "no-console": 1,
+        "indent": [2, 2, { "SwitchCase": 1 }],
+        "quotes": [2, "single"],
+        "linebreak-style": [2, "unix"]
+    },
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "globals": {
+        "module": true,
+        "moment": true,
+        "_": true,
+        "process": true,
+        "require": true,
+        "angular": true
+    }
+}
