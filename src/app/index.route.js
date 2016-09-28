@@ -4,12 +4,13 @@ function routeConfig($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
   console.log('routing test');
   $stateProvider
-      // .state('main', {
-      //   template: '<ui-view />'
-      // })
       .state('home', {
         url: '/',
         template: '<home-component><home-component>'
+      })
+      .state('patients', {
+          url: '/patients',
+          template: '<patients-component><patients-component>'
       });
 }
 

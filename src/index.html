@@ -10,11 +10,15 @@
 </head>
 <body ng-app="app">
 
-<header-component></header-component>
+  <header-component></header-component>
 
-<div class="container-fluid">
-  <ui-view></ui-view>
-</div>
+  <div class="page-wrapper-off">
+    <div class="container-fluid">
+      <div class="section section-content">
+        <ui-view></ui-view>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

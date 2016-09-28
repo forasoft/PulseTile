@@ -2,11 +2,9 @@ let templateHome = require('./home.html');
 
 class HomeController {
   constructor($state, ServiceRequest) {
-    ServiceRequest.getData().then(function (response) {
-      console.log('response', response);
-    },function (error) {
-      console.log('error', error );
-    });
+    this.goToPatientsList = function () {
+      $state.go('patients');
+    }
   }
 }
 

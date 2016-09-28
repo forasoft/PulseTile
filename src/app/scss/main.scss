@@ -10,7 +10,7 @@
 //html,
 //body,
 //#wrapper,
-//#page-wrapper,
+#page-wrapper,
 .section-content {
   height: 100%;
   margin-left: auto;
@@ -124,6 +124,39 @@ li {
 #page-wrapper {
   padding: 0;
   min-height: 0;
+}
+#wrapper {
+  width: 100%;
+}
+
+.page-wrapper {
+  padding: 0 15px;
+  min-height: 568px;
+  background-color: transparent;
+  padding-bottom: 50px;
+}
+
+@media(min-width:768px) {
+  .page-wrapper {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 0 30px 50px 30px; /* 50px added to bottom to avoid footer overlapping */
+    /* border-left: 1px solid #e7e7e7; */
+  }
+}
+
+.page-wrapper-off {
+  padding: 0 15px;
+  min-height: 568px;
+}
+
+@media(min-width:768px) {
+  .page-wrapper-off {
+    position: inherit;
+    margin: 0 0 0 0px;
+    padding: 0 30px;
+    border-left: 1px solid #e7e7e7;
+  }
 }
 
 .section-north h3 {

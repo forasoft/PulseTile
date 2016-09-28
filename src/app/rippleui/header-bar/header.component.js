@@ -2,7 +2,12 @@ let templateHeader = require('./header-bar.tmpl.html');
 
 class HeaderController {
   constructor($state) {
-    this.title = 'IDCR POC'
+    
+    this.title = 'IDCR POC';
+    
+    this.goHome = function () {
+      $state.go('home');
+    };
   }
 }
 
