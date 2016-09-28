@@ -2,7 +2,7 @@ let templateHeader = require('./header-bar.tmpl.html');
 
 class HeaderController {
   constructor($state) {
-    console.log('HeaderBarController');
+    this.title = 'IDCR POC'
   }
 }
 

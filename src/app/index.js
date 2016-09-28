@@ -5,6 +5,8 @@ import ngRedux from 'ng-redux';
 import HeaderComponent from './rippleui/header-bar/header.component.js';
 import HomeComponent from './rippleui/pages/home/home.component.js';
 
+import ServiceRequest from './services/serviceRequests.js';
+
 import routeConfig from 'app/index.route';
 import 'app/scss/core.scss';
 
@@ -15,7 +17,7 @@ const app = angular
     ngRedux
   ])
     // .factory('apiMiddleware', apiMiddleware)
-    // .service('serviceRequest', serviceRequest)
+    .service('serviceRequest', ServiceRequest)
     .config(routeConfig)
     .component('headerComponent', HeaderComponent)
     .component('homeComponent', HomeComponent);

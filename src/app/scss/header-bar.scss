@@ -1,6 +1,8 @@
 /* Header */
 @import 'colors';
 @import 'utils';
+@import 'dimensions';
+
 
 header.navbar {
   background: #fff;
@@ -14,7 +16,7 @@ header.navbar {
   }
   a.navbar-brand {
     margin-left: 0 !important;
-    background: url(/app/assets/images/ripple-icon.png) no-repeat;
+    background: url('../assets/images/ripple-icon.png') no-repeat;
     background-size: auto 40px;
     height: 40px;
     padding-left: 50px;
