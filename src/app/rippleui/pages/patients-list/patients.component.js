@@ -1,29 +1,26 @@
 let templatePatients = require('./patients-list.html');
 
 class PatientsController {
-    constructor($state, ServiceRequest) {
-        
-        let self = this;
-        this.patients = [];
-        this.pages = 0;
+    constructor($scope, $state, $ngRedux, patientsActions) {
 
-        this.loadPatients = function () {
-            ServiceRequest.getData().then(function (response) {
-                self.patients = response.data;
-                self.pages = self.patients.length / 10;
-            },function (error) {
-                console.log('error', error );
-            });
-        };
-        this.loadPatients();
+        let unsubscribe = $ngRedux.connect(state => ({
+            isFetching: state.patients.isFetching,
+            error: state.patients.error,
+            patients: state.patients.data
+        }))(this);
+
+        $scope.$on('$destroy', unsubscribe);
+
+        this.loadPatientsList = patientsActions.loadPatients;
+        this.loadPatientsList();
     }
 }
 
 const PatientsComponent = {
     template: templatePatients,
-
+    controllerAs: 'vm',
     controller: PatientsController
 };
 
-PatientsController.$inject = ['$state', 'serviceRequest'];
+PatientsController.$inject = ['$scope', '$state', '$ngRedux', 'patientsActions'];
 export default PatientsComponent;

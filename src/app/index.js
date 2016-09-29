@@ -2,6 +2,11 @@ import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
 import ngRedux from 'ng-redux';
 import dirPagination from 'angular-utils-pagination';
+import createLogger from 'redux-logger';
+
+import reducer from './redux/reducer';
+import actions from './actions';
+import httpMiddleware from './helpers/http';
 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
 import HomeComponent from './rippleui/pages/home/home.component.js';
@@ -13,18 +18,15 @@ import ServiceRequest from './services/serviceRequests.js';
 import routeConfig from 'app/index.route';
 import 'app/scss/core.scss';
 
-// angular.element(document).ready(() => {
-//   angular.bootstrap(document, [app.name], {strictDi: true});
-// });
-
 const app = angular
     .module('app', [
         uiRouter,
         uiBootstrap,
         ngRedux,
+        actions,
         dirPagination
     ])
-    // .factory('apiMiddleware', apiMiddleware)
+    .factory('httpMiddleware', httpMiddleware)
     .service('serviceRequest', ServiceRequest)
     .component('patientsComponent', PatientsComponent)
     .component('headerComponent', HeaderComponent)
@@ -32,5 +34,17 @@ const app = angular
     .config(routeConfig)
     .config(function (paginationTemplateProvider) {
         paginationTemplateProvider.setString(require('./rippleui/pagination/dirPagination.tpl.html'));
-    });
+    })
+    .config(['$ngReduxProvider', $ngReduxProvider => {
+        const middleware = ['httpMiddleware'];
+
+        if (process.env.NODE_ENV === 'development') {
+            middleware.push(createLogger({
+                level: 'info',
+                collapsed: true
+            }));
+        }
+
+        $ngReduxProvider.createStoreWith(reducer, middleware);
+    }]);
 console.log('app start');
