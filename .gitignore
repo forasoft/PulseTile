@@ -5,6 +5,7 @@
 src/old
 tmp/
 dist/
+**/bower_components/
 
 
 #---------------------------------
