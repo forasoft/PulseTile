@@ -45,5 +45,14 @@ const app = angular
         }
 
         $ngReduxProvider.createStoreWith(reducer, middleware);
-    }]);
+    }])
+    .filter('formatNHSNumber', function() {
+        return function(number) {
+            if (number === undefined) {
+                return;
+            }
+
+            return number.slice(0,3) + " " + number.slice(3,6) + " " + number.slice(6);
+        };
+    });
 console.log('app start');

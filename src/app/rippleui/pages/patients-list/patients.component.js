@@ -1,7 +1,51 @@
 let templatePatients = require('./patients-list.html');
 
 class PatientsController {
-    constructor($scope, $state, $ngRedux, patientsActions) {
+    constructor($scope, $state, $stateParams, $location, $ngRedux, patientsActions) {
+        let vm = this;
+        
+        vm.order = $stateParams.order || 'name';
+        vm.reverse = $stateParams.reverse === 'true';
+        vm.filters = {
+            department: $stateParams.department,
+            ageRange: $stateParams.ageRange
+        };
+
+        vm.sort = function (field) {
+            var reverse = vm.reverse;
+
+            if (vm.order === field) {
+                vm.reverse = !reverse;
+            } else {
+                vm.order = field;
+                vm.reverse = !reverse;
+            }
+        };
+
+        vm.sortClass = function (field) {
+            if (vm.order === field) {
+                return vm.reverse ? 'sort-desc' : 'sort-asc';
+            }
+        };
+
+        vm.go = function (patient) {
+            $state.go('patients-summary', {
+                patientId: patient.id,
+                patientsList: vm.patients
+            });
+        };
+
+        vm.patientFilter = function (patient) {
+            if (vm.filters.department) {
+                return (patient.department === vm.filters.department);
+            }
+
+            if (vm.filters.ageRange) {
+                return (patient.ageRange === vm.filters.ageRange);
+            }
+
+            return true;
+        };
 
         let unsubscribe = $ngRedux.connect(state => ({
             isFetching: state.patients.isFetching,
@@ -18,9 +62,8 @@ class PatientsController {
 
 const PatientsComponent = {
     template: templatePatients,
-    controllerAs: 'vm',
     controller: PatientsController
 };
 
-PatientsController.$inject = ['$scope', '$state', '$ngRedux', 'patientsActions'];
+PatientsController.$inject = ['$scope', '$state', '$stateParams', '$location', '$ngRedux', 'patientsActions'];
 export default PatientsComponent;

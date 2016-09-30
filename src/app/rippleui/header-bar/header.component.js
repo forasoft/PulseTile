@@ -26,7 +26,6 @@ class HeaderController {
 
 const HeaderComponent = {
   template: templateHeader,
-  controllerAs: 'vm',
   controller: HeaderController
 };
 
