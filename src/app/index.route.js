@@ -11,6 +11,11 @@ function routeConfig($stateProvider, $urlRouterProvider) {
       .state('patients', {
           url: '/patients',
           template: '<patients-component><patients-component>'
+      })
+      .state('patients-summary', {
+        url: '/patients-summary',
+        template: '<patients-summary-component><patients-summary-component>',
+        params: {patientId: null, patientsList: null}
       });
 }
 
