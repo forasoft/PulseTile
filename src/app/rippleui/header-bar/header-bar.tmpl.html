@@ -3,7 +3,7 @@
   <div class="row header-background hidden-xs">
     <div class="col-sm-4 header-left">
       <div class="glyphs g">
-        <p class="header-title-1"><img alt="Ripple Icon" class="header-icon" ng-click="$ctrl.goHome()"> {{$ctrl.title}}</p>
+        <p class="header-title-1"><img alt="Ripple Icon" class="header-icon" ng-click="vm.goHome()"> {{vm.title}}</p>
       </div>
     </div>
 
@@ -48,9 +48,9 @@
                       <div class="user-profile-image"><i class="glyphicon glyphicon-user"></i></div>
                     </div>
                     <div class="col-md-8 col-sm-8">
-                      <p class="dropdown-profile-text"><b>FirstName LastName</b></p>
-                      <p class="dropdown-profile-text"><b>Doctor</b></p>
-                      <p class="dropdown-profile-text"> doc@example.com </p>
+                      <p class="dropdown-profile-text"><b>{{vm.user.given_name}} {{vm.user.family_name}}</b></p>
+                      <p class="dropdown-profile-text"><b>{{vm.user.role}}</b></p>
+                      <p class="dropdown-profile-text">{{vm.user.email}}</p>
                       <p class="dropdown-profile-text">10/05/1984</p>
                     </div>
                   </div>

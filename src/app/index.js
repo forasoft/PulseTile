@@ -6,12 +6,11 @@ import createLogger from 'redux-logger';
 
 import reducer from './redux/reducer';
 import actions from './actions';
-import httpMiddleware from './helpers/http';
+import httpMiddleware from './helpers/httpMiddleware';
 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
 import HomeComponent from './rippleui/pages/home/home.component.js';
 import PatientsComponent from './rippleui/pages/patients-list/patients.component';
-
 
 import ServiceRequest from './services/serviceRequests.js';
 

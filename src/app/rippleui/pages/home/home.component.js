@@ -1,7 +1,7 @@
 let templateHome = require('./home.html');
 
 class HomeController {
-  constructor($scope, $state, $ngRedux) {
+  constructor($scope, $state) {
 
     this.goToPatientsList = function () {
       $state.go('patients');
@@ -14,5 +14,5 @@ const HomeComponent = {
   controller: HomeController
 };
 
-HomeController.$inject = ['$scope', '$state', '$ngRedux'];
+HomeController.$inject = ['$scope', '$state'];
 export default HomeComponent;

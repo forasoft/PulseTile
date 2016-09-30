@@ -1,21 +1,34 @@
 let templateHeader = require('./header-bar.tmpl.html');
 
 class HeaderController {
-  constructor($state) {
-    
-    this.title = 'IDCR POC';
+  constructor($scope, $state, $ngRedux, userActions) {
     
     this.goHome = function () {
       $state.go('home');
     };
+
+    this.setTitle = function (data) {
+      this.title = data ? data.role + ' POC' : '';
+    };
+
+    let unsubscribe = $ngRedux.connect(state => ({
+      error: state.user.error,
+      user: state.user.data,
+      getTitle: this.setTitle(state.user.data)
+    }))(this);
+
+    $scope.$on('$destroy', unsubscribe);
+
+    this.login = userActions.login;
+    this.login();
   }
 }
 
 const HeaderComponent = {
   template: templateHeader,
-
+  controllerAs: 'vm',
   controller: HeaderController
 };
 
-HeaderController.$inject = ['$state'];
+HeaderController.$inject = ['$scope', '$state', '$ngRedux', 'userActions'];
 export default HeaderComponent;
