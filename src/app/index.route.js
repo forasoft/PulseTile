@@ -8,7 +8,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
         url: '/',
         template: '<home-component><home-component>'
       })
-      .state('patients', {
+      .state('patients-list', {
           url: '/patients',
           template: '<patients-component><patients-component>'
       });

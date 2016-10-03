@@ -1,8 +1,41 @@
 let templateHome = require('./home.html');
 
 class HomeController {
-  constructor($scope, $state, $window, patientsActions, $ngRedux) {
-          console.log('$window.Morris', $window.Morris);
+  constructor($scope, $state, $window, patientsActions, $ngRedux, $uibModal) {
+    this.openModal = function (row, chartType) {
+      $uibModal.open({
+        templateUrl: 'app/rippleui/confirmation.html',
+        size: 'md',
+        controller: function ($scope) {
+          $scope.cancel = function () {
+            $scope.$close(true);
+          };
+
+          $scope.ok = function () {
+            $scope.$close(true);
+
+            switch (chartType) {
+              case 'all':
+                $state.go('patients-list');
+                break;
+              case 'age':
+                $state.go('patients-list', { ageRange: row.series });
+                break;
+              case 'summary':
+                if (row.series === 'All') {
+                  row.series = null;
+                }
+                $state.go('patients-list', { department: row.series });
+                break;
+              default:
+                $state.go('patients-list');
+                break;
+            }
+          };
+        }
+      });
+    };
+
     var ageChart = function (summaries) {
       $window.Morris.Bar({
         element: 'age-chart',
@@ -18,6 +51,10 @@ class HomeController {
         barSizeRatio: 0.55,
         xLabelAngle: 50,
         redraw: true
+      }).on('click', function (i, row) {
+
+        var chartType = 'age';
+        $scope.openModal(row, chartType);
       });
     };
 
@@ -37,6 +74,10 @@ class HomeController {
         barSizeRatio: 0.55,
         xLabelAngle: 50,
         redraw: true
+      }).on('click', function (i, row) {
+
+        var chartType = 'summary';
+        $scope.openModal(row, chartType);
       });
     };
 
@@ -51,7 +92,7 @@ class HomeController {
     let _ = require('underscore');
 
     this.goToPatientsList = function () {
-      $state.go('patients');
+      $state.go('patients-list');
     };
 
     this.getPatients = function (patients) {
@@ -131,5 +172,5 @@ const HomeComponent = {
   controller: HomeController
 };
 
-HomeController.$inject = ['$scope', '$state', '$window', 'patientsActions', '$ngRedux'];
+HomeController.$inject = ['$scope', '$state', '$window', 'patientsActions', '$ngRedux', '$uibModal'];
 export default HomeComponent;
