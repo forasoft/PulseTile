@@ -1,8 +1,9 @@
 let templateHeader = require('./header-bar.tmpl.html');
 
 class HeaderController {
-  constructor($scope, $state, $ngRedux, userActions) {
-    
+  constructor($scope, $state, $ngRedux, userActions, AdvancedSearch) {
+    this.openAdvancedSearch = AdvancedSearch.openAdvancedSearch;
+
     this.goHome = function () {
       $state.go('home');
     };
@@ -29,5 +30,5 @@ const HeaderComponent = {
   controller: HeaderController
 };
 
-HeaderController.$inject = ['$scope', '$state', '$ngRedux', 'userActions'];
+HeaderController.$inject = ['$scope', '$state', '$ngRedux', 'userActions', 'AdvancedSearch'];
 export default HeaderComponent;

@@ -22,7 +22,7 @@ export function login() {
     };
 }
 
-export default function patientsActions($ngRedux) {
+export default function userActions($ngRedux) {
     let actionCreator = {
         login
     };
@@ -30,4 +30,4 @@ export default function patientsActions($ngRedux) {
     return bindActionCreators(actionCreator, $ngRedux.dispatch);
 }
 
-patientsActions.$inject = ['$ngRedux'];
+userActions.$inject = ['$ngRedux'];

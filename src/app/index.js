@@ -7,6 +7,7 @@ import createLogger from 'redux-logger';
 import reducer from './redux/reducer';
 import actions from './actions';
 import httpMiddleware from './helpers/httpMiddleware';
+import AdvancedSearch from './helpers/advancedSearch';
 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
 import HomeComponent from './rippleui/pages/home/home.component.js';
@@ -26,6 +27,7 @@ const app = angular
         dirPagination
     ])
     .factory('httpMiddleware', httpMiddleware)
+    .factory('AdvancedSearch', AdvancedSearch)
     .service('serviceRequest', ServiceRequest)
     .component('patientsComponent', PatientsComponent)
     .component('headerComponent', HeaderComponent)
