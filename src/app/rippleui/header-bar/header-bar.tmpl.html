@@ -12,15 +12,26 @@
       <div class="header-search-inner">
 
         <div class="search-left-inner-addon">
-          <div>
+          <div ng-show="$root.searchMode" class="ng-cloak" ng-cloak>
+            <span ng-cloak ng-show="$root.searchMode" class="label ng-cloak report-label">
+            <div ng-if="$root.reportMode">Reports&nbsp;</div>
+            <div ng-if="$root.settingsMode">Setting&nbsp;</div>
+            <div ng-if="$root.patientMode">Patients&nbsp;</div>
+            <i ng-show="$root.searchMode" ng-click="$ctrl.cancelSearchMode()" class="fa fa-times"></i></span>
           </div>
-          <input key-bind="" class="form-control" placeholder="Search..." type="text"/>
+          <div ng-show="$ctrl.reportTypeSet" class="ng-cloak" ng-cloak>
+            <span ng-cloak ng-show="$ctrl.reportTypeSet" class="label ng-cloak reportType-label">
+            <div ng-if="$ctrl.reportTypeSet" class="reportTypeSet">
+              {{$ctrl.reportTypeString}}&nbsp;
+              <i ng-show="$ctrl.reportTypeSet" ng-click="$ctrl.cancelReportType()" class="fa cancel-reportType fa-times"></i>
+            </div>
+            </span>
+          </div>
+          <div></div>
+          <input key-bind="{ enter: '$ctrl.searchFunction()', esc: '$ctrl.cancelSearchMode()' }" class="form-control" placeholder="Search..." type="text" typeahead="report for report in $ctrl.reportTypes | filter:$viewValue" ng-model="$ctrl.searchExpression" ng-keyup="$ctrl.checkExpression()" ng-trim="false" ng-class="{'moveRight': $root.searchMode && !$ctrl.reportTypeSet, 'moveFurtherRight': $root.searchMode && $ctrl.reportTypeSet}"  focus-element="this.searchFocused"/>
         </div>
-
-        <button class="btn btn-info searchButton" ng-click="">
-          <i class="fa fa-search"></i>
-          <span class="hidden-xs hidden-sm hidden-md"> Search</span>
-        </button>
+        <i ng-show="$ctrl.searchExpression !== '' || $root.searchMode" ng-click="$ctrl.cancelSearchMode()" class="clearAll fa fa-times-circle"></i>
+        <button class="btn btn-info searchButton" ng-click="$ctrl.searchFunction();"><i class="fa fa-search"></i><span class="hidden-xs hidden-sm hidden-md"> Search</span></button>
 
       </div>
 
