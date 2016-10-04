@@ -2,10 +2,8 @@ let templateHome = require('./home.html');
 
 class HomeController {
   constructor($scope, $state, $stateParams, $window, patientsActions, $ngRedux, $uibModal, serviceRequests) {
-    console.log('HomeController', $state.router.globals.current.views);
-
     serviceRequests.publisher('headerTitle', {title: 'Patients Dashboard'});
-    serviceRequests.publisher('routeState', {state: $state.router.globals.current.views});
+    serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-charts'});
     
     this.openModal = function (row, chartType) {
       $uibModal.open({

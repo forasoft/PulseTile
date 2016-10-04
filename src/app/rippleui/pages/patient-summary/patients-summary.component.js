@@ -4,7 +4,7 @@ class PatientsSummaryController {
   constructor($scope, $state, $stateParams, $ngRedux, patientsActions, serviceRequests) {
     
     serviceRequests.publisher('headerTitle', {title: 'Patients Summary'});
-    serviceRequests.publisher('routeState', {state: $state.router.globals.current.views});
+    serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-summary'});
     
     $scope.goToSection = function (section) {
       var requestHeader = {
