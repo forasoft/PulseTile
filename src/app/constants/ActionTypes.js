@@ -9,3 +9,6 @@ export const PATIENTS_LIST_ERROR = 'PATIENTS_LIST_ERROR';
 export const SEARCH = 'SEARCH';
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
 export const SEARCH_ERROR = 'SEARCH_ERROR';
+
+export const MESSAGE_SET = 'MESSAGE_SET';
+export const MESSAGE_GET = 'MESSAGE_GET';

@@ -1,19 +1,25 @@
+//libs
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
 import ngRedux from 'ng-redux';
 import dirPagination from 'angular-utils-pagination';
 import createLogger from 'redux-logger';
 
+//commons
 import reducer from './redux/reducer';
 import actions from './actions';
 import httpMiddleware from './helpers/httpMiddleware';
 import AdvancedSearch from './helpers/advancedSearch';
 
+//components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
 import HomeComponent from './rippleui/pages/home/home.component.js';
 import PatientsComponent from './rippleui/pages/patients-list/patients.component';
+import PatientsSummaryComponent from './rippleui/pages/patient-summary/patients-summary.component';
+import PatientsSidebarComponent from './rippleui/pages/patients-detail/patients-sidebar.component';
+import PatientsBannerComponent from './rippleui/pages/patients-detail/patients-banner.component';
 
-import ServiceRequest from './services/serviceRequests.js';
+import ServiceRequests from './services/serviceRequests.js';
 
 import routeConfig from 'app/index.route';
 import 'app/scss/core.scss';
@@ -28,10 +34,13 @@ const app = angular
     ])
     .factory('httpMiddleware', httpMiddleware)
     .factory('AdvancedSearch', AdvancedSearch)
-    .service('serviceRequest', ServiceRequest)
+    .service('serviceRequests', ServiceRequest)
     .component('patientsComponent', PatientsComponent)
     .component('headerComponent', HeaderComponent)
     .component('homeComponent', HomeComponent)
+    .component('patientsSummaryComponent', PatientsSummaryComponent)
+    .component('patientsSidebarComponent', PatientsSidebarComponent)
+    .component('patientsBannerComponent', PatientsBannerComponent)
     .config(routeConfig)
     .config(function (paginationTemplateProvider) {
         paginationTemplateProvider.setString(require('./rippleui/pagination/dirPagination.tpl.html'));
