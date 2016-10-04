@@ -9,16 +9,40 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body ng-app="app">
-
+<main-component>
   <header-component></header-component>
 
-  <div class="page-wrapper-off">
-    <div class="container-fluid">
-      <div class="section section-content">
-        <ui-view></ui-view>
+  <!-- Sidebar-->
+  <div class="wrapper navbar-default sidebar hidden-xs" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+      <ul side-menu class="nav" ui-view="actions"></ul>
+    </div>
+  </div>
+  <!-- /.Sidebar-->
+
+  <!-- /page-wrapper -->
+  <div ng-class="$ctrl.actionsExists ? 'page-wrapper' : 'page-wrapper-off'">
+    <div class="section-north" ui-view="user-context" ng-if=($ctrl.userContextViewExists)></div>
+
+    <div class="section section-content">
+      <div class="row">
+        <div class="col-md-{{mainWidth}} col-left">
+          <div class="section-main" ui-view="main"></div>
+        </div>
+        <div class="col-md-{{detailWidth}} col-right">
+          <div class="section-detail" ui-view="detail"></div>
+        </div>
       </div>
     </div>
   </div>
 
+  <!--<div class="page-wrapper-off">-->
+    <!--<div class="container-fluid">-->
+      <!--<div class="section section-content">-->
+        <!--<ui-view></ui-view>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+</main-component>
 </body>
 </html>

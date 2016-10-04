@@ -1,7 +1,12 @@
 let templateHome = require('./home.html');
 
 class HomeController {
-  constructor($scope, $state, $window, patientsActions, $ngRedux, $uibModal) {
+  constructor($scope, $state, $stateParams, $window, patientsActions, $ngRedux, $uibModal, serviceRequests) {
+    console.log('HomeController', $state.router.globals.current.views);
+
+    serviceRequests.publisher('headerTitle', {title: 'Patients Dashboard'});
+    serviceRequests.publisher('routeState', {state: $state.router.globals.current.views});
+    
     this.openModal = function (row, chartType) {
       $uibModal.open({
         templateUrl: 'app/rippleui/confirmation.html',
@@ -172,5 +177,5 @@ const HomeComponent = {
   controller: HomeController
 };
 
-HomeController.$inject = ['$scope', '$state', '$window', 'patientsActions', '$ngRedux', '$uibModal'];
+HomeController.$inject = ['$scope', '$state', '$stateParams', '$window', 'patientsActions', '$ngRedux', '$uibModal', 'serviceRequests'];
 export default HomeComponent;

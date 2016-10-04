@@ -1,14 +1,15 @@
 let templateHeader = require('./header-bar.tmpl.html');
 
 class HeaderController {
-  constructor($rootScope, $scope, $state, $ngRedux, userActions, AdvancedSearch) {
-    
-    this.pageHeader = 'Patients Dashboard';
-    
+  constructor($rootScope, $scope, $state, $stateParams, $ngRedux, userActions, AdvancedSearch, serviceRequests) {
+
+    this.getPageHeader = function (data) {
+      $scope.pageHeader = data.title;
+    };
+
     this.goHome = function () {
       $state.go('home');
     };
-
   
     this.setTitle = function (data) {
       this.title = data ? data.role + ' POC' : '';
@@ -176,6 +177,7 @@ class HeaderController {
       $rootScope.reportTypeSet = false;
       $rootScope.reportTypeString = '';
     };
+    serviceRequests.subscriber('headerTitle', this.getPageHeader);
   }
 
 }
@@ -185,5 +187,5 @@ const HeaderComponent = {
   controller: HeaderController
 };
 
-HeaderController.$inject = ['$rootScope', '$scope', '$state', '$ngRedux', 'userActions', 'AdvancedSearch'];
+HeaderController.$inject = ['$rootScope', '$scope', '$state', '$stateParams', '$ngRedux', 'userActions', 'AdvancedSearch', 'serviceRequests'];
 export default HeaderComponent;
