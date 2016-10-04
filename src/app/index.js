@@ -34,7 +34,7 @@ const app = angular
     ])
     .factory('httpMiddleware', httpMiddleware)
     .factory('AdvancedSearch', AdvancedSearch)
-    .service('serviceRequests', ServiceRequest)
+    .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
     .component('headerComponent', HeaderComponent)
     .component('homeComponent', HomeComponent)
