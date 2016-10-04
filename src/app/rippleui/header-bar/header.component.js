@@ -3,6 +3,8 @@ let templateHeader = require('./header-bar.tmpl.html');
 class HeaderController {
   constructor($scope, $state, $ngRedux, userActions) {
     
+    this.pageHeader = 'Patients Dashboard';
+    
     this.goHome = function () {
       $state.go('home');
     };

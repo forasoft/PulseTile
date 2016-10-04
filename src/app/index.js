@@ -15,8 +15,10 @@ import HeaderComponent from './rippleui/header-bar/header.component.js';
 import HomeComponent from './rippleui/pages/home/home.component.js';
 import PatientsComponent from './rippleui/pages/patients-list/patients.component';
 import PatientsSummaryComponent from './rippleui/pages/patient-summary/patients-summary.component';
+import PatientsSidebarComponent from './rippleui/pages/patients-detail/patients-sidebar.component';
+import PatientsBannerComponent from './rippleui/pages/patients-detail/patients-banner.component';
 
-import ServiceRequest from './services/serviceRequests.js';
+import ServiceRequests from './services/serviceRequests.js';
 
 import routeConfig from 'app/index.route';
 import 'app/scss/core.scss';
@@ -30,11 +32,13 @@ const app = angular
         dirPagination
     ])
     .factory('httpMiddleware', httpMiddleware)
-    .service('serviceRequest', ServiceRequest)
+    .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
     .component('headerComponent', HeaderComponent)
     .component('homeComponent', HomeComponent)
     .component('patientsSummaryComponent', PatientsSummaryComponent)
+    .component('patientsSidebarComponent', PatientsSidebarComponent)
+    .component('patientsBannerComponent', PatientsBannerComponent)
     .config(routeConfig)
     .config(function (paginationTemplateProvider) {
         paginationTemplateProvider.setString(require('./rippleui/pagination/dirPagination.tpl.html'));
