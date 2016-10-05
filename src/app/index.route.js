@@ -33,7 +33,9 @@ function routeConfig($stateProvider, $urlRouterProvider) {
       })
       .state('patients-list-full', {
         url: '/patients-full-details?ageFrom&ageTo&orderType&pageNumber&reportType&searchString&queryType',
-        template: '<patients-list-full-component><patients-list-full-component>'
+        views: {
+          main: {template: '<patients-list-full-component><patients-list-full-component>'}
+        }        
       });
 }
 
