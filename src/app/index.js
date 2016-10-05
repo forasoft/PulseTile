@@ -13,7 +13,7 @@ import AdvancedSearch from './helpers/advancedSearch';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
-import PatientsChartsComponent from './rippleui/pages/home/patients-charts.component';
+import PatientsChartsComponent from './rippleui/pages/patients-charts/patients-charts.component';
 import PatientsComponent from './rippleui/pages/patients-list/patients.component';
 import PatientsSummaryComponent from './rippleui/pages/patient-summary/patients-summary.component';
 import PatientsSidebarComponent from './rippleui/pages/patients-detail/patients-sidebar.component';

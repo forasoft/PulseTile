@@ -1,8 +1,10 @@
 let templateSearch = require('./search.html');
 
 class SearchController {
-  constructor($scope, $state, $stateParams, $ngRedux, patientsActions) {
+  constructor($scope, $state, $stateParams, $ngRedux, serviceRequests) {
 
+    serviceRequests.publisher('headerTitle', {title: 'Welcome'});
+    
     this.mainSearchEnabled = true;
     // $scope.searchExpression = '';
     //
@@ -31,5 +33,5 @@ const SearchComponent = {
   controller: SearchController
 };
 
-SearchController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions'];
+SearchController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'serviceRequests'];
 export default SearchComponent;

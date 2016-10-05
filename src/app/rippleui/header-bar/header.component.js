@@ -5,6 +5,7 @@ class HeaderController {
 
     this.getPageHeader = function (data) {
       $scope.pageHeader = data.title;
+      $scope.searchBar = data.title === 'Welcome' ? false : true;
     };
 
     this.goHome = function () {

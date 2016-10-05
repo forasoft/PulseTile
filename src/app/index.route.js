@@ -6,11 +6,15 @@ function routeConfig($stateProvider, $urlRouterProvider) {
   $stateProvider
       .state('main-search', {
         url: '/search',
-        template: '<search-component><search-component>'
+        views: {
+          main: {template: '<search-component><search-component>'}
+        }
       })
       .state('patients-charts', {
         url: '/charts',
-        template: '<patients-charts-component><patients-charts-component>'
+        views: {
+          main: {template: '<patients-charts-component><patients-charts-component>'}
+        }
       })
       .state('patients-list', {
         url: '/patients-list',
