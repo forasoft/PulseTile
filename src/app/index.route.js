@@ -7,8 +7,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
       .state('home', {
         url: '/',
         views: {
-          main: { 
-            template: '<home-component><home-component>'}
+          main: { template: '<home-component><home-component>'}
         }
       })
       .state('patients-list', {
@@ -18,14 +17,33 @@ function routeConfig($stateProvider, $urlRouterProvider) {
         }        
       })
       .state('patients-summary', {
-        url: '/patients-summary',
+        url: '/patients/{patientId:int}/patients-summary?reportType&searchString&queryType',
         views: {
           banner: {template: '<patients-banner-component></patients-banner-component>'},
           actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
           main: {template: '<patients-summary-component><patients-summary-component>'}
         },
         params: {patientId: null, patientsList: null}
-      });
+      })
+    .state('diagnoses-list', {
+      url: '/patients/{patientId:int}/diagnoses?reportType&searchString&queryType',
+      views: {
+        banner: {template: '<patients-banner-component></patients-banner-component>'},
+        actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+        main: {template: '<diagnoses-list-component></diagnoses-list-component>'}
+      },
+      params: {patientId: null, reportType: null}
+    })
+    .state('diagnoses-detail', {
+      url: '/patients/{patientId:int}/diagnoses?filter&page&reportType&searchString&queryType&source',
+      views: {
+        banner: {template: '<patients-banner-component></patients-banner-component>'},
+        actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+        main: {template: '<diagnoses-list-component></diagnoses-list-component>'},
+        detail: {template: '<diagnoses-detail-component></diagnoses-detail-component>'}
+      },
+      params: {patientId: null, reportType: null}
+    });
 }
 
 export default routeConfig;

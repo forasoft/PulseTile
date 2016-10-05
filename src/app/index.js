@@ -10,6 +10,7 @@ import reducer from './redux/reducer';
 import actions from './actions';
 import httpMiddleware from './helpers/httpMiddleware';
 import AdvancedSearch from './helpers/advancedSearch';
+import DiagnosesModal from './rippleui/pages/diagnoses/diagnoses-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -18,6 +19,8 @@ import PatientsComponent from './rippleui/pages/patients-list/patients.component
 import PatientsSummaryComponent from './rippleui/pages/patient-summary/patients-summary.component';
 import PatientsSidebarComponent from './rippleui/pages/patients-detail/patients-sidebar.component';
 import PatientsBannerComponent from './rippleui/pages/patients-detail/patients-banner.component';
+import DiagnosesListComponent from './rippleui/pages/diagnoses/diagnosis-list.component';
+import DiagnosesDetailComponent from './rippleui/pages/diagnoses/diagnoses-detail.component';
 import MainComponent from './helpers/main.component';
 
 import ServiceRequests from './services/serviceRequests.js';
@@ -35,6 +38,7 @@ const app = angular
     ])
     .factory('httpMiddleware', httpMiddleware)
     .factory('AdvancedSearch', AdvancedSearch)
+    .factory('DiagnosesModal', DiagnosesModal)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
     .component('headerComponent', HeaderComponent)
@@ -42,6 +46,8 @@ const app = angular
     .component('patientsSummaryComponent', PatientsSummaryComponent)
     .component('patientsSidebarComponent', PatientsSidebarComponent)
     .component('patientsBannerComponent', PatientsBannerComponent)
+    .component('diagnosesListComponent', DiagnosesListComponent)
+    .component('diagnosesDetailComponent', DiagnosesDetailComponent)
     .component('mainComponent', MainComponent)
     .config(routeConfig)
     .config(function (paginationTemplateProvider) {

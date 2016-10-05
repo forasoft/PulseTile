@@ -6,12 +6,10 @@ class PatientsSummaryController {
     serviceRequests.publisher('headerTitle', {title: 'Patients Summary'});
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-summary'});
     
-    $scope.goToSection = function (section) {
+    this.goToSection = function (section) {
       var requestHeader = {
         patientId: $stateParams.patientId,
-        reportType: $stateParams.reportType,
-        searchString: $stateParams.searchString,
-        queryType: $stateParams.queryType
+        reportType: $stateParams.reportType
       };
 
       var toState = '';
@@ -32,7 +30,8 @@ class PatientsSummaryController {
           toState = 'transferOfCare';
           break;
       }
-      // $state.go(toState, requestHeader);
+      console.log('toState --->', toState, section, $stateParams);
+      $state.go(toState, requestHeader);
     };
     this.getPatientData = function (data) {
       if (!data.id) return false;

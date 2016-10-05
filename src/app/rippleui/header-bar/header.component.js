@@ -37,10 +37,6 @@ class HeaderController {
     this.openAdvancedSearch = AdvancedSearch.openAdvancedSearch;
     this.searchExpression = $rootScope.searchExpression;
 
-    this.goHome = function () {
-      $state.go('home');
-    };
-
     this.containsReportString = function () {
       return this.searchExpression.indexOf('rp ') === 0;
     };
