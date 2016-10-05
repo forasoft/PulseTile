@@ -174,6 +174,11 @@ class HeaderController {
       $rootScope.reportTypeSet = false;
       $rootScope.reportTypeString = '';
     };
+
+    this.cancelReportType = function () {
+      $rootScope.reportTypeString = '';
+      $rootScope.reportTypeSet = false;
+    };
     serviceRequests.subscriber('headerTitle', this.getPageHeader);
   }
 
