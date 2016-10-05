@@ -73,7 +73,7 @@
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default btn-sm" ng-focus="detailsFocused=true" ng-click="openDatePicker($event, 'isOpen')"><i class="fa fa-calendar"></i></button>
               </span>
-              <input type="text" tabindex="4" class="form-control popupinputs" id="dateOfBirth" name="dateOfBirth" ng-model="searchParams.dateOfBirth" datepicker-popup="dd-MMM-y" is-open="isOpen" ng-focus="detailsFocused=true" ng-click="openDatePicker($event, 'isOpen')" ui-date-format ng-required='detailsFocused'/>
+              <input type="text" tabindex="4" class="form-control popupinputs" id="dateOfBirth" name="dateOfBirth" ng-model="searchParams.dateOfBirth" uib-datepicker-popup="dd-MMM-y" is-open="isOpen" ng-focus="detailsFocused=true" ng-click="openDatePicker($event, 'isOpen')" ui-date-format ng-required='detailsFocused'/>
             </div>
             <span class="help-block animate-fade" ng-show="formSubmitted && advancedSearchForm.dateOfBirth.$error.required && isNhsNumberFieldInvalid(advancedSearchForm.nhsNumber)">You must enter a value.</span>
           </div>

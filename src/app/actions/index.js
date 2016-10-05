@@ -4,6 +4,7 @@ import patientsActions from './patients';
 import userActions from './user';
 import searchActions from './search';
 import messagesActions from './messages';
+import searchReport from './search-report';
 
 export default angular
     .module('app.actions', [])
@@ -11,4 +12,5 @@ export default angular
     .factory('userActions', userActions)
     .factory('searchActions', searchActions)
     .factory('messagesActions', messagesActions)
+    .factory('searchReport', searchReport)
     .name;

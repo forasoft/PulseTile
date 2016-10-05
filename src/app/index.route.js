@@ -30,6 +30,10 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<patients-summary-component><patients-summary-component>'}
         },
         params: {patientId: null, patientsList: null}
+      })
+      .state('patients-list-full', {
+        url: '/patients-full-details?ageFrom&ageTo&orderType&pageNumber&reportType&searchString&queryType',
+        template: '<patients-list-full-component><patients-list-full-component>'
       });
 }
 
