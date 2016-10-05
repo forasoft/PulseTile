@@ -1,0 +1,24 @@
+<header-component></header-component>
+<!-- Sidebar-->
+<div class="wrapper navbar-default sidebar hidden-xs" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <ul side-menu class="nav" ui-view="actions"></ul>
+    </div>
+</div>
+<!-- /.Sidebar-->
+
+<!-- /page-wrapper -->
+<div ng-class="actionsExists ? 'page-wrapper' : 'page-wrapper-off'">
+    <div class="section-north" ui-view="banner" ng-if=userContextViewExists></div>
+
+    <div class="section section-content">
+        <div class="row">
+            <div class="col-md-{{mainWidth}} col-left">
+                <div class="section-main" ui-view="main"></div>
+            </div>
+            <div class="col-md-{{detailWidth}} col-right">
+                <div class="section-detail" ui-view="detail"></div>
+            </div>
+        </div>
+    </div>
+</div>

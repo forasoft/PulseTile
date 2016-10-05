@@ -19,6 +19,7 @@ import PatientsSummaryComponent from './rippleui/pages/patient-summary/patients-
 import PatientsSidebarComponent from './rippleui/pages/patients-detail/patients-sidebar.component';
 import PatientsBannerComponent from './rippleui/pages/patients-detail/patients-banner.component';
 import SearchComponent from './rippleui/search/search.component';
+import MainComponent from './helpers/main.component';
 
 import ServiceRequests from './services/serviceRequests.js';
 
@@ -42,6 +43,7 @@ const app = angular
     .component('patientsSummaryComponent', PatientsSummaryComponent)
     .component('patientsSidebarComponent', PatientsSidebarComponent)
     .component('patientsBannerComponent', PatientsBannerComponent)
+    .component('mainComponent', MainComponent)
     .component('searchComponent', SearchComponent)
     .config(routeConfig)
     .config(function (paginationTemplateProvider) {

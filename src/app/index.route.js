@@ -13,12 +13,18 @@ function routeConfig($stateProvider, $urlRouterProvider) {
         template: '<patients-charts-component><patients-charts-component>'
       })
       .state('patients-list', {
-        url: '/patients',
-        template: '<patients-component><patients-component>'
+        url: '/patients-list',
+        views: {
+          main: {template: '<patients-component><patients-component>'}
+        }        
       })
       .state('patients-summary', {
         url: '/patients-summary',
-        template: '<patients-summary-component><patients-summary-component>',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<patients-summary-component><patients-summary-component>'}
+        },
         params: {patientId: null, patientsList: null}
       });
 }

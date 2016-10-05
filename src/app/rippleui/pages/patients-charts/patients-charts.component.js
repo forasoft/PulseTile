@@ -1,7 +1,10 @@
 let templatePatientsCharts = require('./patients-charts.html');
 
 class PatientsChartsController {
-  constructor($scope, $state, $window, patientsActions, $ngRedux, $uibModal) {
+  constructor($scope, $state, $window, patientsActions, $ngRedux, $uibModal, serviceRequests) {
+    serviceRequests.publisher('headerTitle', {title: 'Patients Dashboard'});
+    serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-charts'});
+    
     this.openModal = function (row, chartType) {
       $uibModal.open({
         templateUrl: 'app/rippleui/confirmation.html',
@@ -172,5 +175,5 @@ const PatientsChartsComponent = {
   controller: PatientsChartsController
 };
 
-PatientsChartsController.$inject = ['$scope', '$state', '$window', 'patientsActions', '$ngRedux', '$uibModal'];
+PatientsChartsController.$inject = ['$scope', '$state', '$window', 'patientsActions', '$ngRedux', '$uibModal', 'serviceRequests'];
 export default PatientsChartsComponent;
