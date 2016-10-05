@@ -10,12 +10,14 @@ import reducer from './redux/reducer';
 import actions from './actions';
 import httpMiddleware from './helpers/httpMiddleware';
 import AdvancedSearch from './helpers/advancedSearch';
+import Patient from './helpers/patient';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
 import HomeComponent from './rippleui/pages/home/home.component.js';
 import PatientsComponent from './rippleui/pages/patients-list/patients.component';
 import PatientsSummaryComponent from './rippleui/pages/patient-summary/patients-summary.component';
+import PatientsListFullComponent from './rippleui/pages/patients-list-full/patients-list-full.component';
 import PatientsSidebarComponent from './rippleui/pages/patients-detail/patients-sidebar.component';
 import PatientsBannerComponent from './rippleui/pages/patients-detail/patients-banner.component';
 
@@ -34,6 +36,7 @@ const app = angular
     ])
     .factory('httpMiddleware', httpMiddleware)
     .factory('AdvancedSearch', AdvancedSearch)
+    .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
     .component('headerComponent', HeaderComponent)
@@ -41,6 +44,7 @@ const app = angular
     .component('patientsSummaryComponent', PatientsSummaryComponent)
     .component('patientsSidebarComponent', PatientsSidebarComponent)
     .component('patientsBannerComponent', PatientsBannerComponent)
+    .component('patientsListFullComponent', PatientsListFullComponent)
     .config(routeConfig)
     .config(function (paginationTemplateProvider) {
         paginationTemplateProvider.setString(require('./rippleui/pagination/dirPagination.tpl.html'));
