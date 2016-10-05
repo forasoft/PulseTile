@@ -1,6 +1,6 @@
-let templateHome = require('./home.html');
+let templatePatientsCharts = require('./patients-charts.html');
 
-class HomeController {
+class PatientsChartsController {
   constructor($scope, $state, $window, patientsActions, $ngRedux, $uibModal) {
     this.openModal = function (row, chartType) {
       $uibModal.open({
@@ -167,10 +167,10 @@ class HomeController {
   }
 }
 
-const HomeComponent = {
-  template: templateHome,
-  controller: HomeController
+const PatientsChartsComponent = {
+  template: templatePatientsCharts,
+  controller: PatientsChartsController
 };
 
-HomeController.$inject = ['$scope', '$state', '$window', 'patientsActions', '$ngRedux', '$uibModal'];
-export default HomeComponent;
+PatientsChartsController.$inject = ['$scope', '$state', '$window', 'patientsActions', '$ngRedux', '$uibModal'];
+export default PatientsChartsComponent;

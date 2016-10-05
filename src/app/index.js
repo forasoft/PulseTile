@@ -13,11 +13,12 @@ import AdvancedSearch from './helpers/advancedSearch';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
-import HomeComponent from './rippleui/pages/home/home.component.js';
+import PatientsChartsComponent from './rippleui/pages/home/patients-charts.component';
 import PatientsComponent from './rippleui/pages/patients-list/patients.component';
 import PatientsSummaryComponent from './rippleui/pages/patient-summary/patients-summary.component';
 import PatientsSidebarComponent from './rippleui/pages/patients-detail/patients-sidebar.component';
 import PatientsBannerComponent from './rippleui/pages/patients-detail/patients-banner.component';
+import SearchComponent from './rippleui/search/search.component';
 
 import ServiceRequests from './services/serviceRequests.js';
 
@@ -37,10 +38,11 @@ const app = angular
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
     .component('headerComponent', HeaderComponent)
-    .component('homeComponent', HomeComponent)
+    .component('patientsChartsComponent', PatientsChartsComponent)
     .component('patientsSummaryComponent', PatientsSummaryComponent)
     .component('patientsSidebarComponent', PatientsSidebarComponent)
     .component('patientsBannerComponent', PatientsBannerComponent)
+    .component('searchComponent', SearchComponent)
     .config(routeConfig)
     .config(function (paginationTemplateProvider) {
         paginationTemplateProvider.setString(require('./rippleui/pagination/dirPagination.tpl.html'));
