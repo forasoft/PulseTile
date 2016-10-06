@@ -1,30 +1,33 @@
 let templateSearch = require('./search.html');
 
 class SearchController {
-  constructor($scope, $state, $stateParams, $ngRedux, serviceRequests) {
+  constructor($scope, serviceRequests, AdvancedSearch) {
 
     serviceRequests.publisher('headerTitle', {title: 'Welcome'});
-    
+
     this.mainSearchEnabled = true;
-    // $scope.searchExpression = '';
-    //
-    // $scope.isClickToAdvancedSearch = true;
-    //
-    // $scope.openAdvancedSearch = AdvancedSearch.openAdvancedSearch;
-    //
-    // $scope.$emit('toggleHeaderSearchEnabled', false);
-    //
-    // $scope.hideSearch = function() {
-    //   $scope.mainSearchEnabled = false;
-    //   $scope.$emit('toggleHeaderSearchEnabled', true);
-    //   $scope.$emit('populateHeaderSearch', $scope.searchExpression);
-    // };
-    //
-    // $scope.searchFunction = function() {
-    //   if($scope.isClickToAdvancedSearch) {
-    //     $scope.openAdvancedSearch();
-    //   }
-    // };
+    this.searchExpression = '';
+    this.isClickToAdvancedSearch = true;
+    this.openAdvancedSearch = AdvancedSearch.openAdvancedSearch;
+
+    serviceRequests.publisher('populateHeaderSearch', {
+      headerSearch: this.searchExpression,
+      headerSearchEnabled: false
+    });
+
+    this.hideSearch = function() {
+      this.mainSearchEnabled = false;
+      serviceRequests.publisher('populateHeaderSearch', {
+        headerSearch: this.searchExpression,
+        headerSearchEnabled: true
+      });
+    };
+    
+    this.searchFunction = function() {
+      if(this.isClickToAdvancedSearch) {
+        this.openAdvancedSearch();
+      }
+    };
   }
 }
 
@@ -33,5 +36,5 @@ const SearchComponent = {
   controller: SearchController
 };
 
-SearchController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'serviceRequests'];
+SearchController.$inject = ['$scope', 'serviceRequests', 'AdvancedSearch'];
 export default SearchComponent;

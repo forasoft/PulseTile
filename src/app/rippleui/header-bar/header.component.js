@@ -37,6 +37,7 @@ class HeaderController {
 
     this.openAdvancedSearch = AdvancedSearch.openAdvancedSearch;
     this.searchExpression = $rootScope.searchExpression;
+    this.searchBarEnabled = !$state.is('main-search');
 
     this.containsReportString = function () {
       return this.searchExpression.indexOf('rp ') === 0;
@@ -179,6 +180,15 @@ class HeaderController {
       $rootScope.reportTypeString = '';
       $rootScope.reportTypeSet = false;
     };
+
+    this.getPopulateHeaderSearch = function (expression) {
+      this.searchExpression = expression.headerSearch;
+      this.searchFocused = true;
+      this.searchBarEnabled = expression.headerSearchEnabled;
+      $scope.searchBar = expression.headerSearchEnabled;
+    };
+
+    serviceRequests.subscriber('populateHeaderSearch', this.getPopulateHeaderSearch);
     serviceRequests.subscriber('headerTitle', this.getPageHeader);
   }
 
