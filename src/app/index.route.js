@@ -35,14 +35,14 @@ function routeConfig($stateProvider, $urlRouterProvider) {
       params: {patientId: null, reportType: null}
     })
     .state('diagnoses-detail', {
-      url: '/patients/{patientId:int}/diagnoses?filter&page&reportType&searchString&queryType&source',
+      url: '/patients/{patientId:int}/diagnoses/{diagnosisIndex}?filter&page&reportType&searchString&queryType&source',
       views: {
         banner: {template: '<patients-banner-component></patients-banner-component>'},
         actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
         main: {template: '<diagnoses-list-component></diagnoses-list-component>'},
         detail: {template: '<diagnoses-detail-component></diagnoses-detail-component>'}
       },
-      params: {patientId: null, reportType: null}
+      params: {patientId: null, reportType: null, diagnosisIndex: null}
     });
 }
 

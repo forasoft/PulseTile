@@ -30,7 +30,6 @@ class PatientsSummaryController {
           toState = 'transferOfCare';
           break;
       }
-      console.log('toState --->', toState, section, $stateParams);
       $state.go(toState, requestHeader);
     };
     this.getPatientData = function (data) {

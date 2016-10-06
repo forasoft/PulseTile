@@ -17,7 +17,7 @@
   <tbody>
     <tr dir-paginate="diagnosis in $ctrl.diagnoses | filter:$ctrl.query | itemsPerPage: 9 " current-page="$ctrl.currentPage" ng-click="$ctrl.go(diagnosis.sourceId, diagnosis.source)" ng-class="{info: selected(diagnosis.sourceId)}">
       <td data-th="Problems / Diagnoses">{{ diagnosis.problem }}</td>
-      <td data-th="Date" class="dateTime">{{ diagnosis.dateOfOnset}}</td>
+      <td data-th="Date" class="dateTime">{{ diagnosis.dateOfOnset | date: 'dd-MMM-yyyy'}}</td>
       <td data-th="Source">{{diagnosis.source}}</td>
     </tr>
 

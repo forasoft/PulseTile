@@ -19,17 +19,32 @@ class DiagnosesListController {
 
     this.go = function (id, diagnosisSource) {
       $state.go('diagnoses-detail', {
-        patientId: $stateParams.patientId
+        patientId: $stateParams.patientId,
+        diagnosisIndex: id,
+        filter: this.query,
+        page: this.currentPage,
+        source: diagnosisSource
       });
     };
 
     this.create = function () {
-      DiagnosesModal.openModal();
+      DiagnosesModal.openModal(this.currentPatient, {title: 'Create Problem / Diagnosis'}, {}, this.currentUser);
 
     };
-    
-    let unsubscribe = $ngRedux.connect(state => (console.log('state ===>', state),{
-      diagnoses: state.diagnoses.data
+    this.setCurrentPageData = function (data) {
+      if (data.patients.data) {
+        this.currentPatient = data.patients.data;
+      }
+      if (data.diagnoses.data) {
+        this.diagnoses = data.diagnoses.data;
+      }
+      if (data.user.data) {
+        this.currentUser = data.user.data;
+      }
+    };
+
+    let unsubscribe = $ngRedux.connect(state => ({
+      getStoreData: this.setCurrentPageData(state)
     }))(this);
     
     $scope.$on('$destroy', unsubscribe);

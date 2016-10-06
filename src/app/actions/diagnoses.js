@@ -5,7 +5,7 @@ export function all(patientId) {
   return {
     types: [types.DIAGNOSES, types.DIAGNOSES_SUCCESS, types.DIAGNOSES_ERROR],
 
-    shouldCallAPI: (state) => !state.patients.response,
+    shouldCallAPI: (state) => !state.diagnoses.response,
 
     config: {
       method: 'get',
@@ -19,9 +19,9 @@ export function all(patientId) {
 }
 export function get(patientId, compositionId, source) {
   return {
-    types: [types.DIAGNOSES, types.DIAGNOSES_SUCCESS, types.DIAGNOSES_ERROR],
+    types: [types.DIAGNOSES_GET, types.DIAGNOSES_GET_SUCCESS, types.DIAGNOSES_GET_ERROR],
 
-    shouldCallAPI: (state) => !state.patients.response,
+    shouldCallAPI: (state) => !state.diagnoses.response,
 
     config: {
       method: 'get',
@@ -35,13 +35,14 @@ export function get(patientId, compositionId, source) {
 }
 export function create(patientId, composition) {
   return {
-    types: [types.DIAGNOSES, types.DIAGNOSES_SUCCESS, types.DIAGNOSES_ERROR],
+    types: [types.DIAGNOSES_CREATE, types.DIAGNOSES_CREATE_SUCCESS, types.DIAGNOSES_CREATE_ERROR],
 
-    shouldCallAPI: (state) => !state.patients.response,
+    shouldCallAPI: (state) => !state.diagnoses.response,
 
     config: {
       method: 'post',
-      url: '/api/patients/' + patientId + '/diagnoses'
+      url: '/api/patients/' + patientId + '/diagnoses',
+      data: composition
     },
 
     meta: {
@@ -51,13 +52,14 @@ export function create(patientId, composition) {
 }
 export function update(patientId, composition) {
   return {
-    types: [types.DIAGNOSES, types.DIAGNOSES_SUCCESS, types.DIAGNOSES_ERROR],
+    types: [types.DIAGNOSES_UPDATE, types.DIAGNOSES_UPDATE_SUCCESS, types.DIAGNOSES_UPDATE_ERROR],
 
-    shouldCallAPI: (state) => !state.patients.response,
+    shouldCallAPI: (state) => !state.diagnoses.response,
 
     config: {
       method: 'put',
-      url: '/api/patients/' + patientId + '/diagnoses'
+      url: '/api/patients/' + patientId + '/diagnoses',
+      data: composition
     },
 
     meta: {

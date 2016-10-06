@@ -5,7 +5,6 @@ const INITIAL_STATE = {
 };
 
 export default function messages(state = INITIAL_STATE, action) {
-  console.log('messages reducer ', state, action);
   let msg = null;
   const {payload} = action;
   
