@@ -4,6 +4,8 @@ class PatientsController {
     constructor($scope, $state, $stateParams, $location, $ngRedux, patientsActions, serviceRequests) {
         
         let vm = this;
+
+        serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-list'});
         
         vm.order = $stateParams.order || 'name';
         vm.reverse = $stateParams.reverse === 'true';

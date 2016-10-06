@@ -2,7 +2,6 @@ let templatePatientsSidebar = require('./patients-sidebar.html');
 
 class PatientsSidebarController {
   constructor($scope, $state, $stateParams, $ngRedux, patientsActions) {
-    console.log('PatientsSidebarController', $stateParams);
    
   }
 }

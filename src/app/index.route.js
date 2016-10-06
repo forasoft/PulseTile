@@ -23,7 +23,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
         }        
       })
       .state('patients-summary', {
-        url: '/patients-summary',
+        url: '/patients/{patientId:int}/patients-summary?reportType&searchString&queryType',
         views: {
           banner: {template: '<patients-banner-component></patients-banner-component>'},
           actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
@@ -37,6 +37,26 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<patients-list-full-component><patients-list-full-component>'}
         }        
       });
+      })
+    .state('diagnoses-list', {
+      url: '/patients/{patientId:int}/diagnoses?reportType&searchString&queryType',
+      views: {
+        banner: {template: '<patients-banner-component></patients-banner-component>'},
+        actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+        main: {template: '<diagnoses-list-component></diagnoses-list-component>'}
+      },
+      params: {patientId: null, reportType: null}
+    })
+    .state('diagnoses-detail', {
+      url: '/patients/{patientId:int}/diagnoses/{diagnosisIndex}?filter&page&reportType&searchString&queryType&source',
+      views: {
+        banner: {template: '<patients-banner-component></patients-banner-component>'},
+        actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+        main: {template: '<diagnoses-list-component></diagnoses-list-component>'},
+        detail: {template: '<diagnoses-detail-component></diagnoses-detail-component>'}
+      },
+      params: {patientId: null, reportType: null, diagnosisIndex: null}
+    });
 }
 
 export default routeConfig;

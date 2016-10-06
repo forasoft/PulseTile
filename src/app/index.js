@@ -11,6 +11,7 @@ import actions from './actions';
 import httpMiddleware from './helpers/httpMiddleware';
 import AdvancedSearch from './helpers/advancedSearch';
 import Patient from './helpers/patient';
+import DiagnosesModal from './rippleui/pages/diagnoses/diagnoses-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -21,6 +22,8 @@ import PatientsListFullComponent from './rippleui/pages/patients-list-full/patie
 import PatientsSidebarComponent from './rippleui/pages/patients-detail/patients-sidebar.component';
 import PatientsBannerComponent from './rippleui/pages/patients-detail/patients-banner.component';
 import SearchComponent from './rippleui/search/search.component';
+import DiagnosesListComponent from './rippleui/pages/diagnoses/diagnosis-list.component';
+import DiagnosesDetailComponent from './rippleui/pages/diagnoses/diagnoses-detail.component';
 import MainComponent from './helpers/main.component';
 
 import ServiceRequests from './services/serviceRequests.js';
@@ -38,6 +41,7 @@ const app = angular
     ])
     .factory('httpMiddleware', httpMiddleware)
     .factory('AdvancedSearch', AdvancedSearch)
+    .factory('DiagnosesModal', DiagnosesModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
@@ -46,6 +50,8 @@ const app = angular
     .component('patientsSummaryComponent', PatientsSummaryComponent)
     .component('patientsSidebarComponent', PatientsSidebarComponent)
     .component('patientsBannerComponent', PatientsBannerComponent)
+    .component('diagnosesListComponent', DiagnosesListComponent)
+    .component('diagnosesDetailComponent', DiagnosesDetailComponent)
     .component('patientsListFullComponent', PatientsListFullComponent)
     .component('mainComponent', MainComponent)
     .component('searchComponent', SearchComponent)
