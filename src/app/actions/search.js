@@ -1,18 +1,19 @@
 import {bindActionCreators} from 'redux';
 import * as types from '../constants/ActionTypes';
 
-export function login() {
+export function advancedSearch(queryParams) {
     return {
         // Types of actions to emit before and after
-        types: [types.USER_LOGIN, types.USER_LOGIN_SUCCESS, types.USER_LOGIN_ERROR],
+        types: [types.SEARCH, types.SEARCH_SUCCESS, types.SEARCH_ERROR],
 
         // Check the cache (optional):
-        shouldCallAPI: (state) => !state.patients.response,
+        shouldCallAPI: (state) => !state.advancedSearch,
 
         // Configure $http
         config: {
-            method: 'get',
-            url: '/api/user'
+            method: 'post',
+            url: `api/patients/advancedSearch`,
+            data: queryParams
         },
 
         // Metadata to inject in begin/end actions
@@ -22,12 +23,12 @@ export function login() {
     };
 }
 
-export default function userActions($ngRedux) {
+export default function searchActions($ngRedux) {
     let actionCreator = {
-        login
+        advancedSearch
     };
 
     return bindActionCreators(actionCreator, $ngRedux.dispatch);
 }
 
-userActions.$inject = ['$ngRedux'];
+searchActions.$inject = ['$ngRedux'];

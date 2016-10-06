@@ -13,7 +13,8 @@ body {
 
 body {
   background: url("/app/assets/images/site-bg2.png") center 100px no-repeat #fff;
-  background-size: cover;
+  background-size: 100% auto;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 *,

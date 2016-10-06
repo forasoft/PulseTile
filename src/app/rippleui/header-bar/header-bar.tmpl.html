@@ -7,25 +7,36 @@
       </div>
     </div>
 
-    <div class="col-md-5 col-sm-8 hidden-xs header-search ng-cloak" ng-cloak ng-class="">
+    <div class="col-md-5 col-sm-8 hidden-xs header-search ng-cloak" ng-cloak ng-class="{'searchBarHidden' : !$ctrl.searchBarEnabled }">
 
-      <div class="header-search-inner">
+      <div class="header-search-inner" ng-if="searchBar">
 
         <div class="search-left-inner-addon">
-          <div>
+          <div ng-show="$root.searchMode" class="ng-cloak" ng-cloak>
+            <span ng-cloak class="label ng-cloak report-label">
+            <div ng-if="$root.reportMode">Reports&nbsp;</div>
+            <div ng-if="$root.settingsMode">Setting&nbsp;</div>
+            <div ng-if="$root.patientMode">Patients&nbsp;</div>
+            <i ng-click="$ctrl.cancelSearchMode()" class="fa fa-times"></i></span>
           </div>
-          <input key-bind="" class="form-control" placeholder="Search..." type="text"/>
+          <div ng-show="$root.reportTypeSet" class="ng-cloak" ng-cloak>
+            <span ng-cloak class="label ng-cloak reportType-label">
+            <div class="reportTypeSet">
+              {{$root.reportTypeString}}&nbsp;
+              <i ng-click="$ctrl.cancelReportType()" class="fa cancel-reportType fa-times"></i>
+            </div>
+            </span>
+          </div>
+          <div></div>
+          <input key-bind="{ enter: '$ctrl.searchFunction()', esc: '$ctrl.cancelSearchMode()' }" class="form-control" placeholder="Search..." type="text" uib-typeahead="report for report in $ctrl.reportTypes | filter:$viewValue" ng-model="$ctrl.searchExpression" ng-keyup="$ctrl.checkExpression()" ng-trim="false" ng-class="{'moveRight': $root.searchMode && !$root.reportTypeSet, 'moveFurtherRight': $root.searchMode && $root.reportTypeSet}" focus-element="this.searchFocused"/>
         </div>
-
-        <button class="btn btn-info searchButton" ng-click="">
-          <i class="fa fa-search"></i>
-          <span class="hidden-xs hidden-sm hidden-md"> Search</span>
-        </button>
+        <i ng-show="$ctrl.searchExpression !== '' || $root.searchMode" ng-click="$ctrl.cancelSearchMode()" class="clearAll fa fa-times-circle"></i>
+        <button class="btn btn-info searchButton" ng-click="$ctrl.searchFunction();"><i class="fa fa-search"></i><span class="hidden-xs hidden-sm hidden-md"> Search</span></button>
 
       </div>
 
-      <div class="advanced-search-text pull-right">
-        <a ng-click="">Advanced search</a>
+      <div class="advanced-search-text pull-right" ng-if="searchBar">
+        <a ng-click="$ctrl.openAdvancedSearch()">Advanced search</a>
       </div>
 
     </div>
@@ -80,7 +91,7 @@
     <!-- ngIf: previousPage && currentUser.role=='idcr' --> <!-- ngIf: previousPage && currentUser.role=='idcr' -->
     </div>
     <div class="col-sm-6">
-      <span class="current-page-title ng-binding">Patient Dashboard</span>
+      <span class="current-page-title ng-binding" ng-bind="pageHeader"></span>
     </div>
   </div>
 </header>

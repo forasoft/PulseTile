@@ -1,7 +1,8 @@
 let templatePatients = require('./patients-list.html');
 
 class PatientsController {
-    constructor($scope, $state, $stateParams, $location, $ngRedux, patientsActions) {
+    constructor($scope, $state, $stateParams, $location, $ngRedux, patientsActions, serviceRequests) {
+        
         let vm = this;
         
         vm.order = $stateParams.order || 'name';
@@ -57,6 +58,8 @@ class PatientsController {
 
         this.loadPatientsList = patientsActions.loadPatients;
         this.loadPatientsList();
+
+        serviceRequests.publisher('headerTitle', {title: 'Patients Lists'});
     }
 }
 
@@ -65,5 +68,5 @@ const PatientsComponent = {
     controller: PatientsController
 };
 
-PatientsController.$inject = ['$scope', '$state', '$stateParams', '$location', '$ngRedux', 'patientsActions'];
+PatientsController.$inject = ['$scope', '$state', '$stateParams', '$location', '$ngRedux', 'patientsActions', 'serviceRequests'];
 export default PatientsComponent;
