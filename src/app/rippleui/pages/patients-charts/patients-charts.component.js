@@ -7,8 +7,7 @@ class PatientsChartsController {
     // Selected chart on page load
     this.selectedChart = 'age';
     var prevChartName = '';
-
-    this.openModal = function (row, chartType) {
+    var openModal = function (row, chartType) {
       $uibModal.open({
         templateUrl: 'app/rippleui/confirmation.html',
         size: 'md',
@@ -42,6 +41,10 @@ class PatientsChartsController {
       });
     };
 
+    this.openModal = function (row, chartType) {
+      openModal(row, chartType);
+    };
+
     var ageChart = function (summaries) {
       $timeout(function () {
         $window.Morris.Bar({
@@ -59,9 +62,7 @@ class PatientsChartsController {
           xLabelAngle: 50,
           redraw: true
         }).on('click', function (i, row) {
-
-          var chartType = 'age';
-          $scope.openModal(row, chartType);
+          openModal(row, 'age');
         });
       });
     };
@@ -84,9 +85,7 @@ class PatientsChartsController {
           xLabelAngle: 50,
           redraw: true
         }).on('click', function (i, row) {
-
-          var chartType = 'summary';
-          $scope.openModal(row, chartType);
+          openModal(row, 'summary');
         });
       });
     };
