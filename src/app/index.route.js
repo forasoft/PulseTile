@@ -17,7 +17,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
         }
       })
       .state('patients-list', {
-        url: '/patients-list',
+        url: '/patients?ageRange&department&order&reverse',
         views: {
           main: {template: '<patients-component><patients-component>'}
         }        
