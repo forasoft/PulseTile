@@ -1,11 +1,13 @@
 let templatePatientsCharts = require('./patients-charts.html');
 
 class PatientsChartsController {
-  constructor($scope, $state, $window, patientsActions, $ngRedux, $uibModal, serviceRequests) {
+  constructor($scope, $state, $window, patientsActions, $ngRedux, $uibModal, serviceRequests, $timeout, Patient) {
     serviceRequests.publisher('headerTitle', {title: 'Patients Dashboard'});
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-charts'});
-    
-    this.openModal = function (row, chartType) {
+    // Selected chart on page load
+    this.selectedChart = 'age';
+    var prevChartName = '';
+    var openModal = function (row, chartType) {
       $uibModal.open({
         templateUrl: 'app/rippleui/confirmation.html',
         size: 'md',
@@ -39,48 +41,52 @@ class PatientsChartsController {
       });
     };
 
-    var ageChart = function (summaries) {
-      $window.Morris.Bar({
-        element: 'age-chart',
-        resize: true,
-        data: summaries.age,
-        ykeys: ['value'],
-        xkey: 'series',
-        labels: ['Patients'],
-        barColors: ['#7E28CD'],
-        ymin: 0,
-        ymax: 46,
-        barGap: 4,
-        barSizeRatio: 0.55,
-        xLabelAngle: 50,
-        redraw: true
-      }).on('click', function (i, row) {
+    this.openModal = function (row, chartType) {
+      openModal(row, chartType);
+    };
 
-        var chartType = 'age';
-        $scope.openModal(row, chartType);
+    var ageChart = function (summaries) {
+      $timeout(function () {
+        $window.Morris.Bar({
+          element: 'age-chart',
+          resize: true,
+          data: summaries.age,
+          ykeys: ['value'],
+          xkey: 'series',
+          labels: ['Patients'],
+          barColors: ['#7E28CD'],
+          ymin: 0,
+          ymax: 46,
+          barGap: 4,
+          barSizeRatio: 0.55,
+          xLabelAngle: 50,
+          redraw: true
+        }).on('click', function (i, row) {
+          openModal(row, 'age');
+        });
       });
     };
 
     var departmentChart = function (summaries) {
-      $window.Morris.Bar({
-        element: 'department-chart',
-        resize: true,
-        data: summaries.department,
-        ykeys: ['value'],
-        xkey: 'series',
-        labels: ['Patients'],
-        hideHover: true,
-        barColors: ['#25A174'],
-        ymin: 0,
-        ymax: 40,
-        barGap: 4,
-        barSizeRatio: 0.55,
-        xLabelAngle: 50,
-        redraw: true
-      }).on('click', function (i, row) {
-
-        var chartType = 'summary';
-        $scope.openModal(row, chartType);
+      $timeout(function () {
+        $window.Morris.Bar({
+          element: 'department-chart',
+          resize: true,
+          data: summaries.department,
+          ykeys: ['value'],
+          xkey: 'series',
+          labels: ['Patients'],
+          hideHover: true,
+          barColors: ['#25A174'],
+          ymin: 0,
+          ymax: 40,
+          barGap: 4,
+          barSizeRatio: 0.55,
+          xLabelAngle: 50,
+          redraw: true
+        }).on('click', function (i, row) {
+          openModal(row, 'summary');
+        });
       });
     };
 
@@ -99,9 +105,17 @@ class PatientsChartsController {
     };
 
     this.getPatients = function (patients) {
-      var summaries = {};
+      if (this.selectedChart !== prevChartName && patients) {
+        prevChartName = this.selectedChart;
+        var summaries = {};
+        var changedPatients = [];
 
-        summaries.age = _.chain(patients)
+        angular.forEach(patients, function (patient) {
+          var curPatient = new Patient.patient(patient);
+          changedPatients.push(curPatient);
+        });
+
+        summaries.age = _.chain(changedPatients)
           .filter(function (patient) {
             return !!patient.age;
           })
@@ -120,7 +134,7 @@ class PatientsChartsController {
 
         swapArrayElements(summaries.age, 3, 4);
 
-        summaries.department = _.chain(patients)
+        summaries.department = _.chain(changedPatients)
           .filter(function (patient) {
             return !!patient.department;
           })
@@ -138,14 +152,16 @@ class PatientsChartsController {
           })
           .value();
 
-        // if (this.selectedChart === 'age') {
-        //   ageChart(summaries);
-        // }
-        // else {
-        //   departmentChart(summaries);
-        // }
+        if (this.selectedChart === 'age') {
+          ageChart(summaries);
+        } else {
+          departmentChart(summaries);
+        }
 
         return summaries;
+      } else {
+        return true;
+      }
     };
 
     // Clear previous chart
@@ -164,8 +180,6 @@ class PatientsChartsController {
       this.loadPatientsList();
     };
 
-    // Selected chart on page load
-    this.selectedChart = 'age';
     this.toggleChart();
   }
 }
@@ -175,5 +189,5 @@ const PatientsChartsComponent = {
   controller: PatientsChartsController
 };
 
-PatientsChartsController.$inject = ['$scope', '$state', '$window', 'patientsActions', '$ngRedux', '$uibModal', 'serviceRequests'];
+PatientsChartsController.$inject = ['$scope', '$state', '$window', 'patientsActions', '$ngRedux', '$uibModal', 'serviceRequests', '$timeout', 'Patient'];
 export default PatientsChartsComponent;

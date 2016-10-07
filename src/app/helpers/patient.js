@@ -5,6 +5,7 @@ export default function Patient($window) {
     _.extend(this, attributes);
 
     self.age = function () {
+      self.age = $window.moment().diff(self.dateOfBirth, 'years');
       return $window.moment().diff(self.dateOfBirth, 'years');
     };
 
