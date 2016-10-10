@@ -20,7 +20,8 @@ function routeConfig($stateProvider, $urlRouterProvider) {
         url: '/patients?ageRange&department&order&reverse',
         views: {
           main: {template: '<patients-component><patients-component>'}
-        }        
+        },
+        params: { patientsList: [], advancedSearchParams: [], displayEmptyTable: false }
       })
       .state('patients-summary', {
         url: '/patients/{patientId:int}/patients-summary?reportType&searchString&queryType',
