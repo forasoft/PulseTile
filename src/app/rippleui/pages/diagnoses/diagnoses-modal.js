@@ -80,10 +80,6 @@ export default function DiagnosesModal($uibModal, diagnosesActions, $ngRedux) {
             $uibModalInstance.dismiss('cancel');
           };
 
-          // let unsubscribe = $ngRedux.connect(state => ({}))(this);
-          //
-          // $scope.$on('$destroy', unsubscribe);
-
           $scope.diagnosesCreate = diagnosesActions.create;
           $scope.diagnosesUpdate = diagnosesActions.update;          
         }

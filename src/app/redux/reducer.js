@@ -8,6 +8,10 @@ import diagnoses from './diagnoses';
 import diagnosesGet from './diagnoses-get';
 import diagnosesCreate from './diagnoses-create';
 import diagnosesUpdate from './diagnoses-update';
+import allergies from './allergies';
+import allergiesGet from './allergies-get';
+import allergiesCreate from './allergies-create';
+import allergiesUpdate from './allergies-update';
 
 export default combineReducers({
   patients, 
@@ -17,5 +21,9 @@ export default combineReducers({
   diagnoses, 
   diagnosesGet, 
   diagnosesCreate, 
-  diagnosesUpdate
+  diagnosesUpdate,
+  allergies,
+  allergiesGet,
+  allergiesCreate,
+  allergiesUpdate
 });

@@ -6,6 +6,7 @@ import searchActions from './search';
 import messagesActions from './messages';
 import searchReport from './search-report';
 import diagnosesActions from './diagnoses';
+import allergiesActions from './allergies';
 
 export default angular
     .module('app.actions', [])
@@ -15,4 +16,5 @@ export default angular
     .factory('messagesActions', messagesActions)
     .factory('searchReport', searchReport)
     .factory('diagnosesActions', diagnosesActions)
+    .factory('allergiesActions', allergiesActions)
     .name;
