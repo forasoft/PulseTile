@@ -17,14 +17,12 @@ export default function AdvancedSearch($uibModal, $http, $ngRedux, searchActions
               $state.go('patients-summary', {
                 patientId: $scope.patients[0].nhsNumber
               });
-            }
-            else if ($scope.patients.length > 1) {
+            } else if ($scope.patients.length > 1) {
               $state.go('patients-list', {
                 patientsList: $scope.patients,
                 advancedSearchParams: $scope.searchParams
               });
-            }
-            else {
+            } else {
               $state.go('patients-list', {
                 patientsList: $scope.patients,
                 advancedSearchParams: $scope.searchParams,
