@@ -64,7 +64,7 @@ class PatientsChartsController {
         }).on('click', function (i, row) {
           openModal(row, 'age');
         });
-      });
+      }, 200);
     };
 
     var departmentChart = function (summaries) {
@@ -87,7 +87,7 @@ class PatientsChartsController {
         }).on('click', function (i, row) {
           openModal(row, 'summary');
         });
-      });
+      }, 200);
     };
 
     var self = this;

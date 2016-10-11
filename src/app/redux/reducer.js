@@ -8,6 +8,7 @@ import diagnoses from './diagnoses';
 import diagnosesGet from './diagnoses-get';
 import diagnosesCreate from './diagnoses-create';
 import diagnosesUpdate from './diagnoses-update';
+import chart from './chart';
 
 export default combineReducers({
   patients, 
@@ -17,5 +18,6 @@ export default combineReducers({
   diagnoses, 
   diagnosesGet, 
   diagnosesCreate, 
-  diagnosesUpdate
+  diagnosesUpdate, 
+  chart
 });
