@@ -6,7 +6,7 @@ export default function AdvancedSearch($uibModal, $http, $ngRedux, searchActions
       isModalClosed = false;
 
       var modalInstance = $uibModal.open({
-        templateUrl: 'app/rippleui/search/advanced-search-modal.html',
+        template: require('../rippleui/search/advanced-search-modal.html'),
         size: 'lg',
         controller: function ($scope, $state, modal, searchParams, AdvancedSearch, $uibModalInstance) {
           var changeState = function () {

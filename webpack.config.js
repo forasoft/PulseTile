@@ -37,7 +37,7 @@ const config = {
       {test: /\.html$/, loader: 'html'},
       {test: /\.(woff|woff2)/, loader: 'url?prefix=fonts/&limit=10000&mimetype=application/font-woff&name=assets/fonts/[name].[ext]'},
       {test: /\.(ttf|eot|svg)/, loader: 'file?name=assets/fonts/[name].[ext]'},
-      {test: /\.(jpg|png|jpeg|gif)$/, loader: 'url?limit=25000/&name=assets/images/[name].[ext]' }
+      {test: /\.(jpg|png|jpeg|gif)$/, loader: 'url-loader?limit=25000/&name=assets/images/[name].[ext]' }
       /*{test: /\.woff(\?.*)?$/,loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'},
       {test: /\.woff2(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2' },
       {test: /\.otf(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype' },
@@ -84,7 +84,7 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
   config.output = {
     filename: '[name].js',
     path: path.resolve('./dist'),
-    publicPath: '/'
+    publicPath: ''
   };
 
   config.plugins.push(
@@ -148,14 +148,15 @@ if (ENV_PRODUCTION) {
   config.devtool = 'source-map';
 
   config.module.loaders.push(
-    {test: /\.scss$/, loader: ExtractTextPlugin.extract('css?-autoprefixer!postcss!sass')}
+    {test: /\.scss$/, loader: 'style!css!postcss!sass'}
   );
 
   config.plugins.push(
-    new ExtractTextPlugin('styles.css'),
+    // new ExtractTextPlugin('styles.css'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       mangle: true,
+      beautify: true,
       compress: {
         dead_code: true, // eslint-disable-line camelcase
         screw_ie8: true, // eslint-disable-line camelcase

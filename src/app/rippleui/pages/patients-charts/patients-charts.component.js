@@ -9,7 +9,7 @@ class PatientsChartsController {
     var prevChartName = '';
     var openModal = function (row, chartType) {
       $uibModal.open({
-        templateUrl: 'app/rippleui/confirmation.html',
+        template: require('app/rippleui/confirmation.html'),
         size: 'md',
         controller: function ($scope) {
           $scope.cancel = function () {
