@@ -32,11 +32,17 @@ function routeConfig($stateProvider, $urlRouterProvider) {
         },
         params: {patientId: null, patientsList: null }
       })
+      .state('search-report', {
+        url: '/search-report?searchString',
+        views: {
+          main: {template: '<report-chart-component><report-chart-component>'}
+        }
+      })
       .state('patients-list-full', {
         url: '/patients-full-details?ageFrom&ageTo&orderType&pageNumber&reportType&searchString&queryType',
         views: {
           main: {template: '<patients-list-full-component><patients-list-full-component>'}
-        }        
+        }
       })
       .state('diagnoses-list', {
         url: '/patients/{patientId:int}/diagnoses?reportType&searchString&queryType',

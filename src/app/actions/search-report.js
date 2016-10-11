@@ -48,7 +48,7 @@ export function getSettingsTable(queryParams) {
 export function getChart(queryParams) {
     return {
         // Types of actions to emit before and after
-        types: [types.SEARCH, types.SEARCH_SUCCESS, types.SEARCH_ERROR],
+        types: [types.CHART, types.CHART_SUCCESS, types.CHART_ERROR],
 
         // Check the cache (optional):
         shouldCallAPI: (state) => !state.patientDetails,
