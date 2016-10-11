@@ -4,6 +4,7 @@ import uiBootstrap from 'angular-ui-bootstrap';
 import ngRedux from 'ng-redux';
 import dirPagination from 'angular-utils-pagination';
 import createLogger from 'redux-logger';
+import 'angular-loading-bar';
 
 //commons
 import reducer from './redux/reducer';
@@ -37,7 +38,8 @@ const app = angular
         uiBootstrap,
         ngRedux,
         actions,
-        dirPagination
+        dirPagination,
+        'angular-loading-bar'
     ])
     .factory('httpMiddleware', httpMiddleware)
     .factory('AdvancedSearch', AdvancedSearch)
@@ -70,6 +72,9 @@ const app = angular
         }
 
         $ngReduxProvider.createStoreWith(reducer, middleware);
+    }])
+    .config(['cfpLoadingBarProvider', cfpLoadingBarProvider => {
+        cfpLoadingBarProvider.includeSpinner = false;
     }])
     .filter('formatNHSNumber', function() {
         return function(number) {
