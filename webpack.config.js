@@ -155,7 +155,7 @@ if (ENV_PRODUCTION) {
     // new ExtractTextPlugin('styles.css'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      mangle: true,
+      mangle: false,
       beautify: true,
       compress: {
         dead_code: true, // eslint-disable-line camelcase
