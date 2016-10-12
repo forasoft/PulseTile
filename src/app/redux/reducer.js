@@ -12,6 +12,7 @@ import allergies from './allergies';
 import allergiesGet from './allergies-get';
 import allergiesCreate from './allergies-create';
 import allergiesUpdate from './allergies-update';
+import chart from './chart';
 
 export default combineReducers({
   patients, 
@@ -26,4 +27,5 @@ export default combineReducers({
   allergiesGet,
   allergiesCreate,
   allergiesUpdate
+  chart
 });

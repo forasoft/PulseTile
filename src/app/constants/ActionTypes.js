@@ -42,5 +42,9 @@ export const SEARCH = 'SEARCH';
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
 export const SEARCH_ERROR = 'SEARCH_ERROR';
 
+export const CHART = 'CHART';
+export const CHART_SUCCESS = 'CHART_SUCCESS';
+export const CHART_ERROR = 'CHART_ERROR';
+
 export const MESSAGE_SET = 'MESSAGE_SET';
 export const MESSAGE_GET = 'MESSAGE_GET';
