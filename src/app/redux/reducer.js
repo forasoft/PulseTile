@@ -26,6 +26,6 @@ export default combineReducers({
   allergies,
   allergiesGet,
   allergiesCreate,
-  allergiesUpdate
+  allergiesUpdate,
   chart
 });
