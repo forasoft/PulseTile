@@ -14,6 +14,7 @@ import AdvancedSearch from './helpers/advancedSearch';
 import Patient from './helpers/patient';
 import DiagnosesModal from './rippleui/pages/diagnoses/diagnoses-modal';
 import AllergiesModal from './rippleui/pages/allergies/allergies-modal';
+import ContactsModal from './rippleui/pages/contacts/contacts-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -29,6 +30,8 @@ import DiagnosesListComponent from './rippleui/pages/diagnoses/diagnosis-list.co
 import DiagnosesDetailComponent from './rippleui/pages/diagnoses/diagnoses-detail.component';
 import AllergiesListComponent from './rippleui/pages/allergies/allergies-list.component';
 import AllergiesDetailComponent from './rippleui/pages/allergies/allergies-detail.component';
+import ContactsListComponent from './rippleui/pages/contacts/contacts-list.component';
+import ContactsDetailComponent from './rippleui/pages/contacts/contacts-detail.component';
 import MainComponent from './helpers/main.component';
 
 import ServiceRequests from './services/serviceRequests.js';
@@ -49,6 +52,7 @@ const app = angular
     .factory('AdvancedSearch', AdvancedSearch)
     .factory('DiagnosesModal', DiagnosesModal)
     .factory('AllergiesModal', AllergiesModal)
+    .factory('ContactsModal', ContactsModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
@@ -61,6 +65,8 @@ const app = angular
     .component('diagnosesDetailComponent', DiagnosesDetailComponent)
     .component('allergiesListComponent', AllergiesListComponent)
     .component('allergiesDetailComponent', AllergiesDetailComponent)
+    .component('contactsListComponent', ContactsListComponent)
+    .component('contactsDetailComponent', ContactsDetailComponent)
     .component('patientsListFullComponent', PatientsListFullComponent)
     .component('mainComponent', MainComponent)
     .component('searchComponent', SearchComponent)

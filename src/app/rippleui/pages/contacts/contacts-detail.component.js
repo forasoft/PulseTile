@@ -1,0 +1,38 @@
+let templateContactsDetail= require('./contacts-detail.html');
+
+class ContactsDetailController {
+  constructor($scope, $state, $stateParams, $ngRedux, patientsActions, contactsActions, ContactsModal) {
+    this.edit = function () {
+      ContactsModal.openModal(this.currentPatient, {title: 'Edit Contact'}, this.contact, this.currentUser);
+    };
+
+    this.setCurrentPageData = function (data) {
+      if (data.contactsGet.data) {
+        this.contact = data.contactsGet.data;
+      }
+      if (data.patients.data) {
+        this.currentPatient = data.patients.data;
+      }
+      if (data.user.data) {
+        this.currentUser = data.user.data;
+      }
+    };
+
+    let unsubscribe = $ngRedux.connect(state => ({
+      getStoreData: this.setCurrentPageData(state)
+    }))(this);
+
+    $scope.$on('$destroy', unsubscribe);
+
+    this.contactsLoad = contactsActions.get;
+    this.contactsLoad($stateParams.patientId, $stateParams.contactIndex);
+  }
+}
+
+const ContactsDetailComponent = {
+  template: templateContactsDetail,
+  controller: ContactsDetailController
+};
+
+ContactsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions', 'contactsActions', 'ContactsModal'];
+export default ContactsDetailComponent;

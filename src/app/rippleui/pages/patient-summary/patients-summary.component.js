@@ -33,7 +33,7 @@ class PatientsSummaryController {
       $state.go(toState, requestHeader);
     };
     this.getPatientData = function (data) {
-      if (!data.id) return false;
+      if (!data || !data.id) return false;
 
       this.patient = data;
 

@@ -81,6 +81,24 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           detail: {template: '<allergies-detail-component></allergies-detail-component>'}
         },
         params: {patientId: null, reportType: null, allergyIndex: null}
+      })
+      .state('contacts', {
+        url: '/patients/{patientId:int}/contacts?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<contacts-list-component></contacts-list-component>'}
+        }
+      })
+
+      .state('contacts-detail', {
+        url: '/patients/{patientId:int}/contacts/{contactIndex}?filter&page&reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<contacts-list-component></contacts-list-component>'},
+          detail: {template: '<contacts-detail-component></contacts-detail-component>'}
+        }
       });
 }
 
