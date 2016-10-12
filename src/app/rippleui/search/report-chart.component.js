@@ -106,7 +106,9 @@ class ReportChartController {
         } else {
           vm.noResults = 'There are no results that match your search criteria';
         }
+
       }
+        result.chart.data = 0;
     };
 
     if ($stateParams.searchString !== undefined) {
@@ -123,7 +125,6 @@ class ReportChartController {
         reportType: searchQuery[0],
         searchString: searchQuery[1]
       };
-
       searchReport.getChart(requestBody);
     } else {
       $state.go('patients-charts');
