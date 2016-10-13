@@ -16,6 +16,10 @@ import medication from './medication';
 import medicationGet from './medication-get';
 import medicationCreate from './medication-create';
 import medicationUpdate from './medication-update';
+import contacts from './contacts';
+import contactsGet from './contacts-get';
+import contactsCreate from './contacts-create';
+import contactsUpdate from './contacts-update';
 import chart from './chart';
 
 export default combineReducers({
@@ -35,5 +39,10 @@ export default combineReducers({
   medicationGet,
   medicationCreate,
   medicationUpdate,
+  allergiesUpdate,
+  contacts,
+  contactsGet,
+  contactsCreate,
+  contactsUpdate,
   chart
 });

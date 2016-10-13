@@ -9,6 +9,7 @@ import diagnosesActions from './diagnoses';
 import allergiesActions from './allergies';
 import medicationsActions from './medications';
 
+import contactsActions from './contacts';
 
 export default angular
     .module('app.actions', [])
@@ -20,4 +21,5 @@ export default angular
     .factory('diagnosesActions', diagnosesActions)
     .factory('allergiesActions', allergiesActions)
     .factory('medicationsActions', medicationsActions)
+    .factory('contactsActions', contactsActions)
     .name;
