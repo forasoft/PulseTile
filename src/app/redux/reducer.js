@@ -39,7 +39,6 @@ export default combineReducers({
   medicationGet,
   medicationCreate,
   medicationUpdate,
-  allergiesUpdate,
   contacts,
   contactsGet,
   contactsCreate,
