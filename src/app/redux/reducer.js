@@ -12,6 +12,10 @@ import allergies from './allergies';
 import allergiesGet from './allergies-get';
 import allergiesCreate from './allergies-create';
 import allergiesUpdate from './allergies-update';
+import medication from './medication';
+import medicationGet from './medication-get';
+import medicationCreate from './medication-create';
+import medicationUpdate from './medication-update';
 import chart from './chart';
 
 export default combineReducers({
@@ -27,5 +31,9 @@ export default combineReducers({
   allergiesGet,
   allergiesCreate,
   allergiesUpdate,
+  medication,
+  medicationGet,
+  medicationCreate,
+  medicationUpdate,
   chart
 });

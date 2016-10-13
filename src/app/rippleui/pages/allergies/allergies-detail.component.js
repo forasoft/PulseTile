@@ -12,24 +12,6 @@ class AllergiesDetailController {
 
     $scope.formDisabled = true;
 
-    $scope.isLocked = function (diagnosis) {
-      if (!(diagnosis && diagnosis.id)) {
-        return true;
-      }
-
-      var diagnosisIdSegments = diagnosis.id.toString().split('::');
-      if (diagnosisIdSegments.length > 1) {
-        return ($scope.UnlockedSources.indexOf(diagnosisIdSegments[1]) < 0);
-      }
-
-      return true;
-    };
-
-    this.convertToLabel = function (text) {
-      var result = text.replace(/([A-Z])/g, ' $1');
-      return result.charAt(0).toUpperCase() + result.slice(1);
-    };
-
     this.setCurrentPageData = function (data) {
       if (data.patients.data) {
         this.currentPatient = data.patients.data;
