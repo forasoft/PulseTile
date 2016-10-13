@@ -5,7 +5,7 @@ export function all(patientId) {
   return {
     types: [types.MEDICATIONS, types.MEDICATIONS_SUCCESS, types.MEDICATIONS_ERROR],
 
-    shouldCallAPI: (state) => !state.allergies.response,
+    shouldCallAPI: (state) => !state.medication.response,
 
     config: {
       method: 'get',
@@ -21,7 +21,7 @@ export function get(patientId, compositionId, source) {
   return {
     types: [types.MEDICATIONS_GET, types.MEDICATIONS_GET_SUCCESS, types.MEDICATIONS_GET_ERROR],
 
-    shouldCallAPI: (state) => !state.allergies.response,
+    shouldCallAPI: (state) => !state.medication.response,
 
     config: {
       method: 'get',
@@ -37,7 +37,7 @@ export function create(patientId, composition) {
   return {
     types: [types.MEDICATIONS_CREATE, types.MEDICATIONS_CREATE_SUCCESS, types.MEDICATIONS_CREATE_ERROR],
 
-    shouldCallAPI: (state) => !state.allergies.response,
+    shouldCallAPI: (state) => !state.medication.response,
 
     config: {
       method: 'post',
@@ -54,7 +54,7 @@ export function update(patientId, composition) {
   return {
     types: [types.MEDICATIONS_UPDATE, types.MEDICATIONS_UPDATE_SUCCESS, types.MEDICATIONS_UPDATE_ERROR],
 
-    shouldCallAPI: (state) => !state.allergies.response,
+    shouldCallAPI: (state) => !state.medication.response,
 
     config: {
       method: 'put',

@@ -20,6 +20,8 @@ import contacts from './contacts';
 import contactsGet from './contacts-get';
 import contactsCreate from './contacts-create';
 import contactsUpdate from './contacts-update';
+import results from './results';
+import resultsGet from './results-get';
 import chart from './chart';
 
 export default combineReducers({
@@ -43,5 +45,7 @@ export default combineReducers({
   contactsGet,
   contactsCreate,
   contactsUpdate,
+  results,
+  resultsGet,
   chart
 });

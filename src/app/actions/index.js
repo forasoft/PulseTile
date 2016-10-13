@@ -8,8 +8,8 @@ import searchReport from './search-report';
 import diagnosesActions from './diagnoses';
 import allergiesActions from './allergies';
 import medicationsActions from './medications';
-
 import contactsActions from './contacts';
+import resultsActions from './results';
 
 export default angular
     .module('app.actions', [])
@@ -22,4 +22,5 @@ export default angular
     .factory('allergiesActions', allergiesActions)
     .factory('medicationsActions', medicationsActions)
     .factory('contactsActions', contactsActions)
+    .factory('resultsActions', resultsActions)
     .name;
