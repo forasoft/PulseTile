@@ -24,6 +24,8 @@ import orders from './orders';
 import ordersGet from './orders-get';
 import ordersCreate from './orders-create';
 import ordersSuggestion from './orders-suggestion';
+import results from './results';
+import resultsGet from './results-get';
 import chart from './chart';
 
 export default combineReducers({
@@ -51,5 +53,7 @@ export default combineReducers({
   ordersGet,
   ordersCreate,
   ordersSuggestion,
+  results,
+  resultsGet,
   chart
 });

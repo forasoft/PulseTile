@@ -38,6 +38,8 @@ import ContactsListComponent from './rippleui/pages/contacts/contacts-list.compo
 import ContactsDetailComponent from './rippleui/pages/contacts/contacts-detail.component';
 import OrdersListComponent from './rippleui/pages/orders/orders-list.component';
 import OrdersDetailComponent from './rippleui/pages/orders/orders-detail.component';
+import ResultsListComponent from './rippleui/pages/results/results-list.component';
+import ResultsDetailComponent from './rippleui/pages/results/results-detail.component';
 import MainComponent from './helpers/main.component';
 
 import ServiceRequests from './services/serviceRequests.js';
@@ -80,6 +82,8 @@ const app = angular
     .component('ordersListComponent', OrdersListComponent)
     .component('ordersDetailComponent', OrdersDetailComponent)
     .component('patientsListFullComponent', PatientsListFullComponent)
+    .component('resultsListComponent', ResultsListComponent)
+    .component('resultsDetailComponent', ResultsDetailComponent)
     .component('mainComponent', MainComponent)
     .component('searchComponent', SearchComponent)
     .component('reportChartComponent', ReportChartComponent)

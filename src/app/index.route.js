@@ -137,6 +137,23 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<orders-list-component></orders-list-component>'},
           detail: {template: '<orders-detail-component></orders-detail-component>'}
         }
+      })
+      .state('results', {
+        url: '/patients/{patientId:int}/results?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<results-list-component></results-list-component>'}
+        }
+      })  
+      .state('results-detail', {
+        url: '/patients/{patientId:int}/results/{resultIndex}?filter&page&reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<results-list-component></results-list-component>'},
+          detail: {template: '<results-detail-component></results-detail-component>'}
+        }
       });
 }
 
