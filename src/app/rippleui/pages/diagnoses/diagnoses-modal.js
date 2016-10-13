@@ -12,7 +12,7 @@ export default function DiagnosesModal($uibModal, diagnosesActions, $ngRedux) {
           
           $scope.patient = patient;
           $scope.diagnosis = diagnosis;
-          $scope.modal = modal;          
+          $scope.modal = modal;
           $scope.currentUser = currentUser;
 
           if (modal.title === 'Edit Problem / Diagnosis') {

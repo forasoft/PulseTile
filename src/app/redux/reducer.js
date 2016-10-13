@@ -16,6 +16,10 @@ import contacts from './contacts';
 import contactsGet from './contacts-get';
 import contactsCreate from './contacts-create';
 import contactsUpdate from './contacts-update';
+import orders from './orders';
+import ordersGet from './orders-get';
+import ordersCreate from './orders-create';
+import ordersSuggestion from './orders-suggestion';
 import chart from './chart';
 
 export default combineReducers({
@@ -35,5 +39,9 @@ export default combineReducers({
   contactsGet,
   contactsCreate,
   contactsUpdate,
+  orders,
+  ordersGet,
+  ordersCreate,
+  ordersSuggestion,
   chart
 });

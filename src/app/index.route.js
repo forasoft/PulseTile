@@ -99,6 +99,25 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<contacts-list-component></contacts-list-component>'},
           detail: {template: '<contacts-detail-component></contacts-detail-component>'}
         }
+      })
+
+      .state('orders', {
+        url: '/patients/{patientId:int}/orders?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<orders-list-component></orders-list-component>'}
+        }
+      })
+
+      .state('orders-detail', {
+        url: '/patients/{patientId:int}/orders/{orderId}?filter&page&reportType&searchString&queryType&source',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<orders-list-component></orders-list-component>'},
+          detail: {template: '<orders-detail-component></orders-detail-component>'}
+        }
       });
 }
 
