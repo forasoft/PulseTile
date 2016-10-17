@@ -2,6 +2,7 @@ const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BowerWebpackPlugin = require('bower-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -14,6 +15,7 @@ const NODE_ENV = process.env.NODE_ENV;
 const ENV_DEVELOPMENT = NODE_ENV === 'development';
 const ENV_PRODUCTION = NODE_ENV === 'production';
 const ENV_TEST = NODE_ENV === 'test';
+const ENV_COPY = NODE_ENV === 'copy';
 
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 9000;
@@ -176,6 +178,26 @@ if (ENV_PRODUCTION) {
         warnings: false
       }
     })
+  );
+}
+
+//=====================================
+//  COPY FILES
+//-------------------------------------
+if (ENV_COPY) {
+  config.output = {
+    filename: '[name].[ext]',
+    publicPath: ''
+  };
+  
+  config.module.loaders.push(
+    {test: /\.scss$/, loader: 'style!css!postcss!sass'}
+  );
+
+  config.plugins.push(
+    new CopyWebpackPlugin([
+      { from: './bower_components/moment', to: './build' }
+    ])
   );
 }
 
