@@ -16,6 +16,7 @@ import DiagnosesModal from './rippleui/pages/diagnoses/diagnoses-modal';
 import AllergiesModal from './rippleui/pages/allergies/allergies-modal';
 import MedicationsModal from './rippleui/pages/medications/medications-modal';
 import ContactsModal from './rippleui/pages/contacts/contacts-modal';
+import OrdersModal from './rippleui/pages/orders/orders-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -35,6 +36,8 @@ import MedicationsListComponent from './rippleui/pages/medications/medications-l
 import MedicationsDetailComponent from './rippleui/pages/medications/medications-detail.component';
 import ContactsListComponent from './rippleui/pages/contacts/contacts-list.component';
 import ContactsDetailComponent from './rippleui/pages/contacts/contacts-detail.component';
+import OrdersListComponent from './rippleui/pages/orders/orders-list.component';
+import OrdersDetailComponent from './rippleui/pages/orders/orders-detail.component';
 import ResultsListComponent from './rippleui/pages/results/results-list.component';
 import ResultsDetailComponent from './rippleui/pages/results/results-detail.component';
 import MainComponent from './helpers/main.component';
@@ -59,6 +62,7 @@ const app = angular
     .factory('AllergiesModal', AllergiesModal)
     .factory('MedicationsModal', MedicationsModal)
     .factory('ContactsModal', ContactsModal)
+    .factory('OrdersModal', OrdersModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
@@ -75,6 +79,8 @@ const app = angular
     .component('medicationsDetailComponent', MedicationsDetailComponent)
     .component('contactsListComponent', ContactsListComponent)
     .component('contactsDetailComponent', ContactsDetailComponent)
+    .component('ordersListComponent', OrdersListComponent)
+    .component('ordersDetailComponent', OrdersDetailComponent)
     .component('patientsListFullComponent', PatientsListFullComponent)
     .component('resultsListComponent', ResultsListComponent)
     .component('resultsDetailComponent', ResultsDetailComponent)
