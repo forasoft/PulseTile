@@ -106,6 +106,19 @@ const app = angular
     .config(['cfpLoadingBarProvider', cfpLoadingBarProvider => {
         cfpLoadingBarProvider.includeSpinner = false;
     }])
+    .directive('focusElement', function($timeout) {
+      return {
+        link: function(scope, element, attrs) {
+          scope.$watch(attrs.focusElement, function(value) {
+            $timeout(function() {
+              if(value === true) {
+                element.focus();
+              }
+            });
+          });
+        }
+      }
+    })
     .filter('formatNHSNumber', function() {
         return function(number) {
             if (number === undefined) {
