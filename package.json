@@ -19,6 +19,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --display-chunks --progress",
+    "copy": "cross-env NODE_ENV=copy webpack",
     "clean": "del-cli target",
     "lint": "eslint --cache .",
     "prebuild": "npm-run-all clean",
@@ -40,6 +41,7 @@
     "babel-preset-stage-1": "~6.5.0",
     "bootstrap-loader": "^1.1.6",
     "bower-webpack-plugin": "^0.1.9",
+    "copy-webpack-plugin": "^3.0.1",
     "cross-env": "~1.0.8",
     "css-loader": "~0.23.1",
     "del-cli": "~0.2.0",
