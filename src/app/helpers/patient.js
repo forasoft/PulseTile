@@ -1,12 +1,12 @@
 export default function Patient($window) {
   var patient = function (attributes) {
     var self = this;
-    let _ = require('underscore');
+    
     _.extend(this, attributes);
 
     self.age = function () {
-      self.age = $window.moment().diff(self.dateOfBirth, 'years');
-      return $window.moment().diff(self.dateOfBirth, 'years');
+      self.age = moment().diff(self.dateOfBirth, 'years');
+      return moment().diff(self.dateOfBirth, 'years');
     };
 
     self.ageRange = (function () {
