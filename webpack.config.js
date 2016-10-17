@@ -1,6 +1,7 @@
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BowerWebpackPlugin = require('bower-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -27,7 +28,8 @@ const API_URL =  'http://138.68.134.7';
 const config = {
   resolve: {
     extensions: ['', '.js'],
-    modulesDirectories: ['node_modules'],
+    modulesDirectories: ["node_modules", "bower_components"],
+    
     root: path.resolve('./src')
   },
 
@@ -51,6 +53,16 @@ const config = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
+    }),
+    new webpack.ResolverPlugin(
+      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(".bower.json", ["main"])
+    ),
+    new webpack.ProvidePlugin({
+      moment: 'moment',
+      spin: 'spin.js',
+      angularSpinner: 'angular-spinner',
+      _: 'underscore',
+      jQuery: 'jquery'
     })
   ],
 
