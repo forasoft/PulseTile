@@ -24,6 +24,10 @@ import orders from './orders';
 import ordersGet from './orders-get';
 import ordersCreate from './orders-create';
 import ordersSuggestion from './orders-suggestion';
+import referrals from './referrals';
+import referralsGet from './referrals-get';
+import referralsCreate from './referrals-create';
+import referralsUpdate from './referrals-update';
 import results from './results';
 import resultsGet from './results-get';
 import chart from './chart';
@@ -53,6 +57,10 @@ export default combineReducers({
   ordersGet,
   ordersCreate,
   ordersSuggestion,
+  referrals,
+  referralsGet,
+  referralsCreate,
+  referralsUpdate,
   results,
   resultsGet,
   chart

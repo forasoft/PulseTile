@@ -5,6 +5,8 @@ import ngRedux from 'ng-redux';
 import dirPagination from 'angular-utils-pagination';
 import createLogger from 'redux-logger';
 import 'angular-loading-bar';
+import 'jquery';
+import 'morrisjs';
 
 //commons
 import reducer from './redux/reducer';
@@ -17,6 +19,7 @@ import AllergiesModal from './rippleui/pages/allergies/allergies-modal';
 import MedicationsModal from './rippleui/pages/medications/medications-modal';
 import ContactsModal from './rippleui/pages/contacts/contacts-modal';
 import OrdersModal from './rippleui/pages/orders/orders-modal';
+import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -38,6 +41,8 @@ import ContactsListComponent from './rippleui/pages/contacts/contacts-list.compo
 import ContactsDetailComponent from './rippleui/pages/contacts/contacts-detail.component';
 import OrdersListComponent from './rippleui/pages/orders/orders-list.component';
 import OrdersDetailComponent from './rippleui/pages/orders/orders-detail.component';
+import ReferralsListComponent from './rippleui/pages/referrals/referrals-list.component';
+import ReferralsDetailComponent from './rippleui/pages/referrals/referrals-detail.component';
 import ResultsListComponent from './rippleui/pages/results/results-list.component';
 import ResultsDetailComponent from './rippleui/pages/results/results-detail.component';
 import MainComponent from './helpers/main.component';
@@ -63,6 +68,7 @@ const app = angular
     .factory('MedicationsModal', MedicationsModal)
     .factory('ContactsModal', ContactsModal)
     .factory('OrdersModal', OrdersModal)
+    .factory('ReferralsModal', ReferralsModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
@@ -81,6 +87,8 @@ const app = angular
     .component('contactsDetailComponent', ContactsDetailComponent)
     .component('ordersListComponent', OrdersListComponent)
     .component('ordersDetailComponent', OrdersDetailComponent)
+    .component('referralsListComponent', ReferralsListComponent)
+    .component('referralsDetailComponent', ReferralsDetailComponent)
     .component('patientsListFullComponent', PatientsListFullComponent)
     .component('resultsListComponent', ResultsListComponent)
     .component('resultsDetailComponent', ResultsDetailComponent)
