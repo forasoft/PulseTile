@@ -2,7 +2,7 @@
 
 <div class="inner-addon left-addon filterInput">
   <i class="fa fa-filter"></i>
-  <input type="text" class="form-control" placeholder="Filter..." ng-model="$ctrl.query[queryBy]" />
+  <input type="text" class="form-control" placeholder="Filter..." ng-model="$ctrl.query[$ctrl.queryBy]" />
 </div>
 
 <table class="table table-bordered table-striped table-hover rwd-table">
@@ -14,9 +14,8 @@
       <th>Source</th>
     </tr>
   </thead>
-
   <tbody>
-    <tr dir-paginate="contact in $ctrl.contacts | filter:$ctrl.query | itemsPerPage: 9" current-page="$ctrl.currentPage" ng-click="$ctrl.go(contact.sourceId, this)" ng-class="{info: selected(contact.sourceId)}">
+    <tr dir-paginate="contact in $ctrl.contacts | filter: $ctrl.query | itemsPerPage: 9" current-page="$ctrl.currentPage" ng-click="$ctrl.go(contact.sourceId, this)" ng-class="{info: selected(contact.sourceId)}">
       <td data-th="Name">{{ contact.name }}</td>
       <td data-th="Relationship">{{ contact.relationship }}</td>
       <td data-th="Next of Kin"><i class="fa fa-fw fa-check" ng-if="$ctrl.contact.nextOfKin"></i></td>
