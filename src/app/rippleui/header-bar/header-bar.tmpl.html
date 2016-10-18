@@ -28,9 +28,9 @@
             </span>
           </div>
           <div></div>
-          <input key-bind="{ enter: '$ctrl.searchFunction()', esc: '$ctrl.cancelSearchMode()' }" class="form-control" placeholder="Search..." type="text" uib-typeahead="report for report in $ctrl.reportTypes | filter:$viewValue" ng-model="$ctrl.searchExpression" ng-keyup="$ctrl.checkExpression()" ng-trim="false" ng-class="{'moveRight': $root.searchMode && !$root.reportTypeSet, 'moveFurtherRight': $root.searchMode && $root.reportTypeSet}" focus-element="this.searchFocused"/>
+          <input key-bind="{ enter: '$ctrl.searchFunction()', esc: '$ctrl.cancelSearchMode()' }" class="form-control" placeholder="Search..." type="text" uib-typeahead="report for report in $ctrl.reportTypes | filter:$viewValue" ng-model="search.searchExpression" ng-keyup="$ctrl.checkExpression(search.searchExpression)" ng-trim="false" ng-class="{'moveRight': $root.searchMode && !$root.reportTypeSet, 'moveFurtherRight': $root.searchMode && $root.reportTypeSet}" focus-element="searchFocused"/>
         </div>
-        <i ng-show="$ctrl.searchExpression !== '' || $root.searchMode" ng-click="$ctrl.cancelSearchMode()" class="clearAll fa fa-times-circle"></i>
+        <i ng-show="search.searchExpression !== '' || $root.searchMode" ng-click="$ctrl.cancelSearchMode()" class="clearAll fa fa-times-circle"></i>
         <button class="btn btn-info searchButton" ng-click="$ctrl.searchFunction();"><i class="fa fa-search"></i><span class="hidden-xs hidden-sm hidden-md"> Search</span></button>
 
       </div>

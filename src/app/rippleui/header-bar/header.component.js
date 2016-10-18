@@ -36,24 +36,25 @@ class HeaderController {
     $rootScope.reportTypeString = '';
 
     this.openAdvancedSearch = AdvancedSearch.openAdvancedSearch;
-    this.searchExpression = $rootScope.searchExpression;
+    $scope.search = {};
+    $scope.search.searchExpression = $rootScope.searchExpression;
     this.searchBarEnabled = !$state.is('main-search');
 
     this.containsReportString = function () {
-      return this.searchExpression.indexOf('rp ') === 0;
+      return $scope.search.searchExpression.indexOf('rp ') === 0;
     };
 
     this.containsSettingString = function () {
-      return this.searchExpression.lastIndexOf('st ') === 0;
+      return $scope.search.searchExpression.lastIndexOf('st ') === 0;
     };
 
     this.containsPatientString = function () {
-      return this.searchExpression.lastIndexOf('pt ') === 0;
+      return $scope.search.searchExpression.lastIndexOf('pt ') === 0;
     };
 
     this.containsReportTypeString = function () {
       for (var i = 0; i < this.reportTypes.length; i++) {
-        if (this.searchExpression.lastIndexOf(this.reportTypes[i]) !== -1) {
+        if ($scope.search.searchExpression.lastIndexOf(this.reportTypes[i]) !== -1) {
           return true;
         }
       }
@@ -63,12 +64,12 @@ class HeaderController {
 
     this.processReportTypeMode = function () {
       for (var i = 0; i < this.reportTypes.length; i++) {
-        if (this.searchExpression.lastIndexOf(this.reportTypes[i]) !== -1) {
-          var arr = this.searchExpression.split(':');
+        if ($scope.search.searchExpression.lastIndexOf(this.reportTypes[i]) !== -1) {
+          var arr = $scope.search.searchExpression.split(':');
 
           $rootScope.reportTypeString = arr[0];
           $rootScope.reportTypeSet = true;
-          this.searchExpression = '';
+          $scope.search.searchExpression = '';
         }
       }
 
@@ -76,27 +77,29 @@ class HeaderController {
     };
 
     this.processReportMode = function () {
-      if (this.searchExpression === 'rp ') {
-        this.searchExpression = '';
+      if ($scope.search.searchExpression === 'rp ') {
+        $scope.search.searchExpression = '';
       }
     };
 
     this.processSettingMode = function () {
-      if (this.searchExpression === 'st ') {
-        this.searchExpression = '';
+      if ($scope.search.searchExpression === 'st ') {
+        $scope.search.searchExpression = '';
       }
     };
 
     this.processPatientMode = function () {
-      if (this.searchExpression === 'pt ') {
-        this.searchExpression = '';
+      if ($scope.search.searchExpression === 'pt ') {
+        $scope.search.searchExpression = '';
       }
     };
 
-    this.checkExpression = function () {
+    this.checkExpression = function (expression) {
+      $scope.search.searchExpression = expression;
+
       if (this.autoAdvancedSearch) {
-        if (this.searchExpression.length >= 3) {
-          AdvancedSearch.openAdvancedSearch(this.searchExpression);
+        if ($scope.search.searchExpression.length >= 3) {
+          AdvancedSearch.openAdvancedSearch($scope.search.searchExpression);
         }
       } else if ($rootScope.searchMode) {
         if ($rootScope.reportMode && !$rootScope.reportTypeSet) {
@@ -139,26 +142,26 @@ class HeaderController {
         AdvancedSearch.openAdvancedSearch();
       }
 
-      if ($rootScope.reportTypeSet && this.searchExpression !== '') {
-        var tempExpression = $rootScope.reportTypeString + ': ' + this.searchExpression;
+      if ($rootScope.reportTypeSet && $scope.search.searchExpression !== '') {
+        var tempExpression = $rootScope.reportTypeString + ': ' + $scope.search.searchExpression;
         $state.go('search-report', {
           searchString: tempExpression
         });
       }
 
-      if ($rootScope.settingsMode && this.searchExpression !== '') {
+      if ($rootScope.settingsMode && $scope.search.searchExpression !== '') {
         $state.go('patients-list-full', {
           queryType: 'Setting: ',
-          searchString: this.searchExpression,
+          searchString: $scope.search.searchExpression,
           orderType: 'ASC',
           pageNumber: '1'
         });
       }
 
-      if ($rootScope.patientMode && this.searchExpression !== '') {
+      if ($rootScope.patientMode && $scope.search.searchExpression !== '') {
         $state.go('patients-list-full', {
           queryType: 'Patient: ',
-          searchString: this.searchExpression,
+          searchString: $scope.search.searchExpression,
           orderType: 'ASC',
           pageNumber: '1'
         });
@@ -170,7 +173,7 @@ class HeaderController {
       $rootScope.searchMode = false;
       $rootScope.patientMode = false;
       $rootScope.settingsMode = false;
-      this.searchExpression = '';
+      $scope.search.searchExpression = '';
       this.reportTypes = '';
       $rootScope.reportTypeSet = false;
       $rootScope.reportTypeString = '';
@@ -182,8 +185,8 @@ class HeaderController {
     };
 
     this.getPopulateHeaderSearch = function (expression) {
-      this.searchExpression = expression.headerSearch;
-      this.searchFocused = true;
+      $scope.search.searchExpression = expression.headerSearch;
+      $scope.searchFocused = true;
       this.searchBarEnabled = expression.headerSearchEnabled;
       $scope.searchBar = expression.headerSearchEnabled;
     };

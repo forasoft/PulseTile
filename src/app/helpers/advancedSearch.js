@@ -160,6 +160,7 @@ export default function AdvancedSearch($uibModal, $http, $ngRedux, searchActions
   };
 
   var searchByDetails = function (queryParams) {
+    queryParams.dateOfBirth = new Date(queryParams.dateOfBirth.getTime() - (60000 * queryParams.dateOfBirth.getTimezoneOffset()));
     this.searchResult = searchActions.advancedSearch;
     this.searchResult(queryParams);
   };
