@@ -27,6 +27,11 @@ import ordersSuggestion from './orders-suggestion';
 import results from './results';
 import resultsGet from './results-get';
 import chart from './chart';
+import documents from './documents';
+import documentsFindDischarge from './documents-find-discharge';
+import documentsFindReferral from './documents-find-referral';
+import documentsUploadDischarge from './documents-upload-discharge';
+import documentsUploadReferral from './documents-upload-referral';
 
 export default combineReducers({
   patients, 
@@ -55,5 +60,10 @@ export default combineReducers({
   ordersSuggestion,
   results,
   resultsGet,
-  chart
+  chart,
+  documents,
+  documentsFindDischarge,
+  documentsFindReferral,
+  documentsUploadDischarge,
+  documentsUploadReferral
 });
