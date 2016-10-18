@@ -11,6 +11,7 @@ import medicationsActions from './medications';
 import contactsActions from './contacts';
 import ordersActions from './orders';
 import resultsActions from './results';
+import referralsActions from './referrals';
 
 export default angular
     .module('app.actions', [])
@@ -25,4 +26,5 @@ export default angular
     .factory('contactsActions', contactsActions)
     .factory('ordersActions', ordersActions)
     .factory('resultsActions', resultsActions)
+    .factory('referralsActions', referralsActions)
     .name;

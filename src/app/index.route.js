@@ -138,6 +138,25 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           detail: {template: '<orders-detail-component></orders-detail-component>'}
         }
       })
+
+      .state('referrals', {
+        url: '/patients/{patientId:int}/referrals?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<referrals-list-component></referrals-list-component>'}
+        }
+      })
+
+      .state('referrals-detail', {
+        url: '/patients/{patientId:int}/referrals/{referralId}?filter&page&reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<referrals-list-component></referrals-list-component>'},
+          detail: {template: '<referrals-detail-component></referrals-detail-component>'}
+        }
+      })
       .state('results', {
         url: '/patients/{patientId:int}/results?reportType&searchString&queryType',
         views: {
