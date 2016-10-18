@@ -16,9 +16,9 @@
 
     <tbody>
     <tr dir-paginate="allergy in $ctrl.allergies | filter:$ctrl.query | itemsPerPage: 9 " current-page="$ctrl.currentPage" ng-click="$ctrl.go(allergy.sourceId, allergy.source)" ng-class="{info: selected(allergy.sourceId)}">
-        <td data-th="Problems / Diagnoses">{{ allergy.problem }}</td>
-        <td data-th="Date" class="dateTime">{{ allergy.dateOfOnset | date: 'dd-MMM-yyyy'}}</td>
-        <td data-th="Source">{{allergy.source}}</td>
+        <td data-th="Cause">{{ allergy.cause }}</td>
+      <td data-th="Reaction">{{ allergy.reaction }}</td>
+      <td data-th="Source">{{ allergy.source }}</td>
     </tr>
 
     <tr ng-if="! $ctrl.allergies || ! $ctrl.allergies.length">
