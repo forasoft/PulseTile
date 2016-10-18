@@ -1,4 +1,4 @@
-export default function ReferralsModal($uibModal, referralsActions, $ngRedux) {
+export default function ReferralsModal($uibModal, referralsActions, $stateParams) {
   var isModalClosed = true;
 
   var openModal = function (patient, modal, referral, currentUser) {
@@ -9,79 +9,131 @@ export default function ReferralsModal($uibModal, referralsActions, $ngRedux) {
         template: require('./referrals-modal.html'),
         size: 'lg',
         controller: function ($scope, $state, $uibModalInstance) {
+          var updateId = function (sourceId) {
+            var sourceArr = sourceId.split('::');
+            var newVersionNumber = parseInt(sourceArr[2]) + 1;
+            var newId = sourceArr[0] + '::' + sourceArr[1] + '::' + newVersionNumber;
+            return newId;
+          };
+
           $scope.patient = patient;
           $scope.referral = referral;
           $scope.modal = modal;
           $scope.currentUser = currentUser;
 
-          // if (modal.title === 'Create Allergy') {
-          //   $scope.isEdit = false;
-          //   $scope.allergy.dateCreated = new Date().toISOString().slice(0, 10);
-          //   $scope.allergy.causeCode = '1239085';
-          //   $scope.allergy.terminologyCode = '12393890';
-          // } else {
-          //   $scope.isEdit = true;
-          //   // $scope.allergy.dateSubmitted = new Date().toISOString().slice(0, 10);
-          //   $scope.allergy.dateCreated = new Date($scope.allergy.dateCreated).toISOString().slice(0, 10);
-          // }
+          if (modal.title === 'Create Referral') {
+            $scope.isEdit = false;
+            $scope.referral.dateCreated = new Date().toISOString().slice(0, 10);
+            $scope.author = $scope.currentUser;
+          } else {
+            $scope.isEdit = true;
+            $scope.referral.dateCreated = new Date($scope.referral.dateCreated).toISOString().slice(0, 10);
+            $scope.referral.dateOfReferral = new Date($scope.referral.dateOfReferral).toISOString().slice(0, 10);
+          }
 
-          // $scope.openDatePicker = function ($event, name) {
-          //   $event.preventDefault();
-          //   $event.stopPropagation();
+          $scope.openDatepicker = function ($event, name) {
+            $event.preventDefault();
+            $event.stopPropagation();
 
-          //   $scope[name] = true;
-          // };
+            $scope[name] = true;
+          };
 
-          // $scope.ok = function (allergyForm, allergies) {
-            
-          //   $scope.formSubmitted = true;
-          //   let toAdd = {
-          //     sourceId: '',
-          //     cause: allergies.cause,
-          //     causeCode: allergies.causeCode,
-          //     causeTerminology: allergies.causeTerminology,
-          //     reaction: allergies.reaction,
-          //     source: allergies.source
-          //   };
+          $scope.ok = function (referralForm, referral) {
+            $scope.formSubmitted = true;
+            if (referralForm.$valid) {
 
-          //   if (allergyForm.$valid) {
+              $uibModalInstance.close(referral);
 
-          //     $uibModalInstance.close(allergies);
+              if ($scope.isEdit) {
 
-          //     if ($scope.isEdit) {
+                referral.dateOfReferral = new Date(referral.dateOfReferral);
+                referral.dateOfReferral.setMinutes(referral.dateOfReferral.getMinutes() - referral.dateOfReferral.getTimezoneOffset());
 
-          //       $scope.allergiesUpdate($scope.patient.id, toAdd);
+                var toUpdate = {
+                  sourceId: referral.sourceId,
+                  author: referral.author,
+                  clinicalSummary: referral.clinicalSummary,
+                  dateCreated: new Date(referral.dateCreated),
+                  dateOfReferral: referral.dateOfReferral,
+                  reason: referral.reason,
+                  referralFrom: referral.referralFrom,
+                  referralTo: referral.referralTo,
+                  source: 'openehr'
+                };
 
-          //       $state.go('allergies-details', {
-          //         patientId: $scope.patient.id,
-          //         filter: $scope.query,
-          //         page: $scope.currentPage
-          //       }, {
-          //         reload: true
-          //       });
+                $scope.referralsUpdate($scope.patient.id, toUpdate);
 
-          //     } else {
+                $state.go('referrals-detail', {
+                  patientId: $scope.patient.id,
+                  referralId: updateId(referral.sourceId),
+                  page: $scope.currentPage,
+                  reportType: $stateParams.reportType,
+                  searchString: $stateParams.searchString,
+                  queryType: $stateParams.queryType
+                });
 
-          //       $scope.allergiesCreate($scope.patient.id, toAdd);
+              } else {
 
-          //       $state.go('allergies', {
-          //         patientId: $scope.patient.id,
-          //         filter: $scope.query,
-          //         page: $scope.currentPage
-          //       }, {
-          //         reload: true
-          //       });
-          //     }
+                referral.dateOfReferral = new Date(referral.dateOfReferral);
+                referral.dateOfReferral.setMinutes(referral.dateOfReferral.getMinutes() - referral.dateOfReferral.getTimezoneOffset());
 
-          //   }
-          // };
+                var toAdd = {
+                  sourceId: '',
+                  author: referral.author,
+                  clinicalSummary: referral.clinicalSummary,
+                  dateCreated: new Date(referral.dateCreated),
+                  dateOfReferral: referral.dateOfReferral,
+                  reason: referral.reason,
+                  referralFrom: referral.referralFrom,
+                  referralTo: referral.referralTo,
+                  source: 'openehr'
+                };
 
-          // $scope.cancel = function () {
-          //   $uibModalInstance.dismiss('cancel');
-          // };
+                $scope.referralsCreate($scope.patient.id, toAdd);
 
-          // $scope.allergiesCreate = allergiesActions.create;
-          // $scope.allergiesUpdate = allergiesActions.update;
+                $state.go('referrals', {
+                  patientId: $scope.patient.id,
+                  filter: $scope.query,
+                  page: $scope.currentPage,
+                  reportType: $stateParams.reportType,
+                  searchString: $stateParams.searchString,
+                  queryType: $stateParams.queryType
+                }, {
+                  reload: true
+                });
+              }
+
+            }
+          };
+
+          $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+          };
+
+          $scope.validate = function (form, name, index) {
+            var errorToCheckFor = name + index;
+
+            for (var error in form.$error.required) {
+              var errorName = form.$error.required[error].$name;
+
+              if (errorName === errorToCheckFor) {
+                return true;
+              }
+            }
+          };
+
+          $scope.validateDirty = function (form, name, index) {
+            var errorToCheckFor = name + index;
+            return form[errorToCheckFor].$dirty && form[errorToCheckFor].$invalid;
+          };
+
+          $scope.validateClean = function (form, name, index) {
+            var errorToCheckFor = name + index;
+            return form[errorToCheckFor].$dirty && form[errorToCheckFor].$valid;
+          };
+
+          $scope.referralsCreate = referralsActions.create;
+          $scope.referralsUpdate = referralsActions.update;
         }
       });
     }
@@ -99,4 +151,4 @@ export default function ReferralsModal($uibModal, referralsActions, $ngRedux) {
     openModal: openModal
   };
 }
-ReferralsModal.$inject = ['$uibModal', 'referralsActions', '$ngRedux'];
+ReferralsModal.$inject = ['$uibModal', 'referralsActions', '$stateParams'];

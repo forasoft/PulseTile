@@ -52,6 +52,7 @@ class ReferralsListController {
       if (data.patients.data) {
         this.currentPatient = data.patients.data;
       }
+
       if (data.referrals.data) {
         this.referrals = data.referrals.data;
 
