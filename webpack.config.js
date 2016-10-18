@@ -30,7 +30,11 @@ const config = {
     extensions: ['', '.js'],
     modulesDirectories: ["node_modules", "bower_components"],
     
-    root: path.resolve('./src')
+    root: path.resolve('./src'),
+    alias: {
+       'jquery': '../../bower_components/jquery/dist/jquery.js',
+       'morrisjs': '../../bower_components/morrisjs/morris.js'
+    }
   },
 
   module: {
@@ -39,7 +43,8 @@ const config = {
       {test: /\.html$/, loader: 'html'},
       {test: /\.(woff|woff2)/, loader: 'url?prefix=fonts/&limit=10000&mimetype=application/font-woff&name=assets/fonts/[name].[ext]'},
       {test: /\.(ttf|eot|svg)/, loader: 'file?name=assets/fonts/[name].[ext]'},
-      {test: /\.(jpg|png|jpeg|gif)$/, loader: 'url-loader?limit=25000/&name=assets/images/[name].[ext]' }
+      {test: /\.(jpg|png|jpeg|gif)$/, loader: 'url-loader?limit=25000/&name=assets/images/[name].[ext]' },
+      {test: /\.css$/, loader: "style-loader!css-loader!"}
       /*{test: /\.woff(\?.*)?$/,loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'},
       {test: /\.woff2(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2' },
       {test: /\.otf(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype' },
@@ -54,6 +59,10 @@ const config = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
     }),
+    new BowerWebpackPlugin({
+      excludes: ['node_modules'],
+      modulesDirectories: ['bower_components']
+    }),
     new webpack.ResolverPlugin(
       new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(".bower.json", ["main"])
     ),
@@ -62,7 +71,8 @@ const config = {
       spin: 'spin.js',
       angularSpinner: 'angular-spinner',
       _: 'underscore',
-      jQuery: 'jquery'
+      jQuery: 'jquery',
+      Raphael: 'raphael'
     })
   ],
 
