@@ -105,7 +105,6 @@ To run tests, type `npm test` or `karma start` in the terminal. Read more about 
 7. add components to src/app/index.js and src/app/index.route.js
 
 #### Explanations about module functionality
-Files:
 1. example-actions.js - It contains actions functions for redux architecture
 2. example-reducer-**.js - It contains reducer functions for redux architecture
 3. example-list.component.js - It's list.component functionality file (angular 1.5 component)
