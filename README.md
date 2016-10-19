@@ -95,3 +95,23 @@ All tests are also written in ES6. We use Webpack to take care of the logistics 
 
 To run tests, type `npm test` or `karma start` in the terminal. Read more about testing [below](#testing).
 
+#### Installation of the new module (functionality) to the application:
+1. npm/bower install moduleName (github url)
+2. To copy files from node_modules/bower_components use: webpack.config.js --> CopyWebpackPlugin change path in options { from: '', to: '' }
+3. npm run copy
+4. add module-actions.js to src/app/actions/index.js
+5. add module-reducer-**.js to src/app/redux/reducer.js
+6. add actions types from module/constants/ActionTypes.js to src/app/constants/ActionTypes.js
+7. add components to src/app/index.js and src/app/index.route.js
+
+#### Explanations about module functionality
+Files:
+1. example-actions.js - It contains actions functions for redux architecture
+2. example-reducer-**.js - It contains reducer functions for redux architecture
+3. example-list.component.js - It's list.component functionality file (angular 1.5 component)
+4. example-list.html - template for list.component
+5. example-detail.component.js - It's detail.component functionality file (angular 1.5 component)
+6. example-detail.html - template for detail.component
+7. example-modal.js - It's modal functionality file
+8. example-modal.html - template for modal
+9. ActionTypes.js - It contains actions constants for redux architecture
