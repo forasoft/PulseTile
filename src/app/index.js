@@ -20,6 +20,7 @@ import MedicationsModal from './rippleui/pages/medications/medications-modal';
 import ContactsModal from './rippleui/pages/contacts/contacts-modal';
 import OrdersModal from './rippleui/pages/orders/orders-modal';
 import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
+import ClinicalnotesModal from './rippleui/pages/clinical-notes/clinicalnotes-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -47,6 +48,8 @@ import ResultsListComponent from './rippleui/pages/results/results-list.componen
 import ResultsDetailComponent from './rippleui/pages/results/results-detail.component';
 import DocumentsListComponent from './rippleui/pages/documents/documents-list.component';
 import DocumentsDetailComponent from './rippleui/pages/documents/documents-detail.component';
+import ClinicalnotesListComponent from './rippleui/pages/clinical-notes/clinicalnotes-list.component';
+import ClinicalnotesDetailComponent from './rippleui/pages/clinical-notes/clinicalnotes-detail.component';
 import MainComponent from './helpers/main.component';
 
 import ServiceRequests from './services/serviceRequests.js';
@@ -71,6 +74,7 @@ const app = angular
     .factory('ContactsModal', ContactsModal)
     .factory('OrdersModal', OrdersModal)
     .factory('ReferralsModal', ReferralsModal)
+    .factory('ClinicalnotesModal', ClinicalnotesModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
@@ -96,6 +100,8 @@ const app = angular
     .component('resultsDetailComponent', ResultsDetailComponent)
     .component('documentsListComponent', DocumentsListComponent)
     .component('documentsDetailComponent', DocumentsDetailComponent)
+    .component('clinicalnotesListComponent', ClinicalnotesListComponent)
+    .component('clinicalnotesDetailComponent', ClinicalnotesDetailComponent)
     .component('mainComponent', MainComponent)
     .component('searchComponent', SearchComponent)
     .component('reportChartComponent', ReportChartComponent)

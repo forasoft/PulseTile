@@ -36,6 +36,10 @@ import documentsFindDischarge from '../rippleui/pages/documents/documents-reduce
 import documentsFindReferral from '../rippleui/pages/documents/documents-reducer-find-referral';
 import documentsUploadDischarge from '../rippleui/pages/documents/documents-reducer-upload-discharge';
 import documentsUploadReferral from '../rippleui/pages/documents/documents-reducer-upload-referral';
+import clinicalnotes from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-all';
+import clinicalnotesGet from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-get';
+import clinicalnotesCreate from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-create';
+import clinicalnotesUpdate from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-update';
 
 export default combineReducers({
   patients, 
@@ -73,5 +77,9 @@ export default combineReducers({
   documentsFindDischarge,
   documentsFindReferral,
   documentsUploadDischarge,
-  documentsUploadReferral
+  documentsUploadReferral,
+  clinicalnotes,
+  clinicalnotesGet,
+  clinicalnotesCreate,
+  clinicalnotesUpdate
 });
