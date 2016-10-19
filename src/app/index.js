@@ -20,6 +20,7 @@ import MedicationsModal from './rippleui/pages/medications/medications-modal';
 import ContactsModal from './rippleui/pages/contacts/contacts-modal';
 import OrdersModal from './rippleui/pages/orders/orders-modal';
 import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
+import ProceduresModal from './rippleui/pages/procedures/procedures-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -43,6 +44,8 @@ import OrdersListComponent from './rippleui/pages/orders/orders-list.component';
 import OrdersDetailComponent from './rippleui/pages/orders/orders-detail.component';
 import ReferralsListComponent from './rippleui/pages/referrals/referrals-list.component';
 import ReferralsDetailComponent from './rippleui/pages/referrals/referrals-detail.component';
+import ProceduresListComponent from './rippleui/pages/procedures/procedures-list.component';
+import ProceduresDetailComponent from './rippleui/pages/procedures/procedures-detail.component';
 import ResultsListComponent from './rippleui/pages/results/results-list.component';
 import ResultsDetailComponent from './rippleui/pages/results/results-detail.component';
 import DocumentsListComponent from './rippleui/pages/documents/documents-list.component';
@@ -71,6 +74,7 @@ const app = angular
     .factory('ContactsModal', ContactsModal)
     .factory('OrdersModal', OrdersModal)
     .factory('ReferralsModal', ReferralsModal)
+    .factory('ProceduresModal', ProceduresModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
@@ -91,6 +95,8 @@ const app = angular
     .component('ordersDetailComponent', OrdersDetailComponent)
     .component('referralsListComponent', ReferralsListComponent)
     .component('referralsDetailComponent', ReferralsDetailComponent)
+    .component('proceduresListComponent', ProceduresListComponent)
+    .component('proceduresDetailComponent', ProceduresDetailComponent)
     .component('patientsListFullComponent', PatientsListFullComponent)
     .component('resultsListComponent', ResultsListComponent)
     .component('resultsDetailComponent', ResultsDetailComponent)
@@ -124,7 +130,7 @@ const app = angular
           scope.$watch(attrs.focusElement, function(value) {
             $timeout(function() {
               if(value === true) {
-                element.focus();
+                jQuery(element).focus();
               }
             });
           });
