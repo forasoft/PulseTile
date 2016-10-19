@@ -108,14 +108,14 @@ class PatientsListFullController {
       if (dateString === null) {
         return 'N/A';
       }
-      dateString = $window.moment(dateString);
-      if ($window.moment().diff(dateString, 'days') < 1) {
+      dateString = moment(dateString);
+      if (moment().diff(dateString, 'days') < 1) {
         return dateString.format('h:mm a');
       }
-      if ($window.moment().startOf('year') <= dateString) {
+      if (moment().startOf('year') <= dateString) {
         return dateString.format('DD-MMM');
       }
-      if ($window.moment().startOf('year').subtract(1, 'year') < dateString) {
+      if (moment().startOf('year').subtract(1, 'year') < dateString) {
         return dateString.format('MMM-YY');
       }
       return dateString.format('YYYY');

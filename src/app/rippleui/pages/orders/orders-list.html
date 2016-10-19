@@ -17,7 +17,7 @@
   <tbody>
     <tr dir-paginate="order in $ctrl.orders| filter: search | itemsPerPage: 9" current-page="$ctrl.currentPage"  ng-click="$ctrl.go(order.sourceId, order.source)" ng-class="{info: selected(order.sourceId)}">
       <td data-th="Order Name">{{order.name }}</td>
-      <td data-th="Date" class="orderDateTime">{{order.orderDate}}</td>
+      <td data-th="Date" class="orderDateTime">{{order.orderDate | date: 'dd-MMM-yyyy'}}</td>
       <td data-th="Source">{{ order.source }}</td>
     </tr>
 
