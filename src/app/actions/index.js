@@ -27,4 +27,5 @@ export default angular
     .factory('ordersActions', ordersActions)
     .factory('resultsActions', resultsActions)
     .factory('referralsActions', referralsActions)
+    .factory('documentsActions', documentsActions)
     .name;

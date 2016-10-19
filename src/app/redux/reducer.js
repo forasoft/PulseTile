@@ -31,6 +31,11 @@ import referralsUpdate from '../rippleui/pages/referrals/referrals-reducer-updat
 import results from '../rippleui/pages/results/results-reducer-all';
 import resultsGet from '../rippleui/pages/results/results-reducer-get';
 import chart from '../rippleui/search/chart-reducer-get';
+import documents from './documents';
+import documentsFindDischarge from './documents-find-discharge';
+import documentsFindReferral from './documents-find-referral';
+import documentsUploadDischarge from './documents-upload-discharge';
+import documentsUploadReferral from './documents-upload-referral';
 
 export default combineReducers({
   patients, 
@@ -63,5 +68,10 @@ export default combineReducers({
   referralsUpdate,
   results,
   resultsGet,
-  chart
+  chart,
+  documents,
+  documentsFindDischarge,
+  documentsFindReferral,
+  documentsUploadDischarge,
+  documentsUploadReferral
 });
