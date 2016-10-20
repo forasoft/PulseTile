@@ -28,6 +28,10 @@ import referrals from '../rippleui/pages/referrals/referrals-reducer-all';
 import referralsGet from '../rippleui/pages/referrals/referrals-reducer-get';
 import referralsCreate from '../rippleui/pages/referrals/referrals-reducer-create';
 import referralsUpdate from '../rippleui/pages/referrals/referrals-reducer-update';
+import procedures from '../rippleui/pages/procedures/procedures-reducer-all';
+import proceduresGet from '../rippleui/pages/procedures/procedures-reducer-get';
+import proceduresCreate from '../rippleui/pages/procedures/procedures-reducer-create';
+import proceduresUpdate from '../rippleui/pages/procedures/procedures-reducer-update';
 import results from '../rippleui/pages/results/results-reducer-all';
 import resultsGet from '../rippleui/pages/results/results-reducer-get';
 import chart from '../rippleui/search/chart-reducer-get';
@@ -66,6 +70,10 @@ export default combineReducers({
   referralsGet,
   referralsCreate,
   referralsUpdate,
+  procedures,
+  proceduresGet,
+  proceduresCreate,
+  proceduresUpdate,
   results,
   resultsGet,
   chart,
