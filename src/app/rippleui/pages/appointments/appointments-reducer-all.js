@@ -6,23 +6,23 @@ const INITIAL_STATE = {
   data: null
 };
 
-export default function allergies(state = INITIAL_STATE, action) {
+export default function appointments(state = INITIAL_STATE, action) {
   const {payload} = action;
 
   var actions = {
-    [types.ALLERGIES]: (state) => {
+    [types.APPOINTMENTS]: (state) => {
       return Object.assign({}, state, {
         isFetching: true,
         error: false
       });
     },
-    [types.ALLERGIES_SUCCESS]: (state) => {
+    [types.APPOINTMENTS_SUCCESS]: (state) => {
       return Object.assign({}, state, {
         isFetching: false,
         data: payload.response
       });
     },
-    [types.ALLERGIES_ERROR]: (state) => {
+    [types.APPOINTMENTS_ERROR]: (state) => {
       return Object.assign({}, state, {
         isFetching: false,
         error: payload.error

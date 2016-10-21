@@ -1,5 +1,7 @@
 //libs
 import uiRouter from 'angular-ui-router';
+import 'angular-ui-calendar';
+import ngAnimate from 'angular-animate';
 import uiBootstrap from 'angular-ui-bootstrap';
 import ngRedux from 'ng-redux';
 import dirPagination from 'angular-utils-pagination';
@@ -20,6 +22,7 @@ import MedicationsModal from './rippleui/pages/medications/medications-modal';
 import ContactsModal from './rippleui/pages/contacts/contacts-modal';
 import OrdersModal from './rippleui/pages/orders/orders-modal';
 import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
+import AppointmentsModal from './rippleui/pages/appointments/appointments-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -47,6 +50,8 @@ import ResultsListComponent from './rippleui/pages/results/results-list.componen
 import ResultsDetailComponent from './rippleui/pages/results/results-detail.component';
 import DocumentsListComponent from './rippleui/pages/documents/documents-list.component';
 import DocumentsDetailComponent from './rippleui/pages/documents/documents-detail.component';
+import AppointmentsListComponent from './rippleui/pages/appointments/appointments-list.component';
+import AppointmentsDetailComponent from './rippleui/pages/appointments/appointments-detail.component';
 import MainComponent from './helpers/main.component';
 
 import ServiceRequests from './services/serviceRequests.js';
@@ -57,6 +62,7 @@ import 'app/scss/core.scss';
 const app = angular
     .module('app', [
         uiRouter,
+        ngAnimate,
         uiBootstrap,
         ngRedux,
         actions,
@@ -71,6 +77,7 @@ const app = angular
     .factory('ContactsModal', ContactsModal)
     .factory('OrdersModal', OrdersModal)
     .factory('ReferralsModal', ReferralsModal)
+    .factory('AppointmentsModal', AppointmentsModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
@@ -96,6 +103,8 @@ const app = angular
     .component('resultsDetailComponent', ResultsDetailComponent)
     .component('documentsListComponent', DocumentsListComponent)
     .component('documentsDetailComponent', DocumentsDetailComponent)
+    .component('appointmentsListComponent', AppointmentsListComponent)
+    .component('appointmentsDetailComponent', AppointmentsDetailComponent)
     .component('mainComponent', MainComponent)
     .component('searchComponent', SearchComponent)
     .component('reportChartComponent', ReportChartComponent)
@@ -138,6 +147,12 @@ const app = angular
             }
 
             return number.slice(0,3) + " " + number.slice(3,6) + " " + number.slice(6);
+        };
+    })
+    .filter('formatMoment', function() {
+        return function(date) {
+            var m = moment(date);
+            return m.format('h:mma');
         };
     });
 console.log('app start');

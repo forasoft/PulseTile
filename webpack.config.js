@@ -34,8 +34,11 @@ const config = {
     
     root: path.resolve('./src'),
     alias: {
-       'jquery': '../../bower_components/jquery/dist/jquery.js',
-       'morrisjs': '../../bower_components/morrisjs/morris.js'
+      'fullcalendar': '../../bower_components/fullcalendar/dist/fullcalendar.js',
+      'gcal': '../../bower_components/fullcalendar/dist/gcal.js',
+      'calendar': '../../bower_components/angular-ui-calendar/src/calendar.js',
+      'jquery': '../../bower_components/jquery/dist/jquery.js',
+      'morrisjs': '../../bower_components/morrisjs/morris.js'
     }
   },
 

@@ -1,9 +1,9 @@
-let templateAllergiesDetail= require('./allergies-detail.html');
+let templateAppointmentsDetail= require('./appointments-detail.html');
 
-class AllergiesDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, AllergiesModal) {
+class AppointmentsDetailController {
+  constructor($scope, $state, $stateParams, $ngRedux, appointmentsActions, AppointmentsModal) {
     this.edit = function () {
-      AllergiesModal.openModal(this.currentPatient, {title: 'Edit Allergy'}, this.allergy, this.currentUser);
+      AppointmentsModal.openModal(this.currentPatient, {title: 'Edit Appointment'}, this.appointment, this.currentUser);
     };
 
     $scope.UnlockedSources = [
@@ -16,8 +16,8 @@ class AllergiesDetailController {
       if (data.patients.data) {
         this.currentPatient = data.patients.data;
       }
-      if (data.allergiesGet.data) {
-        this.allergy = data.allergiesGet.data;
+      if (data.appointmentsGet.data) {
+        this.appointment = data.appointmentsGet.data;
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -30,15 +30,15 @@ class AllergiesDetailController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.allergiesLoad = allergiesActions.get;
-    this.allergiesLoad($stateParams.patientId, $stateParams.allergyIndex, $stateParams.source);
+    this.appointmentsLoad = appointmentsActions.get;
+    this.appointmentsLoad($stateParams.patientId, $stateParams.appointmentIndex, $stateParams.source);
   }
 }
 
-const AllergiesDetailComponent = {
-  template: templateAllergiesDetail,
-  controller: AllergiesDetailController
+const AppointmentsDetailComponent = {
+  template: templateAppointmentsDetail,
+  controller: AppointmentsDetailController
 };
 
-AllergiesDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'allergiesActions', 'AllergiesModal'];
-export default AllergiesDetailComponent;
+AppointmentsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'appointmentsActions', 'AppointmentsModal'];
+export default AppointmentsDetailComponent;

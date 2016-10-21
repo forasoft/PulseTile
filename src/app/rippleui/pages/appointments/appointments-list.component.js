@@ -1,7 +1,7 @@
-let templateAllergiesList = require('./allergies-list.html');
+let templateAppointmentsList = require('./appointments-list.html');
 
-class AllergiesListController {
-  constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, serviceRequests, AllergiesModal) {
+class AppointmentsListController {
+  constructor($scope, $state, $stateParams, $ngRedux, appointmentsActions, serviceRequests, AppointmentsModal) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
@@ -17,26 +17,29 @@ class AllergiesListController {
       this.currentPage = $stateParams.page;
     }
 
-    this.go = function (id, allergySource) {
-      $state.go('allergies-detail', {
+    this.go = function (id, appointmentSource) {
+      $state.go('appointments-detail', {
         patientId: $stateParams.patientId,
-        allergyIndex: id,
+        appointmentIndex: id,
         filter: this.query,
         page: this.currentPage,
-        source: allergySource
+        source: appointmentSource
       });
     };
 
     this.create = function () {
-      AllergiesModal.openModal(this.currentPatient, {title: 'Create Allergy'}, {}, this.currentUser);
+      AppointmentsModal.openModal(this.currentPatient, {title: 'Create Appointment'}, {}, this.currentUser);
 
     };
     this.setCurrentPageData = function (data) {
       if (data.patients.data) {
         this.currentPatient = data.patients.data;
       }
-      if (data.allergies.data) {
-        this.allergies = data.allergies.data;
+      if (data.appointments.data) {
+        this.appointments = data.appointments.data;
+        for (var i = 0; i < this.appointments.length; i++) {
+          this.appointments[i].timeOfAppointmentTo = moment(this.appointments[i].timeOfAppointment).add(59, 'm').format('h:mma');
+        }
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -49,15 +52,15 @@ class AllergiesListController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.allergiesLoad = allergiesActions.all;
-    this.allergiesLoad($stateParams.patientId);
+    this.appointmentsLoad = appointmentsActions.all;
+    this.appointmentsLoad($stateParams.patientId);
   }
 }
 
-const AllergiesListComponent = {
-  template: templateAllergiesList,
-  controller: AllergiesListController
+const AppointmentsListComponent = {
+  template: templateAppointmentsList,
+  controller: AppointmentsListController
 };
 
-AllergiesListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'allergiesActions', 'serviceRequests', 'AllergiesModal'];
-export default AllergiesListComponent;
+AppointmentsListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'appointmentsActions', 'serviceRequests', 'AppointmentsModal'];
+export default AppointmentsListComponent;

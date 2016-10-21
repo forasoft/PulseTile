@@ -37,9 +37,9 @@
       <legend>{{ modal.title }}</legend>
        <div class="row hidden-xs hidden-sm">
         <div class="col-md-3">
-        <div class="btn appointmentTabs eolTabs" ng-model="radioModel" btn-radio="'Tab1'">Service</div>
+        <div class="btn appointmentTabs eolTabs" ng-model="radioModel" ng-click="radioModel='Tab1'" btn-radio="'Tab1'">Service</div>
 
-        <div class="btn appointmentTabs eolTabsBottom eolTabs" ng-model="radioModel" btn-radio="'Tab2'">Schedule</div>
+        <div class="btn appointmentTabs eolTabsBottom eolTabs" ng-model="radioModel" ng-click="radioModel='Tab2'" btn-radio="'Tab2'">Schedule</div>
         </div>
         <div class="col-md-9">
          <div ng-if="radioModel == 'Tab1'" class="appointmentTabContent">
@@ -87,7 +87,7 @@
             <span class="input-group-btn">
               <button type="button" class="btn btn-default btn-sm" disabled><i class="fa fa-calendar"></i></button>
             </span>
-              <input type="text" class="form-control" id="dateofappointment" name="dateofappointment" ng-model="appointment.dateOfAppointment" ng-click="openAppointmentDatepicker($event, 'dateOfAppointment')"  datepicker-popup="dd-MMM-y" is-open="$parent.dateOfAppointment" disabled required/>
+              <input type="text" class="form-control" id="dateofappointment" name="dateofappointment" ng-model="appointment.dateOfAppointment" ng-click="openAppointmentDatepicker($event, 'dateOfAppointment')"  uib-datepicker-popup="dd-MMM-y" is-open="$parent.dateOfAppointment" disabled required/>
             </div>
             <span class="help-block animate-fade" ng-show="formSubmitted && appointmentForm.dateofappointment.$error.required">You must enter a valid date.</span>
           </div>
@@ -130,7 +130,7 @@
             </span>
               <input type="text" class="form-control" id="datecreated" name="datecreated" ng-model="appointment.dateCreated" datepicker-popup="yyyy-MM-dd" is-open="$parent.dateCreated" disabled required/>
             </div>
-            <span class="help-block animate-fade" ng-show="formSubmitted && appointmentForm.datecreated.$error.required">You must enter a valid date.</span>
+            <span class="help-block animate-fade" ng-show="formSubmitted && appointmentForm.datecreated.$error.required">You must    enter a valid date.</span>
           </div>
         </div>
         </div>
@@ -146,7 +146,7 @@
                     </div>
                   <div class="row">
                         <div class="col-md-12">
-                    <div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
+                    <div class="calendar" ui-calendar="uiConfig" ng-model="eventSources"></div>
                   </div>
                 </div>
             </div>
