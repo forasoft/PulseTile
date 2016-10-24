@@ -5,7 +5,7 @@ export function all(patientId) {
   return {
     types: [types.TRANSFEROFCARE, types.TRANSFEROFCARE_SUCCESS, types.TRANSFEROFCARE_ERROR],
 
-    shouldCallAPI: (state) => !state.allergies.response,
+    shouldCallAPI: (state) => !state.transferOfCare.response,
 
     config: {
       method: 'get',
@@ -21,7 +21,7 @@ export function get(patientId, compositionId) {
   return {
     types: [types.TRANSFEROFCARE_GET, types.TRANSFEROFCARE_GET_SUCCESS, types.TRANSFEROFCARE_GET_ERROR],
 
-    shouldCallAPI: (state) => !state.allergies.response,
+    shouldCallAPI: (state) => !state.transferOfCare.response,
 
     config: {
       method: 'get',
@@ -37,7 +37,7 @@ export function create(patientId, composition) {
   return {
     types: [types.TRANSFEROFCARE_CREATE, types.TRANSFEROFCARE_CREATE_SUCCESS, types.TRANSFEROFCARE_CREATE_ERROR],
 
-    shouldCallAPI: (state) => !state.allergies.response,
+    shouldCallAPI: (state) => !state.transferOfCare.response,
 
     config: {
       method: 'post',

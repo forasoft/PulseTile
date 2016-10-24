@@ -28,7 +28,7 @@ class TransferOfCareListController {
     };
 
     this.create = function () {
-      TransferOfCareModal.openModal(this.currentPatient, {title: 'Create Allergy'}, {}, this.currentUser);
+      TransferOfCareModal.openModal(this.currentPatient, {title: ''}, {}, this.currentUser);
 
     };
     this.setCurrentPageData = function (data) {

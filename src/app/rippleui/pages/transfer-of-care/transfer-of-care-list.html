@@ -2,7 +2,7 @@
 
 <div class="inner-addon left-addon filterInput">
     <i class="fa fa-filter"></i>
-    <input type="text" class="form-control" placeholder="Filter..." ng-model="query[queryBy]" />
+    <input type="text" class="form-control" placeholder="Filter..." ng-model="$ctrl.query[queryBy]" />
 </div>
 
 <table class="table table-bordered table-striped table-hover rwd-table">
@@ -18,7 +18,7 @@
 
   <tbody>
 
-  <tr dir-paginate="transfer in $ctrl.transferofCareComposition | filter:query | itemsPerPage: 6 " current-page="currentPage"  ng-click="$ctrl.go(transfer.sourceId)" ng-class="{info: $ctrl.selected(transfer.sourceId)}">
+  <tr dir-paginate="transfer in $ctrl.transferofCareComposition | filter:$ctrl.query | itemsPerPage: 6 " current-page="$ctrl.currentPage"  ng-click="$ctrl.go(transfer.sourceId)" ng-class="{info: $ctrl.selected(transfer.sourceId)}">
     <td data-th="Transfer">Transfer #{{($index + 1)}}</td>
     <td data-th="From (Site / Organisation)">{{transfer.siteFrom}}</td>
     <td data-th="To (Site / Organisation)">{{transfer.siteTo}}</td>

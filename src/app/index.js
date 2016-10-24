@@ -5,7 +5,7 @@ import ngRedux from 'ng-redux';
 import dirPagination from 'angular-utils-pagination';
 import createLogger from 'redux-logger';
 import 'angular-loading-bar';
-import 'jquery';
+import 'jQuery';
 import 'morrisjs';
 
 //commons

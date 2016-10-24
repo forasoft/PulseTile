@@ -34,7 +34,7 @@ const config = {
     
     root: path.resolve('./src'),
     alias: {
-       'jquery': '../../bower_components/jquery/dist/jquery.js',
+       'jQuery': '../../bower_components/jquery/dist/jquery.js',
        'morrisjs': '../../bower_components/morrisjs/morris.js'
     }
   },

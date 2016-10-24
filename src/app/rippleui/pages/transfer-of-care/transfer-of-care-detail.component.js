@@ -1,7 +1,7 @@
 let templateTransferOfCareDetail= require('./transfer-of-care-detail.html');
 
 class TransferOfCareDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, allergiesActions) {
+  constructor($scope, $state, $stateParams, $ngRedux, transferOfCareActions) {
 
     $scope.formDisabled = true;
 
@@ -9,13 +9,13 @@ class TransferOfCareDetailController {
       if (data.patients.data) {
         this.currentPatient = data.patients.data;
       }
-      if (data.transferOfCare.data) {
-        this.transferOfCare = data.transferOfCare.data;
-        this.allergies = data.transferOfCare.allergies;
-        this.contacts = data.transferOfCare.contacts;
-        this.problems = data.transferOfCare.problems;
-        this.medications = data.transferOfCare.medications;
-        this.dateOfTransfer = data.transferOfCare.dateOfTransfer;
+      if (data.transferOfCareGet.data) {
+        this.transferOfCare = data.transferOfCareGet.data;
+        this.allergies = data.transferOfCareGet.data.allergies;
+        this.contacts = data.transferOfCareGet.data.contacts;
+        this.problems = data.transferOfCareGet.data.problems;
+        this.medications = data.transferOfCareGet.data.medications;
+        this.dateOfTransfer = data.transferOfCareGet.data.dateOfTransfer;
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -28,8 +28,8 @@ class TransferOfCareDetailController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.allergiesLoad = allergiesActions.get;
-    this.allergiesLoad($stateParams.patientId, $stateParams.allergyIndex, $stateParams.source);
+    this.transferOfCareLoad = transferOfCareActions.get;
+    this.transferOfCareLoad($stateParams.patientId, $stateParams.transferOfCareIndex);
   }
 }
 

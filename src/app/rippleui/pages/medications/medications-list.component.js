@@ -54,8 +54,8 @@ class MedicationsListController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.allergiesLoad = medicationsActions.all;
-    this.allergiesLoad($stateParams.patientId);
+    this.medicationsLoad = medicationsActions.all;
+    this.medicationsLoad($stateParams.patientId);
   }
 }
 
