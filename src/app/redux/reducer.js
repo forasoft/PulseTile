@@ -40,6 +40,11 @@ import documentsFindDischarge from '../rippleui/pages/documents/documents-reduce
 import documentsFindReferral from '../rippleui/pages/documents/documents-reducer-find-referral';
 import documentsUploadDischarge from '../rippleui/pages/documents/documents-reducer-upload-discharge';
 import documentsUploadReferral from '../rippleui/pages/documents/documents-reducer-upload-referral';
+import studies from '../rippleui/pages/dicom/studies-reducer-all';
+import series from '../rippleui/pages/dicom/series-reducer-all';
+import seriesGet from '../rippleui/pages/dicom/series-reducer-get';
+import instanceGet from '../rippleui/pages/dicom/instance-reducer-get';
+import instanceIdGet from '../rippleui/pages/dicom/instance-id-reducer-get';
 
 export default combineReducers({
   patients, 
@@ -81,5 +86,10 @@ export default combineReducers({
   documentsFindDischarge,
   documentsFindReferral,
   documentsUploadDischarge,
-  documentsUploadReferral
+  documentsUploadReferral,
+  studies,
+  series,
+  seriesGet,
+  instanceGet,
+  instanceIdGet
 });
