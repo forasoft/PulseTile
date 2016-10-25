@@ -74,8 +74,6 @@ export default function CancerMdtModal($uibModal, cancermdtActions, $ngRedux, $s
           };
 
           $scope.ok = function (cancerMdtForm, cancerMdt) {
-              console.log('cancerMdt', cancerMdt);
-            
             $scope.formSubmitted = true;
             if (cancerMdtForm.$valid) {
 
@@ -85,7 +83,6 @@ export default function CancerMdtModal($uibModal, cancermdtActions, $ngRedux, $s
                 cancerMdt.dateOfMeeting = new Date(cancerMdt.dateOfMeeting);
                 cancerMdt.dateOfRequest = new Date(cancerMdt.dateOfRequest);
 
-                    console.log('cancerMdt', cancerMdt);
                 if (cancerMdt.timeOfMeeting !== null) {
                   cancerMdt.timeOfMeeting = new Date(cancerMdt.timeOfMeeting);
                 }
