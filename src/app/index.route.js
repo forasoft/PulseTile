@@ -210,6 +210,23 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<documents-list-component></documents-list-component>'},
           detail: {template: '<documents-detail-component></documents-detail-component>'}
         }
+      })
+      .state('eolcareplans', {
+        url: '/patients/{patientId:int}/eolcareplans?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<eolcareplans-list-component></eolcareplans-list-component>'}
+        }
+      })
+      .state('eolcareplans-detail', {
+        url: '/patients/{patientId:int}/eolcareplans/{eolcareplansIndex}?filter&page&reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<eolcareplans-list-component></eolcareplans-list-component>'},
+          detail: {template: '<eolcareplans-detail-component></eolcareplans-detail-component>'}
+        }
       });
 }
 

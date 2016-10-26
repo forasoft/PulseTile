@@ -40,6 +40,10 @@ import documentsFindDischarge from '../rippleui/pages/documents/documents-reduce
 import documentsFindReferral from '../rippleui/pages/documents/documents-reducer-find-referral';
 import documentsUploadDischarge from '../rippleui/pages/documents/documents-reducer-upload-discharge';
 import documentsUploadReferral from '../rippleui/pages/documents/documents-reducer-upload-referral';
+import eolcareplans from '../rippleui/pages/care-plans/eolcareplans-reducer-all';
+import eolcareplansGet from '../rippleui/pages/care-plans/eolcareplans-reducer-get';
+import eolcareplansCreate from '../rippleui/pages/care-plans/eolcareplans-reducer-create';
+import eolcareplansUpdate from '../rippleui/pages/care-plans/eolcareplans-reducer-update';
 
 export default combineReducers({
   patients, 
@@ -81,5 +85,9 @@ export default combineReducers({
   documentsFindDischarge,
   documentsFindReferral,
   documentsUploadDischarge,
-  documentsUploadReferral
+  documentsUploadReferral,
+  eolcareplans,
+  eolcareplansGet,
+  eolcareplansCreate,
+  eolcareplansUpdate
 });
