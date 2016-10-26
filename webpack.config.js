@@ -35,7 +35,8 @@ const config = {
     root: path.resolve('./src'),
     alias: {
        'jquery': '../../bower_components/jquery/dist/jquery.js',
-       'morrisjs': '../../bower_components/morrisjs/morris.js'
+       'morrisjs': '../../bower_components/morrisjs/morris.js',
+       'spin': 'spin.js'
     }
   },
 
@@ -70,7 +71,7 @@ const config = {
     ),
     new webpack.ProvidePlugin({
       moment: 'moment',
-      spin: 'spin.js',
+      'spin': 'spin.js',
       angularSpinner: 'angular-spinner',
       _: 'underscore',
       jQuery: 'jquery',

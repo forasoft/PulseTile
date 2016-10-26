@@ -7,6 +7,7 @@ import createLogger from 'redux-logger';
 import 'angular-loading-bar';
 import 'jquery';
 import 'morrisjs';
+import 'angular-spinner';
 
 //commons
 import reducer from './redux/reducer';
@@ -64,7 +65,8 @@ const app = angular
         ngRedux,
         actions,
         dirPagination,
-        'angular-loading-bar'
+        'angular-loading-bar',
+        'angularSpinner'
     ])
     .factory('httpMiddleware', httpMiddleware)
     .factory('AdvancedSearch', AdvancedSearch)
