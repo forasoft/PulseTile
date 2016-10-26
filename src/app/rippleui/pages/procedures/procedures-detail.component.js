@@ -1,7 +1,7 @@
 let templateProceduresDetail= require('./procedures-detail.html');
 
 class ProceduresDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, proceduresActions, ProceduresModal) {
+  constructor($scope, $state, $stateParams, $ngRedux, proceduresActions, ProceduresModal, usSpinnerService) {
     this.edit = function () {
       ProceduresModal.openModal(this.currentPatient, {title: 'Edit Procedure'}, this.procedure, this.currentUser);
     };
@@ -12,6 +12,7 @@ class ProceduresDetailController {
       }
       if (data.proceduresGet.data) {
         this.procedure = data.proceduresGet.data;
+        usSpinnerService.stop('proceduresDetail-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -34,5 +35,5 @@ const ProceduresDetailComponent = {
   controller: ProceduresDetailController
 };
 
-ProceduresDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'proceduresActions', 'ProceduresModal'];
+ProceduresDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'proceduresActions', 'ProceduresModal', 'usSpinnerService'];
 export default ProceduresDetailComponent;

@@ -1,7 +1,7 @@
 let templateContactsDetail= require('./contacts-detail.html');
 
 class ContactsDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, patientsActions, contactsActions, ContactsModal) {
+  constructor($scope, $state, $stateParams, $ngRedux, patientsActions, contactsActions, ContactsModal, usSpinnerService) {
     this.edit = function () {
       ContactsModal.openModal(this.currentPatient, {title: 'Edit Contact'}, this.contact, this.currentUser);
     };
@@ -9,6 +9,7 @@ class ContactsDetailController {
     this.setCurrentPageData = function (data) {
       if (data.contactsGet.data) {
         this.contact = data.contactsGet.data;
+        usSpinnerService.stop('contactDetail-spinner');
       }
       if (data.patients.data) {
         this.currentPatient = data.patients.data;
@@ -34,5 +35,5 @@ const ContactsDetailComponent = {
   controller: ContactsDetailController
 };
 
-ContactsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions', 'contactsActions', 'ContactsModal'];
+ContactsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions', 'contactsActions', 'ContactsModal', 'usSpinnerService'];
 export default ContactsDetailComponent;

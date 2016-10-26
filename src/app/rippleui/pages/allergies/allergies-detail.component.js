@@ -1,7 +1,7 @@
 let templateAllergiesDetail= require('./allergies-detail.html');
 
 class AllergiesDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, AllergiesModal) {
+  constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, AllergiesModal, usSpinnerService) {
     this.edit = function () {
       AllergiesModal.openModal(this.currentPatient, {title: 'Edit Allergy'}, this.allergy, this.currentUser);
     };
@@ -18,6 +18,7 @@ class AllergiesDetailController {
       }
       if (data.allergiesGet.data) {
         this.allergy = data.allergiesGet.data;
+        usSpinnerService.stop('allergiesDetail-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -40,5 +41,5 @@ const AllergiesDetailComponent = {
   controller: AllergiesDetailController
 };
 
-AllergiesDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'allergiesActions', 'AllergiesModal'];
+AllergiesDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'allergiesActions', 'AllergiesModal', 'usSpinnerService'];
 export default AllergiesDetailComponent;

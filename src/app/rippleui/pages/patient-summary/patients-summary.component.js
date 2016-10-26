@@ -2,8 +2,7 @@ let templatePatientsSummary = require('./patients-summary.html');
 
 class PatientsSummaryController {
   constructor($scope, $state, $stateParams, $ngRedux, patientsActions, serviceRequests, usSpinnerService) {
-      console.log('usSpinnerService', usSpinnerService);
-    
+
     serviceRequests.publisher('headerTitle', {title: 'Patients Summary'});
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-summary'});
     
@@ -35,6 +34,7 @@ class PatientsSummaryController {
     };
     this.getPatientData = function (data) {
       if (!data || !data.id) return false;
+      usSpinnerService.stop('patientSummary-spinner');
 
       this.patient = data;
 

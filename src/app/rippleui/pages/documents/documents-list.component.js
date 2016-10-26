@@ -1,7 +1,7 @@
 let templateDocumentsList = require('./documents-list.html');
 
 class DocumentsListController {
-  constructor($scope, $state, $stateParams, $ngRedux, documentsActions, serviceRequests) {
+  constructor($scope, $state, $stateParams, $ngRedux, documentsActions, serviceRequests, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
@@ -44,6 +44,7 @@ class DocumentsListController {
       }
       if (data.documents.data) {
         this.documents = data.documents.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -67,5 +68,5 @@ const DocumentsListComponent = {
   controller: DocumentsListController
 };
 
-DocumentsListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'documentsActions', 'serviceRequests'];
+DocumentsListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'documentsActions', 'serviceRequests', 'usSpinnerService'];
 export default DocumentsListComponent;

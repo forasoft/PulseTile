@@ -1,7 +1,7 @@
 let templateOrdersList = require('./orders-list.html');
 
 class OrdersListController {
-  constructor($scope, $state, $stateParams, $ngRedux, ordersActions, serviceRequests, OrdersModal) {
+  constructor($scope, $state, $stateParams, $ngRedux, ordersActions, serviceRequests, OrdersModal, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
@@ -46,6 +46,7 @@ class OrdersListController {
     this.setCurrentPageData = function (data) {
       if (data.orders.data) {
         this.orders = data.orders.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.patients.data) {
         this.currentPatient = data.patients.data;
@@ -75,5 +76,5 @@ const OrdersListComponent = {
   controller: OrdersListController
 };
 
-OrdersListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'ordersActions', 'serviceRequests', 'OrdersModal'];
+OrdersListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'ordersActions', 'serviceRequests', 'OrdersModal', 'usSpinnerService'];
 export default OrdersListComponent;

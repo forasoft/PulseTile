@@ -1,7 +1,7 @@
 let templateReferralsDetail= require('./referrals-detail.html');
 
 class ReferralsDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, referralsActions, ReferralsModal) {
+  constructor($scope, $state, $stateParams, $ngRedux, referralsActions, ReferralsModal, usSpinnerService) {
     this.edit = function () {
       ReferralsModal.openModal(this.currentPatient, {title: 'Edit Referral'}, this.referral, this.currentUser);
     };
@@ -12,6 +12,7 @@ class ReferralsDetailController {
       }
       if (data.allergiesGet.data) {
         this.referral = data.referralsGet.data;
+        usSpinnerService.stop('referralsDetail-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -34,5 +35,5 @@ const ReferralsDetailComponent = {
   controller: ReferralsDetailController
 };
 
-ReferralsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'referralsActions', 'ReferralsModal'];
+ReferralsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'referralsActions', 'ReferralsModal', 'usSpinnerService'];
 export default ReferralsDetailComponent;

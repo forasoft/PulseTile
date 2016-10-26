@@ -1,7 +1,7 @@
 let templateProceduresList = require('./procedures-list.html');
 
 class ProceduresListController {
-  constructor($scope, $state, $stateParams, $ngRedux, proceduresActions, serviceRequests, ProceduresModal) {
+  constructor($scope, $state, $stateParams, $ngRedux, proceduresActions, serviceRequests, ProceduresModal, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
@@ -55,6 +55,7 @@ class ProceduresListController {
       }
       if (data.procedures.data) {
         this.procedures = data.procedures.data;
+        usSpinnerService.stop('patientSummary-spinner');
 
         for (var i = 0; i < this.procedures.length; i++) {
           this.procedures[i].date = moment(this.procedures[i].date).format('DD-MMM-YYYY');
@@ -82,5 +83,5 @@ const ProceduresListComponent = {
   controller: ProceduresListController
 };
 
-ProceduresListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'proceduresActions', 'serviceRequests', 'ProceduresModal'];
+ProceduresListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'proceduresActions', 'serviceRequests', 'ProceduresModal', 'usSpinnerService'];
 export default ProceduresListComponent;
