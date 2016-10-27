@@ -37,6 +37,10 @@ import heightAndWeight from '../rippleui/pages/height-and-weight/heightAndWeight
 import heightAndWeightGet from '../rippleui/pages/height-and-weight/heightAndWeight-reducer-get';
 import heightAndWeightCreate from '../rippleui/pages/height-and-weight/heightAndWeight-reducer-create';
 import heightAndWeightUpdate from '../rippleui/pages/height-and-weight/heightAndWeight-reducer-update';
+import cancermdt from '../rippleui/pages/cancer-mdt/cancer-mdt-reducer-all';
+import cancermdtGet from '../rippleui/pages/cancer-mdt/cancer-mdt-reducer-get';
+import cancermdtCreate from '../rippleui/pages/cancer-mdt/cancer-mdt-reducer-create';
+import cancermdtUpdate from '../rippleui/pages/cancer-mdt/cancer-mdt-reducer-update';
 import results from '../rippleui/pages/results/results-reducer-all';
 import resultsGet from '../rippleui/pages/results/results-reducer-get';
 import chart from '../rippleui/search/chart-reducer-get';
@@ -107,5 +111,9 @@ export default combineReducers({
   heightAndWeight,
   heightAndWeightGet,
   heightAndWeightCreate,
-  heightAndWeightUpdate
+  heightAndWeightUpdate,
+  cancermdt,
+  cancermdtGet,
+  cancermdtCreate,
+  cancermdtUpdate
 });

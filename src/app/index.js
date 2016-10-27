@@ -30,6 +30,7 @@ import AppointmentConfirmModal from './rippleui/pages/appointments/appointments-
 import ProceduresModal from './rippleui/pages/procedures/procedures-modal';
 import ClinicalnotesModal from './rippleui/pages/clinical-notes/clinicalnotes-modal';
 import HeightAndWeightModal from './rippleui/pages/height-and-weight/heightAndWeight-modal';
+import CancerMdtModal from './rippleui/pages/cancer-mdt/cancer-mdt-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -65,6 +66,8 @@ import AppointmentsListComponent from './rippleui/pages/appointments/appointment
 import AppointmentsDetailComponent from './rippleui/pages/appointments/appointments-detail.component';
 import HeightAndWeightListComponent from './rippleui/pages/height-and-weight/heightAndWeight-list.component';
 import HeightAndWeightDetailComponent from './rippleui/pages/height-and-weight/heightAndWeight-detail.component';
+import CancerMdtListComponent from './rippleui/pages/cancer-mdt/cancer-mdt-list.component';
+import CancerMdtDetailComponent from './rippleui/pages/cancer-mdt/cancer-mdt-detail.component';
 import MainComponent from './helpers/main.component';
 
 import ServiceRequests from './services/serviceRequests.js';
@@ -97,6 +100,7 @@ const app = angular
     .factory('AppointmentConfirmModal', AppointmentConfirmModal)
     .factory('ClinicalnotesModal', ClinicalnotesModal)
     .factory('HeightAndWeightModal', HeightAndWeightModal)
+    .factory('CancerMdtModal', CancerMdtModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
@@ -130,6 +134,8 @@ const app = angular
     .component('clinicalnotesDetailComponent', ClinicalnotesDetailComponent)
     .component('heightAndWeightListComponent', HeightAndWeightListComponent)
     .component('heightAndWeightDetailComponent', HeightAndWeightDetailComponent)
+    .component('cancerMdtListComponent', CancerMdtListComponent)
+    .component('cancerMdtDetailComponent', CancerMdtDetailComponent)
     .component('mainComponent', MainComponent)
     .component('searchComponent', SearchComponent)
     .component('reportChartComponent', ReportChartComponent)
