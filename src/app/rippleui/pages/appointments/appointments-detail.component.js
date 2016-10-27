@@ -1,7 +1,7 @@
 let templateAppointmentsDetail= require('./appointments-detail.html');
 
 class AppointmentsDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, appointmentsActions, AppointmentsModal) {
+  constructor($scope, $state, $stateParams, $ngRedux, appointmentsActions, AppointmentsModal, usSpinnerService) {
     this.edit = function () {
       AppointmentsModal.openModal(this.currentPatient, {title: 'Edit Appointment'}, this.appointment, this.currentUser);
     };
@@ -18,6 +18,7 @@ class AppointmentsDetailController {
       }
       if (data.appointmentsGet.data) {
         this.appointment = data.appointmentsGet.data;
+        usSpinnerService.stop('appointmentsDetail-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -40,5 +41,5 @@ const AppointmentsDetailComponent = {
   controller: AppointmentsDetailController
 };
 
-AppointmentsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'appointmentsActions', 'AppointmentsModal'];
+AppointmentsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'appointmentsActions', 'AppointmentsModal', 'usSpinnerService'];
 export default AppointmentsDetailComponent;
