@@ -34,7 +34,8 @@ const config = {
     
     root: path.resolve('./src'),
     alias: {
-      'morrisjs': '../../bower_components/morrisjs/morris.js'
+      'morrisjs': '../../bower_components/morrisjs/morris.js',
+      'spin': 'spin.js'
     }
   },
 
@@ -68,7 +69,6 @@ const config = {
       new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(".bower.json", ["main"])
     ),
     new webpack.ProvidePlugin({
-      'spin': 'spin.js',
       angularSpinner: 'angular-spinner',
       _: 'underscore',
       $: "jquery",

@@ -74,7 +74,7 @@ const app = angular
         ngRedux,
         actions,
         dirPagination,
-        'angularSpinner'
+        'angularSpinner',
         'ui.calendar',
         'angular-loading-bar'
     ])
