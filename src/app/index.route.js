@@ -263,20 +263,20 @@ function routeConfig($stateProvider, $urlRouterProvider) {
         }
       })
       .state('cancerMdt', {
-        url: '/patients/{patientId:int}/cancer-mdt-list?reportType&searchString&queryType',
+        url: '/patients/{patientId:int}/generic-mdt-list?reportType&searchString&queryType',
         views: {
           banner: {template: '<patients-banner-component></patients-banner-component>'},
           actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
-          main: {template: '<cancer-mdt-list-component></cancer-mdt-list-component>'}
+          main: {template: '<generic-mdt-list-component></generic-mdt-list-component>'}
         }
       })
       .state('cancerMdt-detail', {
-        url: '/patients/{patientId:int}/cancer-mdt-detail/{cancerMdtIndex}?filter&page&reportType&searchString&queryType',
+        url: '/patients/{patientId:int}/generic-mdt-detail/{cancerMdtIndex}?filter&page&reportType&searchString&queryType',
         views: {
           banner: {template: '<patients-banner-component></patients-banner-component>'},
           actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
-          main: {template: '<cancer-mdt-list-component></cancer-mdt-list-component>'},
-          detail: {template: '<cancer-mdt-detail-component></cancer-mdt-detail-component>'}
+          main: {template: '<generic-mdt-list-component></generic-mdt-list-component>'},
+          detail: {template: '<generic-mdt-detail-component></generic-mdt-detail-component>'}
         }
       });
 }

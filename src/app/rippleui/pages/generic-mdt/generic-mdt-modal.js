@@ -1,4 +1,4 @@
-export default function CancerMdtModal($uibModal, cancermdtActions, $ngRedux, $stateParams) {
+export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, $stateParams) {
   var isModalClosed = true;
 
   var openModal = function (patient, modal, cancerMdt, currentUser) {
@@ -6,7 +6,7 @@ export default function CancerMdtModal($uibModal, cancermdtActions, $ngRedux, $s
       isModalClosed = false;
 
       var modalInstance = $uibModal.open({
-        template: require('./cancer-mdt-modal.html'),
+        template: require('./generic-mdt-modal.html'),
         size: 'lg',
         controller: function ($scope, $state, $uibModalInstance) {
           var updateId = function (sourceId) {
@@ -87,7 +87,7 @@ export default function CancerMdtModal($uibModal, cancermdtActions, $ngRedux, $s
                   cancerMdt.timeOfMeeting = new Date(cancerMdt.timeOfMeeting);
                 }
 
-                $scope.cancermdtUpdate($scope.patient.id, cancerMdt);
+                $scope.genericmdtUpdate($scope.patient.id, cancerMdt);
 
                 $state.go('cancerMdt-detail', {
                   patientId: $scope.patient.id,
@@ -112,7 +112,7 @@ export default function CancerMdtModal($uibModal, cancermdtActions, $ngRedux, $s
                 cancerMdt.compositionId = '';
                 cancerMdt.source = 'openehr';
 
-                $scope.cancermdtCreate($scope.patient.id, cancerMdt);
+                $scope.genericmdtCreate($scope.patient.id, cancerMdt);
                 $state.go('cancerMdt', {
                   patientId: $scope.patient.id,
                   filter: $scope.query,
@@ -133,8 +133,8 @@ export default function CancerMdtModal($uibModal, cancermdtActions, $ngRedux, $s
             $uibModalInstance.dismiss('cancel');
           };
 
-          $scope.cancermdtCreate = cancermdtActions.create;
-          $scope.cancermdtUpdate = cancermdtActions.update;
+          $scope.genericmdtCreate = genericmdtActions.create;
+          $scope.genericmdtUpdate = genericmdtActions.update;
         }
       });
     }
@@ -152,4 +152,4 @@ export default function CancerMdtModal($uibModal, cancermdtActions, $ngRedux, $s
     openModal: openModal
   };
 }
-CancerMdtModal.$inject = ['$uibModal', 'cancermdtActions', '$ngRedux', '$stateParams'];
+GenericMdtModal.$inject = ['$uibModal', 'genericmdtActions', '$ngRedux', '$stateParams'];

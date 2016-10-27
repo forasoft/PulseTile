@@ -1,7 +1,7 @@
-let templateCancerMdtList = require('./cancer-mdt-list.html');
+let templateGenericMdtList = require('./generic-mdt-list.html');
 
-class CancerMdtListController {
-  constructor($scope, $state, $stateParams, $ngRedux, cancermdtActions, serviceRequests, CancerMdtModal) {
+class GenericMdtListController {
+  constructor($scope, $state, $stateParams, $ngRedux, genericmdtActions, serviceRequests, GenericMdtModal, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
     var vm = this;
@@ -46,7 +46,7 @@ class CancerMdtListController {
     };
 
     this.create = function () {
-      CancerMdtModal.openModal(this.currentPatient, {title: 'Create MDT'}, {}, this.currentUser);
+      GenericMdtModal.openModal(this.currentPatient, {title: 'Create MDT'}, {}, this.currentUser);
     };
 
     this.setCurrentPageData = function (data) {
@@ -60,6 +60,7 @@ class CancerMdtListController {
           this.cancerMdtComposition[i].dateOfRequest = moment(this.cancerMdtComposition[i].dateOfRequest).format('DD-MMM-YYYY');
           this.cancerMdtComposition[i].dateOfMeeting = moment(this.cancerMdtComposition[i].dateOfMeeting).format('DD-MMM-YYYY');
         }
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -72,15 +73,15 @@ class CancerMdtListController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.cancermdtLoad = cancermdtActions.all;
+    this.cancermdtLoad = genericmdtActions.all;
     this.cancermdtLoad($stateParams.patientId);
   }
 }
 
-const CancerMdtListComponent = {
-  template: templateCancerMdtList,
-  controller: CancerMdtListController
+const GenericMdtListComponent = {
+  template: templateGenericMdtList,
+  controller: GenericMdtListController
 };
 
-CancerMdtListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'cancermdtActions', 'serviceRequests', 'CancerMdtModal'];
-export default CancerMdtListComponent;
+GenericMdtListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'genericmdtActions', 'serviceRequests', 'GenericMdtModal', 'usSpinnerService'];
+export default GenericMdtListComponent;

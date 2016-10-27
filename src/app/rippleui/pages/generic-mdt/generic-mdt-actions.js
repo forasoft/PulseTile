@@ -68,7 +68,7 @@ export function update(patientId, composition) {
   };
 }
 
-export default function cancermdtActions($ngRedux) {
+export default function genericmdtActions($ngRedux) {
   let actionCreator = {
     all, get, create, update
   };
@@ -76,4 +76,4 @@ export default function cancermdtActions($ngRedux) {
   return bindActionCreators(actionCreator, $ngRedux.dispatch);
 }
 
-cancermdtActions.$inject = ['$ngRedux'];
+genericmdtActions.$inject = ['$ngRedux'];

@@ -1,9 +1,9 @@
-let templateCancerMdtDetail= require('./cancer-mdt-detail.html');
+let templateGenericMdtDetail= require('./generic-mdt-detail.html');
 
-class CancerMdtDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, cancermdtActions, CancerMdtModal) {
+class GenericMdtDetailController {
+  constructor($scope, $state, $stateParams, $ngRedux, genericmdtActions, GenericMdtModal, usSpinnerService) {
     this.edit = function () {
-      CancerMdtModal.openModal(this.currentPatient, {title: 'Edit MDT'}, this.cancerMdt, this.currentUser);
+      GenericMdtModal.openModal(this.currentPatient, {title: 'Edit MDT'}, this.cancerMdt, this.currentUser);
     };
 
     this.setCurrentPageData = function (data) {
@@ -12,6 +12,7 @@ class CancerMdtDetailController {
       }
       if (data.cancermdtGet.data) {
         this.cancerMdt = data.cancermdtGet.data;
+        usSpinnerService.stop('mdtDetail-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -24,15 +25,15 @@ class CancerMdtDetailController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.cancermdtLoad = cancermdtActions.get;
+    this.cancermdtLoad = genericmdtActions.get;
     this.cancermdtLoad($stateParams.patientId, $stateParams.cancerMdtIndex);
   }
 }
 
-const CancerMdtDetailComponent = {
-  template: templateCancerMdtDetail,
-  controller: CancerMdtDetailController
+const GenericMdtDetailComponent = {
+  template: templateGenericMdtDetail,
+  controller: GenericMdtDetailController
 };
 
-CancerMdtDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'cancermdtActions', 'CancerMdtModal'];
-export default CancerMdtDetailComponent;
+GenericMdtDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'genericmdtActions', 'GenericMdtModal', 'usSpinnerService'];
+export default GenericMdtDetailComponent;

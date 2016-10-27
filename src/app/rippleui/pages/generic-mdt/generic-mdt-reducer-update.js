@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   data: null
 };
 
-export default function carcermdt(state = INITIAL_STATE, action) {
+export default function genericmdt(state = INITIAL_STATE, action) {
   const {payload} = action;
 
   var actions = {
