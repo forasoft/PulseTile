@@ -28,6 +28,7 @@ import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
 import AppointmentsModal from './rippleui/pages/appointments/appointments-modal';
 import AppointmentConfirmModal from './rippleui/pages/appointments/appointments-confirm-modal';
 import ProceduresModal from './rippleui/pages/procedures/procedures-modal';
+import ClinicalnotesModal from './rippleui/pages/clinical-notes/clinicalnotes-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -57,6 +58,8 @@ import ResultsListComponent from './rippleui/pages/results/results-list.componen
 import ResultsDetailComponent from './rippleui/pages/results/results-detail.component';
 import DocumentsListComponent from './rippleui/pages/documents/documents-list.component';
 import DocumentsDetailComponent from './rippleui/pages/documents/documents-detail.component';
+import ClinicalnotesListComponent from './rippleui/pages/clinical-notes/clinicalnotes-list.component';
+import ClinicalnotesDetailComponent from './rippleui/pages/clinical-notes/clinicalnotes-detail.component';
 import AppointmentsListComponent from './rippleui/pages/appointments/appointments-list.component';
 import AppointmentsDetailComponent from './rippleui/pages/appointments/appointments-detail.component';
 import MainComponent from './helpers/main.component';
@@ -89,6 +92,7 @@ const app = angular
     .factory('ProceduresModal', ProceduresModal)
     .factory('AppointmentsModal', AppointmentsModal)
     .factory('AppointmentConfirmModal', AppointmentConfirmModal)
+    .factory('ClinicalnotesModal', ClinicalnotesModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
@@ -118,6 +122,8 @@ const app = angular
     .component('documentsDetailComponent', DocumentsDetailComponent)
     .component('appointmentsListComponent', AppointmentsListComponent)
     .component('appointmentsDetailComponent', AppointmentsDetailComponent)
+    .component('clinicalnotesListComponent', ClinicalnotesListComponent)
+    .component('clinicalnotesDetailComponent', ClinicalnotesDetailComponent)
     .component('mainComponent', MainComponent)
     .component('searchComponent', SearchComponent)
     .component('reportChartComponent', ReportChartComponent)

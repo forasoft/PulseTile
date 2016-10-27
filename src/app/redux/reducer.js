@@ -45,6 +45,10 @@ import appointments from '../rippleui/pages/appointments/appointments-reducer-al
 import appointmentsGet from '../rippleui/pages/appointments/appointments-reducer-get';
 import appointmentsCreate from '../rippleui/pages/appointments/appointments-reducer-create';
 import appointmentsUpdate from '../rippleui/pages/appointments/appointments-reducer-update';
+import clinicalnotes from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-all';
+import clinicalnotesGet from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-get';
+import clinicalnotesCreate from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-create';
+import clinicalnotesUpdate from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-update';
 
 export default combineReducers({
   patients,
@@ -92,4 +96,8 @@ export default combineReducers({
   appointmentsGet,
   appointmentsCreate,
   appointmentsUpdate
+  clinicalnotes,
+  clinicalnotesGet,
+  clinicalnotesCreate,
+  clinicalnotesUpdate
 });
