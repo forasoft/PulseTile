@@ -33,6 +33,10 @@ import procedures from '../rippleui/pages/procedures/procedures-reducer-all';
 import proceduresGet from '../rippleui/pages/procedures/procedures-reducer-get';
 import proceduresCreate from '../rippleui/pages/procedures/procedures-reducer-create';
 import proceduresUpdate from '../rippleui/pages/procedures/procedures-reducer-update';
+import heightAndWeight from '../rippleui/pages/height-and-weight/heightAndWeight-reducer-all';
+import heightAndWeightGet from '../rippleui/pages/height-and-weight/heightAndWeight-reducer-get';
+import heightAndWeightCreate from '../rippleui/pages/height-and-weight/heightAndWeight-reducer-create';
+import heightAndWeightUpdate from '../rippleui/pages/height-and-weight/heightAndWeight-reducer-update';
 import results from '../rippleui/pages/results/results-reducer-all';
 import resultsGet from '../rippleui/pages/results/results-reducer-get';
 import chart from '../rippleui/search/chart-reducer-get';
@@ -99,5 +103,9 @@ export default combineReducers({
   clinicalnotes,
   clinicalnotesGet,
   clinicalnotesCreate,
-  clinicalnotesUpdate
+  clinicalnotesUpdate,
+  heightAndWeight,
+  heightAndWeightGet,
+  heightAndWeightCreate,
+  heightAndWeightUpdate
 });
