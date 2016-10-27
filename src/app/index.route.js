@@ -210,6 +210,23 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<documents-list-component></documents-list-component>'},
           detail: {template: '<documents-detail-component></documents-detail-component>'}
         }
+      })
+      .state('appointments', {
+        url: '/patients/{patientId:int}/appointments?reportType&searchString&queryType',
+        views: {
+            banner: {template: '<patients-banner-component></patients-banner-component>'},
+            actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+            main: {template: '<appointments-list-component></appointments-list-component>'}
+          }
+        })
+      .state('appointments-detail', {
+        url: '/patients/{patientId:int}/appointments/{appointmentIndex}?filter&page&reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<appointments-list-component></appointments-list-component>'},
+          detail: {template: '<appointments-detail-component></appointments-detail-component>'}
+        }
       });
 }
 

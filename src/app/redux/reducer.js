@@ -41,6 +41,10 @@ import documentsFindDischarge from '../rippleui/pages/documents/documents-reduce
 import documentsFindReferral from '../rippleui/pages/documents/documents-reducer-find-referral';
 import documentsUploadDischarge from '../rippleui/pages/documents/documents-reducer-upload-discharge';
 import documentsUploadReferral from '../rippleui/pages/documents/documents-reducer-upload-referral';
+import appointments from '../rippleui/pages/appointments/appointments-reducer-all';
+import appointmentsGet from '../rippleui/pages/appointments/appointments-reducer-get';
+import appointmentsCreate from '../rippleui/pages/appointments/appointments-reducer-create';
+import appointmentsUpdate from '../rippleui/pages/appointments/appointments-reducer-update';
 
 export default combineReducers({
   patients,
@@ -83,5 +87,9 @@ export default combineReducers({
   documentsFindDischarge,
   documentsFindReferral,
   documentsUploadDischarge,
-  documentsUploadReferral
+  documentsUploadReferral,
+  appointments,
+  appointmentsGet,
+  appointmentsCreate,
+  appointmentsUpdate
 });

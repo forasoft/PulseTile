@@ -14,6 +14,7 @@ import resultsActions from '../rippleui/pages/results/results-actions';
 import referralsActions from '../rippleui/pages/referrals/referrals-actions';
 import proceduresActions from '../rippleui/pages/procedures/procedures-actions';
 import documentsActions from '../rippleui/pages/documents/documents-actions.js';
+import appointmentsActions from '../rippleui/pages/appointments/appointments-actions';
 
 export default angular
     .module('app.actions', [])
@@ -31,4 +32,5 @@ export default angular
     .factory('referralsActions', referralsActions)
     .factory('proceduresActions', proceduresActions)
     .factory('documentsActions', documentsActions)
+    .factory('appointmentsActions', appointmentsActions)
     .name;
