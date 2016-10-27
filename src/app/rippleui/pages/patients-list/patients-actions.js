@@ -4,7 +4,7 @@ import * as types from '../../../constants/ActionTypes';
 export function loadPatients() {
     return {
         // Types of actions to emit before and after
-        types: [types.PATIENTS_LIST, types.PATIENTS_LIST_SUCCESS, types.PATIENTS_LIST_ERROR],
+        types: [types.PATIENTS, types.PATIENTS_SUCCESS, types.PATIENTS_ERROR],
     
         // Check the cache (optional):
         shouldCallAPI: (state) => !state.patients.response,
@@ -25,10 +25,10 @@ export function loadPatients() {
 export function getPatient(id) {
     return {
         // Types of actions to emit before and after
-        types: [types.PATIENTS_LIST, types.PATIENTS_LIST_SUCCESS, types.PATIENTS_LIST_ERROR],
+        types: [types.PATIENTS_GET, types.PATIENTS_GET_SUCCESS, types.PATIENTS_GET_ERROR],
 
         // Check the cache (optional):
-        shouldCallAPI: (state) => !state.patients.response,
+        shouldCallAPI: (state) => !state.patientsGet.response,
 
         // Configure $http
         config: {

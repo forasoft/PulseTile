@@ -10,19 +10,19 @@ export default function patients(state = INITIAL_STATE, action) {
     const {payload} = action;
 
     var actions = {
-        [types.PATIENTS_GET]: (state) => {
+        [types.PATIENTS]: (state) => {
             return Object.assign({}, state, {
                 isFetching: true,
                 error: false
             });
         },
-        [types.PATIENTS_GET_SUCCESS]: (state) => {
+        [types.PATIENTS_SUCCESS]: (state) => {
             return Object.assign({}, state, {
                 isFetching: false,
                 data: payload.response
             });
         },
-        [types.PATIENTS_GET_ERROR]: (state) => {
+        [types.PATIENTS_ERROR]: (state) => {
             return Object.assign({}, state, {
                 isFetching: false,
                 error: payload.error

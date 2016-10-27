@@ -63,7 +63,7 @@ class PatientsSummaryController {
     };
 
     let unsubscribe = $ngRedux.connect(state => ({
-          patient: this.getPatientData(state.patients.data)
+          patient: this.getPatientData(state.patientsGet.data)
         }))(this);
 
     $scope.$on('$destroy', unsubscribe);

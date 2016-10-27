@@ -4,7 +4,7 @@ class PatientsBannerController {
   constructor($scope, $state, $stateParams, $ngRedux, patientsActions) {
     
     let unsubscribe = $ngRedux.connect(state => ({
-      patient: state.patients.data
+      patient: state.patientsGet.data
     }))(this);
 
     $scope.$on('$destroy', unsubscribe);

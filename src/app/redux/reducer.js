@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
-import patients from '../rippleui/pages/patients-list/patients-reducer-get';
+import patients from '../rippleui/pages/patients-list/patients-reducer-all';
+import patientsGet from '../rippleui/pages/patients-list/patients-reducer-get';
 import user from './user';
 import search from '../rippleui/search/search-reducer-all';
 import messages from './messages';
@@ -42,7 +43,8 @@ import documentsUploadDischarge from '../rippleui/pages/documents/documents-redu
 import documentsUploadReferral from '../rippleui/pages/documents/documents-reducer-upload-referral';
 
 export default combineReducers({
-  patients, 
+  patients,
+  patientsGet,
   user, 
   search, 
   messages, 
