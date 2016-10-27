@@ -95,7 +95,7 @@ export default combineReducers({
   appointments,
   appointmentsGet,
   appointmentsCreate,
-  appointmentsUpdate
+  appointmentsUpdate,
   clinicalnotes,
   clinicalnotesGet,
   clinicalnotesCreate,

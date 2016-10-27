@@ -1,7 +1,7 @@
 let templateClinicalnotesList = require('./clinicalnotes-list.html');
 
 class ClinicalnotesListController {
-  constructor($scope, $state, $stateParams, $ngRedux, clinicalnotesActions, serviceRequests, ClinicalnotesModal) {
+  constructor($scope, $state, $stateParams, $ngRedux, clinicalnotesActions, serviceRequests, ClinicalnotesModal, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
@@ -57,6 +57,7 @@ class ClinicalnotesListController {
       }
       if (data.clinicalnotes.data) {
         this.clinicalNotes = data.clinicalnotes.data;
+        usSpinnerService.stop("patientSummary-spinner");
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -79,5 +80,5 @@ const ClinicalnotesListComponent = {
   controller: ClinicalnotesListController
 };
 
-ClinicalnotesListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'clinicalnotesActions', 'serviceRequests', 'ClinicalnotesModal'];
+ClinicalnotesListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'clinicalnotesActions', 'serviceRequests', 'ClinicalnotesModal', 'usSpinnerService'];
 export default ClinicalnotesListComponent;
