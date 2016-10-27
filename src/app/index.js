@@ -7,6 +7,8 @@ import ngRedux from 'ng-redux';
 import dirPagination from 'angular-utils-pagination';
 import createLogger from 'redux-logger';
 import 'angular-loading-bar';
+import 'fullcalendar';
+import 'angular-ui-calendar';
 import 'jquery';
 import 'morrisjs';
 
@@ -23,6 +25,7 @@ import ContactsModal from './rippleui/pages/contacts/contacts-modal';
 import OrdersModal from './rippleui/pages/orders/orders-modal';
 import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
 import AppointmentsModal from './rippleui/pages/appointments/appointments-modal';
+import AppointmentConfirmModal from './rippleui/pages/appointments/appointments-confirm-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -67,6 +70,7 @@ const app = angular
         ngRedux,
         actions,
         dirPagination,
+        'ui.calendar',
         'angular-loading-bar'
     ])
     .factory('httpMiddleware', httpMiddleware)
@@ -78,6 +82,7 @@ const app = angular
     .factory('OrdersModal', OrdersModal)
     .factory('ReferralsModal', ReferralsModal)
     .factory('AppointmentsModal', AppointmentsModal)
+    .factory('AppointmentConfirmModal', AppointmentConfirmModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)

@@ -5,7 +5,7 @@ export function all(patientId) {
   return {
     types: [types.APPOINTMENTS, types.APPOINTMENTS_SUCCESS, types.APPOINTMENTS_ERROR],
 
-    shouldCallAPI: (state) => !state.allergies.response,
+    shouldCallAPI: (state) => !state.appointments.response,
 
     config: {
       method: 'get',
@@ -21,7 +21,7 @@ export function get(patientId, compositionId) {
   return {
     types: [types.APPOINTMENTS_GET, types.APPOINTMENTS_GET_SUCCESS, types.APPOINTMENTS_GET_ERROR],
 
-    shouldCallAPI: (state) => !state.allergies.response,
+    shouldCallAPI: (state) => !state.appointments.response,
 
     config: {
       method: 'get',
@@ -37,7 +37,7 @@ export function create(patientId, composition) {
   return {
     types: [types.APPOINTMENTS_CREATE, types.APPOINTMENTS_CREATE_SUCCESS, types.APPOINTMENTS_CREATE_ERROR],
 
-    shouldCallAPI: (state) => !state.allergies.response,
+    shouldCallAPI: (state) => !state.appointments.response,
 
     config: {
       method: 'post',
@@ -54,7 +54,7 @@ export function update(patientId, composition) {
   return {
     types: [types.APPOINTMENTS_UPDATE, types.APPOINTMENTS_UPDATE_SUCCESS, types.APPOINTMENTS_UPDATE_ERROR],
 
-    shouldCallAPI: (state) => !state.allergies.response,
+    shouldCallAPI: (state) => !state.appointments.response,
 
     config: {
       method: 'put',

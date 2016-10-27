@@ -87,7 +87,7 @@
             <span class="input-group-btn">
               <button type="button" class="btn btn-default btn-sm" disabled><i class="fa fa-calendar"></i></button>
             </span>
-              <input type="text" class="form-control" id="dateofappointment" name="dateofappointment" ng-model="appointment.dateOfAppointment" ng-click="openAppointmentDatepicker($event, 'dateOfAppointment')"  uib-datepicker-popup="dd-MMM-y" is-open="$parent.dateOfAppointment" disabled required/>
+              <input type="text" class="form-control" id="dateofappointment" name="dateofappointment" ng-model="appointment.dateOfAppointment" ng-click="openAppointmentDatepicker($event, 'dateOfAppointment')"  datepicker-popup="dd-MMM-y" is-open="$parent.dateOfAppointment" disabled required/>
             </div>
             <span class="help-block animate-fade" ng-show="formSubmitted && appointmentForm.dateofappointment.$error.required">You must enter a valid date.</span>
           </div>
@@ -120,8 +120,8 @@
           </div>
         </div>
         </div>
-                <div class="col-md-4">
-                      <div class="appointmentdateGroup form-group form-group-sm" ng-class="{'has-error': (formSubmitted || appointmentForm.datecreated.$dirty) && appointmentForm.datecreated.$invalid, 'has-success': appointmentForm.datecreated.$valid && appointmentForm.datecreated.$dirty}">
+        <div class="col-md-4">
+          <div class="appointmentdateGroup form-group form-group-sm" ng-class="{'has-error': (formSubmitted || appointmentForm.datecreated.$dirty) && appointmentForm.datecreated.$invalid, 'has-success': appointmentForm.datecreated.$valid && appointmentForm.datecreated.$dirty}">
           <label for="datecreated" class="control-label col-md-12">Date</label>
           <div class="col-md-12">
             <div class="input-group">
@@ -146,7 +146,7 @@
                     </div>
                   <div class="row">
                         <div class="col-md-12">
-                    <div class="calendar" ui-calendar="uiConfig" ng-model="eventSources"></div>
+                    <div class="calendar" ui-calendar="uiConfig.calendar" ng-model="eventSource"></div>
                   </div>
                 </div>
             </div>

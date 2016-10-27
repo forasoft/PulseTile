@@ -1,4 +1,4 @@
-export default function AppointmentsModal($uibModal, appointmentsActions, $ngRedux) {
+export default function AppointmentsModal($uibModal, appointmentsActions, $ngRedux, AppointmentConfirmModal, serviceRequests) {
   var isModalClosed = true;
 
   var openModal = function (patient, modal, appointment, currentUser) {
@@ -9,9 +9,7 @@ export default function AppointmentsModal($uibModal, appointmentsActions, $ngRed
         template: require('./appointments-modal.html'),
         size: 'lg',
         controller: function ($scope, $state, $uibModalInstance) {
-          $scope.eventSource = {
-
-          };
+          $scope.eventSource = [];
           $scope.currentUser = currentUser;
           $scope.appointment = appointment;
           $scope.patient = patient;
@@ -20,21 +18,9 @@ export default function AppointmentsModal($uibModal, appointmentsActions, $ngRed
           $scope.appointment.location = appointment.location || 'Leeds General';
           $scope.appointment.status = appointment.status || 'Not Scheduled';
 
-          if (modal.title === 'Edit Appointment') {
-            $scope.isEdit = true;
-            $scope.appointment.dateCreated = new Date($scope.appointment.dateCreated).toISOString();
-            $scope.appointment.dateOfAppointment = new Date($scope.appointment.dateOfAppointment).toISOString();
-            $scope.appointment.timeOfAppointment = new Date($scope.appointment.timeOfAppointment);
-          }
-          else {
-            $scope.isEdit = false;
-            $scope.appointment.dateCreated = new Date().toISOString().slice(0, 10);
-          }
-
           if ($scope.appointment.status === 'Scheduled') {
             $scope.timeSlotFull = moment(appointment.timeOfAppointment).format('h:mma') + '-' + moment(appointment.timeOfAppointment).add(59, 'm').format('h:mma');
           }
-
 
           $scope.uiConfig = {
             calendar: {
@@ -97,9 +83,6 @@ export default function AppointmentsModal($uibModal, appointmentsActions, $ngRed
                 center: 'title',
                 left: 'prev,next'
               },
-              columnFormat: {
-                week: 'ddd D/M'
-              },
               eventClick: function (calEvent) {
                 $scope.setTimeSlot(calEvent.start);
               },
@@ -117,7 +100,6 @@ export default function AppointmentsModal($uibModal, appointmentsActions, $ngRed
               weekends: false
             }
           };
-          console.log($scope.uiConfig);
 
           $scope.openDatePicker = function ($event, name) {
             $event.preventDefault();
@@ -125,6 +107,64 @@ export default function AppointmentsModal($uibModal, appointmentsActions, $ngRed
 
             $scope[name] = true;
           };
+
+          $scope.setTimeSlot = function (time) {
+            for (var i = 0; i < $scope.uiConfig.calendar.events.length; i++) {
+              var event = $scope.uiConfig.calendar.events[i];
+
+              if (event.start === time._i) {
+                if (event.color !== '#dd2b08') {
+                  innerModal(time);
+                }
+              }
+            }
+          };
+
+          $scope.confirmationAppt = function (data) {
+            $scope.appointment.timeOfAppointment = data.time;
+            $scope.appointment.status = 'Scheduled';
+            $scope.appointment.dateOfAppointment = data.time.toISOString().slice(0, 10);
+            $scope.timeSlotFull = moment($scope.appointment.timeOfAppointment).format('h:mma') + '-' + moment($scope.appointment.timeOfAppointment).add(59, 'm').format('h:mma');
+            setBookedSlot();
+            $scope.radioModel = 'Tab1';
+
+            if ($scope.isEdit) {
+              $scope.appointmentsUpdate(patient.id,$scope.appointment);
+            } else {
+              $scope.appointmentsCreate(patient.id,$scope.appointment);
+            }
+          };
+
+          function innerModal(time) {
+            AppointmentConfirmModal.openModal({title: 'Confirm Date'}, time);
+            serviceRequests.subscriber('apptTime', $scope.confirmationAppt);
+          }
+
+          if (modal.title === 'Edit Appointment') {
+            $scope.isEdit = true;
+            $scope.appointment.dateCreated = new Date($scope.appointment.dateCreated).toISOString().slice(0, 10);
+            $scope.appointment.dateOfAppointment = new Date($scope.appointment.dateOfAppointment).toISOString().slice(0, 10);
+            $scope.appointment.timeOfAppointment = new Date($scope.appointment.timeOfAppointment);
+            setBookedSlot();
+          }
+          else {
+            $scope.isEdit = false;
+            $scope.appointment.dateCreated = new Date().toISOString().slice(0, 10);
+          }
+
+
+          function setBookedSlot() {
+            var booking = new Date($scope.appointment.dateOfAppointment).toISOString().slice(0, 10) + ' ' + $scope.appointment.timeOfAppointment.toISOString().slice(11, 13) + ':00';
+            for (var i = 0; i < $scope.uiConfig.calendar.events.length; i++) {
+              var event = $scope.uiConfig.calendar.events[i];
+              if (event.color === '#6599C8') {
+                event.color = '#378006';
+              }
+              if (event.start === booking) {
+                event.color = '#6599C8';
+              }
+            }
+          }
 
           $scope.schedule = function () {
             $scope.radioModel = 'Tab2';
@@ -138,49 +178,19 @@ export default function AppointmentsModal($uibModal, appointmentsActions, $ngRed
             return isBooked() ? ' Re-Schedule' : ' Schedule';
           };
 
+          $scope.getScheduleLabel = function () {
+            return isBooked() ? ' Re-Schedule' : ' Schedule';
+          };
 
-          $scope.ok = function (allergyForm, allergies) {
-            
-            $scope.formSubmitted = true;
-            let toAdd = {
-              sourceId: '',
-              cause: allergies.cause,
-              causeCode: allergies.causeCode,
-              causeTerminology: allergies.causeTerminology,
-              reaction: allergies.reaction,
-              source: allergies.source
-            };
-
-            if (allergyForm.$valid) {
-
-              $uibModalInstance.close(allergies);
-
-              if ($scope.isEdit) {
-
-                $scope.appointmentsUpdate($scope.patient.id, toAdd);
-
-                $state.go('allergies-details', {
-                  patientId: $scope.patient.id,
-                  filter: $scope.query,
-                  page: $scope.currentPage
-                }, {
-                  reload: true
-                });
-
-              } else {
-
-                $scope.appointmentsCreate($scope.patient.id, toAdd);
-
-                $state.go('allergies', {
-                  patientId: $scope.patient.id,
-                  filter: $scope.query,
-                  page: $scope.currentPage
-                }, {
-                  reload: true
-                });
-              }
-
-            }
+          $scope.ok = function () {
+            $uibModalInstance.close();
+            $state.go('appointments', {
+              patientId: patient.id,
+              filter: $scope.query,
+              page: $scope.currentPage
+            }, {
+              reload: true
+            });
           };
 
           $scope.cancel = function () {
@@ -206,4 +216,4 @@ export default function AppointmentsModal($uibModal, appointmentsActions, $ngRed
     openModal: openModal
   };
 }
-AppointmentsModal.$inject = ['$uibModal', 'appointmentsActions', '$ngRedux'];
+AppointmentsModal.$inject = ['$uibModal', 'appointmentsActions', '$ngRedux', 'AppointmentConfirmModal', 'serviceRequests'];

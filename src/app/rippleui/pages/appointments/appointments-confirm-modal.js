@@ -1,17 +1,56 @@
 'use strict';
 
-angular.module('ripple-ui')
-  .controller('AppointmentsConfirmModalCtrl', function ($scope, $modalInstance, time) {
+// angular.module('ripple-ui')
+//   .controller('AppointmentsConfirmModalCtrl', function ($scope, $modalInstance, time) {
+//
+//     $scope.modal = $modalInstance;
+//     $scope.time = new Date(time);
+//
+//     $scope.ok = function () {
+//       $modalInstance.close();
+//     };
+//
+//     $scope.cancel = function () {
+//       $modalInstance.dismiss('cancel');
+//     };
+//
+//   });
 
-    $scope.modal = $modalInstance;
-    $scope.time = new Date(time);
+export default function AppointmentConfirmModal($uibModal, serviceRequests) {
+var isModalClosed = true;
+    var openModal = function (modal, time) {
+        if (isModalClosed) {
+            isModalClosed = false;
+            var modalInstance = $uibModal.open({
+                template: require('./appointments-confirm-modal.html'),
+                size: 'sm',
+                controller: function ($scope, $state, $uibModalInstance) {
 
-    $scope.ok = function () {
-      $modalInstance.close();
+                    $scope.modal = $uibModalInstance;
+                    $scope.time = new Date(time);
+
+                    $scope.ok = function () {
+                        serviceRequests.publisher('apptTime', {time: $scope.time});
+                        $uibModalInstance.close();
+                    };
+
+                    $scope.cancel = function () {
+                        $uibModalInstance.dismiss('cancel');
+                    };
+                }
+            });
+        }
+
+        modalInstance.result.then(function() {
+            isModalClosed = true;
+        }, function() {
+            isModalClosed = true;
+        });
     };
 
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
+    return {
+        isModalClosed: isModalClosed,
+        openModal: openModal
     };
-
-  });
+}
+AppointmentConfirmModal.$inject = ['$uibModal', 'serviceRequests'];
