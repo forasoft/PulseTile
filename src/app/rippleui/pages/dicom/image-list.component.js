@@ -1,7 +1,7 @@
 let templateImageList = require('./image-list.html');
 
 class ImageListController {
-  constructor($scope, $state, $stateParams, $ngRedux, imageActions, serviceRequests) {
+  constructor($scope, $state, $stateParams, $ngRedux, imageActions, serviceRequests, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
@@ -61,6 +61,7 @@ class ImageListController {
             image.studyDescription = 'N/A';
           }
         }
+        usSpinnerService.stop('imagesList-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -83,5 +84,5 @@ const ImageListComponent = {
   controller: ImageListController
 };
 
-ImageListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'imageActions', 'serviceRequests'];
+ImageListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'imageActions', 'serviceRequests', 'usSpinnerService'];
 export default ImageListComponent;
