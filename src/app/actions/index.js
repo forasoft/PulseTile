@@ -19,6 +19,7 @@ import clinicalnotesActions from '../rippleui/pages/clinical-notes/clinicalnotes
 import heightAndWeightActions from '../rippleui/pages/height-and-weight/heightAndWeight-actions';
 import genericmdtActions from '../rippleui/pages/generic-mdt/generic-mdt-actions';
 import imageActions from '../rippleui/pages/dicom/image-actions';
+import eolcareplansActions from '../rippleui/pages/care-plans/eolcareplans-actions';
 
 export default angular
     .module('app.actions', [])
@@ -41,4 +42,5 @@ export default angular
     .factory('heightAndWeightActions', heightAndWeightActions)
     .factory('genericmdtActions', genericmdtActions)
     .factory('imageActions', imageActions)
+    .factory('eolcareplansActions', eolcareplansActions)
     .name;

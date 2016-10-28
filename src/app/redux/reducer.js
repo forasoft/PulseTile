@@ -62,6 +62,10 @@ import series from '../rippleui/pages/dicom/series-reducer-all';
 import seriesGet from '../rippleui/pages/dicom/series-reducer-get';
 import instanceGet from '../rippleui/pages/dicom/instance-reducer-get';
 import instanceIdGet from '../rippleui/pages/dicom/instance-id-reducer-get';
+import eolcareplans from '../rippleui/pages/care-plans/eolcareplans-reducer-all';
+import eolcareplansGet from '../rippleui/pages/care-plans/eolcareplans-reducer-get';
+import eolcareplansCreate from '../rippleui/pages/care-plans/eolcareplans-reducer-create';
+import eolcareplansUpdate from '../rippleui/pages/care-plans/eolcareplans-reducer-update';
 
 export default combineReducers({
   patients,
@@ -125,5 +129,9 @@ export default combineReducers({
   series,
   seriesGet,
   instanceGet,
-  instanceIdGet
+  instanceIdGet,
+  eolcareplans,
+  eolcareplansGet,
+  eolcareplansCreate,
+  eolcareplansUpdate
 });
