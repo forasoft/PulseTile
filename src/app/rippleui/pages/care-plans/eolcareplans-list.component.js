@@ -1,7 +1,7 @@
 let templateEolcareplansList = require('./eolcareplans-list.html');
 
 class EolcareplansListController {
-  constructor($scope, $state, $stateParams, $ngRedux, eolcareplansActions, serviceRequests, EolcareplansModal) {
+  constructor($scope, $state, $stateParams, $ngRedux, eolcareplansActions, serviceRequests, EolcareplansModal, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
     var vm = this;
@@ -61,6 +61,7 @@ class EolcareplansListController {
             this.eolcareplans[i].date = moment(this.eolcareplans[i].date).format('DD-MMM-YYYY');
           }
         }
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -83,5 +84,5 @@ const EolcareplansListComponent = {
   controller: EolcareplansListController
 };
 
-EolcareplansListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'eolcareplansActions', 'serviceRequests', 'EolcareplansModal'];
+EolcareplansListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'eolcareplansActions', 'serviceRequests', 'EolcareplansModal', 'usSpinnerService'];
 export default EolcareplansListComponent;

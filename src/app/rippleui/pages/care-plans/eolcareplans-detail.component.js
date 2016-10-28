@@ -1,7 +1,7 @@
 let templateEolcareplansDetail= require('./eolcareplans-detail.html');
 
 class EolcareplansDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, eolcareplansActions, EolcareplansModal) {
+  constructor($scope, $state, $stateParams, $ngRedux, eolcareplansActions, EolcareplansModal, usSpinnerService) {
     this.edit = function () {
       EolcareplansModal.openModal(this.currentPatient, {title: 'Edit End of Life Care Document'}, this.eolcareplan, this.currentUser);
     };
@@ -12,6 +12,7 @@ class EolcareplansDetailController {
       }
       if (data.eolcareplansGet.data) {
         this.eolcareplan = data.eolcareplansGet.data;
+        usSpinnerService.stop('eolcareplansDetail-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -34,5 +35,5 @@ const EolcareplansDetailComponent = {
   controller: EolcareplansDetailController
 };
 
-EolcareplansDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'eolcareplansActions', 'EolcareplansModal'];
+EolcareplansDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'eolcareplansActions', 'EolcareplansModal', 'usSpinnerService'];
 export default EolcareplansDetailComponent;
