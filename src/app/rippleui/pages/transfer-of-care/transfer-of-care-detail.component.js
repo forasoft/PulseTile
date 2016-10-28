@@ -1,7 +1,7 @@
 let templateTransferOfCareDetail= require('./transfer-of-care-detail.html');
 
 class TransferOfCareDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, transferOfCareActions) {
+  constructor($scope, $state, $stateParams, $ngRedux, transferOfCareActions, usSpinnerService) {
 
     $scope.formDisabled = true;
 
@@ -16,6 +16,7 @@ class TransferOfCareDetailController {
         this.problems = data.transferOfCareGet.data.problems;
         this.medications = data.transferOfCareGet.data.medications;
         this.dateOfTransfer = data.transferOfCareGet.data.dateOfTransfer;
+        usSpinnerService.stop('transferDetail-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -38,5 +39,5 @@ const TransferOfCareDetailComponent = {
   controller: TransferOfCareDetailController
 };
 
-TransferOfCareDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'transferOfCareActions'];
+TransferOfCareDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'transferOfCareActions', 'usSpinnerService'];
 export default TransferOfCareDetailComponent;

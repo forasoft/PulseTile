@@ -10,7 +10,6 @@ import 'angular-loading-bar';
 import 'fullcalendar';
 import 'angular-ui-calendar';
 import 'jquery';
-import 'jQuery';
 import 'morrisjs';
 import 'angular-spinner';
 
