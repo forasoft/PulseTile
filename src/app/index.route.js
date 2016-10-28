@@ -278,6 +278,23 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<generic-mdt-list-component></generic-mdt-list-component>'},
           detail: {template: '<generic-mdt-detail-component></generic-mdt-detail-component>'}
         }
+      })
+      .state('images', {
+        url: '/patients/{patientId:int}/images?filter&page&reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<image-list-component></image-list-component>'}
+        }
+      })
+      .state('images-detail', {
+        url: '/patients/{patientId:int}/images/{studyId}?filter&page&reportType&searchString&queryType&source',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<image-list-component></image-list-component>'},
+          detail: {template: '<image-detail-component></image-detail-component>'}
+        }
       });
 }
 

@@ -57,6 +57,11 @@ import clinicalnotes from '../rippleui/pages/clinical-notes/clinicalnotes-reduce
 import clinicalnotesGet from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-get';
 import clinicalnotesCreate from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-create';
 import clinicalnotesUpdate from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-update';
+import studies from '../rippleui/pages/dicom/studies-reducer-all';
+import series from '../rippleui/pages/dicom/series-reducer-all';
+import seriesGet from '../rippleui/pages/dicom/series-reducer-get';
+import instanceGet from '../rippleui/pages/dicom/instance-reducer-get';
+import instanceIdGet from '../rippleui/pages/dicom/instance-id-reducer-get';
 
 export default combineReducers({
   patients,
@@ -115,5 +120,10 @@ export default combineReducers({
   cancermdt,
   cancermdtGet,
   cancermdtCreate,
-  cancermdtUpdate
+  cancermdtUpdate,
+  studies,
+  series,
+  seriesGet,
+  instanceGet,
+  instanceIdGet
 });

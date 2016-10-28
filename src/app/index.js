@@ -31,6 +31,7 @@ import ProceduresModal from './rippleui/pages/procedures/procedures-modal';
 import ClinicalnotesModal from './rippleui/pages/clinical-notes/clinicalnotes-modal';
 import HeightAndWeightModal from './rippleui/pages/height-and-weight/heightAndWeight-modal';
 import GenericMdtModal from './rippleui/pages/generic-mdt/generic-mdt-modal';
+import ImageModal from './rippleui/pages/dicom/image-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -68,6 +69,8 @@ import HeightAndWeightListComponent from './rippleui/pages/height-and-weight/hei
 import HeightAndWeightDetailComponent from './rippleui/pages/height-and-weight/heightAndWeight-detail.component';
 import GenericMdtListComponent from './rippleui/pages/generic-mdt/generic-mdt-list.component';
 import GenericMdtDetailComponent from './rippleui/pages/generic-mdt/generic-mdt-detail.component';
+import ImageListComponent from './rippleui/pages/dicom/image-list.component';
+import ImageDetailComponent from './rippleui/pages/dicom/image-detail.component';
 import MainComponent from './helpers/main.component';
 
 import ServiceRequests from './services/serviceRequests.js';
@@ -101,6 +104,7 @@ const app = angular
     .factory('ClinicalnotesModal', ClinicalnotesModal)
     .factory('HeightAndWeightModal', HeightAndWeightModal)
     .factory('GenericMdtModal', GenericMdtModal)
+    .factory('ImageModal', ImageModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
@@ -136,6 +140,8 @@ const app = angular
     .component('heightAndWeightDetailComponent', HeightAndWeightDetailComponent)
     .component('genericMdtListComponent', GenericMdtListComponent)
     .component('genericMdtDetailComponent', GenericMdtDetailComponent)
+    .component('imageListComponent', ImageListComponent)
+    .component('imageDetailComponent', ImageDetailComponent)
     .component('mainComponent', MainComponent)
     .component('searchComponent', SearchComponent)
     .component('reportChartComponent', ReportChartComponent)

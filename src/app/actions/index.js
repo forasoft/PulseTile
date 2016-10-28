@@ -18,6 +18,7 @@ import appointmentsActions from '../rippleui/pages/appointments/appointments-act
 import clinicalnotesActions from '../rippleui/pages/clinical-notes/clinicalnotes-actions';
 import heightAndWeightActions from '../rippleui/pages/height-and-weight/heightAndWeight-actions';
 import genericmdtActions from '../rippleui/pages/generic-mdt/generic-mdt-actions';
+import imageActions from '../rippleui/pages/dicom/image-actions';
 
 export default angular
     .module('app.actions', [])
@@ -39,4 +40,5 @@ export default angular
     .factory('clinicalnotesActions', clinicalnotesActions)
     .factory('heightAndWeightActions', heightAndWeightActions)
     .factory('genericmdtActions', genericmdtActions)
+    .factory('imageActions', imageActions)
     .name;
