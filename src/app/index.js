@@ -10,6 +10,7 @@ import 'angular-loading-bar';
 import 'fullcalendar';
 import 'angular-ui-calendar';
 import 'jquery';
+import 'jQuery';
 import 'morrisjs';
 import 'angular-spinner';
 
@@ -33,6 +34,7 @@ import HeightAndWeightModal from './rippleui/pages/height-and-weight/heightAndWe
 import GenericMdtModal from './rippleui/pages/generic-mdt/generic-mdt-modal';
 import ImageModal from './rippleui/pages/dicom/image-modal';
 import EolcareplansModal from './rippleui/pages/care-plans/eolcareplans-modal';
+import TransferOfCareModal from './rippleui/pages/transfer-of-care/transfer-of-care-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -74,6 +76,8 @@ import ImageListComponent from './rippleui/pages/dicom/image-list.component';
 import ImageDetailComponent from './rippleui/pages/dicom/image-detail.component';
 import EolcareplansListComponent from './rippleui/pages/care-plans/eolcareplans-list.component';
 import EolcareplansDetailComponent from './rippleui/pages/care-plans/eolcareplans-detail.component';
+import TransferOfCareListComponent from './rippleui/pages/transfer-of-care/transfer-of-care-list.component';
+import TransferOfCareDetailComponent from './rippleui/pages/transfer-of-care/transfer-of-care-detail.component';
 import MainComponent from './helpers/main.component';
 
 import ServiceRequests from './services/serviceRequests.js';
@@ -109,6 +113,7 @@ const app = angular
     .factory('GenericMdtModal', GenericMdtModal)
     .factory('ImageModal', ImageModal)
     .factory('EolcareplansModal', EolcareplansModal)
+    .factory('TransferOfCareModal', TransferOfCareModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
@@ -148,6 +153,8 @@ const app = angular
     .component('imageDetailComponent', ImageDetailComponent)
     .component('eolcareplansListComponent', EolcareplansListComponent)
     .component('eolcareplansDetailComponent', EolcareplansDetailComponent)
+    .component('transferOfCareListComponent', TransferOfCareListComponent)
+    .component('transferOfCareDetailComponent', TransferOfCareDetailComponent)
     .component('mainComponent', MainComponent)
     .component('searchComponent', SearchComponent)
     .component('reportChartComponent', ReportChartComponent)

@@ -66,6 +66,9 @@ import eolcareplans from '../rippleui/pages/care-plans/eolcareplans-reducer-all'
 import eolcareplansGet from '../rippleui/pages/care-plans/eolcareplans-reducer-get';
 import eolcareplansCreate from '../rippleui/pages/care-plans/eolcareplans-reducer-create';
 import eolcareplansUpdate from '../rippleui/pages/care-plans/eolcareplans-reducer-update';
+import transferOfCare from '../rippleui/pages/transfer-of-care/transfer-of-care-reducer-all';
+import transferOfCareGet from '../rippleui/pages/transfer-of-care/transfer-of-care-reducer-get';
+import transferOfCareCreate from '../rippleui/pages/transfer-of-care/transfer-of-care-reducer-create';
 
 export default combineReducers({
   patients,
@@ -133,5 +136,8 @@ export default combineReducers({
   eolcareplans,
   eolcareplansGet,
   eolcareplansCreate,
-  eolcareplansUpdate
+  eolcareplansUpdate,
+  transferOfCare,
+  transferOfCareGet,
+  transferOfCareCreate
 });
