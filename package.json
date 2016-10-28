@@ -89,6 +89,8 @@
     "fullcalendar": "^3.0.0",
     "jquery": "~2.1.4",
     "moment": "~2.15.0",
+    "bower-webpack-plugin": "^0.1.9",
+    "copy-webpack-plugin": "^3.0.1",
     "raphael": "^2.2.6",
     "redux": "^3.5.2",
     "underscore": "^1.8.3"
