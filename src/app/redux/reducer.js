@@ -10,9 +10,6 @@ import diagnosesGet from '../rippleui/pages/diagnoses/diagnoses-reducer-get';
 import diagnosesCreate from '../rippleui/pages/diagnoses/diagnoses-reducer-create';
 import diagnosesUpdate from '../rippleui/pages/diagnoses/diagnoses-reducer-update';
 import allergies from '../rippleui/pages/allergies/allergies-reducer-all';
-import allergiesGet from '../rippleui/pages/allergies/allergies-reducer-get';
-import allergiesCreate from '../rippleui/pages/allergies/allergies-reducer-create';
-import allergiesUpdate from '../rippleui/pages/allergies/allergies-reducer-update';
 import medication from '../rippleui/pages/medications/medication-reducer-all';
 import medicationGet from '../rippleui/pages/medications/medication-reducer-get';
 import medicationCreate from '../rippleui/pages/medications/medication-reducer-create';
@@ -81,9 +78,6 @@ export default combineReducers({
   diagnosesCreate, 
   diagnosesUpdate,
   allergies,
-  allergiesGet,
-  allergiesCreate,
-  allergiesUpdate,
   medication,
   medicationGet,
   medicationCreate,
