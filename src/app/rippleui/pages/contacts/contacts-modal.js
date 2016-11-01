@@ -1,4 +1,4 @@
-export default function ContactsModal($uibModal, contactsActions, $stateParams) {
+export default function ContactsModal($uibModal, contactsActions, $stateParams, $ngRedux) {
   var isModalClosed = true;
  
   var openModal = function (patient, modal, contact, currentUser) {
@@ -9,6 +9,7 @@ export default function ContactsModal($uibModal, contactsActions, $stateParams) 
         template: require('./contacts-modal.html'),
         size: 'lg',
         controller: function ($scope, $state, $uibModalInstance) {
+          var updated = false;
           var updateId = function (sourceId) {
             var sourceArr = sourceId.split('::');
             var newVersionNumber = parseInt(sourceArr[2]) + 1;
@@ -16,8 +17,34 @@ export default function ContactsModal($uibModal, contactsActions, $stateParams) 
             return newId;
           };
 
+          var setCurrentPageData = function (data) {
+            if (data.contactsCreate.isFetching && !updated) {
+              updated = true;
+              $state.go('contacts', {
+                patientId: $scope.patient.id,
+                filter: $scope.currentUser.query.$,
+                page: $scope.currentUser.currentPage,
+                reportType: $stateParams.reportType,
+                searchString: $stateParams.searchString,
+                queryType: $stateParams.queryType
+              }, {
+                reload: true
+              });
+            }
+            if (data.contactsUpdate.isFetching) {
+              $state.go('contacts-detail', {
+                patientId: $scope.patient.id,
+                contactIndex: updateId(contact.sourceId),
+                page: $scope.currentPage,
+                reportType: $stateParams.reportType,
+                searchString: $stateParams.searchString,
+                queryType: $stateParams.queryType
+              });
+            }
+          };
+
           $scope.currentUser = currentUser;
-          $scope.contact = contact;
+          $scope.contact = $scope.user = angular.copy(contact);
           $scope.patient = patient;
           $scope.modal = modal;
 
@@ -44,38 +71,27 @@ export default function ContactsModal($uibModal, contactsActions, $stateParams) 
           $scope.ok = function (contactForm, contact) {
             $scope.formSubmitted = true;
             if (contactForm.$valid) {
-              
-              $uibModalInstance.close(contact);
 
+              $uibModalInstance.close(contact);
               if ($scope.isEdit) {
                 $scope.contactsUpdate($scope.patient.id, $scope.contact);
-                $state.go('contacts-detail', {
-                  patientId: $scope.patient.id,
-                  contactIndex: updateId(contact.sourceId),
-                  page: $scope.currentPage,
-                  reportType: $stateParams.reportType,
-                  searchString: $stateParams.searchString,
-                  queryType: $stateParams.queryType
-                });
               } else {
                 $scope.contactsCreate($scope.patient.id, $scope.contact);
-                $state.go('contacts', {
-                  patientId: $scope.patient.id,
-                  filter: $scope.currentUser.query.$,
-                  page: $scope.currentUser.currentPage,
-                  reportType: $stateParams.reportType,
-                  searchString: $stateParams.searchString,
-                  queryType: $stateParams.queryType
-                }, {
-                  reload: true
-                });
               }
             }
           };
 
           $scope.cancel = function () {
+            $scope.contact = angular.copy(contact);
             $uibModalInstance.dismiss('cancel');
           };
+
+
+          let unsubscribe = $ngRedux.connect(state => ({
+            getStoreData: setCurrentPageData(state)
+          }))(this);
+          
+          $scope.$on('$destroy', unsubscribe);
 
           $scope.contactsCreate = contactsActions.create;
           $scope.contactsUpdate = contactsActions.update;
@@ -96,4 +112,4 @@ export default function ContactsModal($uibModal, contactsActions, $stateParams) 
     openModal: openModal
   };
 }
-ContactsModal.$inject = ['$uibModal', 'contactsActions', '$stateParams'];
+ContactsModal.$inject = ['$uibModal', 'contactsActions', '$stateParams', '$ngRedux'];
