@@ -13,11 +13,11 @@ class AppointmentsDetailController {
     $scope.formDisabled = true;
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
-      if (data.appointmentsGet.data) {
-        this.appointment = data.appointmentsGet.data;
+      if (data.appointments.dataGet) {
+        this.appointment = data.appointments.dataGet;
         usSpinnerService.stop('appointmentsDetail-spinner');
       }
       if (data.user.data) {

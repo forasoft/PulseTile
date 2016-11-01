@@ -46,9 +46,6 @@ import documentsFindReferral from '../rippleui/pages/documents/documents-reducer
 import documentsUploadDischarge from '../rippleui/pages/documents/documents-reducer-upload-discharge';
 import documentsUploadReferral from '../rippleui/pages/documents/documents-reducer-upload-referral';
 import appointments from '../rippleui/pages/appointments/appointments-reducer-all';
-import appointmentsGet from '../rippleui/pages/appointments/appointments-reducer-get';
-import appointmentsCreate from '../rippleui/pages/appointments/appointments-reducer-create';
-import appointmentsUpdate from '../rippleui/pages/appointments/appointments-reducer-update';
 import clinicalnotes from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-all';
 import clinicalnotesGet from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-get';
 import clinicalnotesCreate from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-create';
@@ -105,9 +102,6 @@ export default combineReducers({
   documentsUploadDischarge,
   documentsUploadReferral,
   appointments,
-  appointmentsGet,
-  appointmentsCreate,
-  appointmentsUpdate,
   clinicalnotes,
   clinicalnotesGet,
   clinicalnotesCreate,
