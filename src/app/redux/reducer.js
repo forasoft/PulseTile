@@ -14,9 +14,6 @@ import medicationGet from '../rippleui/pages/medications/medication-reducer-get'
 import medicationCreate from '../rippleui/pages/medications/medication-reducer-create';
 import medicationUpdate from '../rippleui/pages/medications/medication-reducer-update';
 import contacts from '../rippleui/pages/contacts/contacts-reducer-all';
-import contactsGet from '../rippleui/pages/contacts/contacts-reducer-get';
-import contactsCreate from '../rippleui/pages/contacts/contacts-reducer-create';
-import contactsUpdate from '../rippleui/pages/contacts/contacts-reducer-update';
 import orders from '../rippleui/pages/orders/orders-reducer-all';
 import ordersGet from '../rippleui/pages/orders/orders-reducer-get';
 import ordersCreate from '../rippleui/pages/orders/orders-reducer-create';
@@ -72,9 +69,6 @@ export default combineReducers({
   medicationCreate,
   medicationUpdate,
   contacts,
-  contactsGet,
-  contactsCreate,
-  contactsUpdate,
   orders,
   ordersGet,
   ordersCreate,
