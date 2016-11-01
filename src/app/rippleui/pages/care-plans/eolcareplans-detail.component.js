@@ -10,8 +10,8 @@ class EolcareplansDetailController {
       if (data.patients.data) {
         this.currentPatient = data.patients.data;
       }
-      if (data.eolcareplansGet.data) {
-        this.eolcareplan = data.eolcareplansGet.data;
+      if (data.eolcareplans.dataGet) {
+        this.eolcareplan = data.eolcareplans.dataGet;
         usSpinnerService.stop('eolcareplansDetail-spinner');
       }
       if (data.user.data) {
