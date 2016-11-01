@@ -13,11 +13,11 @@ class HeightAndWeightDetailController {
     $scope.formDisabled = true;
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
-      if (data.heightAndWeightGet.data) {
-        this.heightAndWeight = data.heightAndWeightGet.data;
+      if (data.heightAndWeight.dataGet) {
+        this.heightAndWeight = data.heightAndWeight.dataGet;
         usSpinnerService.stop("heightAndWeightsDetail-spinner");
       }
       if (data.user.data) {
