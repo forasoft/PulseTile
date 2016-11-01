@@ -3,7 +3,6 @@ import angular from 'angular';
 import patientsActions from '../rippleui/pages/patients-list/patients-actions';
 import userActions from './user';
 import searchActions from '../rippleui/search/search-actions';
-import messagesActions from './messages';
 import searchReport from '../rippleui/search/search-report-actions';
 import diagnosesActions from '../rippleui/pages/diagnoses/diagnoses-actions';
 import allergiesActions from '../rippleui/pages/allergies/allergies-actions';
@@ -27,7 +26,6 @@ export default angular
     .factory('patientsActions', patientsActions)
     .factory('userActions', userActions)
     .factory('searchActions', searchActions)
-    .factory('messagesActions', messagesActions)
     .factory('searchReport', searchReport)
     .factory('diagnosesActions', diagnosesActions)
     .factory('allergiesActions', allergiesActions)
