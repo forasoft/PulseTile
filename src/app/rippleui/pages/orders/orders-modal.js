@@ -23,8 +23,8 @@ export default function OrdersModal($uibModal, ordersActions, $stateParams, $ngR
           }
 
           $scope.setCurrentPageData = function (data) {
-            if (data.ordersSuggestion.data) {
-              $scope.suggestions = data.ordersSuggestion.data;
+            if (data.orders.dataSuggestion) {
+              $scope.suggestions = data.orders.dataSuggestion;
             }
           };
 

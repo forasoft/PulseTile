@@ -9,9 +9,6 @@ import allergies from '../rippleui/pages/allergies/allergies-reducer-all';
 import medication from '../rippleui/pages/medications/medication-reducer-all';
 import contacts from '../rippleui/pages/contacts/contacts-reducer-all';
 import orders from '../rippleui/pages/orders/orders-reducer-all';
-import ordersGet from '../rippleui/pages/orders/orders-reducer-get';
-import ordersCreate from '../rippleui/pages/orders/orders-reducer-create';
-import ordersSuggestion from '../rippleui/pages/orders/orders-reducer-suggestion';
 import referrals from '../rippleui/pages/referrals/referrals-reducer-all';
 import referralsGet from '../rippleui/pages/referrals/referrals-reducer-get';
 import referralsCreate from '../rippleui/pages/referrals/referrals-reducer-create';
@@ -51,9 +48,6 @@ export default combineReducers({
   medication,
   contacts,
   orders,
-  ordersGet,
-  ordersCreate,
-  ordersSuggestion,
   referrals,
   referralsGet,
   referralsCreate,
