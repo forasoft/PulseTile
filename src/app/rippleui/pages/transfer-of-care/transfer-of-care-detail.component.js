@@ -6,16 +6,16 @@ class TransferOfCareDetailController {
     $scope.formDisabled = true;
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
-      if (data.transferOfCareGet.data) {
-        this.transferOfCare = data.transferOfCareGet.data;
-        this.allergies = data.transferOfCareGet.data.allergies;
-        this.contacts = data.transferOfCareGet.data.contacts;
-        this.problems = data.transferOfCareGet.data.problems;
-        this.medications = data.transferOfCareGet.data.medications;
-        this.dateOfTransfer = data.transferOfCareGet.data.dateOfTransfer;
+      if (data.transferOfCare.dataGet) {
+        this.transferOfCare = data.transferOfCare.dataGet;
+        this.allergies = data.transferOfCare.dataGet.allergies;
+        this.contacts = data.transferOfCare.dataGet.contacts;
+        this.problems = data.transferOfCare.dataGet.problems;
+        this.medications = data.transferOfCare.dataGet.medications;
+        this.dateOfTransfer = data.transferOfCare.dataGet.dateOfTransfer;
         usSpinnerService.stop('transferDetail-spinner');
       }
       if (data.user.data) {
