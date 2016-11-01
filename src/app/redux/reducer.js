@@ -7,9 +7,6 @@ import search from '../rippleui/search/search-reducer-all';
 import diagnoses from '../rippleui/pages/diagnoses/diagnoses-reducer-all';
 import allergies from '../rippleui/pages/allergies/allergies-reducer-all';
 import medication from '../rippleui/pages/medications/medication-reducer-all';
-import medicationGet from '../rippleui/pages/medications/medication-reducer-get';
-import medicationCreate from '../rippleui/pages/medications/medication-reducer-create';
-import medicationUpdate from '../rippleui/pages/medications/medication-reducer-update';
 import contacts from '../rippleui/pages/contacts/contacts-reducer-all';
 import orders from '../rippleui/pages/orders/orders-reducer-all';
 import ordersGet from '../rippleui/pages/orders/orders-reducer-get';
@@ -52,9 +49,6 @@ export default combineReducers({
   diagnoses,
   allergies,
   medication,
-  medicationGet,
-  medicationCreate,
-  medicationUpdate,
   contacts,
   orders,
   ordersGet,
