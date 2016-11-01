@@ -5,9 +5,6 @@ import patientsGet from '../rippleui/pages/patients-list/patients-reducer-get';
 import user from './user';
 import search from '../rippleui/search/search-reducer-all';
 import diagnoses from '../rippleui/pages/diagnoses/diagnoses-reducer-all';
-import diagnosesGet from '../rippleui/pages/diagnoses/diagnoses-reducer-get';
-import diagnosesCreate from '../rippleui/pages/diagnoses/diagnoses-reducer-create';
-import diagnosesUpdate from '../rippleui/pages/diagnoses/diagnoses-reducer-update';
 import allergies from '../rippleui/pages/allergies/allergies-reducer-all';
 import medication from '../rippleui/pages/medications/medication-reducer-all';
 import medicationGet from '../rippleui/pages/medications/medication-reducer-get';
@@ -60,9 +57,6 @@ export default combineReducers({
   user, 
   search, 
   diagnoses,
-  diagnosesGet, 
-  diagnosesCreate, 
-  diagnosesUpdate,
   allergies,
   medication,
   medicationGet,

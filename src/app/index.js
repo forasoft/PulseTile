@@ -45,7 +45,7 @@ import PatientsSidebarComponent from './rippleui/pages/patients-detail/patients-
 import PatientsBannerComponent from './rippleui/pages/patients-detail/patients-banner.component';
 import SearchComponent from './rippleui/search/search.component';
 import ReportChartComponent from './rippleui/search/report-chart.component';
-import DiagnosesListComponent from './rippleui/pages/diagnoses/diagnosis-list.component';
+import DiagnosesListComponent from './rippleui/pages/diagnoses/diagnoses-list.component';
 import DiagnosesDetailComponent from './rippleui/pages/diagnoses/diagnoses-detail.component';
 import AllergiesListComponent from './rippleui/pages/allergies/allergies-list.component';
 import AllergiesDetailComponent from './rippleui/pages/allergies/allergies-detail.component';
