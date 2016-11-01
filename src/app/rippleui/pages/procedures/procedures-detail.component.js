@@ -7,11 +7,11 @@ class ProceduresDetailController {
     };
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
-      if (data.proceduresGet.data) {
-        this.procedure = data.proceduresGet.data;
+      if (data.procedures.dataGet) {
+        this.procedure = data.procedures.dataGet;
         usSpinnerService.stop('proceduresDetail-spinner');
       }
       if (data.user.data) {

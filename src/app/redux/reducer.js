@@ -14,9 +14,6 @@ import referralsGet from '../rippleui/pages/referrals/referrals-reducer-get';
 import referralsCreate from '../rippleui/pages/referrals/referrals-reducer-create';
 import referralsUpdate from '../rippleui/pages/referrals/referrals-reducer-update';
 import procedures from '../rippleui/pages/procedures/procedures-reducer-all';
-import proceduresGet from '../rippleui/pages/procedures/procedures-reducer-get';
-import proceduresCreate from '../rippleui/pages/procedures/procedures-reducer-create';
-import proceduresUpdate from '../rippleui/pages/procedures/procedures-reducer-update';
 import heightAndWeight from '../rippleui/pages/height-and-weight/heightAndWeight-reducer-all';
 import cancermdt from '../rippleui/pages/generic-mdt/generic-mdt-reducer-all';
 import results from '../rippleui/pages/results/results-reducer-all';
@@ -53,9 +50,6 @@ export default combineReducers({
   referralsCreate,
   referralsUpdate,
   procedures,
-  proceduresGet,
-  proceduresCreate,
-  proceduresUpdate,
   results,
   resultsGet,
   chart,
