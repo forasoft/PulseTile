@@ -7,11 +7,11 @@ class GenericMdtDetailController {
     };
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
-      if (data.cancermdtGet.data) {
-        this.cancerMdt = data.cancermdtGet.data;
+      if (data.cancermdt.dataGet) {
+        this.cancerMdt = data.cancermdt.dataGet;
         usSpinnerService.stop('mdtDetail-spinner');
       }
       if (data.user.data) {
