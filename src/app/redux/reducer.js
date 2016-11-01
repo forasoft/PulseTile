@@ -43,7 +43,6 @@ import appointments from '../rippleui/pages/appointments/appointments-reducer-al
 import clinicalnotes from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-all';
 import studies from '../rippleui/pages/dicom/studies-reducer-all';
 import series from '../rippleui/pages/dicom/series-reducer-all';
-import seriesGet from '../rippleui/pages/dicom/series-reducer-get';
 import instanceGet from '../rippleui/pages/dicom/instance-reducer-get';
 import instanceIdGet from '../rippleui/pages/dicom/instance-id-reducer-get';
 import eolcareplans from '../rippleui/pages/care-plans/eolcareplans-reducer-all';
@@ -95,7 +94,6 @@ export default combineReducers({
   cancermdtUpdate,
   studies,
   series,
-  seriesGet,
   instanceGet,
   instanceIdGet,
   eolcareplans,

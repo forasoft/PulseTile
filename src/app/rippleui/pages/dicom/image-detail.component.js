@@ -12,11 +12,11 @@ class ImageDetailController {
     this.series = [];
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
-      if (data.series.data) {
-        this.study = data.series.data;
+      if (data.series.dataGet) {
+        this.study = data.series.dataGet;
 
         var seriesIds = this.study.seriesIds;
         this.instanceIds = [];
