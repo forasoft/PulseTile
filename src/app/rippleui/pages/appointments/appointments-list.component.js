@@ -32,8 +32,8 @@ class AppointmentsListController {
 
     };
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
       if (data.appointments.data) {
         this.appointments = data.appointments.data;

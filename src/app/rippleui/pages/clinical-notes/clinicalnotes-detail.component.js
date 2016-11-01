@@ -10,11 +10,11 @@ class ClinicalnotesDetailController {
     };
     
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
-      if (data.clinicalnotesGet.data) {
-        this.clinicalNote = data.clinicalnotesGet.data;
+      if (data.clinicalnotes.dataGet) {
+        this.clinicalNote = data.clinicalnotes.dataGet;
         this.dateCreated = moment(this.clinicalNote.dateCreated).format('DD-MMM-YYYY');
         usSpinnerService.stop("clinicalNoteDetail-spinner");
       }

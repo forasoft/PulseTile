@@ -52,8 +52,8 @@ class ClinicalnotesListController {
     };
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
       if (data.clinicalnotes.data) {
         this.clinicalNotes = data.clinicalnotes.data;
