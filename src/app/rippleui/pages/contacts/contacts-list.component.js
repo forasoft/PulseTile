@@ -10,6 +10,8 @@ class ContactsListController {
     this.currentPage = 1;
 
     this.create = function () {
+      this.currentUser.query = this.query;
+      this.currentUser.currentPage = this.currentPage;
       ContactsModal.openModal(this.currentPatient, {title: 'Create Contact'}, {}, this.currentUser);
     };
 
@@ -34,8 +36,8 @@ class ContactsListController {
         this.contacts = data.contacts.data;
         usSpinnerService.stop('patientSummary-spinner');
       }
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
