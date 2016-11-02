@@ -14,6 +14,7 @@ export default function DiagnosesModal($uibModal, diagnosesActions, $ngRedux) {
           $scope.diagnosis = angular.copy(diagnosis);
           $scope.modal = modal;
           $scope.currentUser = currentUser;
+          $scope.protocol = 'http://';
 
           if (modal.title === 'Edit Problem / Diagnosis') {
             $scope.isEdit = true;
@@ -24,6 +25,19 @@ export default function DiagnosesModal($uibModal, diagnosesActions, $ngRedux) {
             $scope.diagnosis.dateSubmitted = new Date();
             $scope.diagnosis.code = '12393890';
           }
+
+          $scope.changeProtocol = function (protocol) {
+            switch (protocol) {
+              case 'http':
+                $scope.protocol = 'http://';
+                break;
+              case 'https':
+                $scope.protocol = 'https://';
+                break;
+              default:
+                $scope.protocol = 'http://';
+            }
+          };
           
           $scope.openDatePicker = function ($event, name) {
             $event.preventDefault();
