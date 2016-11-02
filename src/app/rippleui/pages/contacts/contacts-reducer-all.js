@@ -20,6 +20,8 @@ export default function contacts(state = INITIAL_STATE, action) {
       });
     },
     [types.CONTACTS_SUCCESS]: (state) => {
+      state.dataCreate = null;
+      state.dataUpdate = null;
       return Object.assign({}, state, {
         isFetching: false,
         data: payload.response

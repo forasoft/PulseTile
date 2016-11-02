@@ -10,6 +10,8 @@ export default function ContactsModal($uibModal, contactsActions, $stateParams, 
         size: 'lg',
         controller: function ($scope, $state, $uibModalInstance) {
           var updated = false;
+          $scope.patient = patient;
+
           var updateId = function (sourceId) {
             var sourceArr = sourceId.split('::');
             var newVersionNumber = parseInt(sourceArr[2]) + 1;
@@ -18,20 +20,19 @@ export default function ContactsModal($uibModal, contactsActions, $stateParams, 
           };
 
           var setCurrentPageData = function (data) {
-            if (data.contactsCreate.isFetching && !updated) {
-              updated = true;
+            if (data.contacts.dataCreate != null) {
+              $uibModalInstance.close(contact);
               $state.go('contacts', {
                 patientId: $scope.patient.id,
-                filter: $scope.currentUser.query.$,
+                filter: $scope.currentUser.query.$ || '',
                 page: $scope.currentUser.currentPage,
                 reportType: $stateParams.reportType,
                 searchString: $stateParams.searchString,
                 queryType: $stateParams.queryType
-              }, {
-                reload: true
               });
             }
-            if (data.contactsUpdate.isFetching) {
+            if (data.contacts.dataUpdate != null) {
+              $uibModalInstance.close(contact);
               $state.go('contacts-detail', {
                 patientId: $scope.patient.id,
                 contactIndex: updateId(contact.sourceId),
@@ -71,8 +72,6 @@ export default function ContactsModal($uibModal, contactsActions, $stateParams, 
           $scope.ok = function (contactForm, contact) {
             $scope.formSubmitted = true;
             if (contactForm.$valid) {
-
-              $uibModalInstance.close(contact);
               if ($scope.isEdit) {
                 $scope.contactsUpdate($scope.patient.id, $scope.contact);
               } else {
