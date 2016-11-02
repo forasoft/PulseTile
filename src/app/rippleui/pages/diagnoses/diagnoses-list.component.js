@@ -29,15 +29,19 @@ class DiagnosesListController {
 
     this.create = function () {
       DiagnosesModal.openModal(this.currentPatient, {title: 'Create Problem / Diagnosis'}, {}, this.currentUser);
-
     };
+
+    this.selected = function (diagnosisIndex) {
+      return diagnosisIndex === $stateParams.diagnosisIndex;
+    };
+
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.diagnoses.data) {
         this.diagnoses = data.diagnoses.data;
-        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
