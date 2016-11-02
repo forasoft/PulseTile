@@ -10,6 +10,8 @@ class ContactsListController {
     this.currentPage = 1;
 
     this.create = function () {
+      this.currentUser.query = this.query;
+      this.currentUser.currentPage = this.currentPage;
       ContactsModal.openModal(this.currentPatient, {title: 'Create Contact'}, {}, this.currentUser);
     };
 
