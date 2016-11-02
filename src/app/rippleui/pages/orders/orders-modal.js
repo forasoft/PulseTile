@@ -11,7 +11,7 @@ export default function OrdersModal($uibModal, ordersActions, $stateParams, $ngR
         size: 'lg',
         controller: function ($scope, $state, $uibModalInstance) {
           $scope.currentUser = currentUser;
-          $scope.order = order;
+          $scope.order = angular.copy(order);
           $scope.patient = patient;
           $scope.modal = modal;
           $scope.order.author = 'Dr John Smith';
@@ -66,6 +66,7 @@ export default function OrdersModal($uibModal, ordersActions, $stateParams, $ngR
           };
 
           $scope.cancel = function () {
+            $scope.order = angular.copy(order);
             $uibModalInstance.dismiss('cancel');
           };
 

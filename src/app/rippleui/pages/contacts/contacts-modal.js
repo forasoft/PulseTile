@@ -20,7 +20,7 @@ export default function ContactsModal($uibModal, contactsActions, $stateParams, 
           };
 
           var setCurrentPageData = function (data) {
-            if (data.contacts.dataCreate != null) {
+            if (data.contacts.dataCreate !== null) {
               $uibModalInstance.close(contact);
               $state.go('contacts', {
                 patientId: $scope.patient.id,
@@ -31,7 +31,7 @@ export default function ContactsModal($uibModal, contactsActions, $stateParams, 
                 queryType: $stateParams.queryType
               });
             }
-            if (data.contacts.dataUpdate != null) {
+            if (data.contacts.dataUpdate !== null) {
               $uibModalInstance.close(contact);
               $state.go('contacts-detail', {
                 patientId: $scope.patient.id,
@@ -45,7 +45,7 @@ export default function ContactsModal($uibModal, contactsActions, $stateParams, 
           };
 
           $scope.currentUser = currentUser;
-          $scope.contact = $scope.user = angular.copy(contact);
+          $scope.contact = angular.copy(contact);
           $scope.patient = patient;
           $scope.modal = modal;
 

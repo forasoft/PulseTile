@@ -10,7 +10,7 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
         size: 'lg',
         controller: function ($scope, $state, $uibModalInstance) {
           $scope.patient = patient;
-          $scope.procedure = procedure;
+          $scope.procedure = angular.copy(procedure);
           $scope.modal = modal;
           $scope.currentUser = currentUser;
 
@@ -22,10 +22,8 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
             $scope.isEdit = true;
             $scope.procedure.time = moment($scope.procedure.time).format('LT');
             $scope.procedure.dateSubmitted = new Date($scope.procedure.dateSubmitted);
-            console.log('$scope.procedure.dateSubmitted', $scope.procedure.dateSubmitted);
             // $scope.procedure.dateSubmitted = new Date($scope.procedure.dateSubmitted).toISOString().slice(0, 10);
             $scope.procedure.date = new Date($scope.procedure.date);
-            console.log('$scope.procedure.date', $scope.procedure.date);
             // $scope.procedure.date = new Date($scope.procedure.date).toISOString().slice(0, 10);
           }
 
@@ -112,6 +110,7 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
           };
 
           $scope.cancel = function () {
+            $scope.procedure = angular.copy(procedure);
             $uibModalInstance.dismiss('cancel');
           };
 
