@@ -38,10 +38,14 @@ class OrdersListController {
     this.setCurrentPageData = function (data) {
       if (data.orders.data) {
         this.orders = data.orders.data;
-        usSpinnerService.stop('patientSummary-spinner');
+
+        for (var i = 0; i < this.orders.length; i++) {
+          this.orders[i].orderDate = moment(this.orders[i].orderDate).format('DD-MMM-YYYY h:mm a');
+        }
       }
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
