@@ -19,15 +19,6 @@ class ReferralsListController {
       this.currentPage = $stateParams.page;
     }
 
-    this.search = function (row) {
-      return (
-        angular.lowercase(row.dateOfReferral).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.referralFrom).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.referralTo).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.source).indexOf(angular.lowercase($scope.query) || '') !== -1
-      );
-    };
-
     this.go = function (id) {
       $state.go('referrals-detail', {
         patientId: $stateParams.patientId,
