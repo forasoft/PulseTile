@@ -3,21 +3,21 @@
         <h3><strong>Allergy</strong></h3>
 
         <div class="form-horizontal text-left">
-            <div class="form-group form-group-sm">
+            <div class="form-group">
                 <label class="control-label col-md-12">Cause:</label>
                 <div class="col-md-12">
                     <div class="form-control-static">{{ $ctrl.allergy.cause }}</div>
                 </div>
             </div>
 
-            <div class="form-group form-group-sm">
+            <div class="form-group">
                 <label class="control-label col-md-3">Cause Code:</label>
                 <div class="col-md-9">
                     <div class="form-control-static">{{ $ctrl.allergy.causeCode }}</div>
                 </div>
             </div>
 
-            <div class="form-group form-group-sm">
+            <div class="form-group">
                 <label class="control-label col-md-12">Reaction</label>
                 <div class="col-md-12">
                     <div class="form-control-static">{{ $ctrl.allergy.reaction }}</div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="form-group form-group-sm">
+            <div class="form-group">
                 <label class="control-label col-md-3">Terminology:</label>
                 <div class="col-md-9">
                     <div class="form-control-static">{{ $ctrl.allergy.causeTerminology }}</div>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="form-horizontal text-left">
-                <div class="form-group form-group-sm">
+                <div class="form-group">
                     <label class="control-label col-md-3">Author:</label>
                     <div class="col-md-9">
                         <div class="form-control-static">{{ $ctrl.allergy.author }}</div>
@@ -47,7 +47,7 @@
             </div>
 
             <div class="form-horizontal text-left">
-                <div class="form-group form-group-sm">
+                <div class="form-group">
                     <label class="control-label col-md-3">Date Created:</label>
                     <div class="col-md-9">
                         <div class="form-control-static">{{ $ctrl.allergy.dateCreated | date:'y-MM-dd'}}</div>
@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <div class="form-group form-group-sm">
+            <div class="form-group">
                 <label class="control-label col-md-3">Source:</label>
                 <div class="col-md-9">
                     <div class="form-control-static">{{ $ctrl.allergy.source }}</div>
@@ -64,6 +64,6 @@
         </div>
     </div>
 </div>
-<div class="form-group form-group-sm text-right" ng-if="$ctrl.currentUser.permissions.indexOf('WRITE') !== -1">
+<div class="form-group text-right" ng-if="$ctrl.currentUser.permissions.indexOf('WRITE') !== -1">
     <button class="btn btn-info" ng-click="$ctrl.edit();"><i class="fa fa-pencil"></i> Edit</button>
 </div>

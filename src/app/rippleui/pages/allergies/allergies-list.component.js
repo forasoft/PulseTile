@@ -27,6 +27,10 @@ class AllergiesListController {
       });
     };
 
+    this.selected = function ($index) {
+      return $index === $stateParams.allergyIndex;
+    };
+
     this.create = function () {
       AllergiesModal.openModal(this.currentPatient, {title: 'Create Allergy'}, {}, this.currentUser);
 
