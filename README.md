@@ -30,6 +30,7 @@ Install the JavaScript package manager NodeJS v6:
 https://nodejs.org/download/
 
 * `npm install` to install dependencies
+* `bower install` to install dependencies
 
 ### Running the Application
 
