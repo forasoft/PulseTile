@@ -18,14 +18,6 @@ class OrdersListController {
       this.query = $stateParams.filter;
     }
 
-    this.search = function (row) {
-      return (
-        angular.lowercase(row.name).indexOf(angular.lowercase(this.query) || '') !== -1 ||
-        angular.lowercase(row.orderDate).indexOf(angular.lowercase(this.query) || '') !== -1 ||
-        angular.lowercase(row.source).indexOf(angular.lowercase(this.query) || '') !== -1
-      );
-    };
-
     this.create = function () {
       OrdersModal.openModal(this.currentPatient, {title: 'Create Order'}, {}, this.currentUser);
     };
@@ -46,10 +38,14 @@ class OrdersListController {
     this.setCurrentPageData = function (data) {
       if (data.orders.data) {
         this.orders = data.orders.data;
-        usSpinnerService.stop('patientSummary-spinner');
+
+        for (var i = 0; i < this.orders.length; i++) {
+          this.orders[i].orderDate = moment(this.orders[i].orderDate).format('DD-MMM-YYYY h:mm a');
+        }
       }
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;

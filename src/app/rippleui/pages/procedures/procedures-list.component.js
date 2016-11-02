@@ -16,17 +16,8 @@ class ProceduresListController {
     }
 
     if ($stateParams.filter) {
-      $scope.query = $stateParams.filter;
+      this.query = $stateParams.filter;
     }
-
-    $scope.search = function (row) {
-      return (
-        angular.lowercase(row.name).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.date).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.time).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.source).indexOf(angular.lowercase($scope.query) || '') !== -1
-      );
-    };
 
     this.go = function (id, allergySource) {
       $state.go('procedures-detail', {
@@ -52,14 +43,18 @@ class ProceduresListController {
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.procedures.data) {
         this.procedures = data.procedures.data;
-        usSpinnerService.stop('patientSummary-spinner');
 
         for (var i = 0; i < this.procedures.length; i++) {
-          this.procedures[i].date = moment(this.procedures[i].date).format('DD-MMM-YYYY');
-          this.procedures[i].time = moment(this.procedures[i].time).format('HH:mm');
+          if (angular.isNumber(this.procedures[i].date)) {
+            this.procedures[i].date = moment(this.procedures[i].date).format('DD-MMM-YYYY');
+          }
+          if (angular.isNumber(this.procedures[i].time)) {
+            this.procedures[i].time = moment(this.procedures[i].time).format('HH:mm');
+          }
         }
       }
       if (data.user.data) {

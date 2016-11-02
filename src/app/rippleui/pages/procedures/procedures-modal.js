@@ -16,12 +16,17 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
 
           if (modal.title === 'Create Procedure') {
             $scope.isEdit = false;
-            $scope.procedure.dateSubmitted = new Date().toISOString().slice(0, 10);
+            $scope.procedure.dateSubmitted = new Date();
+            // $scope.procedure.dateSubmitted = new Date().toISOString().slice(0, 10);
           } else {
             $scope.isEdit = true;
-            $scope.procedure.time = new Date($scope.procedure.time);
-            $scope.procedure.dateSubmitted = new Date($scope.procedure.dateSubmitted).toISOString().slice(0, 10);
-            $scope.procedure.date = new Date($scope.procedure.date).toISOString().slice(0, 10);
+            $scope.procedure.time = moment($scope.procedure.time).format('LT');
+            $scope.procedure.dateSubmitted = new Date($scope.procedure.dateSubmitted);
+            console.log('$scope.procedure.dateSubmitted', $scope.procedure.dateSubmitted);
+            // $scope.procedure.dateSubmitted = new Date($scope.procedure.dateSubmitted).toISOString().slice(0, 10);
+            $scope.procedure.date = new Date($scope.procedure.date);
+            console.log('$scope.procedure.date', $scope.procedure.date);
+            // $scope.procedure.date = new Date($scope.procedure.date).toISOString().slice(0, 10);
           }
 
           $scope.openDatePicker = function ($event, name) {
@@ -33,7 +38,6 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
 
           $scope.ok = function (procedureForm, procedure) {
             $scope.formSubmitted = true;
-                console.log('procedureForm.$valid', procedureForm.$valid);
             if (procedureForm.$valid) {
 
               $uibModalInstance.close(procedure);
