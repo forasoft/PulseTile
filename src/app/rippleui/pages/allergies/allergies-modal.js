@@ -16,13 +16,15 @@ export default function AllergiesModal($uibModal, allergiesActions, $ngRedux) {
 
           if (modal.title === 'Create Allergy') {
             $scope.isEdit = false;
-            $scope.allergy.dateCreated = new Date().toISOString().slice(0, 10);
+            $scope.allergy.dateCreated = new Date();
+            // $scope.allergy.dateCreated = new Date().toISOString().slice(0, 10);
             $scope.allergy.causeCode = '1239085';
             $scope.allergy.terminologyCode = '12393890';
           } else {
             $scope.isEdit = true;
             // $scope.allergy.dateSubmitted = new Date().toISOString().slice(0, 10);
-            $scope.allergy.dateCreated = new Date($scope.allergy.dateCreated).toISOString().slice(0, 10);
+            // $scope.allergy.dateCreated = new Date($scope.allergy.dateCreated).toISOString().slice(0, 10);
+            $scope.allergy.dateCreated = new Date($scope.allergy.dateCreated);
           }
 
           $scope.openDatePicker = function ($event, name) {
