@@ -39,7 +39,7 @@ export default function DiagnosesModal($uibModal, diagnosesActions, $ngRedux) {
             }
           };
           
-          $scope.openDatePicker = function ($event, name) {
+          $scope.openDatepicker = function ($event, name) {
             $event.preventDefault();
             $event.stopPropagation();
 
