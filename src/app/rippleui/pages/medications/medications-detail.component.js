@@ -13,11 +13,11 @@ class MedicationsDetailController {
     $scope.formDisabled = true;
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
-      if (data.medicationGet.data) {
-        this.medication = data.medicationGet.data;
+      if (data.medication.dataGet) {
+        this.medication = data.medication.dataGet;
         usSpinnerService.stop('medicationsDetail-spinner');
       }
       if (data.user.data) {

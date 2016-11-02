@@ -50,8 +50,8 @@ class ProceduresListController {
     };
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
       if (data.procedures.data) {
         this.procedures = data.procedures.data;

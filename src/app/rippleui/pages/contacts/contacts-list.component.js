@@ -34,8 +34,8 @@ class ContactsListController {
         this.contacts = data.contacts.data;
         usSpinnerService.stop('patientSummary-spinner');
       }
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
       if (data.user.data) {
         this.currentUser = data.user.data;

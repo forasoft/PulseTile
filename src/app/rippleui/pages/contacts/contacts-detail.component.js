@@ -7,12 +7,12 @@ class ContactsDetailController {
     };
 
     this.setCurrentPageData = function (data) {
-      if (data.contactsGet.data) {
-        this.contact = data.contactsGet.data;
+      if (data.contacts.dataGet) {
+        this.contact = data.contacts.dataGet;
         usSpinnerService.stop('contactDetail-spinner');
       }
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
