@@ -18,14 +18,6 @@ class OrdersListController {
       this.query = $stateParams.filter;
     }
 
-    this.search = function (row) {
-      return (
-        angular.lowercase(row.name).indexOf(angular.lowercase(this.query) || '') !== -1 ||
-        angular.lowercase(row.orderDate).indexOf(angular.lowercase(this.query) || '') !== -1 ||
-        angular.lowercase(row.source).indexOf(angular.lowercase(this.query) || '') !== -1
-      );
-    };
-
     this.create = function () {
       OrdersModal.openModal(this.currentPatient, {title: 'Create Order'}, {}, this.currentUser);
     };
