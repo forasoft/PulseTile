@@ -34,10 +34,10 @@ class TransferOfCareListController {
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.transferOfCare.data) {
         this.transferofCareComposition = data.transferOfCare.data;
-        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
