@@ -190,17 +190,17 @@
           </div>
 
 
- <div ng-class="{'has-error': (formSubmitted || procedureForm.dateofprocedure.$dirty) && procedureForm.timeOfProcedure.$invalid, 'has-success': procedureForm.timeOfProcedure.$valid && procedureForm.timeOfProcedure.$dirty}">
-          <label for="timeOfProcedure" class="col-md-12">Time</label>
-          <div class="col-xs-12">
-            <div class="input-group">
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-clock-o"></i></button>
-            </span>
-                <input class="proceduretimepicker popupinputs form-control" ui-timepicker ng-model="procedure.time">
+            <div ng-class="{'has-error': (formSubmitted || procedureForm.dateofprocedure.$dirty) && procedureForm.timeOfProcedure.$invalid, 'has-success': procedureForm.timeOfProcedure.$valid && procedureForm.timeOfProcedure.$dirty}">
+                <label for="timeOfProcedure" class="col-md-12">Time</label>
+                    <div class="col-xs-12">
+                    <div class="input-group">
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default btn-sm"><i class="fa fa-clock-o"></i></button>
+                    </span>
+                        <input class="proceduretimepicker popupinputs form-control" ui-timepicker ng-model="procedure.time">
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
         </div>
 
                 <div ng-class="{'has-error': (formSubmitted || procedureForm.performer.$dirty) && procedureForm.performer.$invalid, 'has-success': procedureForm.performer.$valid && procedureForm.performer.$dirty}">

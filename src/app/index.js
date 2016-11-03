@@ -1,6 +1,5 @@
 //libs
 import uiRouter from 'angular-ui-router';
-import 'angular-ui-calendar';
 import ngAnimate from 'angular-animate';
 import uiBootstrap from 'angular-ui-bootstrap';
 import ngRedux from 'ng-redux';
@@ -12,6 +11,8 @@ import 'angular-ui-calendar';
 import 'jquery';
 import 'morrisjs';
 import 'angular-spinner';
+import 'jquery-timepicker-jt';
+import 'angular-jquery-timepicker';
 
 //commons
 import reducer from './redux/reducer';
@@ -94,6 +95,7 @@ const app = angular
         dirPagination,
         'angularSpinner',
         'ui.calendar',
+        'ui.timepicker',
         'angular-loading-bar'
     ])
     .factory('httpMiddleware', httpMiddleware)

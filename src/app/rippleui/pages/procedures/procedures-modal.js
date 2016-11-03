@@ -14,13 +14,18 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
           $scope.modal = modal;
           $scope.currentUser = currentUser;
 
+          var updateId = function (sourceId) {
+            var sourceArr = sourceId.split('::');
+            var newVersionNumber = parseInt(sourceArr[2]) + 1;
+            var newId = sourceArr[0] + '::' + sourceArr[1] + '::' + newVersionNumber;
+            return newId;
+          };
           if (modal.title === 'Create Procedure') {
             $scope.isEdit = false;
             $scope.procedure.dateSubmitted = new Date();
-            // $scope.procedure.dateSubmitted = new Date().toISOString().slice(0, 10);
           } else {
             $scope.isEdit = true;
-            $scope.procedure.time = moment($scope.procedure.time).format('LT');
+            $scope.procedure.time = new Date($scope.procedure.time);
             $scope.procedure.dateSubmitted = new Date($scope.procedure.dateSubmitted);
             console.log('$scope.procedure.dateSubmitted', $scope.procedure.dateSubmitted);
             // $scope.procedure.dateSubmitted = new Date($scope.procedure.dateSubmitted).toISOString().slice(0, 10);
@@ -56,7 +61,7 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
                   notes: procedure.notes,
                   author: procedure.author,
                   date: procedure.date,
-                  time: procedure.time,
+                  time: procedure.time.getTime(),
                   performer: procedure.performer,
                   dateSubmitted: procedure.dateSubmitted,
                   source: procedure.source
@@ -66,7 +71,7 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
 
                 $state.go('procedures-detail', {
                   patientId: $scope.patient.id,
-                  procedureId: procedure.source === 'Marand' ? procedure.updateId(medication.sourceId) : procedure.sourceId,
+                  procedureId: procedure.source === 'Marand' ? updateId(procedure.sourceId) : procedure.sourceId,
                   page: $scope.currentPage,
                   reportType: $stateParams.reportType,
                   searchString: $stateParams.searchString,
@@ -79,7 +84,6 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
                 procedure.dateSubmitted = new Date(procedure.dateSubmitted);
                 procedure.date = new Date(procedure.date);
                 procedure.date.setMinutes(procedure.date.getMinutes() - procedure.date.getTimezoneOffset());
-                procedure.time = new Date(procedure.time.valueOf() - procedure.time.getTimezoneOffset() * 60000);
 
                 let  toAdd = {
                   sourceId: '',
@@ -89,7 +93,7 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
                   notes: procedure.notes,
                   author: procedure.author,
                   date: procedure.date,
-                  time: procedure.time,
+                  time: procedure.time.getTime(),
                   performer: procedure.performer,
                   dateSubmitted: procedure.dateSubmitted
                 };
