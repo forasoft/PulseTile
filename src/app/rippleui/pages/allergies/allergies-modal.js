@@ -10,7 +10,7 @@ export default function AllergiesModal($uibModal, allergiesActions, $ngRedux) {
         size: 'lg',
         controller: function ($scope, $state, $uibModalInstance) {
           $scope.patient = patient;
-          $scope.allergy = allergy;
+          $scope.allergy = angular.copy(allergy);
           $scope.modal = modal;
           $scope.currentUser = currentUser;
 
@@ -79,6 +79,7 @@ export default function AllergiesModal($uibModal, allergiesActions, $ngRedux) {
           };
 
           $scope.cancel = function () {
+            $scope.allergy = angular.copy(allergy);
             $uibModalInstance.dismiss('cancel');
           };
 

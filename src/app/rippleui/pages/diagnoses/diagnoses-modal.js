@@ -11,21 +11,35 @@ export default function DiagnosesModal($uibModal, diagnosesActions, $ngRedux) {
         controller: function ($scope, $state, $uibModalInstance) {
           
           $scope.patient = patient;
-          $scope.diagnosis = diagnosis;
+          $scope.diagnosis = angular.copy(diagnosis);
           $scope.modal = modal;
           $scope.currentUser = currentUser;
+          $scope.protocol = 'http://';
 
           if (modal.title === 'Edit Problem / Diagnosis') {
             $scope.isEdit = true;
-            $scope.diagnosis.dateSubmitted = new Date().toISOString().slice(0, 10);
-            $scope.diagnosis.dateOfOnset = new Date($scope.diagnosis.dateOfOnset).toISOString().slice(0, 10);
+            $scope.diagnosis.dateSubmitted = new Date();
+            $scope.diagnosis.dateOfOnset = new Date($scope.diagnosis.dateOfOnset);
           }else {
             $scope.isEdit = false;
-            $scope.diagnosis.dateSubmitted = new Date().toISOString().slice(0, 10);
+            $scope.diagnosis.dateSubmitted = new Date();
             $scope.diagnosis.code = '12393890';
           }
+
+          $scope.changeProtocol = function (protocol) {
+            switch (protocol) {
+              case 'http':
+                $scope.protocol = 'http://';
+                break;
+              case 'https':
+                $scope.protocol = 'https://';
+                break;
+              default:
+                $scope.protocol = 'http://';
+            }
+          };
           
-          $scope.openDatePicker = function ($event, name) {
+          $scope.openDatepicker = function ($event, name) {
             $event.preventDefault();
             $event.stopPropagation();
 
@@ -36,7 +50,7 @@ export default function DiagnosesModal($uibModal, diagnosesActions, $ngRedux) {
             $scope.formSubmitted = true;
             let toAdd = {
               code: $scope.diagnosis.code,
-              dateOfOnset: $scope.diagnosis.dateOfOnset,
+              dateOfOnset: $scope.diagnosis.dateOfOnset.toISOString().slice(0, 10),
               description: $scope.diagnosis.description,
               problem: $scope.diagnosis.problem,
               source: $scope.diagnosis.source,
@@ -77,6 +91,7 @@ export default function DiagnosesModal($uibModal, diagnosesActions, $ngRedux) {
           };
 
           $scope.cancel = function () {
+            $scope.diagnosis = angular.copy(diagnosis);
             $uibModalInstance.dismiss('cancel');
           };
 

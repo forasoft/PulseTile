@@ -52,6 +52,7 @@ class GenericMdtListController {
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.cancermdt.data) {
         this.cancerMdtComposition = data.cancermdt.data;
@@ -60,7 +61,6 @@ class GenericMdtListController {
           this.cancerMdtComposition[i].dateOfRequest = moment(this.cancerMdtComposition[i].dateOfRequest).format('DD-MMM-YYYY');
           this.cancerMdtComposition[i].dateOfMeeting = moment(this.cancerMdtComposition[i].dateOfMeeting).format('DD-MMM-YYYY');
         }
-        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
