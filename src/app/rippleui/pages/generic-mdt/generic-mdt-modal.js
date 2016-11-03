@@ -16,15 +16,18 @@ export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, 
             return newId;
           };
 
-          $scope.cancerMdt = cancerMdt;
+          $scope.cancerMdt = angular.copy(cancerMdt);
           $scope.protocol = 'http://';
           $scope.isEdit = false;
 
           if (modal.title === 'Edit MDT') {
             $scope.isEdit = true;
-            $scope.cancerMdt.timeOfMeeting = new Date($scope.cancerMdt.timeOfMeeting);
-            $scope.cancerMdt.dateOfMeeting = new Date($scope.cancerMdt.dateOfMeeting).toISOString().slice(0, 10);
-            $scope.cancerMdt.dateOfRequest = new Date($scope.cancerMdt.dateOfRequest).toISOString().slice(0, 10);
+            $scope.cancerMdt.timeOfMeeting = moment($scope.cancerMdt.timeOfMeeting).format('LT');
+            // $scope.cancerMdt.timeOfMeeting = new Date($scope.cancerMdt.timeOfMeeting);
+            $scope.cancerMdt.dateOfMeeting = new Date($scope.cancerMdt.dateOfMeeting);
+            // $scope.cancerMdt.dateOfMeeting = new Date($scope.cancerMdt.dateOfMeeting).toISOString().slice(0, 10);
+            $scope.cancerMdt.dateOfRequest = new Date($scope.cancerMdt.dateOfRequest);
+            // $scope.cancerMdt.dateOfRequest = new Date($scope.cancerMdt.dateOfRequest).toISOString().slice(0, 10);
           }
 
           $scope.patient = patient;
@@ -130,6 +133,7 @@ export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, 
           };
 
           $scope.cancel = function () {
+            $scope.cancerMdt = angular.copy(cancerMdt);
             $uibModalInstance.dismiss('cancel');
           };
 
