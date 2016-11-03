@@ -35,6 +35,11 @@ class ResultsListController {
     this.setCurrentPageData = function (data) {
       if (data.results.data) {
         this.results = data.results.data;
+
+        for (var i = 0; i < this.results.length; i++) {
+          this.results[i].sampleTaken = moment(this.results[i].sampleTaken).format('DD-MMM-YYYY');
+          this.results[i].dateCreated = moment(this.results[i].dateCreated).format('DD-MMM-YYYY');
+        }
         usSpinnerService.stop('resultsSummary-spinner');
       }
     };

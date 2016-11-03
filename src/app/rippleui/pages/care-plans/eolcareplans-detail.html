@@ -3,7 +3,7 @@
     <h3><strong>Care Plan</strong></h3>
 
     <div class="form-horizontal text-left">
-      <div class="form-group form-group-sm">
+      <div class="form-group">
         <label class="control-label col-md-3">Care Plan Name:</label>
         <div class="col-md-9">
           <div class="form-control-static">{{ $ctrl.eolcareplan.careDocument.name }}</div>
@@ -12,7 +12,7 @@
     </div>
 
     <div class="form-horizontal text-left">
-      <div class="form-group form-group-sm">
+      <div class="form-group">
         <label class="control-label col-md-3">Document Date:</label>
         <div class="col-md-9">
           <div class="form-control-static">{{ $ctrl.eolcareplan.careDocument.dateCreated | date:'dd-MMM-y'}}</div>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="form-horizontal text-left">
-      <div class="form-group form-group-sm">
+      <div class="form-group">
         <label class="control-label col-md-3">Place of Care:</label>
         <div class="col-md-9">
           <div class="form-control-static">{{ $ctrl.eolcareplan.prioritiesOfCare.placeOfCare }}</div>
@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="form-horizontal text-left">
-      <div class="form-group form-group-sm">
+      <div class="form-group">
         <label class="control-label col-md-3">Place of Death:</label>
         <div class="col-md-9">
           <div class="form-control-static">{{ $ctrl.eolcareplan.prioritiesOfCare.placeOfDeath }}</div>
@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class="form-horizontal text-left">
-      <div class="form-group form-group-sm">
+      <div class="form-group">
         <label class="control-label col-md-12">Comment:</label>
         <div class="col-md-12">
           <div class="form-control-static">{{ $ctrl.eolcareplan.prioritiesOfCare.comment }}</div>
@@ -59,7 +59,7 @@
     </div>
 
     <div class="form-horizontal text-left">
-      <div class="form-group form-group-sm">
+      <div class="form-group">
         <label class="control-label col-md-3">Date of Decision:</label>
         <div class="col-md-9">
           <div class="form-control-static">{{ $ctrl.eolcareplan.treatmentDecision.dateOfDecision | date:'dd-MMM-y'}}</div>
@@ -67,7 +67,7 @@
       </div>
     </div>
     <div class="form-horizontal text-left">
-      <div class="form-group form-group-sm">
+      <div class="form-group">
         <label class="control-label col-md-12">Decision to Refuse Treatment:</label>
         <div class="col-md-12">
           <div class="form-control-static">{{ $ctrl.eolcareplan.treatmentDecision.decisionToRefuseTreatment }}</div>
@@ -75,7 +75,7 @@
       </div>
     </div>
     <div class="form-horizontal text-left">
-      <div class="form-group form-group-sm">
+      <div class="form-group">
         <label class="control-label col-md-12">Comment:</label>
         <div class="col-md-12">
           <div class="form-control-static">{{ $ctrl.eolcareplan.treatmentDecision.comment }}</div>
@@ -87,7 +87,7 @@
     </div>
 
     <div class="form-horizontal text-left">
-      <div class="form-group form-group-sm">
+      <div class="form-group">
         <label class="control-label col-md-3">Date of Decision:</label>
         <div class="col-md-9">
           <div class="form-control-static">{{ $ctrl.eolcareplan.cprDecision.dateOfDecision | date:'dd-MMM-y'}}</div>
@@ -95,7 +95,7 @@
       </div>
     </div>
     <div class="form-horizontal text-left">
-      <div class="form-group form-group-sm">
+      <div class="form-group">
         <label class="control-label col-md-12">CPR Decision:</label>
         <div class="col-md-12">
           <div class="form-control-static">{{ $ctrl.eolcareplan.cprDecision.cprDecision }}</div>
@@ -103,7 +103,7 @@
       </div>
     </div>
     <div class="form-horizontal text-left">
-      <div class="form-group form-group-sm">
+      <div class="form-group">
         <label class="control-label col-md-12">Comment:</label>
         <div class="col-md-12">
           <div class="form-control-static">{{ $ctrl.eolcareplan.cprDecision.comment }}</div>
@@ -111,7 +111,7 @@
       </div>
     </div>
     <div class="form-horizontal text-left">
-      <div class="form-group form-group-sm">
+      <div class="form-group">
         <label class="control-label col-md-3">Source:</label>
         <div class="col-md-9">
           <div class="form-control-static">{{ $ctrl.eolcareplan.source }}</div>
@@ -120,6 +120,6 @@
     </div>
   </div>
 </div>
-<div class="form-group form-group-sm text-right" ng-if="$ctrl.currentUser.permissions.indexOf('WRITE') !== -1">
+<div class="form-group text-right" ng-if="$ctrl.currentUser.permissions.indexOf('WRITE') !== -1">
   <button class="btn btn-info" ng-click="$ctrl.edit();"><i class="fa fa-pencil"></i> Edit</button>
 </div>
