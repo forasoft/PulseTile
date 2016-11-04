@@ -26,12 +26,18 @@ export default function OrdersModal($uibModal, ordersActions, $stateParams, $ngR
             if (data.orders.dataSuggestion) {
               $scope.suggestions = data.orders.dataSuggestion;
             }
+
+            if (data.orders.dataCreate !== null) {
+              $uibModalInstance.close(order);
+              $scope.ordersLoad($stateParams.patientId);
+              $state.go('orders-list', {
+                patientId: $scope.patient.id,
+                filter: $scope.query,
+                page: $scope.currentPage
+              });
+            }
           };
 
-          let unsubscribe = $ngRedux.connect(state => ({
-            getStoreData: $scope.setCurrentPageData(state)
-          }))($scope);
-          
           $scope.$on('$destroy', unsubscribe);
           $scope.ordersLoad = ordersActions.suggestion;
           $scope.ordersLoad();
@@ -55,13 +61,6 @@ export default function OrdersModal($uibModal, ordersActions, $stateParams, $ngR
             if (contactForm.$valid) {
               $uibModalInstance.close(contact);
               $scope.ordersCreate($scope.patient.id, $scope.chosenOrders);
-              $state.go('orders-list', {
-                patientId: $scope.patient.id,
-                filter: $scope.query,
-                page: $scope.currentPage
-              }, {
-                reload: true
-              });
             }
           };
 
@@ -135,6 +134,11 @@ export default function OrdersModal($uibModal, ordersActions, $stateParams, $ngR
             $scope[name] = true;
           };
 
+          let unsubscribe = $ngRedux.connect(state => ({
+            getStoreData: $scope.setCurrentPageData(state)
+          }))($scope);
+
+          $scope.ordersLoad = ordersActions.all;
           $scope.ordersCreate = ordersActions.create;
         }
       });
