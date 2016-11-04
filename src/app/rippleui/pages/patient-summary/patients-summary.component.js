@@ -1,7 +1,7 @@
 let templatePatientsSummary = require('./patients-summary.html');
 
 class PatientsSummaryController {
-  constructor($scope, $state, $stateParams, $ngRedux, patientsActions, serviceRequests, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, $location, patientsActions, serviceRequests, usSpinnerService) {
 
     serviceRequests.publisher('headerTitle', {title: 'Patients Summary'});
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-summary'});
@@ -62,6 +62,10 @@ class PatientsSummaryController {
       this.transferofCareComposition = this.transferofCareComposition.transfers.slice(0, 5);
     };
 
+    $scope.go = function (path) {
+      $location.path(path);
+    };
+
     let unsubscribe = $ngRedux.connect(state => ({
           patient: this.getPatientData(state.patientsGet.data)
         }))(this);
@@ -78,5 +82,5 @@ const PatientsSummaryComponent = {
   controller: PatientsSummaryController
 };
 
-PatientsSummaryController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions', 'serviceRequests', 'usSpinnerService'];
+PatientsSummaryController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', '$location', 'patientsActions', 'serviceRequests', 'usSpinnerService'];
 export default PatientsSummaryComponent;
