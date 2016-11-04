@@ -7,7 +7,7 @@ class ResultsListController {
 
     this.currentPage = 1;
 
-    this.query = '';
+    $scope.query = '';
 
     this.pageChangeHandler = function (newPage) {
       this.currentPage = newPage;
@@ -31,6 +31,14 @@ class ResultsListController {
       return resultIndex === $stateParams.resultIndex;
     };
 
+    this.search = function (row) {
+      return (
+          row.testName.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+          row.sampleTaken.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+          row.dateCreated.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+          row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
+      );
+    };
 
     this.setCurrentPageData = function (data) {
       if (data.results.data) {

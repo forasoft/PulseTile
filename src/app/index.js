@@ -2,6 +2,7 @@
 import uiRouter from 'angular-ui-router';
 import ngAnimate from 'angular-animate';
 import uiBootstrap from 'angular-ui-bootstrap';
+import 'bootstrap';
 import ngRedux from 'ng-redux';
 import dirPagination from 'angular-utils-pagination';
 import createLogger from 'redux-logger';
