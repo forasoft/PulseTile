@@ -6,6 +6,8 @@ class OrdersListController {
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
     this.currentPage = 1;
+    $scope.query = '';
+
     this.pageChangeHandler = function (newPage) {
       this.currentPage = newPage;
     };
@@ -15,18 +17,26 @@ class OrdersListController {
     }
 
     if ($stateParams.filter) {
-      this.query = $stateParams.filter;
+      $scope.query = $stateParams.filter;
     }
 
     this.create = function () {
       OrdersModal.openModal(this.currentPatient, {title: 'Create Order'}, {}, this.currentUser);
     };
 
+    this.search = function (row) {
+      return (
+        row.name.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.orderDate.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
+      );
+    };
+
     this.go = function (id, source) {
       $state.go('orders-detail', {
         patientId: $stateParams.patientId,
         orderId: id,
-        filter: this.query,
+        filter: $scope.query,
         page: this.currentPage,
         reportType: $stateParams.reportType,
         searchString: $stateParams.searchString,
