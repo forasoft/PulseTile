@@ -1211,6 +1211,10 @@ footer {
   height: 20px;
 }
 
+.footer-logo {
+  content: url($header-logo-url);
+}
+
 /* Dashboard */
 
 .button-icons:before {
