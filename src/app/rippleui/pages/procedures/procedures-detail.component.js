@@ -3,6 +3,7 @@ let templateProceduresDetail= require('./procedures-detail.html');
 class ProceduresDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, proceduresActions, ProceduresModal, usSpinnerService) {
     this.edit = function () {
+      this.procedure.time = new Date(this.procedure.time);
       ProceduresModal.openModal(this.currentPatient, {title: 'Edit Procedure'}, this.procedure, this.currentUser);
     };
 

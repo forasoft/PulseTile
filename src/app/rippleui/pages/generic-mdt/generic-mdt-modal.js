@@ -22,7 +22,7 @@ export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, 
 
           if (modal.title === 'Edit MDT') {
             $scope.isEdit = true;
-            $scope.cancerMdt.timeOfMeeting = moment($scope.cancerMdt.timeOfMeeting).format('LT');
+            // $scope.cancerMdt.timeOfMeeting = moment($scope.cancerMdt.timeOfMeeting).format('LT');
             // $scope.cancerMdt.timeOfMeeting = new Date($scope.cancerMdt.timeOfMeeting);
             $scope.cancerMdt.dateOfMeeting = new Date($scope.cancerMdt.dateOfMeeting);
             // $scope.cancerMdt.dateOfMeeting = new Date($scope.cancerMdt.dateOfMeeting).toISOString().slice(0, 10);
@@ -87,7 +87,8 @@ export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, 
                 cancerMdt.dateOfRequest = new Date(cancerMdt.dateOfRequest);
 
                 if (cancerMdt.timeOfMeeting !== null) {
-                  cancerMdt.timeOfMeeting = new Date(cancerMdt.timeOfMeeting);
+                  // cancerMdt.timeOfMeeting = new Date(cancerMdt.timeOfMeeting);
+                  cancerMdt.timeOfMeeting = cancerMdt.timeOfMeeting.getTime();
                 }
 
                 $scope.genericmdtUpdate($scope.patient.id, cancerMdt);
@@ -108,8 +109,9 @@ export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, 
                 cancerMdt.dateOfRequest.setMinutes(cancerMdt.dateOfRequest.getMinutes() - cancerMdt.dateOfRequest.getTimezoneOffset());
 
                 if (cancerMdt.timeOfMeeting !== null) {
-                  cancerMdt.timeOfMeeting = new Date(cancerMdt.timeOfMeeting);
-                  cancerMdt.timeOfMeeting.setMinutes(cancerMdt.timeOfMeeting.getMinutes() - cancerMdt.timeOfMeeting.getTimezoneOffset());
+                  cancerMdt.timeOfMeeting = cancerMdt.timeOfMeeting.getTime();
+                  // cancerMdt.timeOfMeeting = new Date(cancerMdt.timeOfMeeting);
+                  // cancerMdt.timeOfMeeting.setMinutes(cancerMdt.timeOfMeeting.getMinutes() - cancerMdt.timeOfMeeting.getTimezoneOffset());
                 }
 
                 cancerMdt.compositionId = '';

@@ -25,7 +25,7 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
             $scope.procedure.dateSubmitted = new Date();
           } else {
             $scope.isEdit = true;
-            $scope.procedure.time = new Date($scope.procedure.time);
+            // $scope.procedure.time = new Date($scope.procedure.time);
             $scope.procedure.dateSubmitted = new Date($scope.procedure.dateSubmitted);
             // $scope.procedure.dateSubmitted = new Date($scope.procedure.dateSubmitted).toISOString().slice(0, 10);
             $scope.procedure.date = new Date($scope.procedure.date);

@@ -3,6 +3,7 @@ let templateGenericMdtDetail= require('./generic-mdt-detail.html');
 class GenericMdtDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, genericmdtActions, GenericMdtModal, usSpinnerService) {
     this.edit = function () {
+      this.cancerMdt.timeOfMeeting = new Date(this.cancerMdt.timeOfMeeting);
       GenericMdtModal.openModal(this.currentPatient, {title: 'Edit MDT'}, this.cancerMdt, this.currentUser);
     };
 
