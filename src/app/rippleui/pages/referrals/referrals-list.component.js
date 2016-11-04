@@ -6,6 +6,7 @@ class ReferralsListController {
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
     this.currentPage = 1;
+    $scope.query = '';
 
     if ($stateParams.filter) {
       this.query = $stateParams.filter;
@@ -19,11 +20,20 @@ class ReferralsListController {
       this.currentPage = $stateParams.page;
     }
 
+    this.search = function (row) {
+      return (
+        row.dateOfReferral.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.referralFrom.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.referralTo.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
+      );
+    };
+
     this.go = function (id) {
       $state.go('referrals-detail', {
         patientId: $stateParams.patientId,
         referralId: id,
-        filter: this.query,
+        filter: $scope.query,
         page: this.currentPage,
         reportType: $stateParams.reportType,
         searchString: $stateParams.searchString,

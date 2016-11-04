@@ -16,7 +16,7 @@ class ClinicalnotesListController {
       $state.go('clinicalNotes-detail', {
         patientId: $stateParams.patientId,
         clinicalNoteIndex: id,
-        filter: this.query,
+        filter: $scope.query,
         page: this.currentPage,
         reportType: $stateParams.reportType,
         searchString: $stateParams.searchString,
