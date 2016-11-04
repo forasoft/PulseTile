@@ -6,7 +6,7 @@ class ClinicalnotesListController {
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
     this.currentPage = 1;
-    this.query = '';
+    $scope.query = '';
 
     this.create = function () {
       ClinicalnotesModal.openModal(this.currentPatient, {title: 'Create Clinical Note'}, {}, this.currentUser);
@@ -35,15 +35,15 @@ class ClinicalnotesListController {
 
     this.search = function (row) {
       return (
-        angular.lowercase(row.type).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.author).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.dateCreated).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.source).indexOf(angular.lowercase($scope.query) || '') !== -1
+        row.type.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.author.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.dateCreated.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
       );
     };
 
     if ($stateParams.filter) {
-      this.query = $stateParams.filter;
+      $scope.query = $stateParams.filter;
     }
 
 
@@ -57,6 +57,9 @@ class ClinicalnotesListController {
       }
       if (data.clinicalnotes.data) {
         this.clinicalNotes = data.clinicalnotes.data;
+        for (var i = 0; i < this.clinicalNotes.length; i++) {
+          this.clinicalNotes[i].dateCreated = moment(this.clinicalNotes[i].dateCreated).format('DD-MMM-YYYY');
+        }
         usSpinnerService.stop("patientSummary-spinner");
       }
       if (data.user.data) {
