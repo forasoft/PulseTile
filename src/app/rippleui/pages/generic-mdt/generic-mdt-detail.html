@@ -20,9 +20,9 @@
         <label class="control-label col-md-3">Date of Request:</label>
         <div class="col-md-9">
           <div class="form-control-static">
-            <span ng-if="!$ctrl.$ctrl.cancerMdt.dateOfRequest">No MDT date</span>
-            <ul ng-if="$ctrl.$ctrl.cancerMdt.dateOfRequest">
-              <li>{{$ctrl.$ctrl.cancerMdt.dateOfRequest | date:'dd-MMM-y' }}</li>
+            <span ng-if="!$ctrl.cancerMdt.dateOfRequest">No MDT date</span>
+            <ul ng-if="$ctrl.cancerMdt.dateOfRequest">
+              <li>{{$ctrl.cancerMdt.dateOfRequest | date:'dd-MMM-y' }}</li>
             </ul>
           </div>
         </div>

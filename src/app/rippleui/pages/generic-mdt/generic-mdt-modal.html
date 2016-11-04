@@ -81,10 +81,10 @@
 <div class="form-group  form-group-sm mdtLinkGroup">
 <label class="control-label">Link to MDT Web Service Directory</label>
    <div class="input-group">
-      <div class="input-group-btn">
-        <button type="button" class="btn linkButton btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{protocol}} <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li ng-click="changeProtocol('http')">Http://</li>
+      <div class="input-group-btn" uib-dropdown>
+        <button type="button" class="btn linkButton btn-default dropdown-toggle" uib-dropdown-toggle aria-haspopup="true" aria-expanded="false">{{protocol}} <span class="caret"></span></button>
+        <ul class="dropdown-menu" >
+          <li ng-click="changeProtocol('http')" >Http://</li>
           <li ng-click="changeProtocol('https')">Https://</li>
         </ul>
       </div>

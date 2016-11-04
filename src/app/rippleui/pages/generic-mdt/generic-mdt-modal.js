@@ -16,18 +16,40 @@ export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, 
             return newId;
           };
 
+          var setCurrentPageData = function (data) {
+            if (data.cancermdt.dataCreate !== null) {
+              $uibModalInstance.close(cancerMdt);
+              $state.go('cancerMdt', {
+                patientId: $scope.patient.id,
+                filter: $scope.query,
+                page: $scope.currentPage,
+                reportType: $stateParams.reportType,
+                searchString: $stateParams.searchString,
+                queryType: $stateParams.queryType
+              });
+            }
+            if (data.cancermdt.dataUpdate !== null) {
+              $uibModalInstance.close(cancerMdt);
+              $state.go('cancerMdt-detail', {
+                patientId: $scope.patient.id,
+                cancerMdtIndex: updateId(cancerMdt.sourceId),
+                page: $scope.currentPage,
+                reportType: $stateParams.reportType,
+                searchString: $stateParams.searchString,
+                queryType: $stateParams.queryType
+              });
+            }
+          };
+
           $scope.cancerMdt = angular.copy(cancerMdt);
           $scope.protocol = 'http://';
           $scope.isEdit = false;
 
           if (modal.title === 'Edit MDT') {
             $scope.isEdit = true;
-            // $scope.cancerMdt.timeOfMeeting = moment($scope.cancerMdt.timeOfMeeting).format('LT');
-            // $scope.cancerMdt.timeOfMeeting = new Date($scope.cancerMdt.timeOfMeeting);
+            $scope.cancerMdt.timeOfMeeting = new Date($scope.cancerMdt.timeOfMeeting);
             $scope.cancerMdt.dateOfMeeting = new Date($scope.cancerMdt.dateOfMeeting);
-            // $scope.cancerMdt.dateOfMeeting = new Date($scope.cancerMdt.dateOfMeeting).toISOString().slice(0, 10);
             $scope.cancerMdt.dateOfRequest = new Date($scope.cancerMdt.dateOfRequest);
-            // $scope.cancerMdt.dateOfRequest = new Date($scope.cancerMdt.dateOfRequest).toISOString().slice(0, 10);
           }
 
           $scope.patient = patient;
@@ -80,27 +102,12 @@ export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, 
             $scope.formSubmitted = true;
             if (cancerMdtForm.$valid) {
 
-              $uibModalInstance.close(cancerMdt);
-
               if ($scope.isEdit) {
                 cancerMdt.dateOfMeeting = new Date(cancerMdt.dateOfMeeting);
                 cancerMdt.dateOfRequest = new Date(cancerMdt.dateOfRequest);
 
-                if (cancerMdt.timeOfMeeting !== null) {
-                  // cancerMdt.timeOfMeeting = new Date(cancerMdt.timeOfMeeting);
-                  cancerMdt.timeOfMeeting = cancerMdt.timeOfMeeting.getTime();
-                }
-
                 $scope.genericmdtUpdate($scope.patient.id, cancerMdt);
 
-                $state.go('cancerMdt-detail', {
-                  patientId: $scope.patient.id,
-                  cancerMdtIndex: updateId(cancerMdt.sourceId),
-                  page: $scope.currentPage,
-                  reportType: $stateParams.reportType,
-                  searchString: $stateParams.searchString,
-                  queryType: $stateParams.queryType
-                });
               } else {
                 cancerMdt.dateOfMeeting = new Date(cancerMdt.dateOfMeeting);
                 cancerMdt.dateOfMeeting.setMinutes(cancerMdt.dateOfMeeting.getMinutes() - cancerMdt.dateOfMeeting.getTimezoneOffset());
@@ -108,27 +115,10 @@ export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, 
                 cancerMdt.dateOfRequest = new Date(cancerMdt.dateOfRequest);
                 cancerMdt.dateOfRequest.setMinutes(cancerMdt.dateOfRequest.getMinutes() - cancerMdt.dateOfRequest.getTimezoneOffset());
 
-                if (cancerMdt.timeOfMeeting !== null) {
-                  cancerMdt.timeOfMeeting = cancerMdt.timeOfMeeting.getTime();
-                  // cancerMdt.timeOfMeeting = new Date(cancerMdt.timeOfMeeting);
-                  // cancerMdt.timeOfMeeting.setMinutes(cancerMdt.timeOfMeeting.getMinutes() - cancerMdt.timeOfMeeting.getTimezoneOffset());
-                }
-
                 cancerMdt.compositionId = '';
                 cancerMdt.source = 'openehr';
 
                 $scope.genericmdtCreate($scope.patient.id, cancerMdt);
-                $state.go('cancerMdt', {
-                  patientId: $scope.patient.id,
-                  filter: $scope.query,
-                  page: $scope.currentPage,
-                  reportType: $stateParams.reportType,
-                  searchString: $stateParams.searchString,
-                  queryType: $stateParams.queryType
-                }, {
-                  reload: true
-                });
-
               }
 
             }
@@ -138,6 +128,12 @@ export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, 
             $scope.cancerMdt = angular.copy(cancerMdt);
             $uibModalInstance.dismiss('cancel');
           };
+
+          let unsubscribe = $ngRedux.connect(state => ({
+            getStoreData: setCurrentPageData(state)
+          }))(this);
+
+          $scope.$on('$destroy', unsubscribe);
 
           $scope.genericmdtCreate = genericmdtActions.create;
           $scope.genericmdtUpdate = genericmdtActions.update;

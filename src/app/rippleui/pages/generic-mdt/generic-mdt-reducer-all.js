@@ -20,6 +20,8 @@ export default function genericmdt(state = INITIAL_STATE, action) {
       });
     },
     [types.CANCERMDT_SUCCESS]: (state) => {
+      state.dataCreate = null;
+      state.dataUpdate = null;
       return Object.assign({}, state, {
         isFetching: false,
         data: payload.response
