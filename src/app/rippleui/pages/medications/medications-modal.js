@@ -1,4 +1,4 @@
-export default function MedicationsModal($uibModal, medicationsActions, $ngRedux) {
+export default function MedicationsModal($uibModal, medicationsActions, $ngRedux, $stateParams) {
   var isModalClosed = true;
 
   var openModal = function (patient, modal, medication, currentUser) {
@@ -9,6 +9,28 @@ export default function MedicationsModal($uibModal, medicationsActions, $ngRedux
         template: require('./medications-modal.html'),
         size: 'lg',
         controller: function ($scope, $state, $uibModalInstance) {
+          var setCurrentPageData = function (data) {
+              console.log('data', data.medication);
+            if (data.medication.dataCreate !== null) {
+              $uibModalInstance.close(medication);
+              $scope.medicationsLoad($stateParams.patientId);
+              $state.go('medications', {
+                patientId: $scope.patient.id,
+                filter: $scope.query,
+                page: $scope.currentPage
+              });
+            }
+
+            if (data.medication.dataUpdate !== null) {
+              $uibModalInstance.close(medication);
+              $scope.medicationsLoad($stateParams.patientId);
+              $state.go('medications-details', {
+                patientId: $scope.patient.id,
+                filter: $scope.query,
+                page: $scope.currentPage
+              });
+            }
+          };
           $scope.currentUser = currentUser;
           $scope.medication = medication;
           $scope.patient = patient;
@@ -27,12 +49,15 @@ export default function MedicationsModal($uibModal, medicationsActions, $ngRedux
           if (modal.title === 'Edit Medication'){
             $scope.isEdit = true;
             $scope.medication.startTime = new Date($scope.medication.startTime);
-            $scope.medication.startDate = new Date($scope.medication.startDate).toISOString().slice(0, 10);
-            $scope.medication.dateCreated = new Date($scope.medication.dateCreated).toISOString().slice(0, 10);
+            $scope.medication.startDate = new Date($scope.medication.startDate);
+            $scope.medication.dateCreated = new Date($scope.medication.dateCreated);
+            // $scope.medication.startDate = new Date($scope.medication.startDate).toISOString().slice(0, 10);
+            // $scope.medication.dateCreated = new Date($scope.medication.dateCreated).toISOString().slice(0, 10);
           }else {
             $scope.isEdit = false;
-            $scope.medication.medicationCode = $scope.medication.medicationCode == undefined ? '123456789' : $scope.medication.medicationCode;
-            $scope.medication.dateCreated = new Date().toISOString().slice(0, 10);
+            $scope.medication.medicationCode = $scope.medication.medicationCode === undefined ? '123456789' : $scope.medication.medicationCode;
+            $scope.medication.dateCreated = new Date();
+            // $scope.medication.dateCreated = new Date().toISOString().slice(0, 10);
           }
 
           $scope.cancel = function () {
@@ -69,27 +94,9 @@ export default function MedicationsModal($uibModal, medicationsActions, $ngRedux
               $uibModalInstance.close(medication);
 
               if ($scope.isEdit) {
-
                 $scope.medicationsUpdate($scope.patient.id, toAdd);
-
-                $state.go('medications-details', {
-                  patientId: $scope.patient.id,
-                  filter: $scope.query,
-                  page: $scope.currentPage
-                }, {
-                  reload: true
-                });
-
               } else {
-
                 $scope.medicationsCreate($scope.patient.id, toAdd);
-                $state.go('medications', {
-                  patientId: $scope.patient.id,
-                  filter: $scope.query,
-                  page: $scope.currentPage
-                }, {
-                  reload: true
-                });
               }
 
             }
@@ -99,6 +106,13 @@ export default function MedicationsModal($uibModal, medicationsActions, $ngRedux
             $uibModalInstance.dismiss('cancel');
           };
 
+          let unsubscribe = $ngRedux.connect(state => ({
+            getStoreData: setCurrentPageData(state)
+          }))(this);
+          
+          $scope.$on('$destroy', unsubscribe);
+
+          $scope.medicationsLoad = medicationsActions.all;
           $scope.medicationsCreate = medicationsActions.create;
           $scope.medicationsUpdate = medicationsActions.update;
         }
@@ -118,4 +132,4 @@ export default function MedicationsModal($uibModal, medicationsActions, $ngRedux
     openModal: openModal
   };
 }
-MedicationsModal.$inject = ['$uibModal', 'medicationsActions', '$ngRedux'];
+MedicationsModal.$inject = ['$uibModal', 'medicationsActions', '$ngRedux', '$stateParams'];
