@@ -36,6 +36,7 @@ import GenericMdtModal from './rippleui/pages/generic-mdt/generic-mdt-modal';
 import ImageModal from './rippleui/pages/dicom/image-modal';
 import EolcareplansModal from './rippleui/pages/care-plans/eolcareplans-modal';
 import TransferOfCareModal from './rippleui/pages/transfer-of-care/transfer-of-care-modal';
+import LookupModal from './rippleui/pages/patients-lookup/patients-lookup-modal'
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -80,6 +81,7 @@ import EolcareplansDetailComponent from './rippleui/pages/care-plans/eolcareplan
 import TransferOfCareListComponent from './rippleui/pages/transfer-of-care/transfer-of-care-list.component';
 import TransferOfCareDetailComponent from './rippleui/pages/transfer-of-care/transfer-of-care-detail.component';
 import MainComponent from './helpers/main.component';
+import HomeSidebarComponent from './rippleui/pages/patients-lookup/home-sidebar.component';
 
 import ServiceRequests from './services/serviceRequests.js';
 
@@ -116,6 +118,7 @@ const app = angular
     .factory('ImageModal', ImageModal)
     .factory('EolcareplansModal', EolcareplansModal)
     .factory('TransferOfCareModal', TransferOfCareModal)
+    .factory('LookupModal', LookupModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
@@ -158,6 +161,7 @@ const app = angular
     .component('transferOfCareListComponent', TransferOfCareListComponent)
     .component('transferOfCareDetailComponent', TransferOfCareDetailComponent)
     .component('mainComponent', MainComponent)
+    .component('homeSidebarComponent', HomeSidebarComponent)
     .component('searchComponent', SearchComponent)
     .component('reportChartComponent', ReportChartComponent)
     .config(routeConfig)

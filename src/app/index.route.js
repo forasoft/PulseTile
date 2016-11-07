@@ -10,6 +10,12 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<search-component><search-component>'}
         }
       })
+      .state('patients-lookup', {
+        url: '/lookup',
+        views: {
+          actions: { template: '<home-sidebar-component><home-sidebar-component>'}
+        }
+      })
       .state('patients-charts', {
         url: '/charts',
         views: {

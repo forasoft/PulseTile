@@ -7,6 +7,7 @@ class PatientsChartsController {
     // Selected chart on page load
     this.selectedChart = 'age';
     var prevChartName = '';
+
     var openModal = function (row, chartType) {
       $uibModal.open({
         template: require('app/rippleui/confirmation.html'),
@@ -102,6 +103,10 @@ class PatientsChartsController {
 
     this.goToPatientsList = function () {
       $state.go('patients-list');
+    };
+
+    this.goToLookUp = function () {
+      $state.go('patients-lookup');
     };
 
     this.getPatients = function (patients) {
