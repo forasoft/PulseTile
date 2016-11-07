@@ -2,7 +2,7 @@ let templatePatientsCharts = require('./patients-charts.html');
 
 class PatientsChartsController {
   constructor($scope, $state, $window, patientsActions, $ngRedux, $uibModal, serviceRequests, $timeout, Patient) {
-    serviceRequests.publisher('headerTitle', {title: 'Patients Dashboard'});
+    serviceRequests.publisher('headerTitle', {title: 'Patient Dashboard'});
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-charts'});
     // Selected chart on page load
     this.selectedChart = 'age';
