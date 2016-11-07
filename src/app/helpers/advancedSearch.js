@@ -66,6 +66,10 @@ export default function AdvancedSearch($uibModal, $http, $ngRedux, searchActions
           };
 
           $scope.ok = function (searchForm) {
+            if ($scope.searchParams.nhsNumber) {
+              $scope.searchParams.nhsNumber = $scope.searchParams.nhsNumber.replace(/\s+/g, '');
+            }
+
             if (searchForm.$valid) {
               AdvancedSearch.searchByDetails($scope.searchParams);
 
