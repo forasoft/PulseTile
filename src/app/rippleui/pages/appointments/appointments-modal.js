@@ -182,15 +182,17 @@ export default function AppointmentsModal($uibModal, appointmentsActions, $ngRed
             return isBooked() ? ' Re-Schedule' : ' Schedule';
           };
 
-          $scope.ok = function () {
-            $uibModalInstance.close();
-            $state.go('appointments', {
-              patientId: patient.id,
-              filter: $scope.query,
-              page: $scope.currentPage
-            }, {
-              reload: true
-            });
+          $scope.ok = function (appointmentForm, appointment) {
+            if (appointmentForm.$valid) {
+              $uibModalInstance.close();
+              $state.go('appointments', {
+                patientId: patient.id,
+                filter: $scope.query,
+                page: $scope.currentPage
+              }, {
+                reload: true
+              });
+            }
           };
 
           $scope.cancel = function () {

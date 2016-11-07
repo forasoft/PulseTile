@@ -14,6 +14,8 @@ export default function allergies(state = INITIAL_STATE, action) {
 
   var actions = {
     [types.MEDICATIONS]: (state) => {
+      state.dataCreate = null;
+      state.dataUpdate = null;
       return Object.assign({}, state, {
         isFetching: true,
         error: false

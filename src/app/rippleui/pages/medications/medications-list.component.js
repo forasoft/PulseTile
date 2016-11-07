@@ -39,10 +39,10 @@ class MedicationsListController {
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.medication.data) {
         this.medications = data.medication.data;
-        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;

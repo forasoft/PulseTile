@@ -7,7 +7,7 @@ class AppointmentsListController {
 
     this.currentPage = 1;
 
-    this.query = '';
+    $scope.query = '';
 
     this.pageChangeHandler = function (newPage) {
       this.currentPage = newPage;
@@ -17,34 +17,62 @@ class AppointmentsListController {
       this.currentPage = $stateParams.page;
     }
 
+    if ($stateParams.filter) {
+      $scope.query = $stateParams.filter;
+    }
+
     this.go = function (id, appointmentSource) {
       $state.go('appointments-detail', {
         patientId: $stateParams.patientId,
         appointmentIndex: id,
-        filter: this.query,
+        filter: $scope.query,
         page: this.currentPage,
         source: appointmentSource
       });
     };
 
+    this.selected = function (appointmentIndex) {
+      return appointmentIndex === $stateParams.appointmentIndex;
+    };
+
     this.create = function () {
       AppointmentsModal.openModal(this.currentPatient, {title: 'Create Appointment'}, {}, this.currentUser);
-
     };
+
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.appointments.data) {
         this.appointments = data.appointments.data;
+        this.appointments.sort(function (a, b) {
+          return (a.dateOfAppointment == b.dateOfAppointment) ?
+            (a.timeOfAppointment > b.timeOfAppointment ? 1 : -1) :
+            (a.dateOfAppointment > b.dateOfAppointment ? 1 : -1);
+        });
+
         for (var i = 0; i < this.appointments.length; i++) {
-          this.appointments[i].timeOfAppointmentTo = moment(this.appointments[i].timeOfAppointment).add(59, 'm').format('h:mma');
+          if (angular.isNumber(this.appointments[i].dateOfAppointment)) {
+            this.appointments[i].dateOfAppointment = moment(this.appointments[i].dateOfAppointment).format('DD-MMM-YYYY');
+          }
+          if (angular.isNumber(this.appointments[i].timeOfAppointment)) {
+            this.appointments[i].timeOfAppointment = moment(this.appointments[i].timeOfAppointment).format('h:mma') + '-' + moment(this.appointments[i].timeOfAppointment).add(59, 'm').format('h:mma');
+          }
         }
-        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
       }
+    };
+
+    this.search = function (row) {
+      return (
+        row.dateOfAppointment.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.timeOfAppointment.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.serviceTeam.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
+      );
     };
 
     let unsubscribe = $ngRedux.connect(state => ({
