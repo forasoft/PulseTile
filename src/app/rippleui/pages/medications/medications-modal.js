@@ -10,7 +10,6 @@ export default function MedicationsModal($uibModal, medicationsActions, $ngRedux
         size: 'lg',
         controller: function ($scope, $state, $uibModalInstance) {
           var setCurrentPageData = function (data) {
-              console.log('data', data.medication);
             if (data.medication.dataCreate !== null) {
               $uibModalInstance.close(medication);
               $scope.medicationsLoad($stateParams.patientId);
