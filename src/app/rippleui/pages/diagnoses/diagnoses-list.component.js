@@ -7,7 +7,7 @@ class DiagnosesListController {
 
     this.currentPage = 1;
 
-    this.query = '';
+    $scope.query = '';
     
     this.pageChangeHandler = function (newPage) {
       this.currentPage = newPage;
@@ -35,6 +35,14 @@ class DiagnosesListController {
       return diagnosisIndex === $stateParams.diagnosisIndex;
     };
 
+    this.search = function (row) {
+      return (
+          row.problem.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+          row.dateOfOnset.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+          row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
+      );
+    };
+
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
@@ -42,6 +50,9 @@ class DiagnosesListController {
       }
       if (data.diagnoses.data) {
         this.diagnoses = data.diagnoses.data;
+        for (var i = 0; i < this.diagnoses.length; i++) {
+          this.diagnoses[i].dateOfOnset = moment(this.diagnoses[i].dateOfOnset).format('DD-MMM-YYYY');
+        }
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
