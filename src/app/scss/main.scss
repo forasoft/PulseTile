@@ -1767,6 +1767,12 @@ table.table {
   }
 }
 
+@media (min-width: 768px) {
+  .section-detail .form-horizontal .control-label {
+    padding-top: 2px;
+  }
+}
+
 .validation-error {
   color: #a94442;
 }
