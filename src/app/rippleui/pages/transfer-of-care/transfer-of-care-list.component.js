@@ -29,8 +29,12 @@ class TransferOfCareListController {
 
     this.create = function () {
       TransferOfCareModal.openModal(this.currentPatient, {title: ''}, {}, this.currentUser);
-
     };
+
+    this.selected = function (transferOfCareIndex) {
+      return transferOfCareIndex === $stateParams.transferOfCareIndex;
+    };
+
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
