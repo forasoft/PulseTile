@@ -73,9 +73,11 @@ export default function AdvancedSearch($uibModal, $http, $ngRedux, searchActions
             if (searchForm.$valid) {
               AdvancedSearch.searchByDetails($scope.searchParams);
 
-              $ngRedux.connect(state => ({
+              let unsubscribe = $ngRedux.connect(state => ({
                 setResult: $scope.getResult(state.search)
               }))(this);
+
+              $scope.$on('$destroy', unsubscribe);
             }
           };
 
