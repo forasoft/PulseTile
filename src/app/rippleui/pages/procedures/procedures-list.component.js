@@ -6,6 +6,7 @@ class ProceduresListController {
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
     this.currentPage = 1;
+    $scope.query = '';
 
     this.pageChangeHandler = function (newPage) {
       this.currentPage = newPage;
@@ -16,20 +17,29 @@ class ProceduresListController {
     }
 
     if ($stateParams.filter) {
-      this.query = $stateParams.filter;
+      $scope.query = $stateParams.filter;
     }
 
     this.go = function (id, allergySource) {
       $state.go('procedures-detail', {
         patientId: $stateParams.patientId,
         procedureId: id,
-        filter: this.query,
+        filter: $scope.query,
         page: this.currentPage,
         reportType: $stateParams.reportType,
         searchString: $stateParams.searchString,
         queryType: $stateParams.queryType,
         source: allergySource
       });
+    };
+
+    this.search = function (row) {
+      return (
+        row.name.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.date.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.time.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
+      );
     };
 
     this.selected = function (procedureId) {
@@ -49,11 +59,17 @@ class ProceduresListController {
         this.procedures = data.procedures.data;
 
         for (var i = 0; i < this.procedures.length; i++) {
+              console.log('angular.isNumber(this.procedures[i].date)', angular.isNumber(this.procedures[i].date));
           if (angular.isNumber(this.procedures[i].date)) {
             this.procedures[i].date = moment(this.procedures[i].date).format('DD-MMM-YYYY');
+          } else if (this.procedures[i].date === null) {
+            this.procedures[i].date = '';
           }
+
           if (angular.isNumber(this.procedures[i].time)) {
             this.procedures[i].time = moment(this.procedures[i].time).format('HH:mm');
+          } else if (this.procedures[i].time === null) {
+            this.procedures[i].time = '';
           }
         }
       }
