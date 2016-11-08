@@ -59,7 +59,6 @@ class ProceduresListController {
         this.procedures = data.procedures.data;
 
         for (var i = 0; i < this.procedures.length; i++) {
-              console.log('angular.isNumber(this.procedures[i].date)', angular.isNumber(this.procedures[i].date));
           if (angular.isNumber(this.procedures[i].date)) {
             this.procedures[i].date = moment(this.procedures[i].date).format('DD-MMM-YYYY');
           } else if (this.procedures[i].date === null) {
