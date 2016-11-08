@@ -25,6 +25,7 @@ export default function EolcareplansModal($uibModal, eolcareplansActions, $ngRed
             { type: 'Document Type 2' }
           ];
 
+
           if (modal.title === 'Create End of Life Care Document') {
             $scope.isEdit = false;
             $scope.eolcareplan.careDocument = {
@@ -35,6 +36,8 @@ export default function EolcareplansModal($uibModal, eolcareplansActions, $ngRed
             $scope.eolcareplan.careDocument.dateCreated = new Date($scope.eolcareplan.careDocument.dateCreated);
             $scope.eolcareplan.cprDecision.dateOfDecision = new Date($scope.eolcareplan.cprDecision.dateOfDecision);
             $scope.eolcareplan.treatmentDecision.dateOfDecision = new Date($scope.eolcareplan.treatmentDecision.dateOfDecision);
+            $scope.eolcareplan.treatmentDecision.decisionToRefuseTreatment = $.trim($scope.eolcareplan.treatmentDecision.decisionToRefuseTreatment);
+            $scope.eolcareplan.cprDecision.cprDecision = $.trim($scope.eolcareplan.cprDecision.cprDecision);
             // $scope.eolcareplan.careDocument.dateCreated = new Date($scope.eolcareplan.careDocument.dateCreated).toISOString().slice(0, 10);
             // $scope.eolcareplan.cprDecision.dateOfDecision = new Date($scope.eolcareplan.cprDecision.dateOfDecision).toISOString().slice(0, 10);
             // $scope.eolcareplan.treatmentDecision.dateOfDecision = new Date($scope.eolcareplan.treatmentDecision.dateOfDecision).toISOString().slice(0, 10);
