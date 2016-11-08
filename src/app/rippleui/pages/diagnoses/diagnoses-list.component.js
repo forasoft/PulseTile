@@ -21,7 +21,7 @@ class DiagnosesListController {
       $state.go('diagnoses-detail', {
         patientId: $stateParams.patientId,
         diagnosisIndex: id,
-        filter: this.query,
+        filter: $scope.query,
         page: this.currentPage,
         source: diagnosisSource
       });

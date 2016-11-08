@@ -16,6 +16,25 @@ export default function DiagnosesModal($uibModal, diagnosesActions, $ngRedux) {
           $scope.currentUser = currentUser;
           $scope.protocol = 'http://';
 
+          var setCurrentPageData = function (data) {
+            if (data.diagnoses.dataCreate !== null) {
+              $uibModalInstance.close(diagnosis);
+              $state.go('diagnoses-list', {
+                patientId: $scope.patient.id,
+                filter: $scope.query,
+                page: $scope.currentPage
+              });
+            }
+            if (data.diagnoses.dataUpdate !== null) {
+              $uibModalInstance.close(diagnosis);
+              $state.go('diagnoses-detail', {
+                patientId: $scope.patient.id,
+                filter: $scope.query,
+                page: $scope.currentPage
+              });
+            }
+          };
+
           if (modal.title === 'Edit Problem / Diagnosis') {
             $scope.isEdit = true;
             $scope.diagnosis.dateSubmitted = new Date();
@@ -60,32 +79,15 @@ export default function DiagnosesModal($uibModal, diagnosesActions, $ngRedux) {
 
             if (diagnosisForm.$valid) {
               
-              $uibModalInstance.close(diagnosis);
-              
               if ($scope.isEdit) {
                 
                 $scope.diagnosesUpdate($scope.patient.id, toAdd);
-                
-                $state.go('diagnoses-details', {
-                  patientId: $scope.patient.id,
-                  filter: $scope.query,
-                  page: $scope.currentPage
-                }, {
-                  reload: true
-                });
                 
               } else {
                 
                 $scope.diagnosesCreate($scope.patient.id, toAdd);
                 
-                $state.go('diagnoses-list', {
-                  patientId: $scope.patient.id,
-                  filter: $scope.query,
-                  page: $scope.currentPage
-                }, {
-                  reload: true
-                });
-              }              
+              }
               
             }
           };
@@ -94,6 +96,12 @@ export default function DiagnosesModal($uibModal, diagnosesActions, $ngRedux) {
             $scope.diagnosis = angular.copy(diagnosis);
             $uibModalInstance.dismiss('cancel');
           };
+
+          let unsubscribe = $ngRedux.connect(state => ({
+            getStoreData: setCurrentPageData(state)
+          }))(this);
+
+          $scope.$on('$destroy', unsubscribe);
 
           $scope.diagnosesCreate = diagnosesActions.create;
           $scope.diagnosesUpdate = diagnosesActions.update;          

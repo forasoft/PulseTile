@@ -20,6 +20,8 @@ export default function diagnoses(state = INITIAL_STATE, action) {
       });
     },
     [types.DIAGNOSES_SUCCESS]: (state) => {
+      state.dataCreate = null;
+      state.dataUpdate = null;
       return Object.assign({}, state, {
         isFetching: false,
         data: payload.response
