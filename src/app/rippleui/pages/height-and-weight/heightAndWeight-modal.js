@@ -57,26 +57,30 @@ export default function HeightAndWeightModal($uibModal, heightAndWeightActions, 
 
               if ($scope.isEdit) {
                 $scope.heightAndWeightUpdate($scope.patient.id, toAdd);
-                $state.go('heightAndWeights-detail', {
-                  patientId: $scope.patient.id,
-                  heightAndWeightIndex: updateId(heightAndWeight.sourceId),
-                  page: $scope.currentPage,
-                  reportType: $stateParams.reportType,
-                  searchString: $stateParams.searchString,
-                  queryType: $stateParams.queryType
-                });
+                setTimeout(function () {
+                  $state.go('heightAndWeights-detail', {
+                    patientId: $scope.patient.id,
+                    heightAndWeightIndex: updateId(heightAndWeight.sourceId),
+                    page: $scope.currentPage,
+                    reportType: $stateParams.reportType,
+                    searchString: $stateParams.searchString,
+                    queryType: $stateParams.queryType
+                  });
+                }, 1000);
               } else {
                 $scope.heightAndWeightCreate($scope.patient.id, toAdd);
-                $state.go('heightAndWeights', {
-                  patientId: $scope.patient.id,
-                  filter: $scope.query,
-                  page: $scope.currentPage,
-                  reportType: $stateParams.reportType,
-                  searchString: $stateParams.searchString,
-                  queryType: $stateParams.queryType
-                }, {
-                  reload: true
-                });
+                setTimeout(function () {
+                  $state.go('heightAndWeights', {
+                    patientId: $scope.patient.id,
+                    filter: $scope.query,
+                    page: $scope.currentPage,
+                    reportType: $stateParams.reportType,
+                    searchString: $stateParams.searchString,
+                    queryType: $stateParams.queryType
+                  }, {
+                    reload: true
+                  });
+                }, 1000);
               }
 
             }

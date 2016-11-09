@@ -76,26 +76,28 @@ export default function EolcareplansModal($uibModal, eolcareplansActions, $ngRed
 
               if ($scope.isEdit) {
                 $scope.eolcareplansUpdate($scope.patient.id, toAdd);
-                $state.go('eolcareplans-detail', {
-                  patientId: $scope.patient.id,
-                  eolcareplansIndex: updateId(eolcareplan.sourceId),
-                  page: $scope.currentPage,
-                  reportType: $stateParams.reportType,
-                  searchString: $stateParams.searchString,
-                  queryType: $stateParams.queryType
-                });
+                setTimeout(function () {
+                  $state.go('eolcareplans-detail', {
+                    patientId: $scope.patient.id,
+                    eolcareplansIndex: updateId(eolcareplan.sourceId),
+                    page: $scope.currentPage,
+                    reportType: $stateParams.reportType,
+                    searchString: $stateParams.searchString,
+                    queryType: $stateParams.queryType
+                  });
+                }, 1000);
               } else {
                 $scope.eolcareplansCreate($scope.patient.id, toAdd);
-                $state.go('eolcareplans', {
-                  patientId: $scope.patient.id,
-                  filter: $scope.query,
-                  page: $scope.currentPage,
-                  reportType: $stateParams.reportType,
-                  searchString: $stateParams.searchString,
-                  queryType: $stateParams.queryType
-                }, {
-                  reload: true
-                });
+                setTimeout(function () {
+                  $state.go('eolcareplans', {
+                    patientId: $scope.patient.id,
+                    filter: $scope.query,
+                    page: $scope.currentPage,
+                    reportType: $stateParams.reportType,
+                    searchString: $stateParams.searchString,
+                    queryType: $stateParams.queryType
+                  });
+                }, 1000);
               }
 
             }
