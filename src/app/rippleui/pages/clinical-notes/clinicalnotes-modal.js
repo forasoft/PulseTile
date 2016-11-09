@@ -53,22 +53,24 @@ export default function ClinicalnotesModal($uibModal, clinicalnotesActions, $sta
                 };
                 
                 $scope.clinicalnotesUpdate($scope.patient.id, toUpdate);
-                $state.go('clinicalNotes-detail', {
-                  patientId: $scope.patient.id,
-                  clinicalNoteIndex: clinicalNote.sourceId
-                });
+                setTimeout(function () {
+                  $state.go('clinicalNotes-detail', {
+                    patientId: $scope.patient.id,
+                    clinicalNoteIndex: clinicalNote.sourceId
+                  });
+                }, 1000);
               } else {
                 $scope.clinicalnotesCreate($scope.patient.id, toAdd);
-                $state.go('clinicalNotes', {
-                  patientId: $scope.patient.id,
-                  filter: $scope.query,
-                  page: $scope.currentPage,
-                  reportType: $stateParams.reportType,
-                  searchString: $stateParams.searchString,
-                  queryType: $stateParams.queryType
-                }, {
-                  reload: true
-                });
+                setTimeout(function () {
+                  $state.go('clinicalNotes', {
+                    patientId: $scope.patient.id,
+                    filter: $scope.query,
+                    page: $scope.currentPage,
+                    reportType: $stateParams.reportType,
+                    searchString: $stateParams.searchString,
+                    queryType: $stateParams.queryType
+                  });
+                }, 1000);
               }
             }
           };
