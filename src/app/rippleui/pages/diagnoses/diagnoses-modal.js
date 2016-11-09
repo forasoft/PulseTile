@@ -18,20 +18,24 @@ export default function DiagnosesModal($uibModal, diagnosesActions, $ngRedux) {
 
           var setCurrentPageData = function (data) {
             if (data.diagnoses.dataCreate !== null) {
-              $uibModalInstance.close(diagnosis);
-              $state.go('diagnoses-list', {
-                patientId: $scope.patient.id,
-                filter: $scope.query,
-                page: $scope.currentPage
-              });
+              setTimeout(function () {
+                $uibModalInstance.close(diagnosis);
+                $state.go('diagnoses-list', {
+                  patientId: $scope.patient.id,
+                  filter: $scope.query,
+                  page: $scope.currentPage
+                });
+              }, 1000);
             }
             if (data.diagnoses.dataUpdate !== null) {
-              $uibModalInstance.close(diagnosis);
-              $state.go('diagnoses-detail', {
-                patientId: $scope.patient.id,
-                filter: $scope.query,
-                page: $scope.currentPage
-              });
+              setTimeout(function () {
+                $uibModalInstance.close(diagnosis);
+                $state.go('diagnoses-detail', {
+                  patientId: $scope.patient.id,
+                  filter: $scope.query,
+                  page: $scope.currentPage
+                });
+              }, 1000);
             }
           };
 
