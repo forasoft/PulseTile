@@ -1,4 +1,147 @@
 <header class="">
+  <!-- New Mobile Navbar -->
+  <nav class="navbar navbar-default header-nav visible-xs">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a ng-if="$ctrl.title" class="navbar-brand header-title-mobile" ng-click="$ctrl.goHome()">
+          <img class="header-icon nav-logo" alt="{{$ctrl.title}}"> {{$ctrl.title}}
+        </a>
+
+        <ul class="nav nav-tabs pull-right" role="tablist">
+          <li ng-class="$ctrl.activeNavTab('notifications')"><a ng-click="$ctrl.changeNavTab('notifications')">
+            <i class="fa fa-bell-o"><span class="count">2</span></i></a>
+          </li>
+          <li ng-class="$ctrl.activeNavTab('user')"><a ng-click="$ctrl.changeNavTab('user')">
+            <i class="fa fa-user"></i></a>
+          </li>
+          <li ng-class="$ctrl.activeNavTab('search')"><a ng-click="$ctrl.changeNavTab('search')">
+            <i class="fa fa-search"></i></a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Tab panes -->
+      <div class="tab-content" ng-switch="currentNavTab">
+
+        <!-- Notification -->
+        <div ng-if="$ctrl.currentNavTab==='notifications'" class="pane row" id="tab-notifications">
+          <div class="notifications-header">
+            Notifications (2)
+          </div>
+          <div class="notifications-body">
+            <ul>
+              <li>
+                <div class="notification-info">Information from Liquid Logic (Social Care) is currently unavailable.</div>
+                <div class="notification-time">5 minutes ago</div>
+              </li>
+              <li>
+                <div class="notification-info">Information from Liquid Logic (Social Care) is currently unavailable.</div>
+                <div class="notification-time">5 minutes ago</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- /.Notification -->
+
+        <!-- User Profile -->
+        <div ng-if="$ctrl.currentNavTab==='user'" class="pane row" id="tab-user">
+          <div class="col-xs-12">
+
+            <div class="user-type superuser">Super User</div>
+            <!--<div class="user-type clinician">Clinician</div>-->
+            <!--<div class="user-type patient">Patient</div>-->
+
+            <div class="user-profile-image"><i class="fa fa-user"></i></div>
+            <p class="header-title-mobile"><strong>User Name:</strong>{{$ctrl.user.role}}</p>
+            <p>{{$ctrl.user.email}}</p>
+            <p>10/05/2099</p>
+          </div>
+          <div class="col-xs-12 options">
+            <ul>
+              <li><a href="" class="btn">Settings</a></li>
+              <li><a href="" class="btn">Admin Console</a></li>
+            </ul>
+            <ul>
+              <li><a href="https://ripple-identity-uat.answerappcloud.com/signout" class="signout btn">SIGN OUT  <i class="fa fa-sign-out"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- /.User Profile -->
+
+        <!-- Mobile Nav Search -->
+        <div ng-if="$ctrl.currentNavTab==='search'" class="pane row" id="tab-search">
+
+          <div id="mobile-nav-search">
+            <div class="col-xs-12 header-search-mobile">
+
+              <button class="btn btn-info" ng-click="$ctrl.searchFunction();"><i class="fa fa-search"></i></button>
+
+              <div class="search-left-inner-addon">
+                <div ng-show="$root.reportMode" class="ng-cloak" ng-cloak><span ng-cloak ng-show="$root.reportMode" class="label ng-cloak report-label">Reports&nbsp;<i ng-show="$root.reportMode" ng-click="$ctrl.cancelSearchMode()" class="fa fa-times"></i></span></div>
+                <i ng-show="search.searchExpression !== '' || $root.searchMode" ng-click="$ctrl.cancelSearchMode()" class="clearAll fa fa-times-circle"></i>
+                <div class="search-left-inner-addon">
+                  <div ng-show="$root.searchMode" class="ng-cloak" ng-cloak>
+                    <span ng-cloak class="label ng-cloak report-label">
+                  <div ng-if="$root.reportMode">Reports&nbsp;</div>
+                  <div ng-if="$root.settingsMode">Setting&nbsp;</div>
+                  <div ng-if="$root.patientMode">Patients&nbsp;</div>
+                  <i ng-click="$ctrl.cancelSearchMode()" class="fa fa-times"></i></span>
+                  </div>
+                  <div ng-show="$root.reportTypeSet" class="ng-cloak" ng-cloak>
+                    <span ng-cloak class="label ng-cloak reportType-label">
+                    <div class="reportTypeSet">
+                      {{$root.reportTypeString}}&nbsp;
+                      <i ng-click="$ctrl.cancelReportType()" class="fa cancel-reportType fa-times"></i>
+                    </div>
+                    </span>
+                  </div>
+                  <div></div>
+                  <input key-bind="{ enter: '$ctrl.searchFunction()', esc: '$ctrl.cancelSearchMode()' }" class="form-control" placeholder="Search..." type="text" uib-typeahead="report for report in $ctrl.reportTypes | filter:$viewValue" ng-model="search.searchExpression" ng-keyup="$ctrl.checkExpression(search.searchExpression)" ng-trim="false" ng-class="{'moveRight': $root.searchMode && !$root.reportTypeSet, 'moveFurtherRight': $root.searchMode && $root.reportTypeSet}" focus-element="searchFocused"/>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- /.Mobile Nav Search -->
+
+      </div>
+      <!-- /.Tab panes -->
+
+
+
+    </div><!-- /.container-fluid -->
+  </nav>
+  <!-- /.New Mobile Navbar -->
+
+  <!-- Header toolbar mobile -->
+  <div class="row header-toolbar visible-xs">
+    <div class="col-xs-2">
+      <div class="innner">
+        <span class="glyphicon glyphicon-arrow-left previous-page-arrow" ng-if="previousPage && currentUser.role=='idcr'" ng-click="goBack()"></span>
+      </div>
+    </div>
+    <div class="col-xs-8 current-page-title-mobile">
+      <div class="inner">
+        <span>{{pageHeader}}</span>
+      </div>
+    </div>
+    <div class="col-xs-2 text-right">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-nav" aria-expanded="false" ng-if=(userContextViewExists)>
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+  </div>
+  <div class="visible-xs mobile-sidebar navbar-default">
+    <div class="collapse navbar-collapse sidebar" id="sidebar-nav">
+      <ul side-menu class="nav" ui-view="actions"></ul>
+    </div>
+  </div>
+  <!-- /.Header toolbar mobile-->
 
   <div class="row header-background hidden-xs">
     <div class="col-sm-4 header-left">

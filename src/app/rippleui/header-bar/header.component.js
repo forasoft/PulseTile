@@ -191,6 +191,24 @@ class HeaderController {
       $scope.searchBar = expression.headerSearchEnabled;
     };
 
+    this.currentNavTab = ''; // search, notifications or user
+
+    this.changeNavTab = function(newTab){
+
+      // Is tab already expanded?
+      if( this.currentNavTab == newTab ){
+        this.currentNavTab = '';
+      } else {
+        this.currentNavTab = newTab;
+      }
+    };
+
+    this.activeNavTab = function(thisTab){
+      if( thisTab == this.currentNavTab ){
+        return 'active';
+      }
+    };
+
     serviceRequests.subscriber('populateHeaderSearch', this.getPopulateHeaderSearch);
     serviceRequests.subscriber('headerTitle', this.getPageHeader);
   }
