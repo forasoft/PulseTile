@@ -43,64 +43,50 @@ export default function ReferralsModal($uibModal, referralsActions, $stateParams
             if (referralForm.$valid) {
 
               $uibModalInstance.close(referral);
+              referral.dateOfReferral = new Date(referral.dateOfReferral);
+              referral.dateOfReferral.setMinutes(referral.dateOfReferral.getMinutes() - referral.dateOfReferral.getTimezoneOffset());
+
+              var toAdd = {
+                sourceId: referral.sourceId ? referral.sourceId :'',
+                author: referral.author,
+                clinicalSummary: referral.clinicalSummary,
+                dateCreated: new Date(referral.dateCreated),
+                dateOfReferral: referral.dateOfReferral,
+                reason: referral.reason,
+                referralFrom: referral.referralFrom,
+                referralTo: referral.referralTo,
+                source: 'openehr'
+              };
 
               if ($scope.isEdit) {
+                $scope.referralsUpdate($scope.patient.id, toAdd);
 
-                referral.dateOfReferral = new Date(referral.dateOfReferral);
-                referral.dateOfReferral.setMinutes(referral.dateOfReferral.getMinutes() - referral.dateOfReferral.getTimezoneOffset());
-
-                var toUpdate = {
-                  sourceId: referral.sourceId,
-                  author: referral.author,
-                  clinicalSummary: referral.clinicalSummary,
-                  dateCreated: new Date(referral.dateCreated),
-                  dateOfReferral: referral.dateOfReferral,
-                  reason: referral.reason,
-                  referralFrom: referral.referralFrom,
-                  referralTo: referral.referralTo,
-                  source: 'openehr'
-                };
-
-                $scope.referralsUpdate($scope.patient.id, toUpdate);
-
-                $state.go('referrals-detail', {
-                  patientId: $scope.patient.id,
-                  referralId: updateId(referral.sourceId),
-                  page: $scope.currentPage,
-                  reportType: $stateParams.reportType,
-                  searchString: $stateParams.searchString,
-                  queryType: $stateParams.queryType
-                });
+                setTimeout(function () {
+                  $state.go('referrals-detail', {
+                    patientId: $scope.patient.id,
+                    referralId: updateId(referral.sourceId),
+                    page: $scope.currentPage,
+                    reportType: $stateParams.reportType,
+                    searchString: $stateParams.searchString,
+                    queryType: $stateParams.queryType
+                  });
+                }, 1000);
 
               } else {
-
-                referral.dateOfReferral = new Date(referral.dateOfReferral);
-                referral.dateOfReferral.setMinutes(referral.dateOfReferral.getMinutes() - referral.dateOfReferral.getTimezoneOffset());
-
-                var toAdd = {
-                  sourceId: '',
-                  author: referral.author,
-                  clinicalSummary: referral.clinicalSummary,
-                  dateCreated: new Date(referral.dateCreated),
-                  dateOfReferral: referral.dateOfReferral,
-                  reason: referral.reason,
-                  referralFrom: referral.referralFrom,
-                  referralTo: referral.referralTo,
-                  source: 'openehr'
-                };
-
                 $scope.referralsCreate($scope.patient.id, toAdd);
 
-                $state.go('referrals', {
-                  patientId: $scope.patient.id,
-                  filter: $scope.query,
-                  page: $scope.currentPage,
-                  reportType: $stateParams.reportType,
-                  searchString: $stateParams.searchString,
-                  queryType: $stateParams.queryType
-                }, {
-                  reload: true
-                });
+                setTimeout(function () {
+                  $state.go('referrals', {
+                    patientId: $scope.patient.id,
+                    filter: $scope.query,
+                    page: $scope.currentPage,
+                    reportType: $stateParams.reportType,
+                    searchString: $stateParams.searchString,
+                    queryType: $stateParams.queryType
+                  }, {
+                    reload: true
+                  });
+                }, 1000);
               }
 
             }
