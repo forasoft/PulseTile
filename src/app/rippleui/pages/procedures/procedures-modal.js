@@ -45,12 +45,10 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
 
               $uibModalInstance.close(procedure);
 
+              procedure.dateSubmitted = new Date(procedure.dateSubmitted);
+              procedure.date = new Date(procedure.date);
+              procedure.date.setMinutes(procedure.date.getMinutes() - procedure.date.getTimezoneOffset());
               if ($scope.isEdit) {
-
-                procedure.dateSubmitted = new Date(procedure.dateSubmitted);
-                procedure.date = new Date(procedure.date);
-                procedure.date.setMinutes(procedure.date.getMinutes() - procedure.date.getTimezoneOffset());
-
                 let  toUpdate = {
                   sourceId: procedure.sourceId,
                   procedureName: procedure.procedureName,
@@ -67,27 +65,24 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
 
                 $scope.proceduresUpdate($scope.patient.id, toUpdate);
 
-                $state.go('procedures-detail', {
-                  patientId: $scope.patient.id,
-                  procedureId: procedure.source === 'Marand' ? updateId(procedure.sourceId) : procedure.sourceId,
-                  page: $scope.currentPage,
-                  reportType: $stateParams.reportType,
-                  searchString: $stateParams.searchString,
-                  queryType: $stateParams.queryType,
-                  source: $stateParams.source
-                });
+                setTimeout(function () {
+                  $state.go('procedures-detail', {
+                    patientId: $scope.patient.id,
+                    procedureId: procedure.source === 'Marand' ? updateId(procedure.sourceId) : procedure.sourceId,
+                    page: $scope.currentPage,
+                    reportType: $stateParams.reportType,
+                    searchString: $stateParams.searchString,
+                    queryType: $stateParams.queryType,
+                    source: $stateParams.source
+                  });
+                }, 1000);
 
               } else {
-
-                procedure.dateSubmitted = new Date(procedure.dateSubmitted);
-                procedure.date = new Date(procedure.date);
-                procedure.date.setMinutes(procedure.date.getMinutes() - procedure.date.getTimezoneOffset());
-
                 let  toAdd = {
                   sourceId: '',
                   procedureName: procedure.procedureName,
-                  procedureTerminology: procedure.procedureTerminology,
                   procedureCode: procedure.procedureCode,
+                  procedureTerminology: procedure.procedureTerminology,
                   notes: procedure.notes,
                   author: procedure.author,
                   date: procedure.date,
@@ -98,16 +93,16 @@ export default function ProceduresModal($uibModal, proceduresActions, $statePara
 
                 $scope.proceduresCreate($scope.patient.id, toAdd);
 
-                $state.go('procedures', {
-                  patientId: $scope.patient.id,
-                  filter: $scope.query,
-                  page: $scope.currentPage,
-                  reportType: $stateParams.reportType,
-                  searchString: $stateParams.searchString,
-                  queryType: $stateParams.queryType
-                }, {
-                  reload: true
-                });
+                setTimeout(function () {
+                  $state.go('procedures', {
+                    patientId: $scope.patient.id,
+                    filter: $scope.query,
+                    page: $scope.currentPage,
+                    reportType: $stateParams.reportType,
+                    searchString: $stateParams.searchString,
+                    queryType: $stateParams.queryType
+                  });
+                }, 1000);
               }
 
             }
