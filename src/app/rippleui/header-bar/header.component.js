@@ -208,7 +208,11 @@ class HeaderController {
         return 'active';
       }
     };
+    this.getPageComponents = function (data) {
+      $scope.userContextViewExists = ('banner' in data.state);
+    };
 
+    serviceRequests.subscriber('routeState', this.getPageComponents);
     serviceRequests.subscriber('populateHeaderSearch', this.getPopulateHeaderSearch);
     serviceRequests.subscriber('headerTitle', this.getPageHeader);
   }
