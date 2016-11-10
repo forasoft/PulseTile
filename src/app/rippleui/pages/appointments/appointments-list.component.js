@@ -46,11 +46,11 @@ class AppointmentsListController {
       }
       if (data.appointments.data) {
         this.appointments = data.appointments.data;
-        this.appointments.sort(function (a, b) {
-          return (a.dateOfAppointment == b.dateOfAppointment) ?
-            (a.timeOfAppointment > b.timeOfAppointment ? 1 : -1) :
-            (a.dateOfAppointment > b.dateOfAppointment ? 1 : -1);
-        });
+        // this.appointments.sort(function (a, b) {
+        //   return (a.dateOfAppointment == b.dateOfAppointment) ?
+        //     (a.timeOfAppointment > b.timeOfAppointment ? 1 : -1) :
+        //     (a.dateOfAppointment > b.dateOfAppointment ? 1 : -1);
+        // });
 
         for (var i = 0; i < this.appointments.length; i++) {
           if (angular.isNumber(this.appointments[i].dateOfAppointment)) {
