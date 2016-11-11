@@ -22,6 +22,7 @@ const PORT = process.env.PORT || 9000;
 
 // const API_URL = process.env.API_URL || 'http://localhost:19191';
 const API_URL =  'http://138.68.134.7';
+// const API_URL =  'http://139.59.187.100';
 
 
 //=========================================================
@@ -34,9 +35,8 @@ const config = {
     
     root: path.resolve('./src'),
     alias: {
-       'jquery': '../../bower_components/jquery/dist/jquery.js',
-       'morrisjs': '../../bower_components/morrisjs/morris.js',
-       'spin': 'spin.js'
+      'morrisjs': '../../bower_components/morrisjs/morris.js',
+      'spin': 'spin.js'
     }
   },
 
@@ -70,11 +70,12 @@ const config = {
       new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(".bower.json", ["main"])
     ),
     new webpack.ProvidePlugin({
-      moment: 'moment',
-      'spin': 'spin.js',
       angularSpinner: 'angular-spinner',
       _: 'underscore',
-      jQuery: 'jquery',
+      $: "jquery",
+      "window.jQuery": "jquery",
+      jQuery: "jquery",
+      "moment": "moment",
       Raphael: 'raphael'
     })
   ],

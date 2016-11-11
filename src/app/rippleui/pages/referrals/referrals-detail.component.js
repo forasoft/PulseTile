@@ -7,11 +7,11 @@ class ReferralsDetailController {
     };
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
-      if (data.allergiesGet.data) {
-        this.referral = data.referralsGet.data;
+      if (data.referrals.dataGet) {
+        this.referral = data.referrals.dataGet;
         usSpinnerService.stop('referralsDetail-spinner');
       }
       if (data.user.data) {
@@ -24,9 +24,9 @@ class ReferralsDetailController {
     }))(this);
 
     $scope.$on('$destroy', unsubscribe);
-
-    this.allergiesLoad = referralsActions.get;
-    this.allergiesLoad($stateParams.patientId, $stateParams.referralId);
+console.log('$stateParams.referralId', $stateParams.referralId);
+    this.referralsLoad = referralsActions.get;
+    this.referralsLoad($stateParams.patientId, $stateParams.referralId);
   }
 }
 

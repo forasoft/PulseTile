@@ -3,7 +3,8 @@ import * as types from '../../../constants/ActionTypes';
 const INITIAL_STATE = {
   isFetching: false,
   error: false,
-  data: null
+  data: null,
+  dataGet: null
 };
 
 export default function allergies(state = INITIAL_STATE, action) {
@@ -23,6 +24,24 @@ export default function allergies(state = INITIAL_STATE, action) {
       });
     },
     [types.RESULTS_ERROR]: (state) => {
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: payload.error
+      });
+    },
+    [types.RESULTS_GET]: (state) => {
+      return Object.assign({}, state, {
+        isFetching: true,
+        error: false
+      });
+    },
+    [types.RESULTS_GET_SUCCESS]: (state) => {
+      return Object.assign({}, state, {
+        isFetching: false,
+        dataGet: payload.response
+      });
+    },
+    [types.RESULTS_GET_ERROR]: (state) => {
       return Object.assign({}, state, {
         isFetching: false,
         error: payload.error

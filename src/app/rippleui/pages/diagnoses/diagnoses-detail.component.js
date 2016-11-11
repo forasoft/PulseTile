@@ -31,11 +31,11 @@ class DiagnosesDetailController {
     };
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
-      if (data.diagnosesGet.data) {
-        this.diagnosis = data.diagnosesGet.data;
+      if (data.diagnoses.dataGet) {
+        this.diagnosis = data.diagnoses.dataGet;
         usSpinnerService.stop('diagnosisDetail-spinner');
       }
       if (data.user.data) {

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="">
     <!-- START Main Content Area -->
         <div class="row">
             <div class="col-md-8">
@@ -26,7 +26,7 @@
                     <tbody>
                     <tr ng-repeat="diagnosis in $ctrl.diagnoses" data-target="patient-detail.html">
                         <!--data target-->
-                        <td ng-click="go('/patients/{{patient.id}}/diagnoses/{{diagnosis.sourceId}}')">{{ diagnosis.text }} <span class="glyphicon glyphicon-chevron-right"></span></td>
+                        <td ng-click="go('/patients/'+$ctrl.patient.id+'/diagnoses/'+diagnosis.sourceId)">{{ diagnosis.text }} <span class="glyphicon glyphicon-chevron-right"></span></td>
                     </tr>
                     </tbody>
                 </table>
@@ -44,7 +44,7 @@
                 <table class="table table-striped clickable">
                     <tbody>
                     <tr ng-repeat="allergy in $ctrl.allergies">
-                        <td ng-click="go('/patients/{{patient.id}}/allergies/{{allergy.sourceId}}')">{{allergy.text}}<span class="glyphicon glyphicon-chevron-right"></span> </td>
+                        <td ng-click="go('/patients/'+$ctrl.patient.id+'/allergies/'+allergy.sourceId)">{{allergy.text}}<span class="glyphicon glyphicon-chevron-right"></span> </td>
                     </tr>
                     </tbody>
                 </table>
@@ -61,7 +61,7 @@
                 <table class="table table-striped clickable">
                     <tbody>
                     <tr ng-repeat="medication in $ctrl.medications">
-                        <td ng-click="go('/patients/{{patient.id}}/medications/{{medication.sourceId}}')"> {{ medication.text }}<span class="glyphicon glyphicon-chevron-right"></span></td>
+                        <td ng-click="go('/patients/'+$ctrl.patient.id+'/medications/'+medication.sourceId)"> {{ medication.text }}<span class="glyphicon glyphicon-chevron-right"></span></td>
                     </tr>
                     </tbody>
                 </table>
@@ -78,7 +78,7 @@
                 <table class="table table-striped clickable">
                     <tbody>
                     <tr ng-repeat="contact in $ctrl.contacts">
-                        <td ng-click="go('/patients/{{patient.id}}/contacts/{{contact.sourceId}}')"> {{ contact.text }} <span class="glyphicon glyphicon-chevron-right"></span></td>
+                        <td ng-click="go('/patients/'+$ctrl.patient.id+'/contacts/'+contact.sourceId)"> {{ contact.text }} <span class="glyphicon glyphicon-chevron-right"></span></td>
                     </tr>
                     </tbody>
                 </table>
@@ -95,7 +95,7 @@
                 <table class="table table-striped clickable">
                     <tbody>
                     <tr ng-repeat="transfer in $ctrl.transferofCareComposition">
-                        <td ng-click="go('/patients/{{patient.id}}/transfer-of-care-detail/{{transfer.sourceId}}')">
+                        <td ng-click="go('/patients/'+$ctrl.patient.id+'/transfer-of-care-detail/'+transfer.sourceId)">
                             <span class="glyphicon glyphicon-chevron-right"></span> From {{transfer.from}}
                             <br> to {{transfer.to}}
                             <br> {{transfer.dateOfTransfer | date:'dd-MMM-y' }}

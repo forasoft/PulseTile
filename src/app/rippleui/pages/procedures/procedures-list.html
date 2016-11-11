@@ -2,7 +2,7 @@
 
 <div class="inner-addon left-addon filterInput">
   <i class="fa fa-filter"></i>
-  <input type="text" class="form-control" placeholder="Filter..." ng-model="$ctrl.query" />
+  <input type="text" class="form-control" placeholder="Filter..." ng-model="query" />
 </div>
 
 
@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr dir-paginate="procedure in $ctrl.procedures | filter:search  | itemsPerPage: 9" current-page="$ctrl.currentPage"  ng-click="$ctrl.go(procedure.sourceId,procedure.source)" ng-class="{info: $ctrl.selected(procedure.sourceId)}">
+    <tr dir-paginate="procedure in $ctrl.procedures | filter: $ctrl.search  | itemsPerPage: 9" current-page="$ctrl.currentPage"  ng-click="$ctrl.go(procedure.sourceId,procedure.source)" ng-class="{info: $ctrl.selected(procedure.sourceId)}">
       <td data-th="Name">{{procedure.name}}</td>
       <td data-th="Date" class="dateTime">{{procedure.date}}</td>
       <td data-th="Time">{{procedure.time}}</td>

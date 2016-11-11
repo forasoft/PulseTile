@@ -66,9 +66,9 @@
             <div class="col-md-12">
               <div class="input-group">
                 <span class="input-group-btn">
-              <button type="button" class="btn btn-default btn-sm" ng-click="openDatepicker($event, 'dateOfOnsetOpen')"><i class="fa fa-calendar"></i></button>
-            </span>
-                <input type="text" class="form-control popupinputs" id="dateOfOnset" name="dateOfOnset" ng-model="diagnosis.dateOfOnset" ng-click="openDatePicker($event, 'isOpen')" uib-datepicker-popup="dd-MMM-y" is-open="isOpen" ng-focus="detailsFocused=true" ui-date-format required />
+                  <button type="button" class="btn btn-default btn-sm" ng-click="openDatepicker($event, 'dateOfOnsetOpen')"><i class="fa fa-calendar"></i></button>
+                </span>
+                <input type="text" class="form-control" id="dateOfOnset" name="dateOfOnset" ng-model="diagnosis.dateOfOnset" ng-click="openDatepicker($event, 'dateOfOnsetOpen')" uib-datepicker-popup="dd-MMM-y" is-open="dateOfOnsetOpen" required />
               </div>
               <span class="help-block animate-fade" ng-show="formSubmitted && diagnosisForm.dateOfOnset.$error.required">You must enter a valid date.</span>
             </div>
@@ -76,9 +76,9 @@
           <div class="form-group  form-group-sm mdtLinkGroup">
             <label class="control-label rightColumnLabel">NHS Choices Web Page URL</label>
             <div class="input-group">
-              <div class="input-group-btn">
-                <button type="button" class="btn linkButton btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{protocol}} <span class="caret"></span></button>
-                <ul class="dropdown-menu">
+              <div class="input-group-btn" uib-dropdown>
+                <button type="button" class="btn linkButton btn-default" uib-dropdown-toggle>{{protocol}} <span class="caret"></span></button>
+                <ul class="dropdown-menu" uib-dropdown-menu>
                   <li ng-click="changeProtocol('http')">Http://</li>
                   <li ng-click="changeProtocol('https')">Https://</li>
                 </ul>
@@ -132,7 +132,7 @@
                     <span class="input-group-btn">
                       <button type="button" class="btn btn-default btn-sm" ng-click="dateofSubmittedDatepicker($event, 'dateSubmitted')" disabled><i class="fa fa-calendar"></i></button>
                     </span>
-                    <input type="text" class="form-control" id="datesubmitted" name="datesubmitted" value="{{diagnosis.dateSubmitted}}" ng-model="diagnosis.dateSubmitted" datepicker-popup="dd-MMM-y" required disabled/>
+                    <input type="text" class="form-control" id="datesubmitted" name="datesubmitted" value="{{diagnosis.dateSubmitted}}" ng-model="diagnosis.dateSubmitted" uib-datepicker-popup="dd-MMM-y" required disabled/>
                     <!--<input type="text" class="form-control" id="datesubmitted1" name="datesubmitted" ng-model="diagnosis.dateSubmitted" ng-click="dateofSubmittedDatepicker($event, 'dateSubmitted')" uib-datepicker-popup="dd-MMM-y" is-open="dateSubmitted" required disabled />-->
                   </div>
                   <span class="help-block animate-fade" ng-show="formSubmitted && diagnosisForm.datesubmitted.$error.required">You must enter a valid date.</span>

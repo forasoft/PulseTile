@@ -13,11 +13,11 @@ class AllergiesDetailController {
     $scope.formDisabled = true;
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
-      if (data.allergiesGet.data) {
-        this.allergy = data.allergiesGet.data;
+      if (data.allergies.dataGet) {
+        this.allergy = data.allergies.dataGet;
         usSpinnerService.stop('allergiesDetail-spinner');
       }
       if (data.user.data) {

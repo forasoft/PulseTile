@@ -66,12 +66,18 @@ export default function AdvancedSearch($uibModal, $http, $ngRedux, searchActions
           };
 
           $scope.ok = function (searchForm) {
+            if ($scope.searchParams.nhsNumber) {
+              $scope.searchParams.nhsNumber = $scope.searchParams.nhsNumber.replace(/\s+/g, '');
+            }
+
             if (searchForm.$valid) {
               AdvancedSearch.searchByDetails($scope.searchParams);
 
-              $ngRedux.connect(state => ({
+              let unsubscribe = $ngRedux.connect(state => ({
                 setResult: $scope.getResult(state.search)
               }))(this);
+
+              $scope.$on('$destroy', unsubscribe);
             }
           };
 
@@ -160,7 +166,9 @@ export default function AdvancedSearch($uibModal, $http, $ngRedux, searchActions
   };
 
   var searchByDetails = function (queryParams) {
-    queryParams.dateOfBirth = new Date(queryParams.dateOfBirth.getTime() - (60000 * queryParams.dateOfBirth.getTimezoneOffset()));
+    if (queryParams.dateOfBirth) {
+      queryParams.dateOfBirth = new Date(queryParams.dateOfBirth.getTime() - (60000 * queryParams.dateOfBirth.getTimezoneOffset()));
+    }
     this.searchResult = searchActions.advancedSearch;
     this.searchResult(queryParams);
   };

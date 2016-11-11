@@ -6,6 +6,8 @@ class OrdersListController {
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
     this.currentPage = 1;
+    $scope.query = '';
+
     this.pageChangeHandler = function (newPage) {
       this.currentPage = newPage;
     };
@@ -15,26 +17,26 @@ class OrdersListController {
     }
 
     if ($stateParams.filter) {
-      this.query = $stateParams.filter;
+      $scope.query = $stateParams.filter;
     }
-
-    this.search = function (row) {
-      return (
-        angular.lowercase(row.name).indexOf(angular.lowercase(this.query) || '') !== -1 ||
-        angular.lowercase(row.orderDate).indexOf(angular.lowercase(this.query) || '') !== -1 ||
-        angular.lowercase(row.source).indexOf(angular.lowercase(this.query) || '') !== -1
-      );
-    };
 
     this.create = function () {
       OrdersModal.openModal(this.currentPatient, {title: 'Create Order'}, {}, this.currentUser);
+    };
+
+    this.search = function (row) {
+      return (
+        row.name.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.orderDate.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
+      );
     };
 
     this.go = function (id, source) {
       $state.go('orders-detail', {
         patientId: $stateParams.patientId,
         orderId: id,
-        filter: this.query,
+        filter: $scope.query,
         page: this.currentPage,
         reportType: $stateParams.reportType,
         searchString: $stateParams.searchString,
@@ -46,10 +48,14 @@ class OrdersListController {
     this.setCurrentPageData = function (data) {
       if (data.orders.data) {
         this.orders = data.orders.data;
-        usSpinnerService.stop('patientSummary-spinner');
+
+        for (var i = 0; i < this.orders.length; i++) {
+          this.orders[i].orderDate = moment(this.orders[i].orderDate).format('DD-MMM-YYYY h:mm a');
+        }
       }
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;

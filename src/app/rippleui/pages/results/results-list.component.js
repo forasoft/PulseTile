@@ -7,7 +7,7 @@ class ResultsListController {
 
     this.currentPage = 1;
 
-    this.query = '';
+    $scope.query = '';
 
     this.pageChangeHandler = function (newPage) {
       this.currentPage = newPage;
@@ -31,10 +31,23 @@ class ResultsListController {
       return resultIndex === $stateParams.resultIndex;
     };
 
+    this.search = function (row) {
+      return (
+          row.testName.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+          row.sampleTaken.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+          row.dateCreated.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+          row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
+      );
+    };
 
     this.setCurrentPageData = function (data) {
       if (data.results.data) {
         this.results = data.results.data;
+
+        for (var i = 0; i < this.results.length; i++) {
+          this.results[i].sampleTaken = moment(this.results[i].sampleTaken).format('DD-MMM-YYYY');
+          this.results[i].dateCreated = moment(this.results[i].dateCreated).format('DD-MMM-YYYY');
+        }
         usSpinnerService.stop('resultsSummary-spinner');
       }
     };

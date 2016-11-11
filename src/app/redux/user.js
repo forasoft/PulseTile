@@ -21,6 +21,13 @@ export default function posts(state = INITIAL_STATE, action) {
       });
     },
     [types.USER_LOGIN_ERROR]: (state) => {
+      //part for debugging token
+      // if (payload.error.data && payload.error.data.error && payload.error.data.error.token) {
+      //   document.cookie = "JSESSIONID=" + payload.error.data.error.token;
+      //   if (payload.error.data.error.reload) {
+      //     location.reload();
+      //   }
+      // }
       return Object.assign({}, state, {
         error: payload.error,
         data: userTemp() //testing user

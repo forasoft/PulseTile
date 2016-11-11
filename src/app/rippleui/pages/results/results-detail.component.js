@@ -6,8 +6,8 @@ class ResultsDetailController {
     $scope.formDisabled = true;
 
     this.setCurrentPageData = function (data) {
-      if (data.resultsGet.data) {
-        this.result = data.resultsGet.data;
+      if (data.results.dataGet) {
+        this.result = data.results.dataGet;
         usSpinnerService.stop('resultsDetail-spinner');
       }
     };

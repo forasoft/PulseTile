@@ -2,11 +2,12 @@ let templatePatientsCharts = require('./patients-charts.html');
 
 class PatientsChartsController {
   constructor($scope, $state, $window, patientsActions, $ngRedux, $uibModal, serviceRequests, $timeout, Patient) {
-    serviceRequests.publisher('headerTitle', {title: 'Patients Dashboard'});
+    serviceRequests.publisher('headerTitle', {title: 'Patient Dashboard'});
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-charts'});
     // Selected chart on page load
     this.selectedChart = 'age';
     var prevChartName = '';
+
     var openModal = function (row, chartType) {
       $uibModal.open({
         template: require('app/rippleui/confirmation.html'),
@@ -102,6 +103,10 @@ class PatientsChartsController {
 
     this.goToPatientsList = function () {
       $state.go('patients-list');
+    };
+
+    this.goToLookUp = function () {
+      $state.go('patients-lookup');
     };
 
     this.getPatients = function (patients) {

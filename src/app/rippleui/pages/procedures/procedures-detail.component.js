@@ -3,15 +3,16 @@ let templateProceduresDetail= require('./procedures-detail.html');
 class ProceduresDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, proceduresActions, ProceduresModal, usSpinnerService) {
     this.edit = function () {
+      this.procedure.time = new Date(this.procedure.time);
       ProceduresModal.openModal(this.currentPatient, {title: 'Edit Procedure'}, this.procedure, this.currentUser);
     };
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
       }
-      if (data.proceduresGet.data) {
-        this.procedure = data.proceduresGet.data;
+      if (data.procedures.dataGet) {
+        this.procedure = data.procedures.dataGet;
         usSpinnerService.stop('proceduresDetail-spinner');
       }
       if (data.user.data) {

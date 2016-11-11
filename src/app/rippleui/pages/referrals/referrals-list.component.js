@@ -6,6 +6,7 @@ class ReferralsListController {
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
     this.currentPage = 1;
+    $scope.query = '';
 
     if ($stateParams.filter) {
       this.query = $stateParams.filter;
@@ -21,10 +22,10 @@ class ReferralsListController {
 
     this.search = function (row) {
       return (
-        angular.lowercase(row.dateOfReferral).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.referralFrom).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.referralTo).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
-        angular.lowercase(row.source).indexOf(angular.lowercase($scope.query) || '') !== -1
+        row.dateOfReferral.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.referralFrom.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.referralTo.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
       );
     };
 
@@ -32,7 +33,7 @@ class ReferralsListController {
       $state.go('referrals-detail', {
         patientId: $stateParams.patientId,
         referralId: id,
-        filter: this.query,
+        filter: $scope.query,
         page: this.currentPage,
         reportType: $stateParams.reportType,
         searchString: $stateParams.searchString,
@@ -49,13 +50,13 @@ class ReferralsListController {
     };
 
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
 
       if (data.referrals.data) {
         this.referrals = data.referrals.data;
-        usSpinnerService.stop('patientSummary-spinner');
 
         for (var i = 0; i < this.referrals.length; i++) {
           this.referrals[i].dateOfReferral = moment(this.referrals[i].dateOfReferral).format('DD-MMM-YYYY');

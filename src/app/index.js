@@ -1,13 +1,19 @@
 //libs
 import uiRouter from 'angular-ui-router';
+import ngAnimate from 'angular-animate';
 import uiBootstrap from 'angular-ui-bootstrap';
+import 'bootstrap';
 import ngRedux from 'ng-redux';
 import dirPagination from 'angular-utils-pagination';
 import createLogger from 'redux-logger';
 import 'angular-loading-bar';
+import 'fullcalendar';
+import 'angular-ui-calendar';
 import 'jquery';
 import 'morrisjs';
 import 'angular-spinner';
+import 'jquery-timepicker-jt';
+import 'angular-jquery-timepicker';
 
 //commons
 import reducer from './redux/reducer';
@@ -21,7 +27,16 @@ import MedicationsModal from './rippleui/pages/medications/medications-modal';
 import ContactsModal from './rippleui/pages/contacts/contacts-modal';
 import OrdersModal from './rippleui/pages/orders/orders-modal';
 import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
+import AppointmentsModal from './rippleui/pages/appointments/appointments-modal';
+import AppointmentConfirmModal from './rippleui/pages/appointments/appointments-confirm-modal';
 import ProceduresModal from './rippleui/pages/procedures/procedures-modal';
+import ClinicalnotesModal from './rippleui/pages/clinical-notes/clinicalnotes-modal';
+import HeightAndWeightModal from './rippleui/pages/height-and-weight/heightAndWeight-modal';
+import GenericMdtModal from './rippleui/pages/generic-mdt/generic-mdt-modal';
+import ImageModal from './rippleui/pages/dicom/image-modal';
+import EolcareplansModal from './rippleui/pages/care-plans/eolcareplans-modal';
+import TransferOfCareModal from './rippleui/pages/transfer-of-care/transfer-of-care-modal';
+import LookupModal from './rippleui/pages/patients-lookup/patients-lookup-modal'
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -33,7 +48,7 @@ import PatientsSidebarComponent from './rippleui/pages/patients-detail/patients-
 import PatientsBannerComponent from './rippleui/pages/patients-detail/patients-banner.component';
 import SearchComponent from './rippleui/search/search.component';
 import ReportChartComponent from './rippleui/search/report-chart.component';
-import DiagnosesListComponent from './rippleui/pages/diagnoses/diagnosis-list.component';
+import DiagnosesListComponent from './rippleui/pages/diagnoses/diagnoses-list.component';
 import DiagnosesDetailComponent from './rippleui/pages/diagnoses/diagnoses-detail.component';
 import AllergiesListComponent from './rippleui/pages/allergies/allergies-list.component';
 import AllergiesDetailComponent from './rippleui/pages/allergies/allergies-detail.component';
@@ -51,7 +66,22 @@ import ResultsListComponent from './rippleui/pages/results/results-list.componen
 import ResultsDetailComponent from './rippleui/pages/results/results-detail.component';
 import DocumentsListComponent from './rippleui/pages/documents/documents-list.component';
 import DocumentsDetailComponent from './rippleui/pages/documents/documents-detail.component';
+import ClinicalnotesListComponent from './rippleui/pages/clinical-notes/clinicalnotes-list.component';
+import ClinicalnotesDetailComponent from './rippleui/pages/clinical-notes/clinicalnotes-detail.component';
+import AppointmentsListComponent from './rippleui/pages/appointments/appointments-list.component';
+import AppointmentsDetailComponent from './rippleui/pages/appointments/appointments-detail.component';
+import HeightAndWeightListComponent from './rippleui/pages/height-and-weight/heightAndWeight-list.component';
+import HeightAndWeightDetailComponent from './rippleui/pages/height-and-weight/heightAndWeight-detail.component';
+import GenericMdtListComponent from './rippleui/pages/generic-mdt/generic-mdt-list.component';
+import GenericMdtDetailComponent from './rippleui/pages/generic-mdt/generic-mdt-detail.component';
+import ImageListComponent from './rippleui/pages/dicom/image-list.component';
+import ImageDetailComponent from './rippleui/pages/dicom/image-detail.component';
+import EolcareplansListComponent from './rippleui/pages/care-plans/eolcareplans-list.component';
+import EolcareplansDetailComponent from './rippleui/pages/care-plans/eolcareplans-detail.component';
+import TransferOfCareListComponent from './rippleui/pages/transfer-of-care/transfer-of-care-list.component';
+import TransferOfCareDetailComponent from './rippleui/pages/transfer-of-care/transfer-of-care-detail.component';
 import MainComponent from './helpers/main.component';
+import HomeSidebarComponent from './rippleui/pages/patients-lookup/home-sidebar.component';
 
 import ServiceRequests from './services/serviceRequests.js';
 
@@ -61,12 +91,15 @@ import 'app/scss/core.scss';
 const app = angular
     .module('app', [
         uiRouter,
+        ngAnimate,
         uiBootstrap,
         ngRedux,
         actions,
         dirPagination,
-        'angular-loading-bar',
-        'angularSpinner'
+        'angularSpinner',
+        'ui.calendar',
+        'ui.timepicker',
+        'angular-loading-bar'
     ])
     .factory('httpMiddleware', httpMiddleware)
     .factory('AdvancedSearch', AdvancedSearch)
@@ -77,6 +110,15 @@ const app = angular
     .factory('OrdersModal', OrdersModal)
     .factory('ReferralsModal', ReferralsModal)
     .factory('ProceduresModal', ProceduresModal)
+    .factory('AppointmentsModal', AppointmentsModal)
+    .factory('AppointmentConfirmModal', AppointmentConfirmModal)
+    .factory('ClinicalnotesModal', ClinicalnotesModal)
+    .factory('HeightAndWeightModal', HeightAndWeightModal)
+    .factory('GenericMdtModal', GenericMdtModal)
+    .factory('ImageModal', ImageModal)
+    .factory('EolcareplansModal', EolcareplansModal)
+    .factory('TransferOfCareModal', TransferOfCareModal)
+    .factory('LookupModal', LookupModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
@@ -104,7 +146,22 @@ const app = angular
     .component('resultsDetailComponent', ResultsDetailComponent)
     .component('documentsListComponent', DocumentsListComponent)
     .component('documentsDetailComponent', DocumentsDetailComponent)
+    .component('appointmentsListComponent', AppointmentsListComponent)
+    .component('appointmentsDetailComponent', AppointmentsDetailComponent)
+    .component('clinicalnotesListComponent', ClinicalnotesListComponent)
+    .component('clinicalnotesDetailComponent', ClinicalnotesDetailComponent)
+    .component('heightAndWeightListComponent', HeightAndWeightListComponent)
+    .component('heightAndWeightDetailComponent', HeightAndWeightDetailComponent)
+    .component('genericMdtListComponent', GenericMdtListComponent)
+    .component('genericMdtDetailComponent', GenericMdtDetailComponent)
+    .component('imageListComponent', ImageListComponent)
+    .component('imageDetailComponent', ImageDetailComponent)
+    .component('eolcareplansListComponent', EolcareplansListComponent)
+    .component('eolcareplansDetailComponent', EolcareplansDetailComponent)
+    .component('transferOfCareListComponent', TransferOfCareListComponent)
+    .component('transferOfCareDetailComponent', TransferOfCareDetailComponent)
     .component('mainComponent', MainComponent)
+    .component('homeSidebarComponent', HomeSidebarComponent)
     .component('searchComponent', SearchComponent)
     .component('reportChartComponent', ReportChartComponent)
     .config(routeConfig)
@@ -146,6 +203,12 @@ const app = angular
             }
 
             return number.slice(0,3) + " " + number.slice(3,6) + " " + number.slice(6);
+        };
+    })
+    .filter('formatMoment', function() {
+        return function(date) {
+            var m = moment(date);
+            return m.format('h:mma');
         };
     });
 console.log('app start');

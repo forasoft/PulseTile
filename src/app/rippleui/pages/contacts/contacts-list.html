@@ -15,10 +15,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr dir-paginate="contact in $ctrl.contacts | filter: $ctrl.query | itemsPerPage: 9" current-page="$ctrl.currentPage" ng-click="$ctrl.go(contact.sourceId, this)" ng-class="{info: selected(contact.sourceId)}">
+    <tr dir-paginate="contact in $ctrl.contacts | filter: $ctrl.query | itemsPerPage: 9" current-page="$ctrl.currentPage" ng-click="$ctrl.go(contact.sourceId, this)" ng-class="{info: $ctrl.selected(contact.sourceId)}">
       <td data-th="Name">{{ contact.name }}</td>
       <td data-th="Relationship">{{ contact.relationship }}</td>
-      <td data-th="Next of Kin"><i class="fa fa-fw fa-check" ng-if="$ctrl.contact.nextOfKin"></i></td>
+      <td data-th="Next of Kin"><i class="fa fa-fw fa-check" ng-if="contact.nextOfKin"></i></td>
       <td data-th="Source">{{ contact.source }}</td>
     </tr>
 

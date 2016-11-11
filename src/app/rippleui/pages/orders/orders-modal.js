@@ -11,7 +11,7 @@ export default function OrdersModal($uibModal, ordersActions, $stateParams, $ngR
         size: 'lg',
         controller: function ($scope, $state, $uibModalInstance) {
           $scope.currentUser = currentUser;
-          $scope.order = order;
+          $scope.order = angular.copy(order);
           $scope.patient = patient;
           $scope.modal = modal;
           $scope.order.author = 'Dr John Smith';
@@ -23,15 +23,21 @@ export default function OrdersModal($uibModal, ordersActions, $stateParams, $ngR
           }
 
           $scope.setCurrentPageData = function (data) {
-            if (data.ordersSuggestion.data) {
-              $scope.suggestions = data.ordersSuggestion.data;
+            if (data.orders.dataSuggestion) {
+              $scope.suggestions = data.orders.dataSuggestion;
+            }
+
+            if (data.orders.dataCreate !== null) {
+              $uibModalInstance.close(order);
+              $scope.ordersLoad($stateParams.patientId);
+              $state.go('orders-list', {
+                patientId: $scope.patient.id,
+                filter: $scope.query,
+                page: $scope.currentPage
+              });
             }
           };
 
-          let unsubscribe = $ngRedux.connect(state => ({
-            getStoreData: $scope.setCurrentPageData(state)
-          }))($scope);
-          
           $scope.$on('$destroy', unsubscribe);
           $scope.ordersLoad = ordersActions.suggestion;
           $scope.ordersLoad();
@@ -55,17 +61,11 @@ export default function OrdersModal($uibModal, ordersActions, $stateParams, $ngR
             if (contactForm.$valid) {
               $uibModalInstance.close(contact);
               $scope.ordersCreate($scope.patient.id, $scope.chosenOrders);
-              $state.go('orders-list', {
-                patientId: $scope.patient.id,
-                filter: $scope.query,
-                page: $scope.currentPage
-              }, {
-                reload: true
-              });
             }
           };
 
           $scope.cancel = function () {
+            $scope.order = angular.copy(order);
             $uibModalInstance.dismiss('cancel');
           };
 
@@ -134,6 +134,11 @@ export default function OrdersModal($uibModal, ordersActions, $stateParams, $ngR
             $scope[name] = true;
           };
 
+          let unsubscribe = $ngRedux.connect(state => ({
+            getStoreData: $scope.setCurrentPageData(state)
+          }))($scope);
+
+          $scope.ordersLoad = ordersActions.all;
           $scope.ordersCreate = ordersActions.create;
         }
       });

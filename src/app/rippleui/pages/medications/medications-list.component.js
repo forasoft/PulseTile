@@ -37,12 +37,12 @@ class MedicationsListController {
 
     };
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.medication.data) {
         this.medications = data.medication.data;
-        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
@@ -55,8 +55,8 @@ class MedicationsListController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.allergiesLoad = medicationsActions.all;
-    this.allergiesLoad($stateParams.patientId);
+    this.medicationsLoad = medicationsActions.all;
+    this.medicationsLoad($stateParams.patientId);
   }
 }
 

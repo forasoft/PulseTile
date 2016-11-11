@@ -27,17 +27,21 @@ class AllergiesListController {
       });
     };
 
+    this.selected = function ($index) {
+      return $index === $stateParams.allergyIndex;
+    };
+
     this.create = function () {
       AllergiesModal.openModal(this.currentPatient, {title: 'Create Allergy'}, {}, this.currentUser);
 
     };
     this.setCurrentPageData = function (data) {
-      if (data.patients.data) {
-        this.currentPatient = data.patients.data;
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.allergies.data) {
         this.allergies = data.allergies.data;
-        usSpinnerService.stop('patientSummary-spinner');
       }
       if (data.user.data) {
         this.currentUser = data.user.data;
