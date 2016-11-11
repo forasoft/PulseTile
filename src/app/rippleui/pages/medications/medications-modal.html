@@ -100,10 +100,9 @@
                                 <label for="startDateTime" class="control-label col-md-12">Start Date Time</label>
                                 <div class="col-md-12">
                                     <div class="input-group">
-                    <span class="input-group-btn">
-              <button type="button" class="btn btn-default btn-sm" ng-click="openDatepicker($event, 'startDateTimeOpen')"><i class="fa fa-calendar"></i></button>
-            </span>
-
+                                        <span class="input-group-btn">
+                                          <button type="button" class="btn btn-default btn-sm" ng-click="openDatepicker($event, 'startDateTime')"><i class="fa fa-calendar"></i></button>
+                                        </span>
                                         <input type="text" class="form-control" id="startDateTime" name="startDateTime" ng-model="medication.startDate" ng-click="openDatepicker($event, 'startDateTime')" uib-datepicker-popup="yyyy-MM-dd" is-open="startDateTime" required />
                                     </div>
                                     <span class="help-block animate-fade" ng-show="formSubmitted && medicationForm.startDateTime.$error.required">You must enter a valid date.</span>
@@ -115,9 +114,9 @@
                                 <label for="time" class="control-label col-md-12">Time</label>
                                 <div class="col-md-12">
                                     <div class="input-group">
-                    <span class="input-group-btn">
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-clock-o"></i></button>
-            </span>
+                                        <span class="input-group-btn">
+                                          <button type="button" class="btn btn-default btn-sm"><i class="fa fa-clock-o"></i></button>
+                                        </span>
                                         <input class="form-control" id="time" name="time" ui-timepicker ng-model="medication.startTime" required/>
                                     </div>
                                 </div>

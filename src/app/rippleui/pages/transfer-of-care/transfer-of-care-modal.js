@@ -1,4 +1,4 @@
-export default function TransferOfCareModal($uibModal, $window, transferOfCareActions, $ngRedux, allergiesActions, diagnosesActions, medicationsActions, contactsActions) {
+export default function TransferOfCareModal($uibModal, $state, $stateParams, $window, transferOfCareActions, $ngRedux, allergiesActions, diagnosesActions, medicationsActions, contactsActions) {
   var isModalClosed = true;
 
   var openModal = function (patient, modal, transferOfCareCompositions, currentUser) {
@@ -58,6 +58,11 @@ export default function TransferOfCareModal($uibModal, $window, transferOfCareAc
             }
             if (data.user.data) {
               $scope.currentUser = data.user.data;
+            }
+            if (data.transferOfCare.dataCreate !== null) {
+              setTimeout(function () {
+                confirmTransferOfCareSelections();
+              }, 1000);
             }
           };
 
@@ -220,7 +225,6 @@ export default function TransferOfCareModal($uibModal, $window, transferOfCareAc
     }
 
     modalInstance.result.then(function(res) {
-      confirmTransferOfCareSelections();
       isModalClosed = true;
     }, function(err) {
       isModalClosed = true;
@@ -243,7 +247,7 @@ export default function TransferOfCareModal($uibModal, $window, transferOfCareAc
             searchString: $stateParams.searchString,
             queryType: $stateParams.queryType
           });
-        }, 2000);
+        }, 1000);
       });
     }
 
@@ -254,4 +258,4 @@ export default function TransferOfCareModal($uibModal, $window, transferOfCareAc
     openModal: openModal
   };
 }
-TransferOfCareModal.$inject = ['$uibModal', '$window','transferOfCareActions', '$ngRedux', 'allergiesActions', 'diagnosesActions', 'medicationsActions', 'contactsActions'];
+TransferOfCareModal.$inject = ['$uibModal', '$state', '$stateParams', '$window','transferOfCareActions', '$ngRedux', 'allergiesActions', 'diagnosesActions', 'medicationsActions', 'contactsActions'];
