@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   dataUpdate: null
 };
 
-export default function allergies(state = INITIAL_STATE, action) {
+export default function medications(state = INITIAL_STATE, action) {
   const {payload} = action;
 
   var actions = {
