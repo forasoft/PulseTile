@@ -26,8 +26,8 @@ class ClinicalnotesDetailController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.clientnotesLoad = clinicalnotesActions.get;
-    this.clientnotesLoad($stateParams.patientId, $stateParams.clinicalNoteIndex, $stateParams.source);
+    this.clinicalnotesLoad = clinicalnotesActions.get;
+    this.clinicalnotesLoad($stateParams.patientId, $stateParams.clinicalNoteIndex, $stateParams.source);
   }
 }
 
