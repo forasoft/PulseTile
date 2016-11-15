@@ -1,3 +1,9 @@
+var path = require('path');
+var webpackConfig = require('./webpack.config');
+var entry = webpackConfig.entry; //accessing [0] because there are mutli entry points for webpack hot loader
+var preprocessors = {};
+preprocessors[entry] = ['webpack'];
+
 module.exports = config => {
   config.set({
     basePath: '',
@@ -8,23 +14,27 @@ module.exports = config => {
       'node_modules/angular-ui-router/release/angular-ui-router.js',
       'node_modules/babel-polyfill/dist/polyfill.js',
       'node_modules/sinon/pkg/sinon.js',
-      'bower_components/angular-mocks/angular-mocks.js',
+      'node_modules/angular-mocks/angular-mocks.js',
+      // './src/app/index.js',
       'karma.entry.js',
       // './src/app/rippleui/pages/**/*.js',
-      // './src/app/index.js',
-      './src/test/spec/**/*.js'
+      // './src/test/spec/**/*spec.js'
     ],
 
     preprocessors: {
       'karma.entry.js': ['webpack', 'sourcemap']
     },
 
-    webpack: require('./webpack.config'),
+    webpack: webpackConfig,
+
+    browserify: {
+      debug: true,
+      transform: ['babelify', 'stringify']
+    },
 
     webpackServer: {
       noInfo: true
     },
-
     autoWatch: true,
 
     browsers: ['Chrome'],

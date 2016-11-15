@@ -47,7 +47,8 @@ const config = {
       {test: /\.(woff|woff2)/, loader: 'url?prefix=fonts/&limit=10000&mimetype=application/font-woff&name=assets/fonts/[name].[ext]'},
       {test: /\.(ttf|eot|svg)/, loader: 'file?name=assets/fonts/[name].[ext]'},
       {test: /\.(jpg|png|jpeg|gif)$/, loader: 'url-loader?limit=25000/&name=assets/images/[name].[ext]' },
-      {test: /\.css$/, loader: "style-loader!css-loader!"}
+      {test: /\.css$/, loader: "style-loader!css-loader!"},
+      {test: /\.scss$/, loaders: ["style", "css", "sass"]}
       /*{test: /\.woff(\?.*)?$/,loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'},
       {test: /\.woff2(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2' },
       {test: /\.otf(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype' },
