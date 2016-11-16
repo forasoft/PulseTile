@@ -1,6 +1,6 @@
 'use strict';
-import AllergiesDetailComponent from '../../../app/rippleui/pages/allergies/allergies-detail.component.js';
-import '../../../app/index';
+import AllergiesDetailComponent from '../../../../app/rippleui/pages/allergies/allergies-detail.component.js';
+import '../../../../app/index';
 
 describe('Allergies Module', function() {
 

@@ -1,6 +1,6 @@
 'use strict';
-import AppointmentsListComponent from '../../../app/rippleui/pages/appointments/appointments-list.component.js';
-import '../../../app/index';
+import AppointmentsListComponent from '../../../../app/rippleui/pages/appointments/appointments-list.component.js';
+import '../../../../app/index';
 
 describe('Appointments List', function() {
 
