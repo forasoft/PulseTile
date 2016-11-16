@@ -34,10 +34,10 @@ describe('Allergies Module', function() {
     // scope.$digest();
   }));
 
-  it('Find component', function() {
+  it('Query is empty', function() {
     expect(ctrl.query).toBe('');
   });
-  it('Component container', function() {
+  it('Component template', function() {
     expect(template).toBeDefined();
   });
 });
