@@ -37,7 +37,7 @@ describe('Allergies Module', function() {
   it('Query is empty', function() {
     expect(ctrl.query).toBe('');
   });
-  it('Component template', function() {
+  it('Template exist', function() {
     expect(template).toBeDefined();
   });
 });
