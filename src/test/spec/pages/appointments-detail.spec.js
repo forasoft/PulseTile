@@ -2,11 +2,9 @@
 import AppointmentsDetailComponent from '../../../app/rippleui/pages/appointments/appointments-detail.component.js';
 import '../../../app/index';
 
-describe('Allergies Module', function() {
+describe('Appointments Details', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
-  // $scope, $state, $stateParams, $ngRedux, appointmentsActions, AppointmentsModal, usSpinnerService
-
   let scope, ctrl, controller, template, stateParams, state, ngRedux, appointmentsActions, AppointmentsModal, usSpinnerService;
 
   beforeEach(inject(($injector, $controller, _$state_, _$stateParams_, _$ngRedux_, _appointmentsActions_, _AppointmentsModal_, _usSpinnerService_) => {

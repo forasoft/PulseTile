@@ -2,7 +2,7 @@
 import AppointmentsListComponent from '../../../app/rippleui/pages/appointments/appointments-list.component.js';
 import '../../../app/index';
 
-describe('Allergies Module', function() {
+describe('Appointments List', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
 
