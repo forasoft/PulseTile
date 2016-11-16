@@ -1,9 +1,3 @@
-var path = require('path');
-var webpackConfig = require('./webpack.config');
-var entry = webpackConfig.entry; //accessing [0] because there are mutli entry points for webpack hot loader
-var preprocessors = {};
-preprocessors[entry] = ['webpack'];
-
 module.exports = config => {
   config.set({
     basePath: '',
@@ -25,7 +19,7 @@ module.exports = config => {
       'karma.entry.js': ['webpack', 'sourcemap']
     },
 
-    webpack: webpackConfig,
+    webpack: require('./webpack.config'),
 
     browserify: {
       debug: true,
@@ -40,24 +34,51 @@ module.exports = config => {
     browsers: ['Chrome'],
 
     junitReporter: {
-      outputFile: 'test_out/unit.xml',
+      outputFile: 'tests/units.html',
       suite: 'unit'
-    }
+    },
 
-    // reporters: ['dots'],
-    //
-    // logLevel: config.LOG_INFO,
-    //
-    // autoWatch: true,
-    //
-    // singleRun: false,
-    //
-    // customLaunchers: {
-    //   TRAVIS_CHROME: {
-    //     base: 'Chrome',
-    //     flags: ['--no-sandbox']
-    //   }
-    // },
+    reporters: [ 'html', 'spec'],
+
+    htmlReporter: {
+      outputFile: 'tests/units.html',
+
+      // Optional
+      pageTitle: 'Unit Tests',
+      subPageTitle: 'A sample project description',
+      groupSuites: true,
+      useCompactStyle: true,
+      useLegacyStyle: true
+    },
+
+    specReporter: {
+      maxLogLines: 5,         // limit number of lines logged per test
+      suppressErrorSummary: true,  // do not print error summary
+      suppressFailed: false,  // do not print information about failed tests
+      suppressPassed: false,  // do not print information about passed tests
+      suppressSkipped: true,  // do not print information about skipped tests
+      showSpecTiming: false // print the time elapsed for each spec
+  },
+
+    customDebugFile: 'tests/units.html',
+
+    logLevel: config.LOG_INFO,
+
+    // plugins: [
+    //   'karma-htmlfile-reporter',
+    //   'karma-phantomjs-launcher',
+    //   'karma-chrome-launcher',
+    //   'karma-jasmine','webpack', 'sourcemap'
+    // ],
+
+    singleRun: false,
+
+    customLaunchers: {
+      TRAVIS_CHROME: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
     //
     // browsers: process.env.TRAVIS ? ['TRAVIS_CHROME'] : ['Chrome']
   });
