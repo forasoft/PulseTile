@@ -1,11 +1,10 @@
 'use strict';
-import GenericMdtDetailComponent from '../../../../app/rippleui/pages/diagnoses/diagnoses-detail.component.js';
+import GenericMdtDetailComponent from '../../../../app/rippleui/pages/generic-mdt/generic-mdt-detail.component.js';
 import '../../../../app/index';
 
 describe('GenericMdt Details', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
-  // $scope, $state, $stateParams, $ngRedux, genericmdtActions, GenericMdtModal, usSpinnerService
 
   let scope, ctrl, controller, template, stateParams, state, ngRedux, genericmdtActions, GenericMdtModal, usSpinnerService;
 
