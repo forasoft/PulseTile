@@ -60,7 +60,7 @@ Plugins are extentions to currenly built 'core' (with general modules, that can 
 #### Installation of the new Plugins to the application:
 1. Run the following command within your command line: npm/bower install moduleName (Module name here stands for github url for external plugin)
 `bower i https://github.com/RippleOSI/Org-Ripple-UI-Plugins.git`
-*We are downloading the module from external repository*
+*We are downloading the module from external repository to root application directory*
 
 2. To copy files from node_modules/bower_components use: webpack.config.js --> CopyWebpackPlugin, change path in it's options { from: '', to: '' }
 *Here we are copying module files from source folder to destination folder*
@@ -99,11 +99,13 @@ export const ALLERGIES_UPDATE_ERROR = 'ALLERGIES_UPDATE_ERROR';
 ```
 
 7. Add components to src/app/index.js and src/app/index.route.js
-   * To add functionality also the index.js and index.route.js files should be updated also. Within the index.js the component addition in general looks like this:
+   * You should register the component with Angular. To add functionality also the index.js and index.route.js files should be updated also. Within the index.js the component addition in general looks like this:
    ```
   import ClinicalnotesListComponent from './rippleui/pages/clinical-notes/clinicalnotes-list.component';
+  
+  const app = angular.module('app', []).component('clinicalnotesListComponent', ClinicalnotesListComponent)
    ```
-   where PatientBannerComponent is basically the AngularJS view name, and /rippleosi/pages/patient-details/ is the path to necessary for plugin files (listing and functionality of files for an example module are listed below);
+   where ClinicalnotesListComponent is basically the AngularJS view name, and /rippleosi/pages/clinical-notes/ is the path to necessary for plugin files (listing and functionality of files for an example module are listed below);
    * index.route.js is used for routing, so the application will know where to look for plugin's pages. For example, this is general view of a single plugin's code for route file:
    ```
     .state('clinicalNotes', {
