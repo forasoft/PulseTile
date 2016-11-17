@@ -68,19 +68,20 @@ Plugins are extentions to currenly built 'core' (with general modules, that can 
 3. `npm run copy`
 *Running the copy command itself*
 
-4. Add module-actions.js to src/app/actions/index.js
+##### Now we should edit the source files:
+* Add module-actions.js to src/app/actions/index.js
 *here we are adding the module's actions, which are added to use them within redux architecture. The action import should look like this:*
 ```
 import clinicalnotesActions from '../rippleui/pages/clinical-notes/clinicalnotes-actions';
 ```
 
-5. Add module-reducer-name.js to src/app/redux/reducer.js
+* Add module-reducer-name.js to src/app/redux/reducer.js
 *reducer.js is redux-related file, where we add the module to redux architecture. In general, the module addition within the named file looks like this:*
 ```
 import clinicalnotes from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-all';
 ```
 
-6. Add actions types from module/ActionTypes.js to src/app/constants/ActionTypes.js
+* Add actions types from module/ActionTypes.js to src/app/constants/ActionTypes.js
 *The constants file contains global constants to use within an application, in general the addition to already existing 'core' constant file looks like this:*
 ```
 export const ALLERGIES = 'ALLERGIES';
@@ -100,12 +101,12 @@ export const ALLERGIES_UPDATE_SUCCESS = 'ALLERGIES_UPDATE_SUCCESS';
 export const ALLERGIES_UPDATE_ERROR = 'ALLERGIES_UPDATE_ERROR';
 ```
 
-7. Add components to src/app/index.js and src/app/index.route.js
+* Add components to src/app/index.js and src/app/index.route.js
    * To add functionality also the index.js and index.route.js files should be updated also. Within the index.js the component addition in general looks like this:
    ```
   import ClinicalnotesListComponent from './rippleui/pages/clinical-notes/clinicalnotes-list.component';
    ```
-   where PatientBannerComponent is basically the AngularJS view name, and /rippleosi/pages/patient-details/ is the path to necessary for plugin files (listing and functionality of files for an example module are listed below);
+     where PatientBannerComponent is basically the AngularJS view name, and /rippleosi/pages/patient-details/ is the path to necessary for plugin files (listing and functionality of files for an example module are listed below);
    * index.route.js is used for routing, so the application will know where to look for plugin's pages. For example, this is general view of a single plugin's code for route file:
    ```
     .state('clinicalNotes', {
