@@ -30,12 +30,8 @@ import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
 import AppointmentsModal from './rippleui/pages/appointments/appointments-modal';
 import AppointmentConfirmModal from './rippleui/pages/appointments/appointments-confirm-modal';
 import ProceduresModal from './rippleui/pages/procedures/procedures-modal';
-import ClinicalnotesModal from './rippleui/pages/clinical-notes/clinicalnotes-modal';
-import HeightAndWeightModal from './rippleui/pages/height-and-weight/heightAndWeight-modal';
-import GenericMdtModal from './rippleui/pages/generic-mdt/generic-mdt-modal';
 import ImageModal from './rippleui/pages/dicom/image-modal';
 import EolcareplansModal from './rippleui/pages/care-plans/eolcareplans-modal';
-import TransferOfCareModal from './rippleui/pages/transfer-of-care/transfer-of-care-modal';
 import LookupModal from './rippleui/pages/patients-lookup/patients-lookup-modal'
 
 //components 
@@ -66,20 +62,12 @@ import ResultsListComponent from './rippleui/pages/results/results-list.componen
 import ResultsDetailComponent from './rippleui/pages/results/results-detail.component';
 import DocumentsListComponent from './rippleui/pages/documents/documents-list.component';
 import DocumentsDetailComponent from './rippleui/pages/documents/documents-detail.component';
-import ClinicalnotesListComponent from './rippleui/pages/clinical-notes/clinicalnotes-list.component';
-import ClinicalnotesDetailComponent from './rippleui/pages/clinical-notes/clinicalnotes-detail.component';
 import AppointmentsListComponent from './rippleui/pages/appointments/appointments-list.component';
 import AppointmentsDetailComponent from './rippleui/pages/appointments/appointments-detail.component';
-import HeightAndWeightListComponent from './rippleui/pages/height-and-weight/heightAndWeight-list.component';
-import HeightAndWeightDetailComponent from './rippleui/pages/height-and-weight/heightAndWeight-detail.component';
-import GenericMdtListComponent from './rippleui/pages/generic-mdt/generic-mdt-list.component';
-import GenericMdtDetailComponent from './rippleui/pages/generic-mdt/generic-mdt-detail.component';
 import ImageListComponent from './rippleui/pages/dicom/image-list.component';
 import ImageDetailComponent from './rippleui/pages/dicom/image-detail.component';
 import EolcareplansListComponent from './rippleui/pages/care-plans/eolcareplans-list.component';
 import EolcareplansDetailComponent from './rippleui/pages/care-plans/eolcareplans-detail.component';
-import TransferOfCareListComponent from './rippleui/pages/transfer-of-care/transfer-of-care-list.component';
-import TransferOfCareDetailComponent from './rippleui/pages/transfer-of-care/transfer-of-care-detail.component';
 import MainComponent from './helpers/main.component';
 import HomeSidebarComponent from './rippleui/pages/patients-lookup/home-sidebar.component';
 
@@ -112,12 +100,8 @@ const app = angular
     .factory('ProceduresModal', ProceduresModal)
     .factory('AppointmentsModal', AppointmentsModal)
     .factory('AppointmentConfirmModal', AppointmentConfirmModal)
-    .factory('ClinicalnotesModal', ClinicalnotesModal)
-    .factory('HeightAndWeightModal', HeightAndWeightModal)
-    .factory('GenericMdtModal', GenericMdtModal)
     .factory('ImageModal', ImageModal)
     .factory('EolcareplansModal', EolcareplansModal)
-    .factory('TransferOfCareModal', TransferOfCareModal)
     .factory('LookupModal', LookupModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
@@ -148,18 +132,10 @@ const app = angular
     .component('documentsDetailComponent', DocumentsDetailComponent)
     .component('appointmentsListComponent', AppointmentsListComponent)
     .component('appointmentsDetailComponent', AppointmentsDetailComponent)
-    .component('clinicalnotesListComponent', ClinicalnotesListComponent)
-    .component('clinicalnotesDetailComponent', ClinicalnotesDetailComponent)
-    .component('heightAndWeightListComponent', HeightAndWeightListComponent)
-    .component('heightAndWeightDetailComponent', HeightAndWeightDetailComponent)
-    .component('genericMdtListComponent', GenericMdtListComponent)
-    .component('genericMdtDetailComponent', GenericMdtDetailComponent)
     .component('imageListComponent', ImageListComponent)
     .component('imageDetailComponent', ImageDetailComponent)
     .component('eolcareplansListComponent', EolcareplansListComponent)
     .component('eolcareplansDetailComponent', EolcareplansDetailComponent)
-    .component('transferOfCareListComponent', TransferOfCareListComponent)
-    .component('transferOfCareDetailComponent', TransferOfCareDetailComponent)
     .component('mainComponent', MainComponent)
     .component('homeSidebarComponent', HomeSidebarComponent)
     .component('searchComponent', SearchComponent)
