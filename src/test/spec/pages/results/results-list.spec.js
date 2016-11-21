@@ -1,34 +1,33 @@
 'use strict';
-import ProceduresListComponent from '../../../../app/rippleui/pages/procedures/procedures-list.component.js';
+import ResultsListComponent from '../../../../app/rippleui/pages/results/results-list.component.js';
 import '../../../../app/index';
 
-describe('Procedures List', function() {
+describe('Results List', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
+  // $scope, $state, $stateParams, $ngRedux, resultsActions, serviceRequests, usSpinnerService
 
-  let scope, ctrl, controller, template, stateParams, state, ngRedux, proceduresActions, serviceRequests, ProceduresModal, usSpinnerService;
+  let scope, ctrl, controller, template, stateParams, state, ngRedux, resultsActions, serviceRequests, usSpinnerService;
 
-  beforeEach(inject(($injector, $controller, _$state_, _$stateParams_, _$ngRedux_, _proceduresActions_, _serviceRequests_, _ProceduresModal_, _usSpinnerService_) => {
+  beforeEach(inject(($injector, $controller, _$state_, _$stateParams_, _$ngRedux_, _resultsActions_, _serviceRequests_, _usSpinnerService_) => {
     controller = $controller;
     scope = $injector.get('$rootScope').$new();
     state = _$state_;
     serviceRequests = _serviceRequests_;
     ngRedux = _$ngRedux_;
     stateParams = _$stateParams_;
-    proceduresActions = _proceduresActions_;
-    ProceduresModal = _ProceduresModal_;
+    resultsActions = _resultsActions_;
     usSpinnerService = _usSpinnerService_;
 
-    template = ProceduresListComponent.template;
+    template = ResultsListComponent.template;
 
-    ctrl = controller(ProceduresListComponent.controller, {
+    ctrl = controller(ResultsListComponent.controller, {
       $scope: scope,
       $state: state,
       $stateParams: stateParams,
       $ngRedux: ngRedux,
-      proceduresActions: proceduresActions,
+      resultsActions: resultsActions,
       serviceRequests: serviceRequests,
-      ProceduresModal: ProceduresModal,
       usSpinnerService: usSpinnerService
     });
     // scope.$digest();

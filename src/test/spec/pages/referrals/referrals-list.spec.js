@@ -34,7 +34,7 @@ describe('Referrals List', function() {
     // scope.$digest();
   }));
 
-  it('currentPage', function() {
+  it('Query', function() {
     expect(scope.query).toBe('');
   });
   it('Template exist', function() {

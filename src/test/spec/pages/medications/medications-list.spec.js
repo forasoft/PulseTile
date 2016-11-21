@@ -34,7 +34,7 @@ describe('Medications List', function() {
     // scope.$digest();
   }));
 
-  it('currentPage', function() {
+  it('Query', function() {
     expect(ctrl.query).toBe('');
   });
   it('Template exist', function() {
