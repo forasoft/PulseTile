@@ -52,16 +52,15 @@ class HeaderController {
     });
     
     serviceRequests.initialise().then(function (result){
-
-      if (result.token) {
+      if (result.data.token) {
         // reset the JSESSIONID cookie with the new incoming cookie
 
-        document.cookie = "JSESSIONID=" + result.token;
+        document.cookie = "JSESSIONID=" + result.data.token;
         location.reload();
         return;
       }
 
-      if (result.redirectTo === 'auth0') {
+      if (result.data.redirectTo === 'auth0') {
         console.log('running in UAT mode, so now login via auth0');
 
         auth0.login({
@@ -71,7 +70,7 @@ class HeaderController {
 
       }
 
-      if (result.ok) {
+      if (result.data.ok) {
         console.log('Cookie was for a valid session, so fetch the simulated user');
         $scope.login();
       }
