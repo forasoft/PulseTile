@@ -40,9 +40,38 @@ class HeaderController {
     $scope.$on('$destroy', unsubscribe);
 
     $scope.login = userActions.login;
+
+
+// configure Auth0
+
+    var auth0 = new Auth0({
+      domain:       'rippleosi.eu.auth0.com',
+      clientID:     'Ghi91Wk1PERQjxIN5ili6rssnl4em8In',
+      callbackURL:  'http://139.59.187.100/auth0/token',
+      responseType: 'code'
+    });
     
     serviceRequests.initialise().then(function (result){
-      if (result.statusText === "OK") {
+
+      if (result.token) {
+        // reset the JSESSIONID cookie with the new incoming cookie
+
+        document.cookie = "JSESSIONID=" + result.token;
+        location.reload();
+        return;
+      }
+
+      if (result.redirectTo === 'auth0') {
+        console.log('running in UAT mode, so now login via auth0');
+
+        auth0.login({
+          connections: ['Username-Password-Authentication', 'google-oauth2', 'twitter'],
+        });
+        return;
+
+      }
+
+      if (result.ok) {
         console.log('Cookie was for a valid session, so fetch the simulated user');
         $scope.login();
       }
