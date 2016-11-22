@@ -21,8 +21,8 @@ const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 9000;
 
 // const API_URL = process.env.API_URL || 'http://localhost:19191';
-const API_URL =  'http://138.68.134.7';
-// const API_URL =  'http://139.59.187.100';
+// const API_URL =  'http://138.68.134.7';
+const API_URL =  'http://139.59.187.100';
 
 
 //=========================================================

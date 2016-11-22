@@ -24,8 +24,15 @@ class HeaderController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.login = userActions.login;
-    this.login();
+    $scope.login = userActions.login;
+    
+    serviceRequests.initialise().then(function (result){
+      if (result.statusText === "OK") {
+        console.log('Cookie was for a valid session, so fetch the simulated user');
+        $scope.login();
+      }
+
+    });
 
     $rootScope.searchExpression = '';
     $rootScope.searchMode = false;

@@ -42,6 +42,15 @@ class ServiceRequests {
             return uid;
     
         };
+
+        this.initialise = function() {
+            var options = {
+                method: 'GET',
+                url: '/api/initialise',
+                dataType: 'json'
+            };
+            return $http(options);
+        };
     }
 }
 
