@@ -41,17 +41,10 @@ class HeaderController {
 
     $scope.login = userActions.login;
 
-
-// configure Auth0
-
-    var auth0 = new Auth0({
-      domain:       'rippleosi.eu.auth0.com',
-      clientID:     'Ghi91Wk1PERQjxIN5ili6rssnl4em8In',
-      callbackURL:  'http://139.59.187.100/auth0/token',
-      responseType: 'code'
-    });
+    var auth0;
     
     serviceRequests.initialise().then(function (result){
+      console.log('initialise auth0', result);
       if (result.data.token) {
         // reset the JSESSIONID cookie with the new incoming cookie
 
@@ -63,8 +56,9 @@ class HeaderController {
       if (result.data.redirectTo === 'auth0') {
         console.log('running in UAT mode, so now login via auth0');
 
+        if (!auth0) auth0 = new Auth0(result.data.config);
         auth0.login({
-          connections: ['Username-Password-Authentication', 'google-oauth2', 'twitter'],
+          connections: result.data.connections
         });
         return;
 
