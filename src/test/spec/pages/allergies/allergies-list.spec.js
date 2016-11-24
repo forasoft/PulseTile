@@ -1,12 +1,25 @@
 'use strict';
 import AllergiesListComponent from '../../../../app/rippleui/pages/allergies/allergies-list.component.js';
+import '../../../../app/actions/index';
 import '../../../../app/index';
 
 describe('Allergies Module', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
+  beforeEach(angular.mock.module('app.actions'));
 
-  let scope, ctrl, controller, template, stateParams, state, ngRedux, allergiesActions, serviceRequests, AllergiesModal, usSpinnerService;
+  let scope, 
+      ctrl, 
+      controller, 
+      template, 
+      stateParams, 
+      state, 
+      ngRedux, 
+      allergiesActions, 
+      serviceRequests, 
+      AllergiesModal, 
+      usSpinnerService,
+      actions;
 
   beforeEach(inject(($injector, $controller, _$state_, _$stateParams_, _$ngRedux_, _allergiesActions_, _serviceRequests_, _AllergiesModal_, _usSpinnerService_) => {
     controller = $controller;
@@ -31,6 +44,7 @@ describe('Allergies Module', function() {
       AllergiesModal: AllergiesModal,
       usSpinnerService: usSpinnerService
     });
+    actions = $injector.get('allergiesActions');    
     // scope.$digest();
   }));
 
@@ -39,5 +53,8 @@ describe('Allergies Module', function() {
   });
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it('Include allergiesActions in index actions file', function() {
+    expect(actions).toBeDefined();
   });
 });
