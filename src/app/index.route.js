@@ -282,6 +282,74 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<eolcareplans-list-component></eolcareplans-list-component>'},
           detail: {template: '<eolcareplans-detail-component></eolcareplans-detail-component>'}
         }
+      })
+      .state('clinicalNotes', {
+        url: '/patients/{patientId:int}/clinicalNotes?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<clinicalnotes-list-component></clinicalnotes-list-component>'}
+        }
+      })
+      .state('clinicalNotes-detail', {
+        url: '/patients/{patientId:int}/clinicalNotes/{clinicalNoteIndex}?filter&page&reportType&searchString&queryType&source',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<clinicalnotes-list-component></clinicalnotes-list-component>'},
+          detail: {template: '<clinicalnotes-detail-component></clinicalnotes-detail-component>'}
+        }
+      })
+      .state('heightAndWeights', {
+        url: '/patients/{patientId:int}/heightAndWeights?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<height-and-weight-list-component></height-and-weight-list-component>'}
+        }
+      })
+      .state('heightAndWeights-detail', {
+        url: '/patients/{patientId:int}/heightAndWeights/{heightAndWeightIndex}?filter&page&reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<height-and-weight-list-component></height-and-weight-list-component>'},
+          detail: {template: '<height-and-weight-detail-component></height-and-weight-detail-component>'}
+        }
+      })
+      .state('cancerMdt', {
+        url: '/patients/{patientId:int}/generic-mdt-list?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<generic-mdt-list-component></generic-mdt-list-component>'}
+        }
+      })
+      .state('cancerMdt-detail', {
+        url: '/patients/{patientId:int}/generic-mdt-detail/{cancerMdtIndex}?filter&page&reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<generic-mdt-list-component></generic-mdt-list-component>'},
+          detail: {template: '<generic-mdt-detail-component></generic-mdt-detail-component>'}
+        }
+      })
+      .state('transferOfCare', {
+        url: '/patients/{patientId:int}/transfer-of-care-list?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<transfer-of-care-list-component></transfer-of-care-list-component>'}
+        }
+      })
+      .state('transferOfCare-detail', {
+        url: '/patients/{patientId:int}/transfer-of-care-detail/{transferOfCareIndex}?filter&page&reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<transfer-of-care--list-component></transfer-of-care--list-component>'},
+          detail: {template: '<transfer-of-care--detail-component></transfer-of-care--detail-component>'}
+        }
       });
 }
 

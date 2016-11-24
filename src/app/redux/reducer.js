@@ -39,6 +39,10 @@ import series from '../rippleui/pages/dicom/series-reducer-all';
 import instanceGet from '../rippleui/pages/dicom/instance-reducer-get';
 import instanceIdGet from '../rippleui/pages/dicom/instance-id-reducer-get';
 import eolcareplans from '../rippleui/pages/care-plans/eolcareplans-reducer-all';
+import heightAndWeight from '../rippleui/pages/height-and-weight/heightAndWeight-reducer-all';
+import clinicalnotes from '../rippleui/pages/clinical-notes/clinicalnotes-reducer-all';
+import cancermdt from '../rippleui/pages/generic-mdt/generic-mdt-reducer-all';
+import transferOfCare from '../rippleui/pages/transfer-of-care/transfer-of-care-reducer-all';
 
 export default combineReducers({
   patients,
@@ -64,5 +68,9 @@ export default combineReducers({
   series,
   instanceGet,
   instanceIdGet,
-  eolcareplans
+  eolcareplans,
+  heightAndWeight,
+  clinicalnotes,
+  cancermdt,
+  transferOfCare
 });

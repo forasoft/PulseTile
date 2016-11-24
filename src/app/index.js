@@ -47,7 +47,11 @@ import AppointmentConfirmModal from './rippleui/pages/appointments/appointments-
 import ProceduresModal from './rippleui/pages/procedures/procedures-modal';
 import ImageModal from './rippleui/pages/dicom/image-modal';
 import EolcareplansModal from './rippleui/pages/care-plans/eolcareplans-modal';
-import LookupModal from './rippleui/pages/patients-lookup/patients-lookup-modal'
+import LookupModal from './rippleui/pages/patients-lookup/patients-lookup-modal';
+import ClinicalnotesModal from './rippleui/pages/clinical-notes/clinicalnotes-modal';
+import HeightAndWeightModal from './rippleui/pages/height-and-weight/heightAndWeight-modal';
+import GenericMdtModal from './rippleui/pages/generic-mdt/generic-mdt-modal';
+import TransferOfCareModal from './rippleui/pages/transfer-of-care/transfer-of-care-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -85,6 +89,14 @@ import EolcareplansListComponent from './rippleui/pages/care-plans/eolcareplans-
 import EolcareplansDetailComponent from './rippleui/pages/care-plans/eolcareplans-detail.component';
 import MainComponent from './helpers/main.component';
 import HomeSidebarComponent from './rippleui/pages/patients-lookup/home-sidebar.component';
+import ClinicalnotesListComponent from './rippleui/pages/clinical-notes/clinicalnotes-list.component';
+import ClinicalnotesDetailComponent from './rippleui/pages/clinical-notes/clinicalnotes-detail.component';
+import HeightAndWeightListComponent from './rippleui/pages/height-and-weight/heightAndWeight-list.component';
+import HeightAndWeightDetailComponent from './rippleui/pages/height-and-weight/heightAndWeight-detail.component';
+import GenericMdtListComponent from './rippleui/pages/generic-mdt/generic-mdt-list.component';
+import GenericMdtDetailComponent from './rippleui/pages/generic-mdt/generic-mdt-detail.component';
+import TransferOfCareListComponent from './rippleui/pages/transfer-of-care/transfer-of-care-list.component';
+import TransferOfCareDetailComponent from './rippleui/pages/transfer-of-care/transfer-of-care-detail.component';
 
 import ServiceRequests from './services/serviceRequests.js';
 
@@ -119,6 +131,10 @@ const app = angular
     .factory('EolcareplansModal', EolcareplansModal)
     .factory('LookupModal', LookupModal)
     .factory('Patient', Patient)
+    .factory('ClinicalnotesModal', ClinicalnotesModal)
+    .factory('HeightAndWeightModal', HeightAndWeightModal)
+    .factory('GenericMdtModal', GenericMdtModal)
+    .factory('TransferOfCareModal', TransferOfCareModal)
     .service('serviceRequests', ServiceRequests)
     .component('patientsComponent', PatientsComponent)
     .component('headerComponent', HeaderComponent)
@@ -155,6 +171,14 @@ const app = angular
     .component('homeSidebarComponent', HomeSidebarComponent)
     .component('searchComponent', SearchComponent)
     .component('reportChartComponent', ReportChartComponent)
+    .component('clinicalnotesListComponent', ClinicalnotesListComponent)
+    .component('clinicalnotesDetailComponent', ClinicalnotesDetailComponent)
+    .component('heightAndWeightListComponent', HeightAndWeightListComponent)
+    .component('heightAndWeightDetailComponent', HeightAndWeightDetailComponent)
+    .component('genericMdtListComponent', GenericMdtListComponent)
+    .component('genericMdtDetailComponent', GenericMdtDetailComponent)
+    .component('transferOfCareListComponent', TransferOfCareListComponent)
+    .component('transferOfCareDetailComponent', TransferOfCareDetailComponent)
     .config(routeConfig)
     .config(function (paginationTemplateProvider) {
         paginationTemplateProvider.setString(require('./rippleui/pagination/dirPagination.tpl.html'));
