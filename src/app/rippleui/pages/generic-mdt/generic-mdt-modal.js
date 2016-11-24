@@ -1,7 +1,7 @@
 export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, $stateParams) {
   var isModalClosed = true;
 
-  var openModal = function (patient, modal, cancerMdt, currentUser) {
+  var openModal = function (patient, modal, genericMdt, currentUser) {
     if (isModalClosed) {
       isModalClosed = false;
 
@@ -17,9 +17,9 @@ export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, 
           };
 
           var setCurrentPageData = function (data) {
-            if (data.cancermdt.dataCreate !== null) {
-              $uibModalInstance.close(cancerMdt);
-              $state.go('cancerMdt', {
+            if (data.genericmdt.dataCreate !== null) {
+              $uibModalInstance.close(genericMdt);
+              $state.go('genericMdt', {
                 patientId: $scope.patient.id,
                 filter: $scope.query,
                 page: $scope.currentPage,
@@ -28,11 +28,11 @@ export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, 
                 queryType: $stateParams.queryType
               });
             }
-            if (data.cancermdt.dataUpdate !== null) {
-              $uibModalInstance.close(cancerMdt);
-              $state.go('cancerMdt-detail', {
+            if (data.genericmdt.dataUpdate !== null) {
+              $uibModalInstance.close(genericMdt);
+              $state.go('genericMdt-detail', {
                 patientId: $scope.patient.id,
-                cancerMdtIndex: updateId(cancerMdt.sourceId),
+                genericMdtIndex: updateId(genericMdt.sourceId),
                 page: $scope.currentPage,
                 reportType: $stateParams.reportType,
                 searchString: $stateParams.searchString,
@@ -41,15 +41,15 @@ export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, 
             }
           };
 
-          $scope.cancerMdt = angular.copy(cancerMdt);
+          $scope.genericMdt = angular.copy(genericMdt);
           $scope.protocol = 'http://';
           $scope.isEdit = false;
 
           if (modal.title === 'Edit MDT') {
             $scope.isEdit = true;
-            $scope.cancerMdt.timeOfMeeting = new Date($scope.cancerMdt.timeOfMeeting);
-            $scope.cancerMdt.dateOfMeeting = new Date($scope.cancerMdt.dateOfMeeting);
-            $scope.cancerMdt.dateOfRequest = new Date($scope.cancerMdt.dateOfRequest);
+            $scope.genericMdt.timeOfMeeting = new Date($scope.genericMdt.timeOfMeeting);
+            $scope.genericMdt.dateOfMeeting = new Date($scope.genericMdt.dateOfMeeting);
+            $scope.genericMdt.dateOfRequest = new Date($scope.genericMdt.dateOfRequest);
           }
 
           $scope.patient = patient;
@@ -98,34 +98,34 @@ export default function GenericMdtModal($uibModal, genericmdtActions, $ngRedux, 
             return form[errorToCheckFor].$dirty && form[errorToCheckFor].$valid;
           };
 
-          $scope.ok = function (cancerMdtForm, cancerMdt) {
+          $scope.ok = function (genericMdtForm, genericMdt) {
             $scope.formSubmitted = true;
-            if (cancerMdtForm.$valid) {
+            if (genericMdtForm.$valid) {
 
               if ($scope.isEdit) {
-                cancerMdt.dateOfMeeting = new Date(cancerMdt.dateOfMeeting);
-                cancerMdt.dateOfRequest = new Date(cancerMdt.dateOfRequest);
+                genericMdt.dateOfMeeting = new Date(genericMdt.dateOfMeeting);
+                genericMdt.dateOfRequest = new Date(genericMdt.dateOfRequest);
 
-                $scope.genericmdtUpdate($scope.patient.id, cancerMdt);
+                $scope.genericmdtUpdate($scope.patient.id, genericMdt);
 
               } else {
-                cancerMdt.dateOfMeeting = new Date(cancerMdt.dateOfMeeting);
-                cancerMdt.dateOfMeeting.setMinutes(cancerMdt.dateOfMeeting.getMinutes() - cancerMdt.dateOfMeeting.getTimezoneOffset());
+                genericMdt.dateOfMeeting = new Date(genericMdt.dateOfMeeting);
+                genericMdt.dateOfMeeting.setMinutes(genericMdt.dateOfMeeting.getMinutes() - genericMdt.dateOfMeeting.getTimezoneOffset());
 
-                cancerMdt.dateOfRequest = new Date(cancerMdt.dateOfRequest);
-                cancerMdt.dateOfRequest.setMinutes(cancerMdt.dateOfRequest.getMinutes() - cancerMdt.dateOfRequest.getTimezoneOffset());
+                genericMdt.dateOfRequest = new Date(genericMdt.dateOfRequest);
+                genericMdt.dateOfRequest.setMinutes(genericMdt.dateOfRequest.getMinutes() - genericMdt.dateOfRequest.getTimezoneOffset());
 
-                cancerMdt.compositionId = '';
-                cancerMdt.source = 'openehr';
+                genericMdt.compositionId = '';
+                genericMdt.source = 'openehr';
 
-                $scope.genericmdtCreate($scope.patient.id, cancerMdt);
+                $scope.genericmdtCreate($scope.patient.id, genericMdt);
               }
 
             }
           };
 
           $scope.cancel = function () {
-            $scope.cancerMdt = angular.copy(cancerMdt);
+            $scope.genericMdt = angular.copy(genericMdt);
             $uibModalInstance.dismiss('cancel');
           };
 

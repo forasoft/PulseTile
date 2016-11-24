@@ -3,9 +3,9 @@ import * as types from '../../../constants/ActionTypes';
 
 export function all(patientId) {
   return {
-    types: [types.CANCERMDT, types.CANCERMDT_SUCCESS, types.CANCERMDT_ERROR],
+    types: [types.GENERICMDT, types.GENERICMDT_SUCCESS, types.GENERICMDT_ERROR],
 
-    shouldCallAPI: (state) => !state.cancermdt.response,
+    shouldCallAPI: (state) => !state.genericmdt.response,
 
     config: {
       method: 'get',
@@ -19,9 +19,9 @@ export function all(patientId) {
 }
 export function get(patientId, compositionId) {
   return {
-    types: [types.CANCERMDT_GET, types.CANCERMDT_GET_SUCCESS, types.CANCERMDT_GET_ERROR],
+    types: [types.GENERICMDT_GET, types.GENERICMDT_GET_SUCCESS, types.GENERICMDT_GET_ERROR],
 
-    shouldCallAPI: (state) => !state.cancermdt.response,
+    shouldCallAPI: (state) => !state.genericmdt.response,
 
     config: {
       method: 'get',
@@ -35,9 +35,9 @@ export function get(patientId, compositionId) {
 }
 export function create(patientId, composition) {
   return {
-    types: [types.CANCERMDT_CREATE, types.CANCERMDT_CREATE_SUCCESS, types.CANCERMDT_CREATE_ERROR],
+    types: [types.GENERICMDT_CREATE, types.GENERICMDT_CREATE_SUCCESS, types.GENERICMDT_CREATE_ERROR],
 
-    shouldCallAPI: (state) => !state.cancermdt.response,
+    shouldCallAPI: (state) => !state.genericmdt.response,
 
     config: {
       method: 'post',
@@ -52,9 +52,9 @@ export function create(patientId, composition) {
 }
 export function update(patientId, composition) {
   return {
-    types: [types.CANCERMDT_UPDATE, types.CANCERMDT_UPDATE_SUCCESS, types.CANCERMDT_UPDATE_ERROR],
+    types: [types.GENERICMDT_UPDATE, types.GENERICMDT_UPDATE_SUCCESS, types.GENERICMDT_UPDATE_ERROR],
 
-    shouldCallAPI: (state) => !state.cancermdt.response,
+    shouldCallAPI: (state) => !state.genericmdt.response,
 
     config: {
       method: 'put',

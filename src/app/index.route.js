@@ -317,7 +317,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           detail: {template: '<height-and-weight-detail-component></height-and-weight-detail-component>'}
         }
       })
-      .state('cancerMdt', {
+      .state('genericMdt', {
         url: '/patients/{patientId:int}/generic-mdt-list?reportType&searchString&queryType',
         views: {
           banner: {template: '<patients-banner-component></patients-banner-component>'},
@@ -325,8 +325,8 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<generic-mdt-list-component></generic-mdt-list-component>'}
         }
       })
-      .state('cancerMdt-detail', {
-        url: '/patients/{patientId:int}/generic-mdt-detail/{cancerMdtIndex}?filter&page&reportType&searchString&queryType',
+      .state('genericMdt-detail', {
+        url: '/patients/{patientId:int}/generic-mdt-detail/{genericMdtIndex}?filter&page&reportType&searchString&queryType',
         views: {
           banner: {template: '<patients-banner-component></patients-banner-component>'},
           actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},

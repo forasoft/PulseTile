@@ -30,9 +30,9 @@ class GenericMdtListController {
     }
 
     this.go = function (id) {
-      $state.go('cancerMdt-detail', {
+      $state.go('genericMdt-detail', {
         patientId: $stateParams.patientId,
-        cancerMdtIndex: id,
+        genericMdtIndex: id,
         filter: vm.query,
         page: this.currentPage,
         reportType: $stateParams.reportType,
@@ -41,8 +41,8 @@ class GenericMdtListController {
       });
     };
 
-    this.selected = function (cancerMdtIndex) {
-      return cancerMdtIndex === $stateParams.cancerMdtIndex;
+    this.selected = function (genericMdtIndex) {
+      return genericMdtIndex === $stateParams.genericMdtIndex;
     };
 
     this.create = function () {
@@ -54,12 +54,12 @@ class GenericMdtListController {
         this.currentPatient = data.patientsGet.data;
         usSpinnerService.stop('patientSummary-spinner');
       }
-      if (data.cancermdt.data) {
-        this.cancerMdtComposition = data.cancermdt.data;
+      if (data.genericmdt.data) {
+        this.genericMdtComposition = data.genericmdt.data;
 
-        for (var i = 0; i < this.cancerMdtComposition.length; i++) {
-          this.cancerMdtComposition[i].dateOfRequest = moment(this.cancerMdtComposition[i].dateOfRequest).format('DD-MMM-YYYY');
-          this.cancerMdtComposition[i].dateOfMeeting = moment(this.cancerMdtComposition[i].dateOfMeeting).format('DD-MMM-YYYY');
+        for (var i = 0; i < this.genericMdtComposition.length; i++) {
+          this.genericMdtComposition[i].dateOfRequest = moment(this.genericMdtComposition[i].dateOfRequest).format('DD-MMM-YYYY');
+          this.genericMdtComposition[i].dateOfMeeting = moment(this.genericMdtComposition[i].dateOfMeeting).format('DD-MMM-YYYY');
         }
       }
       if (data.user.data) {
@@ -73,8 +73,8 @@ class GenericMdtListController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.cancermdtLoad = genericmdtActions.all;
-    this.cancermdtLoad($stateParams.patientId);
+    this.genericmdtLoad = genericmdtActions.all;
+    this.genericmdtLoad($stateParams.patientId);
   }
 }
 

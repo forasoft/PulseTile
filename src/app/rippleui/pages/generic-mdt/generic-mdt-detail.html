@@ -8,9 +8,9 @@
         <label class="control-label col-md-3">Service / Team:</label>
         <div class="col-md-9">
           <div class="form-control-static">
-            <span ng-if="!$ctrl.cancerMdt.serviceTeam.length">No Multidisciplinary Team</span>
-            <ul ng-if="$ctrl.cancerMdt.serviceTeam">
-              <li>{{$ctrl.cancerMdt.serviceTeam}}</li>
+            <span ng-if="!$ctrl.genericMdt.serviceTeam.length">No Multidisciplinary Team</span>
+            <ul ng-if="$ctrl.genericMdt.serviceTeam">
+              <li>{{$ctrl.genericMdt.serviceTeam}}</li>
             </ul>
           </div>
         </div>
@@ -20,9 +20,9 @@
         <label class="control-label col-md-3">Date of Request:</label>
         <div class="col-md-9">
           <div class="form-control-static">
-            <span ng-if="!$ctrl.cancerMdt.dateOfRequest">No MDT date</span>
-            <ul ng-if="$ctrl.cancerMdt.dateOfRequest">
-              <li>{{$ctrl.cancerMdt.dateOfRequest | date:'dd-MMM-y' }}</li>
+            <span ng-if="!$ctrl.genericMdt.dateOfRequest">No MDT date</span>
+            <ul ng-if="$ctrl.genericMdt.dateOfRequest">
+              <li>{{$ctrl.genericMdt.dateOfRequest | date:'dd-MMM-y' }}</li>
             </ul>
           </div>
         </div>
@@ -32,9 +32,9 @@
         <label class="control-label col-md-3">Date of Meeting:</label>
         <div class="col-md-9">
           <div class="form-control-static">
-            <span ng-if="!$ctrl.cancerMdt.dateOfMeeting">Not Available</span>
-            <ul ng-if="$ctrl.cancerMdt.dateOfMeeting">
-              <li>{{$ctrl.cancerMdt.dateOfMeeting | date:'dd-MMM-y' }}</li>
+            <span ng-if="!$ctrl.genericMdt.dateOfMeeting">Not Available</span>
+            <ul ng-if="$ctrl.genericMdt.dateOfMeeting">
+              <li>{{$ctrl.genericMdt.dateOfMeeting | date:'dd-MMM-y' }}</li>
             </ul>
           </div>
         </div>
@@ -59,9 +59,9 @@
         <label class="control-label col-md-12">Question For MDT:</label>
         <div class="col-md-12">
           <div class="form-control-static">
-            <span ng-if="!$ctrl.cancerMdt.question">No Question For MDT</span>
-            <ul ng-if="$ctrl.cancerMdt.question">
-              <li>{{$ctrl.cancerMdt.question}}</li>
+            <span ng-if="!$ctrl.genericMdt.question">No Question For MDT</span>
+            <ul ng-if="$ctrl.genericMdt.question">
+              <li>{{$ctrl.genericMdt.question}}</li>
             </ul>
           </div>
         </div>
@@ -72,9 +72,9 @@
         <label class="control-label col-md-12">Meeting Discussion:</label>
         <div class="col-md-12">
           <div class="form-control-static">
-            <span ng-if="!$ctrl.cancerMdt.notes.length">No Meeting Discussion</span>
-            <ul ng-if="$ctrl.cancerMdt.notes">
-              <li>{{$ctrl.cancerMdt.notes}}</li>
+            <span ng-if="!$ctrl.genericMdt.notes.length">No Meeting Discussion</span>
+            <ul ng-if="$ctrl.genericMdt.notes">
+              <li>{{$ctrl.genericMdt.notes}}</li>
             </ul>
           </div>
         </div>
@@ -83,7 +83,7 @@
       <div class="form-group">
         <label class="control-label col-md-3">Source:</label>
         <div class="col-md-9">
-          <div class="form-control-static">{{ $ctrl.cancerMdt.source }}</div>
+          <div class="form-control-static">{{ $ctrl.genericMdt.source }}</div>
         </div>
       </div>
     </div>

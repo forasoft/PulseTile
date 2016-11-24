@@ -3,16 +3,16 @@ let templateGenericMdtDetail= require('./generic-mdt-detail.html');
 class GenericMdtDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, genericmdtActions, GenericMdtModal, usSpinnerService) {
     this.edit = function () {
-      this.cancerMdt.timeOfMeeting = new Date(this.cancerMdt.timeOfMeeting);
-      GenericMdtModal.openModal(this.currentPatient, {title: 'Edit MDT'}, this.cancerMdt, this.currentUser);
+      this.genericMdt.timeOfMeeting = new Date(this.genericMdt.timeOfMeeting);
+      GenericMdtModal.openModal(this.currentPatient, {title: 'Edit MDT'}, this.genericMdt, this.currentUser);
     };
 
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
       }
-      if (data.cancermdt.dataGet) {
-        this.cancerMdt = data.cancermdt.dataGet;
+      if (data.genericmdt.dataGet) {
+        this.genericMdt = data.genericmdt.dataGet;
         usSpinnerService.stop('mdtDetail-spinner');
       }
       if (data.user.data) {
@@ -26,8 +26,8 @@ class GenericMdtDetailController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.cancermdtLoad = genericmdtActions.get;
-    this.cancermdtLoad($stateParams.patientId, $stateParams.cancerMdtIndex);
+    this.genericmdtLoad = genericmdtActions.get;
+    this.genericmdtLoad($stateParams.patientId, $stateParams.genericMdtIndex);
   }
 }
 

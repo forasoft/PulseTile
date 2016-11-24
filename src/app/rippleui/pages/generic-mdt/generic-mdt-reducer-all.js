@@ -13,13 +13,13 @@ export default function genericmdt(state = INITIAL_STATE, action) {
   const {payload} = action;
 
   var actions = {
-    [types.CANCERMDT]: (state) => {
+    [types.GENERICMDT]: (state) => {
       return Object.assign({}, state, {
         isFetching: true,
         error: false
       });
     },
-    [types.CANCERMDT_SUCCESS]: (state) => {
+    [types.GENERICMDT_SUCCESS]: (state) => {
       state.dataCreate = null;
       state.dataUpdate = null;
       return Object.assign({}, state, {
@@ -27,61 +27,61 @@ export default function genericmdt(state = INITIAL_STATE, action) {
         data: payload.response
       });
     },
-    [types.CANCERMDT_ERROR]: (state) => {
+    [types.GENERICMDT_ERROR]: (state) => {
       return Object.assign({}, state, {
         isFetching: false,
         error: payload.error
       });
     },
-    [types.CANCERMDT_GET]: (state) => {
+    [types.GENERICMDT_GET]: (state) => {
       return Object.assign({}, state, {
         isFetching: true,
         error: false
       });
     },
-    [types.CANCERMDT_GET_SUCCESS]: (state) => {
+    [types.GENERICMDT_GET_SUCCESS]: (state) => {
       return Object.assign({}, state, {
         isFetching: false,
         dataGet: payload.response
       });
     },
-    [types.CANCERMDT_GET_ERROR]: (state) => {
+    [types.GENERICMDT_GET_ERROR]: (state) => {
       return Object.assign({}, state, {
         isFetching: false,
         error: payload.error
       });
     },
-    [types.CANCERMDT_CREATE]: (state) => {
+    [types.GENERICMDT_CREATE]: (state) => {
       return Object.assign({}, state, {
         isFetching: true,
         error: false
       });
     },
-    [types.CANCERMDT_CREATE_SUCCESS]: (state) => {
+    [types.GENERICMDT_CREATE_SUCCESS]: (state) => {
       return Object.assign({}, state, {
         isFetching: false,
         dataCreate: payload.response
       });
     },
-    [types.CANCERMDT_CREATE_ERROR]: (state) => {
+    [types.GENERICMDT_CREATE_ERROR]: (state) => {
       return Object.assign({}, state, {
         isFetching: false,
         error: payload.error
       });
     },
-    [types.CANCERMDT_UPDATE]: (state) => {
+    [types.GENERICMDT_UPDATE]: (state) => {
       return Object.assign({}, state, {
         isFetching: true,
         error: false
       });
     },
-    [types.CANCERMDT_UPDATE_SUCCESS]: (state) => {
+    [types.GENERICMDT_UPDATE_SUCCESS]: (state) => {
       return Object.assign({}, state, {
         isFetching: false,
         dataUpdate: payload.response
       });
     },
-    [types.CANCERMDT_UPDATE_ERROR]: (state) => {
+    [types.GENERICMDT_UPDATE_ERROR]: (state) => {
       return Object.assign({}, state, {
         isFetching: false,
         error: payload.error
