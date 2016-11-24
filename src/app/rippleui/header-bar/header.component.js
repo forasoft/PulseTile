@@ -69,6 +69,9 @@ class HeaderController {
         $scope.login();
       }
 
+    }, function (error){
+      //for dev and testing
+      $scope.login();
     });
 
     $rootScope.searchExpression = '';
