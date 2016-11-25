@@ -2,7 +2,7 @@
 import AllergiesDetailComponent from '../../../../app/rippleui/pages/allergies/allergies-detail.component.js';
 import '../../../../app/index';
 
-describe('Allergies Module', function() {
+describe('Allergies Detail', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
 
@@ -30,6 +30,16 @@ describe('Allergies Module', function() {
     });
   }));
 
+  beforeEach(function() {
+    spyOn(ctrl, 'edit');
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'allergiesLoad');
+
+    ctrl.edit();
+    ctrl.allergiesLoad();
+    ctrl.setCurrentPageData();
+  });
+
   it('formDisabled', function() {
     expect(scope.formDisabled).toBe(true);
   });
@@ -38,5 +48,14 @@ describe('Allergies Module', function() {
   });
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it("edit was called", function() {
+    expect(ctrl.edit).toHaveBeenCalled();
+  });
+  it("allergiesLoad was called", function() {
+    expect(ctrl.allergiesLoad).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
   });
 });

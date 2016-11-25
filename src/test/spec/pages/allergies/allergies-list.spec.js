@@ -1,12 +1,11 @@
 'use strict';
 import AllergiesListComponent from '../../../../app/rippleui/pages/allergies/allergies-list.component.js';
 import '../../../../app/actions/index';
-import combineReducers from '../../../../app/redux/reducer';
 import * as types from '../../../../app/constants/ActionTypes';
 import allergies from '../../../../app/rippleui/pages/allergies/allergies-reducer-all.js';
 import '../../../../app/index';
 
-describe('Allergies Module', function() {
+describe('Allergies List', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
   beforeEach(angular.mock.module('app.actions'));
@@ -58,7 +57,19 @@ describe('Allergies Module', function() {
 
     spyOn(fakeCall, 'callAllergies');
 
+    spyOn(ctrl, 'pageChangeHandler');
+    spyOn(ctrl, 'go');
+    spyOn(ctrl, 'selected');
+    spyOn(ctrl, 'create');
+    spyOn(ctrl, 'setCurrentPageData');
+
     fakeCall.callAllergies({}, types.ALLERGIES);
+
+    ctrl.pageChangeHandler();
+    ctrl.go();
+    ctrl.selected();
+    ctrl.create();
+    ctrl.setCurrentPageData();
   });
 
   it('Query is empty', function() {
@@ -70,7 +81,22 @@ describe('Allergies Module', function() {
   it('Include allergiesActions in index actions file', function() {
     expect(actions).toBeDefined();
   });
-  it("tracks that the spy was called", function() {   
+  it("Allergies reducer was called", function() {
     expect(fakeCall.callAllergies).toHaveBeenCalled();
+  });
+  it("pageChangeHandler was called", function() {
+    expect(ctrl.pageChangeHandler).toHaveBeenCalled();
+  });
+  it("route go was called", function() {
+    expect(ctrl.go).toHaveBeenCalled();
+  });
+  it("selected was called", function() {
+    expect(ctrl.selected).toHaveBeenCalled();
+  });
+  it("create was called", function() {
+    expect(ctrl.create).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
   });
 });

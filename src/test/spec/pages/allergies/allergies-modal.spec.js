@@ -14,14 +14,21 @@ describe('Allergies Modal', function() {
     uibModal = _$uibModal_;
     ngRedux = _$ngRedux_;
     stateParams = _$stateParams_;
-    allergiesActions = _allergiesActions_;
-    AllergiesModal = $injector.get('AllergiesModal');
+    allergiesActions = _allergiesActions_; 
   }));
 
-  it('Allergies Modal component exist', function() {
-    expect(AllergiesModal).toBeDefined();
+  beforeEach(function() {
+    AllergiesModal = scope;
+    
+    spyOn(AllergiesModal, 'openModal');
+
+    AllergiesModal.openModal();
   });
-  it('Include modal in index app file', function() {
-    expect(AllergiesModal).toBeDefined();
+
+  it('Allergies Modal component exist', function() {
+    expect(scope).toBeDefined();
+  });
+  it('openModal was called', function() {
+    expect(AllergiesModal.openModal).toHaveBeenCalled();
   });
 });
