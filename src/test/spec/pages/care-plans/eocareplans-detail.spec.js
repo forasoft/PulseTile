@@ -41,6 +41,16 @@ describe('Care Plans Detail', function() {
     // scope.$digest();
   }));
 
+  beforeEach(function() {
+    spyOn(ctrl, 'edit');
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'eolcareplansLoad');
+
+    ctrl.edit();
+    ctrl.setCurrentPageData();
+    ctrl.eolcareplansLoad();
+  });
+
   it('Modal exist', function() {
     expect(EolcareplansModal).toBeDefined();
   });
@@ -49,5 +59,14 @@ describe('Care Plans Detail', function() {
   });
   it('Controller exist', function() {
     expect(ctrl).toBeDefined();
+  });
+  it("edit was called", function() {
+    expect(ctrl.edit).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
+  });
+  it("eolcareplansLoad was called", function() {
+    expect(ctrl.eolcareplansLoad).toHaveBeenCalled();
   });
 });
