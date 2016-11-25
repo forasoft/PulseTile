@@ -83,10 +83,10 @@ class AppointmentsListController {
 
     this.search = function (row) {
       return (
-        row.dateOfAppointment.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
-        row.timeOfAppointment.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
-        row.serviceTeam.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
-        row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
+        row.dateOfAppointment && row.dateOfAppointment.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.timeOfAppointment && row.timeOfAppointment.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.serviceTeam && row.serviceTeam.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+        row.source && row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
       );
     };
 
