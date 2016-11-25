@@ -1,6 +1,9 @@
 'use strict';
 import AllergiesListComponent from '../../../../app/rippleui/pages/allergies/allergies-list.component.js';
 import '../../../../app/actions/index';
+import combineReducers from '../../../../app/redux/reducer';
+import * as types from '../../../../app/constants/ActionTypes';
+import allergies from '../../../../app/rippleui/pages/allergies/allergies-reducer-all.js';
 import '../../../../app/index';
 
 describe('Allergies Module', function() {
@@ -19,7 +22,8 @@ describe('Allergies Module', function() {
       serviceRequests, 
       AllergiesModal, 
       usSpinnerService,
-      actions;
+      actions,
+      fakeCall;
 
   beforeEach(inject(($injector, $controller, _$state_, _$stateParams_, _$ngRedux_, _allergiesActions_, _serviceRequests_, _AllergiesModal_, _usSpinnerService_) => {
     controller = $controller;
@@ -47,6 +51,15 @@ describe('Allergies Module', function() {
     actions = $injector.get('allergiesActions');    
     // scope.$digest();
   }));
+  beforeEach(function() {
+    fakeCall = {
+      callAllergies: allergies
+    };
+
+    spyOn(fakeCall, 'callAllergies');
+
+    fakeCall.callAllergies({}, types.ALLERGIES);
+  });
 
   it('Query is empty', function() {
     expect(ctrl.query).toBe('');
@@ -56,5 +69,8 @@ describe('Allergies Module', function() {
   });
   it('Include allergiesActions in index actions file', function() {
     expect(actions).toBeDefined();
+  });
+  it("tracks that the spy was called", function() {   
+    expect(fakeCall.callAllergies).toHaveBeenCalled();
   });
 });
