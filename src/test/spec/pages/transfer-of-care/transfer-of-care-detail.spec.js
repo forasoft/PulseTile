@@ -28,10 +28,24 @@ describe('TransferOfCare Details', function() {
     });
   }));
 
+  beforeEach(function() {
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'transferOfCareLoad');
+
+    ctrl.transferOfCareLoad();
+    ctrl.setCurrentPageData();
+  });
+
   it('formDisabled', function() {
     expect(scope.formDisabled).toBe(true);
   });
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it("transferOfCareLoad was called", function() {
+    expect(ctrl.transferOfCareLoad).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
   });
 });
