@@ -5,7 +5,17 @@ import '../../../../app/index';
 describe('Appointments Details', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
-  let scope, ctrl, controller, template, stateParams, state, ngRedux, appointmentsActions, AppointmentsModal, usSpinnerService;
+  
+  let scope, 
+      ctrl, 
+      controller, 
+      template, 
+      stateParams, 
+      state, 
+      ngRedux, 
+      appointmentsActions, 
+      AppointmentsModal, 
+      usSpinnerService;
 
   beforeEach(inject(($injector, $controller, _$state_, _$stateParams_, _$ngRedux_, _appointmentsActions_, _AppointmentsModal_, _usSpinnerService_) => {
     controller = $controller;
@@ -30,6 +40,16 @@ describe('Appointments Details', function() {
     });
   }));
 
+  beforeEach(function() {
+    spyOn(ctrl, 'edit');
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'appointmentsLoad');
+
+    ctrl.edit();
+    ctrl.appointmentsLoad();
+    ctrl.setCurrentPageData();
+  });
+
   it('formDisabled', function() {
     expect(scope.formDisabled).toBe(true);
   });
@@ -38,5 +58,14 @@ describe('Appointments Details', function() {
   });
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it("edit was called", function() {
+    expect(ctrl.edit).toHaveBeenCalled();
+  });
+  it("appointmentsLoad was called", function() {
+    expect(ctrl.appointmentsLoad).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
   });
 });
