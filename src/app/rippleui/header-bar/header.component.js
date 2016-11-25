@@ -44,7 +44,6 @@ class HeaderController {
     var auth0;
     
     serviceRequests.initialise().then(function (result){
-      console.log('initialise auth0', result);
       if (result.data.token) {
         // reset the JSESSIONID cookie with the new incoming cookie
 
