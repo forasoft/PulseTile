@@ -27,8 +27,21 @@ describe('Orders Details', function() {
       usSpinnerService: usSpinnerService
     });
   }));
+  beforeEach(function() {
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'ordersLoad');
+
+    ctrl.ordersLoad();
+    ctrl.setCurrentPageData();
+  });
 
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it("ordersLoad was called", function() {
+    expect(ctrl.ordersLoad).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
   });
 });

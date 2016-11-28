@@ -34,7 +34,7 @@ describe('Procedures List', function() {
       ProceduresModal: ProceduresModal,
       usSpinnerService: usSpinnerService
     });
-    actions = $injector.get('transferOfCareActions');
+    actions = $injector.get('proceduresActions');
     // scope.$digest();
   }));
   beforeEach(function() {
