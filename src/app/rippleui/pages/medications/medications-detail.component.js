@@ -31,8 +31,8 @@ class MedicationsDetailController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.allergiesLoad = medicationsActions.get;
-    this.allergiesLoad($stateParams.patientId, $stateParams.medicationIndex, $stateParams.source);
+    this.medicationsLoad = medicationsActions.get;
+    this.medicationsLoad($stateParams.patientId, $stateParams.medicationIndex, $stateParams.source);
   }
 }
 

@@ -1,12 +1,11 @@
 'use strict';
-import MedicationsModal from '../../../../app/rippleui/pages/medications/medications-modal';
 import '../../../../app/index';
 
 describe('Medications Modal', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
 
-  let scope, controller, uibModal, medicationsActions, ngRedux, stateParams;
+  let scope, controller, uibModal, medicationsActions, ngRedux, stateParams, MedicationsModal;
 
   beforeEach(inject(($injector, $controller, _$uibModal_, _medicationsActions_, _$ngRedux_, _$stateParams_) => {
     controller = $controller;
@@ -17,7 +16,19 @@ describe('Medications Modal', function() {
     medicationsActions = _medicationsActions_;
   }));
 
-  it('Medications Modal component exist', function() {
-    expect(MedicationsModal).toBeDefined();
+  beforeEach(function() {
+    MedicationsModal = scope;
+    
+    spyOn(MedicationsModal, 'openModal');
+
+    MedicationsModal.openModal();
   });
+
+  it('Medications Modal component exist', function() {
+    expect(scope).toBeDefined();
+  });
+  it('openModal was called', function() {
+    expect(MedicationsModal.openModal).toHaveBeenCalled();
+  });
+
 });

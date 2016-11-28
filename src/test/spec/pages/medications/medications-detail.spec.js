@@ -29,6 +29,15 @@ describe('Medications Details', function() {
       usSpinnerService: usSpinnerService
     });
   }));
+  beforeEach(function() {
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'edit');
+    spyOn(ctrl, 'medicationsLoad');
+
+    ctrl.medicationsLoad();
+    ctrl.edit();
+    ctrl.setCurrentPageData();
+  });
 
   it('formDisabled', function() {
     expect(scope.formDisabled).toBe(true);
@@ -38,5 +47,14 @@ describe('Medications Details', function() {
   });
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it("edit was called", function() {
+    expect(ctrl.edit).toHaveBeenCalled();
+  });
+  it("medicationsLoad was called", function() {
+    expect(ctrl.medicationsLoad).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
   });
 });
