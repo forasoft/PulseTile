@@ -1,13 +1,26 @@
 'use strict';
 import DocumentsListComponent from '../../../../app/rippleui/pages/documents/documents-list.component.js';
 import '../../../../app/index';
+import '../../../../app/actions/index';
+import * as types from '../../../../app/constants/ActionTypes';
+import documents from '../../../../app/rippleui/pages/documents/documents-reducer-all.js';
 
 describe('Documents List', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
-  // $scope, $state, $stateParams, $ngRedux, documentsActions, serviceRequests, usSpinnerService
 
-  let scope, ctrl, controller, template, stateParams, state, ngRedux, documentsActions, serviceRequests, usSpinnerService;
+  let scope, 
+    ctrl, 
+    controller, 
+    template, 
+    stateParams, 
+    state, 
+    ngRedux, 
+    documentsActions, 
+    serviceRequests, 
+    usSpinnerService,
+    actions,
+    fakeCall;
 
   beforeEach(inject(($injector, $controller, _$state_, _$stateParams_, _$ngRedux_, _documentsActions_, _serviceRequests_, _usSpinnerService_) => {
     controller = $controller;
@@ -30,8 +43,27 @@ describe('Documents List', function() {
       serviceRequests: serviceRequests,
       usSpinnerService: usSpinnerService
     });
+    actions = $injector.get('documentsActions');
     // scope.$digest();
   }));
+
+  beforeEach(function() {
+    fakeCall = {
+      callDocuments: documents
+    };
+
+    spyOn(fakeCall, 'callDocuments');
+
+    spyOn(ctrl, 'go');
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'documentsLoad');
+
+    fakeCall.callDocuments({}, types.DOCUMENTS);
+
+    ctrl.go();
+    ctrl.setCurrentPageData();
+    ctrl.documentsLoad();
+  });
 
   it('Query is empty', function() {
     expect(ctrl.query).toBe('');
@@ -41,5 +73,20 @@ describe('Documents List', function() {
   });
   it('Controller exist', function() {
     expect(ctrl).toBeDefined();
+  });
+  it('Include contactsActions in index actions file', function() {
+    expect(actions).toBeDefined();
+  });
+  it("Documents reducer was called", function() {
+    expect(fakeCall.callDocuments).toHaveBeenCalled();
+  });
+  it("route go was called", function() {
+    expect(ctrl.go).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
+  });
+  it("documentsLoad was called", function() {
+    expect(ctrl.documentsLoad).toHaveBeenCalled();
   });
 });

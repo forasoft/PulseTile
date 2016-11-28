@@ -72,7 +72,6 @@ describe('Image List', function() {
   });
 
   it('Template exist', function() {
-    // console.log('ctrl image 1111111======> ', ImageListComponent.controller);
     expect(template).toBeDefined();
   });
   it('Controller exist', function() {

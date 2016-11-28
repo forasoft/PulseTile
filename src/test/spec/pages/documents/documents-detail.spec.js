@@ -5,7 +5,6 @@ import '../../../../app/index';
 describe('Diagnoses Details', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
-  // $scope, $state, $stateParams, $ngRedux, documentsActions
 
   let scope, ctrl, controller, template, stateParams, state, ngRedux, documentsActions;
 
@@ -29,5 +28,8 @@ describe('Diagnoses Details', function() {
 
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it('Controller exist', function() {
+    expect(ctrl).toBeDefined();
   });
 });
