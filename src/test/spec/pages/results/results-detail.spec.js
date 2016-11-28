@@ -28,10 +28,24 @@ describe('Results Details', function() {
     });
   }));
 
+  beforeEach(function() {
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'resultsLoad');
+
+    ctrl.resultsLoad();
+    ctrl.setCurrentPageData();
+  });
+
   it('formDisabled', function() {
     expect(scope.formDisabled).toBe(true);
   });
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it("resultsLoad was called", function() {
+    expect(ctrl.resultsLoad).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
   });
 });
