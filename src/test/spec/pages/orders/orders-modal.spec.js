@@ -1,12 +1,11 @@
 'use strict';
-import OrdersModal from '../../../../app/rippleui/pages/orders/orders-modal';
 import '../../../../app/index';
 
 describe('Orders Modal', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
 
-  let scope, controller, uibModal, ordersActions, ngRedux, stateParams;
+  let scope, controller, uibModal, ordersActions, ngRedux, stateParams, OrdersModal;
 
   beforeEach(inject(($injector, $controller, _$uibModal_, _ordersActions_, _$ngRedux_, _$stateParams_) => {
     controller = $controller;
@@ -16,8 +15,18 @@ describe('Orders Modal', function() {
     stateParams = _$stateParams_;
     ordersActions = _ordersActions_;
   }));
+  beforeEach(function() {
+    OrdersModal = scope;
+    
+    spyOn(OrdersModal, 'openModal');
+
+    OrdersModal.openModal();
+  });
 
   it('Orders Modal component exist', function() {
-    expect(OrdersModal).toBeDefined();
+    expect(scope).toBeDefined();
+  });
+  it('openModal was called', function() {
+    expect(OrdersModal.openModal).toHaveBeenCalled();
   });
 });
