@@ -1,12 +1,11 @@
 'use strict';
-import ReferralsModal from '../../../../app/rippleui/pages/referrals/referrals-modal';
 import '../../../../app/index';
 
 describe('Referrals Modal', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
 
-  let scope, controller, uibModal, referralsActions, ngRedux, stateParams;
+  let scope, controller, uibModal, referralsActions, ngRedux, stateParams, ReferralsModal;
 
   beforeEach(inject(($injector, $controller, _$uibModal_, _referralsActions_, _$ngRedux_, _$stateParams_) => {
     controller = $controller;
@@ -17,7 +16,18 @@ describe('Referrals Modal', function() {
     referralsActions = _referralsActions_;
   }));
 
+  beforeEach(function() {
+    ReferralsModal = scope;
+    
+    spyOn(ReferralsModal, 'openModal');
+
+    ReferralsModal.openModal();
+  });
+
   it('Referrals Modal component exist', function() {
-    expect(ReferralsModal).toBeDefined();
+    expect(scope).toBeDefined();
+  });
+  it('openModal was called', function() {
+    expect(ReferralsModal.openModal).toHaveBeenCalled();
   });
 });
