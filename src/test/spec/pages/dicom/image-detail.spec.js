@@ -27,4 +27,43 @@ describe('Image Details', function() {
       ImageModal: ImageModal
     });
   }));
+
+  beforeEach(function() {
+    spyOn(ctrl, 'openImage');
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'seriesDetailsLoad');
+    spyOn(ctrl, 'instanceLoad');
+    spyOn(ctrl, 'imageLoad');
+
+    ctrl.openImage();
+    ctrl.setCurrentPageData();
+    ctrl.seriesDetailsLoad();
+    ctrl.instanceLoad();
+    ctrl.imageLoad();
+  });
+
+  it('series is empty', function() {
+    expect(ctrl.series).toEqual([]);
+  });
+  it('Template exist', function() {
+    expect(template).toBeDefined();
+  });
+  it('Controller exist', function() {
+    expect(ctrl).toBeDefined();
+  });
+  it("openImage was called", function() {
+    expect(ctrl.openImage).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
+  });
+  it("seriesDetailsLoad was called", function() {
+    expect(ctrl.seriesDetailsLoad).toHaveBeenCalled();
+  });
+  it("instanceLoad was called", function() {
+    expect(ctrl.instanceLoad).toHaveBeenCalled();
+  });
+  it("imageLoad was called", function() {
+    expect(ctrl.imageLoad).toHaveBeenCalled();
+  });
 });
