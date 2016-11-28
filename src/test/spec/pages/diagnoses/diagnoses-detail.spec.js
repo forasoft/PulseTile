@@ -30,6 +30,16 @@ describe('Diagnoses Details', function() {
     });
   }));
 
+  beforeEach(function() {
+    spyOn(ctrl, 'edit');
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'diagnosesLoad');
+
+    ctrl.edit();
+    ctrl.setCurrentPageData();
+    ctrl.diagnosesLoad();
+  });
+
   it('formDisabled', function() {
     expect(scope.formDisabled).toBe(true);
   });
@@ -38,5 +48,14 @@ describe('Diagnoses Details', function() {
   });
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it("edit was called", function() {
+    expect(ctrl.edit).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
+  });
+  it("diagnosesLoad was called", function() {
+    expect(ctrl.diagnosesLoad).toHaveBeenCalled();
   });
 });
