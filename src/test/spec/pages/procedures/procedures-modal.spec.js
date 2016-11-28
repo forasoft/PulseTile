@@ -1,12 +1,11 @@
 'use strict';
-import ProceduresModal from '../../../../app/rippleui/pages/procedures/procedures-modal';
 import '../../../../app/index';
 
 describe('Procedures Modal', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
 
-  let scope, controller, uibModal, proceduresActions, ngRedux, stateParams;
+  let scope, controller, uibModal, proceduresActions, ngRedux, stateParams, ProceduresModal;
 
   beforeEach(inject(($injector, $controller, _$uibModal_, _proceduresActions_, _$ngRedux_, _$stateParams_) => {
     controller = $controller;
@@ -17,7 +16,18 @@ describe('Procedures Modal', function() {
     proceduresActions = _proceduresActions_;
   }));
 
+  beforeEach(function() {
+    ProceduresModal = scope;
+    
+    spyOn(ProceduresModal, 'openModal');
+
+    ProceduresModal.openModal();
+  });
+
   it('Procedures Modal component exist', function() {
-    expect(ProceduresModal).toBeDefined();
+    expect(scope).toBeDefined();
+  });
+  it('openModal was called', function() {
+    expect(ProceduresModal.openModal).toHaveBeenCalled();
   });
 });

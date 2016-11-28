@@ -29,8 +29,26 @@ describe('Procedures Details', function() {
       usSpinnerService: usSpinnerService
     });
   }));
+  beforeEach(function() {
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'edit');
+    spyOn(ctrl, 'proceduresLoad');
+
+    ctrl.proceduresLoad();
+    ctrl.edit();
+    ctrl.setCurrentPageData();
+  });
 
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it("edit was called", function() {
+    expect(ctrl.edit).toHaveBeenCalled();
+  });
+  it("proceduresLoad was called", function() {
+    expect(ctrl.proceduresLoad).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
   });
 });
