@@ -30,7 +30,32 @@ describe('Clinicalnotes Details', function() {
     });
   }));
 
+  beforeEach(function() {
+    spyOn(ctrl, 'edit');
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'clinicalnotesLoad');
+
+    ctrl.edit();
+    ctrl.setCurrentPageData();
+    ctrl.clinicalnotesLoad();
+  });
+
+  it('Modal exist', function() {
+    expect(ClinicalnotesModal).toBeDefined();
+  });
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it('Controller exist', function() {
+    expect(ctrl).toBeDefined();
+  });
+  it("edit was called", function() {
+    expect(ctrl.edit).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
+  });
+  it("clinicalnotesLoad was called", function() {
+    expect(ctrl.clinicalnotesLoad).toHaveBeenCalled();
   });
 });
