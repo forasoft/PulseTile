@@ -1,12 +1,11 @@
 'use strict';
-import ContactsModal from '../../../../app/rippleui/pages/contacts/contacts-modal';
 import '../../../../app/index';
 
 describe('Contacts Modal', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
 
-  let scope, controller, uibModal, contactsActions, ngRedux, stateParams;
+  let scope, controller, uibModal, contactsActions, ngRedux, stateParams, ContactsModal;
 
   beforeEach(inject(($injector, $controller, _$uibModal_, _contactsActions_, _$ngRedux_, _$stateParams_) => {
     controller = $controller;
@@ -17,7 +16,19 @@ describe('Contacts Modal', function() {
     contactsActions = _contactsActions_;
   }));
 
-  it('Contacts Modal component exist', function() {
+  beforeEach(function() {
+    ContactsModal = scope;
+
+    spyOn(ContactsModal, 'openModal');
+
+    ContactsModal.openModal();
+  });
+
+  it('openModal was called', function() {
+    expect(ContactsModal.openModal).toHaveBeenCalled();
+  });
+
+  it('ContactsModal Modal component exist', function() {
     expect(ContactsModal).toBeDefined();
   });
 });

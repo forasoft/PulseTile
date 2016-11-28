@@ -30,7 +30,32 @@ describe('Contacts Details', function() {
     });
   }));
 
+  beforeEach(function() {
+    spyOn(ctrl, 'edit');
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'contactsLoad');
+
+    ctrl.edit();
+    ctrl.setCurrentPageData();
+    ctrl.contactsLoad();
+  });
+
+  it('Modal exist', function() {
+    expect(ContactsModal).toBeDefined();
+  });
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it('Controller exist', function() {
+    expect(ctrl).toBeDefined();
+  });
+  it("edit was called", function() {
+    expect(ctrl.edit).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
+  });
+  it("contactsLoad was called", function() {
+    expect(ctrl.contactsLoad).toHaveBeenCalled();
   });
 });
