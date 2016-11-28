@@ -68,7 +68,7 @@ describe('TransferOfCare List', function() {
   it('Controller exist', function() {
     expect(ctrl).toBeDefined();
   });
-    it('Include TransferOfCareActions in index actions file', function() {
+  it('Include TransferOfCareActions in index actions file', function() {
     expect(actions).toBeDefined();
   });
   it("TransferOfCare reducer was called", function() {

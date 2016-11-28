@@ -30,7 +30,26 @@ describe('Referrals Details', function() {
     });
   }));
 
+  beforeEach(function() {
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'referralsLoad');
+    spyOn(ctrl, 'edit');
+
+    ctrl.referralsLoad();
+    ctrl.setCurrentPageData();
+    ctrl.edit();
+  });
+
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it("referralsLoad was called", function() {
+    expect(ctrl.referralsLoad).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
+  });
+  it("edit was called", function() {
+    expect(ctrl.edit).toHaveBeenCalled();
   });
 });
