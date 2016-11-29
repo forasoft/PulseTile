@@ -29,6 +29,15 @@ describe('HeightAndWeight Details', function() {
       usSpinnerService: usSpinnerService
     });
   }));
+  beforeEach(function() {
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(ctrl, 'heightAndWeightLoad');
+    spyOn(ctrl, 'edit');
+
+    ctrl.heightAndWeightLoad();
+    ctrl.setCurrentPageData();
+    ctrl.edit();
+  });
 
   it('formDisabled', function() {
     expect(scope.formDisabled).toBe(true);
@@ -38,5 +47,14 @@ describe('HeightAndWeight Details', function() {
   });
   it('Template exist', function() {
     expect(template).toBeDefined();
+  });
+  it("heightAndWeightLoad was called", function() {
+    expect(ctrl.heightAndWeightLoad).toHaveBeenCalled();
+  });
+  it("setCurrentPageData was called", function() {
+    expect(ctrl.setCurrentPageData).toHaveBeenCalled();
+  });
+  it("edit was called", function() {
+    expect(ctrl.edit).toHaveBeenCalled();
   });
 });
