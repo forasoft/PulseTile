@@ -32,10 +32,35 @@ describe('Patients Summary', function() {
     });
   }));
 
+  beforeEach(function() {
+    spyOn(ctrl, 'goToSection');
+    spyOn(ctrl, 'getPatientData');
+    spyOn(scope, 'go');
+    spyOn(ctrl, 'loadPatient');
+
+    ctrl.goToSection();
+    ctrl.getPatientData();
+    scope.go();
+    ctrl.loadPatient();
+
+  });
+     
   it('Template exist', function() {
     expect(template).toBeDefined();
   });
   it('Controller exist', function() {
     expect(ctrl).toBeDefined();
+  });
+  it("goToSection was called", function() {
+    expect(ctrl.goToSection).toHaveBeenCalled();
+  });
+  it("getPatientData was called", function() {
+    expect(ctrl.getPatientData).toHaveBeenCalled();
+  });
+  it("route go was called", function() {
+    expect(scope.go).toHaveBeenCalled();
+  });
+  it("loadPatient was called", function() {
+    expect(ctrl.loadPatient).toHaveBeenCalled();
   });
 });

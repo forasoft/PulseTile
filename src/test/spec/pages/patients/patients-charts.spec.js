@@ -33,11 +33,44 @@ describe('Patients Charts', function() {
       Patient: Patient
     });
   }));
+  //         
+  beforeEach(function() {
+    spyOn(ctrl, 'openModal');
+    spyOn(ctrl, 'goToPatientsList');
+    spyOn(ctrl, 'goToLookUp');
+    spyOn(ctrl, 'getPatients');
+    spyOn(ctrl, 'toggleChart');
+    
+    ctrl.openModal();
+    ctrl.goToPatientsList();
+    ctrl.goToLookUp();
+    ctrl.getPatients();
+    ctrl.toggleChart();
 
+  });  
+  
   it('Template exist', function() {
     expect(template).toBeDefined();
   });
   it('Controller exist', function() {
     expect(ctrl).toBeDefined();
+  });
+  it('selectedChart exist', function() {
+    expect(ctrl.selectedChart).toBe('age');
+  });
+  it("openModal was called", function() {
+    expect(ctrl.openModal).toHaveBeenCalled();
+  });
+  it("goToPatientsList was called", function() {
+    expect(ctrl.goToPatientsList).toHaveBeenCalled();
+  });
+  it("goToLookUp was called", function() {
+    expect(ctrl.goToLookUp).toHaveBeenCalled();
+  });
+  it("getPatients was called", function() {
+    expect(ctrl.getPatients).toHaveBeenCalled();
+  });
+  it("toggleChart was called", function() {
+    expect(ctrl.toggleChart).toHaveBeenCalled();
   });
 });
