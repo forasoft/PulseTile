@@ -34,44 +34,71 @@ describe('Patients List', function() {
     location = _$location_;
     serviceRequests = _serviceRequests_;
     Patient = _Patient_;
-
+    
+    stateParams.patientsList = [];
+    
     template = PatientsComponent.template;
-    // ctrl = controller(PatientsComponent.controller, {
-    //   $scope: scope,
-    //   $state: state,
-    //   $stateParams: stateParams,
-    //   $location: location,
-    //   $ngRedux: ngRedux,
-    //   patientsActions: patientsActions,
-    //   serviceRequests: serviceRequests,
-    //   Patient: Patient
-    // });
+    ctrl = controller(PatientsComponent.controller, {
+      $scope: scope,
+      $state: state,
+      $stateParams: stateParams,
+      $location: location,
+      $ngRedux: ngRedux,
+      patientsActions: patientsActions,
+      serviceRequests: serviceRequests,
+      Patient: Patient
+    });
 
     actions = $injector.get('patientsActions');
   }));
 
-  // beforeEach(function() {
-  //   fakeCall = {
-  //     callPatients: patients
-  //   };
-  //
-  //   spyOn(fakeCall, 'callPatients');
-  //
-  //   fakeCall.callPatients({}, types.PATIENTS);
-  //
-  // });
+  beforeEach(function() {
+    fakeCall = {
+      callPatients: patients
+    };
+        
+    spyOn(fakeCall, 'callPatients');  
+    fakeCall.callPatients({}, types.PATIENTS);
+
+    spyOn(ctrl, 'sort');
+    spyOn(ctrl, 'sortClass');
+    spyOn(ctrl, 'go');
+    spyOn(ctrl, 'patientFilter');
+    spyOn(ctrl, 'setPatients');
+
+    ctrl.sort();
+    ctrl.sortClass();
+    ctrl.go();
+    ctrl.patientFilter();
+    ctrl.setPatients();
+  
+  });
 
   it('Template exist', function() {
     expect(template).toBeDefined();
   });
-  // it('Controller exist', function() {
-  //   console.log('ctrl ---> ', ctrl);
-  //   expect(ctrl).toBeDefined();
-  // });
+  it('Controller exist', function() {
+    expect(ctrl).toBeDefined();
+  });
   it('Include patientsActions in index actions file', function() {
     expect(actions).toBeDefined();
   });
-  // it("Patients reducer was called", function() {
-  //   expect(fakeCall.callPatients).toHaveBeenCalled();
-  // });
+  it("Patients reducer was called", function() {
+    expect(fakeCall.callPatients).toHaveBeenCalled();
+  });
+  it("sort was called", function() {
+    expect(ctrl.sort).toHaveBeenCalled();
+  });
+  it("sortClass was called", function() {
+    expect(ctrl.sortClass).toHaveBeenCalled();
+  });
+  it("route go was called", function() {
+    expect(ctrl.go).toHaveBeenCalled();
+  });
+  it("patientFilter was called", function() {
+    expect(ctrl.patientFilter).toHaveBeenCalled();
+  });
+  it("setPatients was called", function() {
+    expect(ctrl.setPatients).toHaveBeenCalled();
+  });
 });
