@@ -48,33 +48,43 @@ class PatientsSummaryController {
       $state.go(toState, requestHeader);
     };
     this.getPatientData = function (data) {
-      if (!data || !data.id) return false;
+      if (!data) return false;
       usSpinnerService.stop('patientSummary-spinner');
 
       this.patient = data;
 
-      this.allergiesCount = this.patient.allergies.length;
-      this.allergies = this.patient.allergies.slice(0, 5);
-      
-      this.diagnosesCount = this.patient.problems.length;
-      this.diagnoses = this.patient.problems.slice(0, 5);
-      
-      this.medicationsCount = this.patient.medications.length;
-      this.medications = this.patient.medications.slice(0, 5);
-      
-      this.contactsCount = this.patient.contacts.length;
-      this.contacts = this.patient.contacts.slice(0, 5);
-      
-      this.transferofCaresCount = this.patient.transfers.length;
-      this.transferofCareComposition = this.patient;
-      
-      var descendingTransferofCareComposition = [];
-      for (var x = this.transferofCareComposition.transfers.length - 1; x >= 0; x--) {
-        descendingTransferofCareComposition.push(this.transferofCareComposition.transfers[x]);
+      if (this.patient.allergies.length) {
+        this.allergiesCount = this.patient.allergies.length;
+        this.allergies = this.patient.allergies.slice(0, 5);
       }
       
-      this.transferofCareComposition.transfers = descendingTransferofCareComposition;
-      this.transferofCareComposition = this.transferofCareComposition.transfers.slice(0, 5);
+      if (this.patient.problems.length) {
+        this.diagnosesCount = this.patient.problems.length;
+        this.diagnoses = this.patient.problems.slice(0, 5);
+      }
+      
+      if (this.patient.medications.length) {
+        this.medicationsCount = this.patient.medications.length;
+        this.medications = this.patient.medications.slice(0, 5);
+      }
+      
+      if (this.patient.contacts.length) {
+        this.contactsCount = this.patient.contacts.length;
+        this.contacts = this.patient.contacts.slice(0, 5);
+      }
+      
+      if (this.patient.transfers.length) {
+        this.transferofCaresCount = this.patient.transfers.length;
+        this.transferofCareComposition = this.patient;
+        
+        var descendingTransferofCareComposition = [];
+        for (var x = this.transferofCareComposition.transfers.length - 1; x >= 0; x--) {
+          descendingTransferofCareComposition.push(this.transferofCareComposition.transfers[x]);
+        }
+
+        this.transferofCareComposition.transfers = descendingTransferofCareComposition;
+        this.transferofCareComposition = this.transferofCareComposition.transfers.slice(0, 5);
+      }
     };
 
     $scope.go = function (path) {

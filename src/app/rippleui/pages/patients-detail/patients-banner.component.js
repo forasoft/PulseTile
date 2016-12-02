@@ -24,8 +24,6 @@ class PatientsBannerController {
 
     $scope.$on('$destroy', unsubscribe);
     
-    this.loadPatient = patientsActions.getPatient;
-    this.loadPatient($stateParams.patientId);
   }
 }
 
