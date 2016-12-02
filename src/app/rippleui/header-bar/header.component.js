@@ -1,18 +1,18 @@
 /*
-  ~  Copyright 2016 Ripple Foundation C.I.C. Ltd
-  ~  
-  ~  Licensed under the Apache License, Version 2.0 (the "License");
-  ~  you may not use this file except in compliance with the License.
-  ~  You may obtain a copy of the License at
-  ~  
-  ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~  Copyright 2016 Ripple Foundation C.I.C. Ltd
+ ~  
+ ~  Licensed under the Apache License, Version 2.0 (the "License");
+ ~  you may not use this file except in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~  
+ ~    http://www.apache.org/licenses/LICENSE-2.0
 
-  ~  Unless required by applicable law or agreed to in writing, software
-  ~  distributed under the License is distributed on an "AS IS" BASIS,
-  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~  See the License for the specific language governing permissions and
-  ~  limitations under the License.
-*/
+ ~  Unless required by applicable law or agreed to in writing, software
+ ~  distributed under the License is distributed on an "AS IS" BASIS,
+ ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ~  See the License for the specific language governing permissions and
+ ~  limitations under the License.
+ */
 let templateHeader = require('./header-bar.tmpl.html');
 
 class HeaderController {
@@ -27,12 +27,7 @@ class HeaderController {
       $state.go('patients-charts');
     };
 
-    this.setTitle = function (data) {
-      this.title = data ? data.role + ' POC' : '';
-      this.switchDirectByRole(data);
-    };
-
-    this.switchDirectByRole = function (currentUser) {
+    $scope.switchDirectByRole = function (currentUser) {
       if (!currentUser) return;
       // Direct different roles to different pages at login
       switch (currentUser.role) {
@@ -51,18 +46,24 @@ class HeaderController {
       }
     };
 
-    let unsubscribe = $ngRedux.connect(state => ({
-      error: state.user.error,
-      user: state.user.data,
-      getTitle: this.setTitle(state.user.data)
-    }))(this);
+    $scope.setTitle = function (data) {
+      $scope.title = data ? data.role + ' POC' : '';
+      $scope.switchDirectByRole(data);
+    };
 
-    $scope.$on('$destroy', unsubscribe);
+    $scope.setLoginData = function (loginResult) {
+      $scope.user = loginResult.data;
+      $scope.setTitle(loginResult.data);
+    };
 
-    $scope.login = userActions.login;
+    $scope.login = function () {
+      serviceRequests.login().then(function (result) {
+        $scope.setLoginData(result);
+      });
+    };
 
     var auth0;
-    
+
     serviceRequests.initialise().then(function (result){
       if (result.data.token) {
         // reset the JSESSIONID cookie with the new incoming cookie
@@ -169,7 +170,7 @@ class HeaderController {
           this.reportTypes = [
             'Diagnosis: ',
             'Orders: '
-            ];
+          ];
         }
 
         if (this.containsReportTypeString() && !this.patientMode) {
