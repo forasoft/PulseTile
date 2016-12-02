@@ -18,8 +18,8 @@
   <nav class="navbar navbar-default header-nav visible-xs">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a ng-if="$ctrl.title" class="navbar-brand header-title-mobile" ng-click="$ctrl.goHome()">
-          <img class="header-icon nav-logo" alt="{{$ctrl.title}}"> {{$ctrl.title}}
+        <a ng-if="title" class="navbar-brand header-title-mobile" ng-click="$ctrl.goHome()">
+          <img class="header-icon nav-logo" alt="{{title}}"> {{title}}
         </a>
 
         <ul class="nav nav-tabs pull-right" role="tablist">
@@ -67,8 +67,8 @@
             <!--<div class="user-type patient">Patient</div>-->
 
             <div class="user-profile-image"><i class="fa fa-user"></i></div>
-            <p class="header-title-mobile"><strong>User Name:</strong>{{$ctrl.user.role}}</p>
-            <p>{{$ctrl.user.email}}</p>
+            <p class="header-title-mobile"><strong>User Name:</strong>{{user.role}}</p>
+            <p>{{user.email}}</p>
             <p>10/05/2099</p>
           </div>
           <div class="col-xs-12 options">
@@ -161,7 +161,7 @@
   <div class="row header-background hidden-xs">
     <div class="col-sm-4 header-left">
       <div class="glyphs g">
-        <p class="header-title-1"><img alt="Ripple Icon" class="header-icon" ng-click="$ctrl.goHome()"> {{$ctrl.title}}</p>
+        <p class="header-title-1"><img alt="Ripple Icon" class="header-icon" ng-click="$ctrl.goHome()"> {{title}}</p>
       </div>
     </div>
 
@@ -217,9 +217,9 @@
                       <div class="user-profile-image"><i class="glyphicon glyphicon-user"></i></div>
                     </div>
                     <div class="col-md-8 col-sm-8">
-                      <p class="dropdown-profile-text"><b>{{$ctrl.user.given_name}} {{$ctrl.user.family_name}}</b></p>
-                      <p class="dropdown-profile-text"><b>{{$ctrl.user.role}}</b></p>
-                      <p class="dropdown-profile-text">{{$ctrl.user.email}}</p>
+                      <p class="dropdown-profile-text"><b>{{user.given_name}} {{user.family_name}}</b></p>
+                      <p class="dropdown-profile-text"><b>{{user.role}}</b></p>
+                      <p class="dropdown-profile-text">{{user.email}}</p>
                       <p class="dropdown-profile-text">10/05/1984</p>
                     </div>
                   </div>

@@ -26,13 +26,8 @@ class HeaderController {
     this.goHome = function () {
       $state.go('patients-charts');
     };
-  
-    this.setTitle = function (data) {
-      this.title = data ? data.role + ' POC' : '';
-      this.switchDirectByRole(data);
-    };
 
-    this.switchDirectByRole = function (currentUser) {
+    $scope.switchDirectByRole = function (currentUser) {
       if (!currentUser) return;
       // Direct different roles to different pages at login
       switch (currentUser.role) {
@@ -51,16 +46,22 @@ class HeaderController {
       }
     };
 
-    let unsubscribe = $ngRedux.connect(state => ({
-      error: state.user.error,
-      user: state.user.data,
-      getTitle: this.setTitle(state.user.data)
-    }))(this);
+    $scope.setTitle = function (data) {
+      $scope.title = data ? data.role + ' POC' : '';
+      $scope.switchDirectByRole(data);
+    };
 
-    $scope.$on('$destroy', unsubscribe);
-
-    $scope.login = userActions.login;
-
+    $scope.setLoginData = function (loginResult) {
+      $scope.user = loginResult.data;
+      $scope.setTitle(loginResult.data);
+    };
+    
+    $scope.login = function () {
+      serviceRequests.login().then(function (result) {
+        $scope.setLoginData(result);
+      });
+    };
+    
     var auth0;
     
     serviceRequests.initialise().then(function (result){
