@@ -26,9 +26,29 @@ class HeaderController {
     this.goHome = function () {
       $state.go('patients-charts');
     };
-  
+
     this.setTitle = function (data) {
       this.title = data ? data.role + ' POC' : '';
+      this.switchDirectByRole(data);
+    };
+
+    this.switchDirectByRole = function (currentUser) {
+      if (!currentUser) return;
+      // Direct different roles to different pages at login
+      switch (currentUser.role) {
+        case 'IDCR':
+          $state.go('main-search');
+          break;
+        case 'PHR':
+          $state.go('patients-summary', {
+            patientId: currentUser.nhsNumber
+          });
+          break;
+        default:
+          $state.go('patients-summary', {
+            patientId: currentUser.nhsNumber
+          });
+      }
     };
 
     let unsubscribe = $ngRedux.connect(state => ({
