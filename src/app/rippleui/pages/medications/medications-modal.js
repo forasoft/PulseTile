@@ -105,8 +105,6 @@ export default function MedicationsModal($uibModal, medicationsActions, $ngRedux
 
             if (medicationForm.$valid) {
 
-              $uibModalInstance.close(medication);
-
               if ($scope.isEdit) {
                 $scope.medicationsUpdate($scope.patient.id, toAdd);
               } else {
@@ -114,10 +112,6 @@ export default function MedicationsModal($uibModal, medicationsActions, $ngRedux
               }
 
             }
-          };
-
-          $scope.cancel = function () {
-            $uibModalInstance.dismiss('cancel');
           };
 
           let unsubscribe = $ngRedux.connect(state => ({
