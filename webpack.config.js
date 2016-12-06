@@ -16,6 +16,7 @@ const ENV_DEVELOPMENT = NODE_ENV === 'development';
 const ENV_PRODUCTION = NODE_ENV === 'production';
 const ENV_TEST = NODE_ENV === 'test';
 const ENV_COPY = NODE_ENV === 'copy';
+const ENV_PRODUCTION_EXTENSION = NODE_ENV === 'extension';
 
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 9000;
@@ -32,7 +33,7 @@ const config = {
   resolve: {
     extensions: ['', '.js'],
     modulesDirectories: ["node_modules", "bower_components"],
-    
+
     root: path.resolve('./src'),
     alias: {
       'morrisjs': '../../bower_components/morrisjs/morris.js',
@@ -49,12 +50,12 @@ const config = {
       {test: /\.(jpg|png|jpeg|gif)$/, loader: 'url-loader?limit=25000/&name=assets/images/[name].[ext]' },
       {test: /\.css$/, loader: "style-loader!css-loader!"}
       /*{test: /\.woff(\?.*)?$/,loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'},
-      {test: /\.woff2(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2' },
-      {test: /\.otf(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype' },
-      {test: /\.ttf(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream' },
-      {test: /\.eot(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]' },
-      {test: /\.svg(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
-      {test: /\.(png|jpg)$/, loader: 'url?limit=8192'}*/
+       {test: /\.woff2(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2' },
+       {test: /\.otf(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype' },
+       {test: /\.ttf(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream' },
+       {test: /\.eot(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]' },
+       {test: /\.svg(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
+       {test: /\.(png|jpg)$/, loader: 'url?limit=8192'}*/
     ]
   },
 
@@ -98,7 +99,8 @@ const config = {
 //=====================================
 //  DEVELOPMENT or PRODUCTION
 //-------------------------------------
-if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
+if (ENV_DEVELOPMENT || ENV_PRODUCTION || ENV_PRODUCTION_EXTENSION) {
+
   config.entry = {
     index: [
       'bootstrap-loader',
@@ -106,6 +108,10 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
     ],
     vendor: './src/app/vendor'
   };
+
+  if (ENV_PRODUCTION_EXTENSION) {
+    config.entry.index[1] = './src/app/plugins-extension';
+  }
 
   config.output = {
     filename: '[name].js',
@@ -170,7 +176,7 @@ if (ENV_DEVELOPMENT) {
 //=====================================
 //  PRODUCTION
 //-------------------------------------
-if (ENV_PRODUCTION) {
+if (ENV_PRODUCTION || ENV_PRODUCTION_EXTENSION) {
   config.devtool = 'source-map';
 
   config.module.loaders.push(
@@ -178,18 +184,19 @@ if (ENV_PRODUCTION) {
   );
 
   config.plugins.push(
+    new webpack.optimize.OccurenceOrderPlugin(),
     // new ExtractTextPlugin('styles.css'),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: false,
-      beautify: true,
-      compress: {
-        dead_code: true, // eslint-disable-line camelcase
-        screw_ie8: true, // eslint-disable-line camelcase
-        unused: true,
-        warnings: false
-      }
-    })
+    new webpack.optimize.DedupePlugin()
+    // new webpack.optimize.UglifyJsPlugin({
+    //   mangle: true,
+    //   beautify: true,
+    //   compress: {
+    //     dead_code: true, // eslint-disable-line camelcase
+    //     screw_ie8: true, // eslint-disable-line camelcase
+    //     unused: true,
+    //     warnings: false
+    //   }
+    // })
   );
 }
 
@@ -201,7 +208,7 @@ if (ENV_COPY) {
     filename: '[name].[ext]',
     publicPath: ''
   };
-  
+
   config.module.loaders.push(
     {test: /\.scss$/, loader: 'style!css!postcss!sass'}
   );
