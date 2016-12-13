@@ -29,6 +29,8 @@ import 'morrisjs';
 import 'angular-spinner';
 import 'jquery-timepicker-jt';
 import 'angular-jquery-timepicker';
+import 'socket.io-client'
+import 'angular-socket-io';
 
 //commons
 import reducer from './redux/reducer';
@@ -44,6 +46,8 @@ import OrdersModal from './rippleui/pages/orders/orders-modal';
 import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
 import AppointmentsModal from './rippleui/pages/appointments/appointments-modal';
 import AppointmentConfirmModal from './rippleui/pages/appointments/appointments-confirm-modal';
+import AppointmentChatModal from './rippleui/pages/appointments/appointment-chat';
+import AppointmentChatConfirmModal from './rippleui/pages/appointments/appoinmant-chat-confirm';
 import ProceduresModal from './rippleui/pages/procedures/procedures-modal';
 import ImageModal from './rippleui/pages/dicom/image-modal';
 import EolcareplansModal from './rippleui/pages/care-plans/eolcareplans-modal';
@@ -87,6 +91,7 @@ import MainComponent from './helpers/main.component';
 import HomeSidebarComponent from './rippleui/pages/patients-lookup/home-sidebar.component';
 
 import ServiceRequests from './services/serviceRequests.js';
+import SocketService from './services/socketService.js';
 
 import routeConfig from 'app/index.route';
 import 'app/scss/core.scss';
@@ -102,6 +107,7 @@ const app = angular
         'angularSpinner',
         'ui.calendar',
         'ui.timepicker',
+        'btford.socket-io',
         'angular-loading-bar'
     ])
     .factory('httpMiddleware', httpMiddleware)
@@ -115,11 +121,14 @@ const app = angular
     .factory('ProceduresModal', ProceduresModal)
     .factory('AppointmentsModal', AppointmentsModal)
     .factory('AppointmentConfirmModal', AppointmentConfirmModal)
+    .factory('AppointmentChatModal', AppointmentChatModal)
+    .factory('AppointmentChatConfirmModal', AppointmentChatConfirmModal)
     .factory('ImageModal', ImageModal)
     .factory('EolcareplansModal', EolcareplansModal)
     .factory('LookupModal', LookupModal)
     .factory('Patient', Patient)
     .service('serviceRequests', ServiceRequests)
+    .service('socketService', SocketService)
     .component('patientsComponent', PatientsComponent)
     .component('headerComponent', HeaderComponent)
     .component('patientsChartsComponent', PatientsChartsComponent)
@@ -201,5 +210,11 @@ const app = angular
             var m = moment(date);
             return m.format('h:mma');
         };
+    })
+    .factory('socket', function (socketFactory) {
+      var socket = socketFactory();
+      console.log('socketFactory ===> ',socket);
+      socket.forward('error');
+      return socketFactory;
     });
 console.log('app start');

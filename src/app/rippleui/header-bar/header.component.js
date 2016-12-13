@@ -16,7 +16,7 @@
 let templateHeader = require('./header-bar.tmpl.html');
 
 class HeaderController {
-  constructor($rootScope, $scope, $state, $stateParams, $ngRedux, userActions, AdvancedSearch, serviceRequests) {
+  constructor($rootScope, $scope, $state, $stateParams, $ngRedux, userActions, AdvancedSearch, serviceRequests, socketService) {
 
     this.getPageHeader = function (data) {
       $scope.pageHeader = data.title;
@@ -55,10 +55,52 @@ class HeaderController {
       $scope.user = loginResult.data;
       $scope.setTitle(loginResult.data);
     };
+    
+    var constraints = {
+      audio: true,
+      video: true
+    };
+    var socket = socketService.socket;
+    var token = getCookie('JSESSIONID');
+    
+    function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+      }
+      return null;
+    }
 
     $scope.login = function () {
       serviceRequests.login().then(function (result) {
         $scope.setLoginData(result);
+
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
+        } else {
+          navigator.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
+        }
+
+
+        function setLocalStream(stream) {
+          let user = result;
+            socket.emit('user:init', {
+              username: user.username,
+              nhsNumber: user.nhsNumber,
+              role: user.role,
+              surname: user.family_name,
+              name: user.given_name,
+              token: token
+            });
+        }
+
+        function errorHandler(err) {
+          console.error('errorHandler', err);
+        }
+
       });
     };
 
@@ -288,5 +330,5 @@ const HeaderComponent = {
   controller: HeaderController
 };
 
-HeaderController.$inject = ['$rootScope', '$scope', '$state', '$stateParams', '$ngRedux', 'userActions', 'AdvancedSearch', 'serviceRequests'];
+HeaderController.$inject = ['$rootScope', '$scope', '$state', '$stateParams', '$ngRedux', 'userActions', 'AdvancedSearch', 'serviceRequests', 'socketService'];
 export default HeaderComponent;
