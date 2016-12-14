@@ -3,6 +3,10 @@
   &.hide-indent-bottom {margin-bottom: -5px;}
 }
 .control-group {
+  margin-right: -5px;
+  & > * {
+    margin-right: 5px;
+  }
   &.right {
     float: right;
     margin-left: 5px;
@@ -10,6 +14,11 @@
   &.left {
     float: left;
     margin-right: 5px;
+    margin-left: -5px;
+    & > * {
+      margin-right: 0;
+      margin-left: 5px;
+    }
   }
   &.left,
   &.right {
@@ -18,9 +27,6 @@
   &.center {
     font-size: 0;
     text-align: center;
-  }
-  & > * + * {
-    margin-left: 5px;
   }
   &.with-indent > * {margin-bottom: 5px;}
 }
