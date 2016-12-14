@@ -47,7 +47,7 @@ import AppointmentConfirmModal from './rippleui/pages/appointments/appointments-
 import ProceduresModal from './rippleui/pages/procedures/procedures-modal';
 import ImageModal from './rippleui/pages/dicom/image-modal';
 import EolcareplansModal from './rippleui/pages/care-plans/eolcareplans-modal';
-import LookupModal from './rippleui/pages/patients-lookup/patients-lookup-modal'
+import LookupModal from './rippleui/pages/patients-lookup/patients-lookup-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';

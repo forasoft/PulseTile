@@ -55,16 +55,17 @@ class HeaderController {
       $scope.user = loginResult.data;
       $scope.setTitle(loginResult.data);
     };
-
+    
     $scope.login = function () {
       serviceRequests.login().then(function (result) {
         $scope.setLoginData(result);
       });
     };
-
+    
     var auth0;
-
+    
     serviceRequests.initialise().then(function (result){
+      console.log('initialise auth0', result);
       if (result.data.token) {
         // reset the JSESSIONID cookie with the new incoming cookie
 

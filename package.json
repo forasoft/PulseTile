@@ -19,6 +19,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --display-chunks --progress",
+    "build-plugins": "cross-env NODE_ENV=extension webpack --display-chunks --progress",
     "copy": "cross-env NODE_ENV=copy webpack",
     "clean": "del-cli target",
     "lint": "eslint --cache .",
