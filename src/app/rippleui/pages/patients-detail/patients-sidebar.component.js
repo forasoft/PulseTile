@@ -91,7 +91,7 @@ class PatientsSidebarController {
       {
         name: 'clinicalNotes',
         link: 'clinicalNotes',
-        title: 'Clinical Notes'
+        title: 'Personal Notes'
       },
       {
         name: 'heightAndWeights',
