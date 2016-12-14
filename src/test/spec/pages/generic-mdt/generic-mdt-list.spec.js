@@ -61,7 +61,7 @@ describe('GenericMdt List', function() {
     spyOn(ctrl, 'selected');
     spyOn(ctrl, 'create');
     spyOn(ctrl, 'setCurrentPageData');
-    spyOn(ctrl, 'cancermdtLoad');
+    spyOn(ctrl, 'genericmdtLoad');
 
     fakeCall.callGenericmdt({}, types.CANCERMDT);
 
@@ -70,7 +70,7 @@ describe('GenericMdt List', function() {
     ctrl.selected();
     ctrl.create();
     ctrl.setCurrentPageData();
-    ctrl.cancermdtLoad();
+    ctrl.genericmdtLoad();
   });
 
   it('Template exist', function() {
@@ -101,6 +101,6 @@ describe('GenericMdt List', function() {
     expect(ctrl.setCurrentPageData).toHaveBeenCalled();
   });
   it("cancermdtLoad was called", function() {
-    expect(ctrl.cancermdtLoad).toHaveBeenCalled();
+    expect(ctrl.genericmdtLoad).toHaveBeenCalled();
   });
 });

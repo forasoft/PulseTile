@@ -33,11 +33,11 @@ describe('GenericMdt Details', function() {
   beforeEach(function() {
     spyOn(ctrl, 'edit');
     spyOn(ctrl, 'setCurrentPageData');
-    spyOn(ctrl, 'cancermdtLoad');
+    spyOn(ctrl, 'genericmdtLoad');
 
     ctrl.edit();
     ctrl.setCurrentPageData();
-    ctrl.cancermdtLoad();
+    ctrl.genericmdtLoad();
   });
 
   it('Controller exist', function() {
@@ -53,6 +53,6 @@ describe('GenericMdt Details', function() {
     expect(ctrl.setCurrentPageData).toHaveBeenCalled();
   });
   it("cancermdtLoad was called", function() {
-    expect(ctrl.cancermdtLoad).toHaveBeenCalled();
+    expect(ctrl.genericmdtLoad).toHaveBeenCalled();
   });
 });
