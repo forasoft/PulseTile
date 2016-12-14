@@ -24,6 +24,7 @@ class ClinicalnotesListController {
         source: clinicalNoteSource
       });
     };
+    this.go(1,null);
 
     this.pageChangeHandler = function (newPage) {
       $scope.currentPage = newPage;
@@ -54,6 +55,8 @@ class ClinicalnotesListController {
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
+        console.log('this.currentPatient');
+        console.log(this.currentPatient);
       }
       if (data.clinicalnotes.data) {
         this.clinicalNotes = data.clinicalnotes.data;

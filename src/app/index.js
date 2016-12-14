@@ -15,7 +15,7 @@
 */
 //libs
 import uiRouter from 'angular-ui-router';
-import ngAnimate from 'angular-animate';
+// import ngAnimate from 'angular-animate';
 import uiBootstrap from 'angular-ui-bootstrap';
 import 'bootstrap';
 import ngRedux from 'ng-redux';
@@ -106,7 +106,7 @@ import 'app/scss/core.scss';
 const app = angular
     .module('app', [
         uiRouter,
-        ngAnimate,
+        // ngAnimate,
         uiBootstrap,
         ngRedux,
         actions,
