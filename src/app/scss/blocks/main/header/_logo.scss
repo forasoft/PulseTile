@@ -1,0 +1,36 @@
+.wrap-logo {
+  float: left;
+  padding: 6px 4px;
+}
+.logo {
+  line-height: 38px;
+  font-family: 'MyriadPro';
+  font-size: 18px;
+  color: #0C662D;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  vertical-align: middle;
+  .logo-icon {
+    display: inline-block;
+    width: auto;
+    height: 26px;
+    cursor: pointer;
+    content: img('ripple-icon.png');
+    margin-right: 4px;
+  }
+  span {display: inline-block;}
+}
+@include respond-to(xs) {
+  .wrap-logo {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+  .logo {
+    font-size: 23px;
+    .logo-icon {
+      height: 38px;
+      margin-right: 5px;
+    }
+  }
+}

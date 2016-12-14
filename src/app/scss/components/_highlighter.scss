@@ -1,0 +1,25 @@
+.highlighter {
+  position: relative;
+  &:after {
+    direction: inherit;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #ccc;
+  }
+}
+.highlighter-warning {
+  @extend .highlighter;
+  &:after {
+    background-color: #FFBF00;
+  }
+}
+.highlighter-danger {
+  @extend .highlighter;
+  &:after {
+    background-color: #FF2626;
+  }
+}

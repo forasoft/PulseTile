@@ -13,27 +13,51 @@
   ~  See the License for the specific language governing permissions and
   ~  limitations under the License.
   -->
-<header-component></header-component>
-<!-- Sidebar-->
-<div class="wrapper navbar-default sidebar hidden-xs" role="navigation">
-    <div class="sidebar-nav navbar-collapse">
-        <ul side-menu class="nav" ui-view="actions"></ul>
-    </div>
-</div>
-<!-- /.Sidebar-->
+<div class="wrapper" ng-class="classShowSidebar">
+  
+  <header-component></header-component>
 
-<!-- /page-wrapper -->
-<div ng-class="actionsExists ? 'page-wrapper' : 'page-wrapper-off'">
-    <div class="section-north" ui-view="banner" ng-if=userContextViewExists></div>
-
-    <div class="section section-content">
-        <div class="row">
-            <div class="col-md-{{mainWidth}} col-left">
-                <div class="section-main" ui-view="main"></div>
-            </div>
-            <div class="col-md-{{detailWidth}} col-right">
-                <div class="section-detail" ui-view="detail"></div>
-            </div>
+  <div class="content">
+    <!-- Sidebar-->
+    <div class="sidebar" ng-if="isSidebar === true" role="navigation" >
+        <div class="sidebar-nav">
+          <div side-menu ui-view="actions"></div>
         </div>
     </div>
+    <!-- /.Sidebar-->
+
+    <div class="main">
+      <!-- Breadcrumbs-->
+      <div class="wrap-breadcrumbs">
+        <div class="container-fluid">
+          <div class="breadcrumbs">
+            <a href="#">Patient Listings</a>
+            <span class="separate"></span>
+            <a href="#">Patient Summary</a>
+            <span class="separate"></span>
+            <span>Medications</span>
+          </div>
+        </div>
+      </div>
+      <!-- /.Breadcrumbs-->
+      
+      <!-- /page-wrapper -->
+      <div class="page-wrapper">
+          <div class="section">
+              <div class="row">
+                  <div class="col-page-1 pull-left">
+                      <div class="section-main" ui-view="main"></div>
+                  </div>
+                  <div class="col-page-2 pull-right">
+                      <div class="section-detail" ui-view="detail"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+
 </div>
+
+

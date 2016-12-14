@@ -1,12 +1,80 @@
-@import
-'colors',
-'dimensions',
-'utils',
-'header-bar',
-'main',
-'typography',
-'sb-admin-2',
-'../assets/foundation-icons/foundation-icons.css',
-'~angular-loading-bar/src/loading-bar.css',
-'~fullcalendar/dist/fullcalendar.min.css',
-'../../../bower_components/jquery-timepicker-jt/jquery.timepicker.css';
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  min-width: $min-width; 
+  background: #fff;
+  font-family: $font-family-main;
+  @include respond-to(xs) {
+    background: #fff img('site-bg2.png') center 100px no-repeat;
+    background-size: 100% auto;
+  }
+}
+
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+textarea {
+  resize: vertical;
+}
+.wrap-overflow {overflow: hidden;}
+.wrap-icon {
+  font-size: 0;
+  i, span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  i {margin-right: 3px;}
+}
+.clearfix {
+  @include clearfix;
+}
+.text-truncate {
+  @include text-truncate;
+}
+
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+}
+.content {
+  // position: relative;
+  // overflow: hidden;
+}
+.main {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#page-wrapper {
+  padding: 0;
+  min-height: 0;
+}
+
+.page-wrapper {
+  padding: 10px 0;
+  background-color: transparent;
+  @include respond-to(xs) {
+    padding: $indent-wrapper-big;
+  }
+}

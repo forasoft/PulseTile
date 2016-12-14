@@ -1,0 +1,84 @@
+.wrap-patient-info.show {
+  .patient-info {display: table;}
+}
+.patient-info-btn {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 34px;
+  padding-right: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 34px;
+  color: #fff;
+  cursor: pointer;
+  &.dropdown-toggle:after {
+    font-size: 14px;
+  }
+}
+.patient-info {
+  display: none;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: -5px;
+  padding-top: 10px;
+  .patient-info-group-1 {
+    overflow: hidden; 
+    display: table-header-group;
+  }
+  .patient-info-group-2 {
+    margin-left: 5px;
+    display: table-footer-group;
+  }
+  
+}
+@include respond-to(sm) {
+  .patient-info-btn {margin-top: 6px;}
+  .wrap-patient-info {
+    overflow: hidden;
+  }
+  .patient-info-btn {display: none;}
+  .patient-info {
+    display: block;
+    padding-top: 0;
+    .patient-info-group-1 {
+      display: block;
+      overflow: hidden; 
+    }
+    .patient-info-group-2 {
+      display: block;
+      float: right;
+      margin-left: 5px;
+    }
+    .column-1 {
+      float: left;
+      margin-right: 5px;
+    }
+    .column-2 {
+      float: right;
+      padding-right: 5px;
+      text-align: right;
+    }
+  }
+}
+.patient-info-item {
+  margin-bottom: 10px;
+  font-weight: 600;
+  .key {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+  }
+  &.significant {
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+@include respond-to(sm) {
+  .patient-info-item {
+    margin-bottom: 5px;
+    .key {
+      display: inline;
+    }
+  }
+}

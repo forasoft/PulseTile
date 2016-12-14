@@ -14,10 +14,12 @@
   ~  limitations under the License.
 */
 class MainController {
-  constructor($rootScope, $scope, $state, $stateParams, serviceRequests) {
+  constructor($window, $rootScope, $scope, $state, $stateParams, serviceRequests) {
     $scope.previousState = '';
     $scope.pageHeader = '';
     $scope.previousPage = '';
+    $scope.isSidebar = false;
+    $scope.classShowSidebar = '';
 
     $scope.mainWidth = 0;
     $scope.detailWidth = 0;
@@ -87,9 +89,57 @@ class MainController {
       $scope.userContextViewExists = ('banner' in data.state);
       $scope.actionsExists = ('actions' in data.state);
     };
-    
     serviceRequests.subscriber('routeState', this.getPageComponents);
+
+    this.changeClassShowSidebar = function (data) {
+      if (data.click) {
+        if ($scope.classShowSidebar === 'showSidebar') {
+          $scope.classShowSidebar = '';
+        } else {
+          $scope.classShowSidebar = 'showSidebar';
+        }
+      }
+    };
+    serviceRequests.subscriber('changeStateSidebar', this.changeClassShowSidebar);
+
+    this.checkIsSidebar = function() {
+      if($state.router.globals.$current.views.actions) {
+        $scope.isSidebar = true;
+      } else {
+        $scope.isSidebar = false;
+      }
+    };
+
+    this.setHeightSidebarForMobile = function() {
+      var page = angular.element(document);
+      var wrapperHeight = page.find('.wrapper').outerHeight();
+      var headerHeight = page.find('.header').outerHeight();
+      var footerHeight = page.find('.footer').outerHeight();
+      var sidebar = page.find('.sidebar');
+      
+      if ($scope.isSidebar) {
+        if (window.innerWidth < 768) {
+          sidebar.css('height', wrapperHeight - headerHeight - footerHeight + 'px');
+        } else {
+          sidebar.css('height', 'auto');
+        }
+      }
+    }
+    serviceRequests.subscriber('setHeightSidebar', this.setHeightSidebarForMobile);
     
+    angular.element(document).ready(function () {
+      this.checkIsSidebar();
+      this.setHeightSidebarForMobile();
+    }.bind(this));
+    
+    $window.addEventListener('resize', function () {
+      this.setHeightSidebarForMobile();
+    }.bind(this));
+
+    $rootScope.$on('$locationChangeStart', function() {
+      this.checkIsSidebar();
+    }.bind(this));
+ 
   }
 }
 const MainComponent = {
@@ -97,5 +147,5 @@ const MainComponent = {
   controller: MainController
 };
 
-MainController.$inject = ['$rootScope', '$scope',  '$state', '$stateParams', 'serviceRequests'];
+MainController.$inject = ['$window', '$rootScope', '$scope',  '$state', '$stateParams', 'serviceRequests'];
 export default MainComponent;

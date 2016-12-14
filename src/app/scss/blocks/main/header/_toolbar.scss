@@ -1,0 +1,14 @@
+.wrap-header-toolbar {
+  background: $secondary-color;
+}
+
+.header-toolbar {
+  overflow: hidden;
+  padding: 7px 0 10px;
+  font-size: 15px;
+  line-height: 20px;
+  color: #fff;
+  @include respond-to(xs) {
+    padding: 10px 0 8px;
+  }
+}

@@ -26,45 +26,25 @@ class HeaderController {
     this.goHome = function () {
       $state.go('patients-charts');
     };
-
-    $scope.switchDirectByRole = function (currentUser) {
-      if (!currentUser) return;
-      // Direct different roles to different pages at login
-      switch (currentUser.role) {
-        case 'IDCR':
-          $state.go('main-search');
-          break;
-        case 'PHR':
-          $state.go('patients-summary', {
-            patientId: currentUser.nhsNumber
-          });
-          break;
-        default:
-          $state.go('patients-summary', {
-            patientId: currentUser.nhsNumber
-          });
-      }
+  
+    this.setTitle = function (data) {
+      this.title = data ? data.role + ' POC' : '';
     };
 
-    $scope.setTitle = function (data) {
-      $scope.title = data ? data.role + ' POC' : '';
-      $scope.switchDirectByRole(data);
-    };
+    let unsubscribe = $ngRedux.connect(state => ({
+      error: state.user.error,
+      user: state.user.data,
+      getTitle: this.setTitle(state.user.data)
+    }))(this);
 
-    $scope.setLoginData = function (loginResult) {
-      $scope.user = loginResult.data;
-      $scope.setTitle(loginResult.data);
-    };
-    
-    $scope.login = function () {
-      serviceRequests.login().then(function (result) {
-        $scope.setLoginData(result);
-      });
-    };
-    
+    $scope.$on('$destroy', unsubscribe);
+
+    $scope.login = userActions.login;
+
     var auth0;
     
     serviceRequests.initialise().then(function (result){
+      console.log('initialise auth0', result);
       if (result.data.token) {
         // reset the JSESSIONID cookie with the new incoming cookie
 
@@ -89,6 +69,9 @@ class HeaderController {
         $scope.login();
       }
 
+    }, function (error){
+      //for dev and testing
+      $scope.login();
     });
 
     $rootScope.searchExpression = '';
@@ -275,6 +258,10 @@ class HeaderController {
     this.getPageComponents = function (data) {
       $scope.userContextViewExists = ('banner' in data.state);
     };
+    this.clickSidebarBtn = function () {
+      serviceRequests.publisher('setHeightSidebar');
+      serviceRequests.publisher('changeStateSidebar', {click: true});
+    }
 
     serviceRequests.subscriber('routeState', this.getPageComponents);
     serviceRequests.subscriber('populateHeaderSearch', this.getPopulateHeaderSearch);

@@ -66,13 +66,6 @@ class ServiceRequests {
             };
             return $http(options);
         };
-        this.login = function() {
-            var options = {
-                method: 'GET',
-                url: '/api/user'
-            };
-            return $http(options);
-        };
     }
 }
 

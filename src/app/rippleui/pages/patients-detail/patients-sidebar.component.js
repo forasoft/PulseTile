@@ -110,6 +110,8 @@ class PatientsSidebarController {
       }
     ];
 
+    $scope.myVar = $state.router.globals.$current.name;
+    
     this.goTo = function (section) {
       var requestHeader = {
         patientId: $stateParams.patientId,
@@ -120,6 +122,8 @@ class PatientsSidebarController {
 
       $state.go(section, requestHeader);
     };
+
+
   }
 }
 

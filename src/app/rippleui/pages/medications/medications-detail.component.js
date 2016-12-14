@@ -17,10 +17,6 @@ let templateMedicationsDetail= require('./medications-detail.html');
 
 class MedicationsDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, medicationsActions, MedicationsModal, usSpinnerService) {
-    this.edit = function () {
-      MedicationsModal.openModal(this.currentPatient, {title: 'Edit Medication'}, this.medication, this.currentUser);
-    };
-
     $scope.UnlockedSources = [
       'handi.ehrscape.com'
     ];
@@ -38,6 +34,15 @@ class MedicationsDetailController {
       if (data.user.data) {
         this.currentUser = data.user.data;
       }
+      if (data.medication.dataUpdate !== null) {
+        $scope.medicationsLoad($stateParams.patientId);
+      }
+    };
+
+    $scope.panelOpen = '';
+
+    this.openPanel = function (namePanel) {
+      $scope.panelOpen = namePanel;
     };
 
     let unsubscribe = $ngRedux.connect(state => ({
@@ -48,6 +53,71 @@ class MedicationsDetailController {
 
     this.allergiesLoad = medicationsActions.get;
     this.allergiesLoad($stateParams.patientId, $stateParams.medicationIndex, $stateParams.source);
+
+    //Edit Medication
+
+    $scope.routes = [
+      'Po Per Oral',
+      'IV Intra Venous',
+      'PN Per Nasal',
+      'PR Per Rectum',
+      'SL Sub Lingual',
+      'SC Sub Cutaneous',
+      'IM Intra Muscular'
+    ];
+    
+    $scope.isEdit = false;
+    
+    this.edit = function () {
+      $scope.isEdit = true;
+
+      $scope.currentUser = this.currentUser;
+      // $scope.medicationEdit = this.medication;
+      $scope.medicationEdit = Object.assign({}, this.medication)
+      $scope.patient = this.currentPatient;
+
+      $scope.medicationEdit.startTime = new Date($scope.medicationEdit.startTime);
+      $scope.medicationEdit.startDate = new Date($scope.medicationEdit.startDate);
+      $scope.medicationEdit.dateCreated = new Date($scope.medicationEdit.dateCreated);
+      // MedicationsModal.openModal(this.currentPatient, {title: 'Edit Medication'}, this.medication, this.currentUser);
+    };
+    $scope.openDatepicker = function ($event, name) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope[name] = true;
+    };
+    this.cancelEdit = function () {
+      $scope.isEdit = false;
+    };
+    $scope.confirmEdit = function (medicationForm, medication) {
+      
+      $scope.formSubmitted = true;
+      let toAdd = {
+        sourceId: '',
+        doseAmount: medication.doseAmount,
+        doseDirections: medication.doseDirections,
+        doseTiming: medication.doseTiming,
+        medicationCode: medication.medicationCode,
+        medicationTerminology: medication.medicationTerminology,
+        name: medication.name,
+        route: medication.route,
+        startDate: medication.startDate,
+        startTime: medication.startTime,
+        author: medication.author,
+        dateCreated: medication.dateCreated
+      };
+
+      if (medicationForm.$valid) {
+        this.medication = Object.assign(this.medication, $scope.medicationEdit);
+        $scope.isEdit = false;
+        $scope.medicationsUpdate($scope.patient.id, toAdd);
+
+      }
+    }.bind(this);
+
+    $scope.medicationsLoad = medicationsActions.all;
+    $scope.medicationsUpdate = medicationsActions.update;
   }
 }
 

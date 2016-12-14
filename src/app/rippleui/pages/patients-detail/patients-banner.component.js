@@ -23,7 +23,19 @@ class PatientsBannerController {
     }))(this);
 
     $scope.$on('$destroy', unsubscribe);
+
+    $scope.mobileShowInfo = '';
+
+    this.loadPatient = patientsActions.getPatient;
+    this.loadPatient($stateParams.patientId);
     
+    this.showInfo = function() {
+      if ($scope.mobileShowInfo === 'show') {
+        $scope.mobileShowInfo = '';
+      } else {
+        $scope.mobileShowInfo = 'show';
+      }
+    }
   }
 }
 

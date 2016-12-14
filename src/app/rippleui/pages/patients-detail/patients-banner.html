@@ -13,52 +13,31 @@
   ~  See the License for the specific language governing permissions and
   ~  limitations under the License.
   -->
-<div class="panel panel-default panel-patient">
-    <div class="panel-heading">
-        <div class="row">
-            <div class="col-md-4">
-                <h4 class="panel-title">{{ $ctrl.patient.name }}</h4>
-            </div>
-            <div class="col-md-8">
-                <ul class="list-inline">
-                    <li><label>Gender:</label> <strong>{{ $ctrl.patient.gender }}</strong></li>
-                    <li><label>DOB:</label>  <strong>{{ $ctrl.patient.dateOfBirth | date:'dd-MMM-yyyy' }}</strong></li>
-                    <li class="nhsLabel"><label>NHS No.:</label> <strong><span ng-bind="$ctrl.patient.nhsNumber | formatNHSNumber"></span></strong></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="panel-body hidden-xs">
-        <table class="table">
-            <tbody>
-            <tr>
-                <td width="40%"><label>Address:</label>  <strong>{{ $ctrl.patient.address }}</strong></td>
-                <td width="20%"><label>Phone:</label> <strong>{{ $ctrl.patient.telephone }}</strong></td>
-                <td width="20%"><label>GP Details:</label> <strong>{{ $ctrl.patient.gpDetails }}</strong></td>
-                <td width="20%"><label>PAS No.:</label> <strong>{{ $ctrl.patient.pasNumber }}</strong></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="panel-body visible-xs">
-        <div class="form-group">
-            <label>Address:</label><br/>
-            <strong>{{ $ctrl.patient.address }}</strong>
-        </div>
+  <!-- <div class="form-group">
+      <label>GP Details:</label><br/>
+      <strong>{{ $ctrl.patient.gpDetails }}</strong>
+  </div>
 
-        <div class="form-group">
-            <label>Phone:</label><br/>
-            <strong>{{ $ctrl.patient.telephone }}</strong>
-        </div>
-
-        <div class="form-group">
-            <label>GP Details:</label><br/>
-            <strong>{{ $ctrl.patient.gpDetails }}</strong>
-        </div>
-
-        <div class="form-group">
-            <label>PAS No.:</label><br/>
-            <strong>{{ $ctrl.patient.pasNumber }}</strong>
-        </div>
+  <div class="form-group">
+      <label>PAS No.:</label><br/>
+      <strong>{{ $ctrl.patient.pasNumber }}</strong>
+  </div> -->
+<div class="wrap-patient-info" ng-class="mobileShowInfo">
+  <div ng-click="$ctrl.showInfo()"  class="patient-info-btn dropdown-toggle text-truncate">{{ $ctrl.patient.name }}</div>
+  <div class="patient-info">
+    <div class="patient-info-group-2">
+      <div class="column-1">
+        <div class="patient-info-item"><span class="key">D.O.B.</span> {{ $ctrl.patient.dateOfBirth | date:'dd-MMM-yyyy' }}</div>
+        <div class="patient-info-item"><span class="key">Phone:</span> {{ $ctrl.patient.telephone }}</div>
+      </div>
+      <div class="column-2">
+        <div class="patient-info-item"><span class="key">Gender:</span> {{ $ctrl.patient.gender }}</div>
+        <div class="patient-info-item"><span class="key">NHS No.</span> <span ng-bind="$ctrl.patient.nhsNumber | formatNHSNumber"></span></div>
+      </div>
     </div>
+    <div class="patient-info-group-1">
+      <div class="patient-info-item significant hidden-xs">{{ $ctrl.patient.name }}</div>
+      <div class="patient-info-item"><span class="key">Address:</span> {{ $ctrl.patient.address }}</div>
+    </div>
+  </div>
 </div>

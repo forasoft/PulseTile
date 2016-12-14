@@ -13,8 +13,9 @@
   ~  See the License for the specific language governing permissions and
   ~  limitations under the License.
   -->
+
 <ul class="nav">
-    <li class="navigation-menu" ng-repeat="link in $ctrl.linksCollection">
-        <a ng-click="$ctrl.goTo(link.link)">{{link.title}}</a>
-    </li>
+  <li class="navigation-menu" ng-repeat="link in $ctrl.linksCollection">
+    <a ng-click="$ctrl.goTo(link.link)" ng-class="myVar == link.link ? 'active' : ''">{{link.title}}</a>
+  </li>
 </ul>

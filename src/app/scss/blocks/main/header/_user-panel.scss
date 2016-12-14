@@ -1,0 +1,21 @@
+.user-panel {
+  float: right;
+  overflow: hidden;
+  background: #f7f7f7;
+  @include respond-to(xs) {
+    padding-right: 14px;
+  }
+  li {
+    float: left;
+    &.active .btn-header {
+      background: #fff;
+    }
+  }
+}
+
+.header-nav .pane {
+  background-color: #f7f7f7;
+  border-top: 1px solid #e7e7e7;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

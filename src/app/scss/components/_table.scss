@@ -1,0 +1,155 @@
+.table {
+  width: 100%;
+  margin-bottom: 5px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #303030;
+  border: none;
+  border-radius: 0;
+  background-color: $table-background;
+  thead {
+    background-color: $table-header-background;
+    font-weight: 700;
+    i {
+      margin-left: 5px;
+    }
+  }
+  thead tr th,
+  tbody tr td {
+    padding: 10px;
+    vertical-align: middle;
+  }
+  &.clickable tbody tr {cursor: pointer;}
+  .dropdown-menu {
+    left: auto;
+    right: 0;
+    li {
+      width: 100%;
+      i {
+        width: 18px;
+        display: inline-block;
+      }
+    }
+  }
+  .view {
+    min-width: 93px;
+    .dropdown-toggle:hover {
+      background-color: #7dbe31;
+      border-color: #7dbe31;
+      & > li > a:hover {
+        background-color: #d0e8af;
+      }
+    }
+  }
+}
+
+.table > thead > tr > td.info,
+.table > tbody > tr > td.info,
+.table > tfoot > tr > td.info,
+.table > thead > tr > th.info,
+.table > tbody > tr > th.info,
+.table > tfoot > tr > th.info,
+.table > thead > tr.info > td,
+.table > tbody > tr.info > td,
+.table > tfoot > tr.info > td,
+.table > thead > tr.info > th,
+.table > tbody > tr.info > th,
+.table > tfoot > tr.info > th,
+.table > tbody > tr.info {
+  background-color: $table-row-background-hover !important;
+}
+
+.table-striped {
+  tbody {
+    tr {
+      &:hover td {
+        background-color: $table-row-background-hover;
+      }
+      &:nth-of-type(odd) {
+        background-color: $table-row-odd-background;
+      }
+    }
+  }
+}
+
+.table-hover > tbody > tr > td.info:hover,
+.table-hover > tbody > tr > th.info:hover,
+.table-hover > tbody > tr.info:hover > td,
+.table-hover > tbody > tr:hover > .info,
+.table-hover > tbody > tr.info:hover > th {
+  background-color: $table-row-background-hover;
+}
+
+.table-bordered {
+  border: 1px solid #B4B5B4;
+  border-collapse: separate;
+  @include respond-to(xs) {
+    border-collapse: collapse;
+  }
+  thead tr th,
+  tbody tr td {
+    border: none;
+    @include respond-to(xs) {
+      border-left: 1px solid #B4B5B4;
+    }
+  }
+}
+@media (max-width: map-get($breakpoints, 'xs') - 1) {
+  .table-bordered.table-medication {
+    border-left: 0;
+    border-right: 0;
+  }
+}
+
+@media (max-width: map-get($breakpoints, 'xs') - 1) {
+  // Responsive Tables - http://codepen.io/geoffyuen/pen/FCBEg
+  .rwd-table {
+    min-width: 300px; // adjust to your needs
+
+    th {
+      display: none; // for accessibility, use a visually hidden method here instead! Thanks, reddit!
+    }
+    & > tbody > tr {
+      display: block;
+      padding: 5px 0;
+      & > td {
+        display: block;
+        padding: 0 10px;
+        line-height: 20px;
+        &:before {
+          content: attr(data-th)": "; // who knew you could do this? The internet, that's who.
+          font-weight: bold;
+
+          // optional stuff to make it look nicer
+          width: 7em; // magic number :( adjust according to your own content
+          display: inline-block;
+          padding-right: 10px;
+          // end options
+          @include respond-to(xs) {
+            display: none;
+          }
+        }
+      }
+      td.dateTime {
+        width: auto;
+      }
+    }
+
+
+    th, td {
+      text-align: left;
+      
+      @include respond-to(xs) {
+        display: table-cell;
+        padding: .25em .5em;
+
+        &:first-child {
+        }
+      }
+    }
+  }
+  .rwd-table td.hidden-xs-cell,
+  .hidden-xs-cell {
+    display: none ;
+  }
+}

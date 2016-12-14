@@ -67,7 +67,7 @@ export default function MedicationsModal($uibModal, medicationsActions, $ngRedux
             $scope.medication.dateCreated = new Date($scope.medication.dateCreated);
             // $scope.medication.startDate = new Date($scope.medication.startDate).toISOString().slice(0, 10);
             // $scope.medication.dateCreated = new Date($scope.medication.dateCreated).toISOString().slice(0, 10);
-          }else {
+          } else {
             $scope.isEdit = false;
             $scope.medication.medicationCode = $scope.medication.medicationCode === undefined ? '123456789' : $scope.medication.medicationCode;
             $scope.medication.dateCreated = new Date();
@@ -105,6 +105,8 @@ export default function MedicationsModal($uibModal, medicationsActions, $ngRedux
 
             if (medicationForm.$valid) {
 
+              $uibModalInstance.close(medication);
+
               if ($scope.isEdit) {
                 $scope.medicationsUpdate($scope.patient.id, toAdd);
               } else {
@@ -112,6 +114,10 @@ export default function MedicationsModal($uibModal, medicationsActions, $ngRedux
               }
 
             }
+          };
+
+          $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
           };
 
           let unsubscribe = $ngRedux.connect(state => ({
