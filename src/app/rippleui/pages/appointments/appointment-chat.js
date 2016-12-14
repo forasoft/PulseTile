@@ -33,7 +33,6 @@ export default function AppointmentChatModal($uibModal, serviceRequests, Appoint
           serviceRequests.subscriber('close-chat', this.closeChat);
 
           var ROLE_DOCTOR = 'IDCR';
-          // var socket = io('http://0.0.0.0:9000');
           var user;
           var PeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
           var IceCandidate = window.RTCIceCandidate || window.mozRTCIceCandidate;
@@ -50,9 +49,6 @@ export default function AppointmentChatModal($uibModal, serviceRequests, Appoint
             audio: true,
             video: true
           };
-         
-
-          
 
           socket.on('call:init', function(data) {
             console.log('call:init --- ', data);
@@ -77,14 +73,13 @@ export default function AppointmentChatModal($uibModal, serviceRequests, Appoint
                   source: "Marand",
                   sourceId: "88536cbb-2f09-4624-a8da-fd468f045e60::ripple_osi.ehrscape.c4h::3",
                   status: "Scheduled",
-                  timeOfAppointment: 50400000,
+                  timeOfAppointment: 50400000
                 }
               }
               $('#appointmentCst').text(appointment.serviceTeam);
               $('#appointmentLocation').text(appointment.location);
             });
           });
-
 
           socket.on('call:text:message', function (data) {
             console.log('call:text:message ', data);
@@ -111,7 +106,6 @@ export default function AppointmentChatModal($uibModal, serviceRequests, Appoint
             clearInterval(timer);
             initTimer(data.timestamp);
           });
-
 
           socket.on('call:close', function (data) {
             console.log('call:close', data, pc);
@@ -153,11 +147,6 @@ export default function AppointmentChatModal($uibModal, serviceRequests, Appoint
             clearInterval(timer);
             initTimer(endedIn, true);
           });
-
-          /**
-           * Events
-           */
-
 
           function addTextMessage(timestamp, author, message, prepend) {
             var msg = {};

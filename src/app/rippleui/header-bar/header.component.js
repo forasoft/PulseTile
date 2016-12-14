@@ -84,8 +84,7 @@ class HeaderController {
           navigator.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
         }
 
-
-        function setLocalStream(stream) {
+        function setLocalStream() {
           let user = result;
             socket.emit('user:init', {
               username: user.username,
