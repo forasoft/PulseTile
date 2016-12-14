@@ -47,7 +47,8 @@ const config = {
       {test: /\.(woff|woff2)/, loader: 'url?prefix=fonts/&limit=10000&mimetype=application/font-woff&name=assets/fonts/[name].[ext]'},
       {test: /\.(ttf|eot|svg)/, loader: 'file?name=assets/fonts/[name].[ext]'},
       {test: /\.(jpg|png|jpeg|gif)$/, loader: 'url-loader?limit=25000/&name=assets/images/[name].[ext]' },
-      {test: /\.css$/, loader: "style-loader!css-loader!"}
+      {test: /\.css$/, loader: "style-loader!css-loader!"},
+      // {test: /\.scss$/, loaders: ["style", "css", "sass"]}
       /*{test: /\.woff(\?.*)?$/,loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'},
       {test: /\.woff2(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2' },
       {test: /\.otf(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype' },
@@ -178,18 +179,19 @@ if (ENV_PRODUCTION) {
   );
 
   config.plugins.push(
+    new webpack.optimize.OccurenceOrderPlugin(),
     // new ExtractTextPlugin('styles.css'),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: false,
-      beautify: true,
-      compress: {
-        dead_code: true, // eslint-disable-line camelcase
-        screw_ie8: true, // eslint-disable-line camelcase
-        unused: true,
-        warnings: false
-      }
-    })
+    new webpack.optimize.DedupePlugin()
+    // new webpack.optimize.UglifyJsPlugin({
+    //   mangle: true,
+    //   beautify: true,
+    //   compress: {
+    //     dead_code: true, // eslint-disable-line camelcase
+    //     screw_ie8: true, // eslint-disable-line camelcase
+    //     unused: true,
+    //     warnings: false
+    //   }
+    // })
   );
 }
 

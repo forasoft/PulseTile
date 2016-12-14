@@ -22,6 +22,7 @@ class EolcareplansListController {
     var vm = this;
 
     this.currentPage = 1;
+    this.query = '';
 
     this.pageChangeHandler = function (newPage) {
       this.currentPage = newPage;
