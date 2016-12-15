@@ -17,6 +17,7 @@ var io = require('socket.io-client');
 class SocketService {
 
   constructor ($http) {
+    this.userInitResponse = {};
     this.socket = io.connect('https://139.59.187.100:8082');
   }
 }

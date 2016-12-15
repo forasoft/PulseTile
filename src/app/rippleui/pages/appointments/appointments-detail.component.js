@@ -78,50 +78,13 @@ class AppointmentsDetailController {
     this.appointmentsLoad = appointmentsActions.get;
     this.appointmentsLoad($stateParams.patientId, $stateParams.appointmentIndex, $stateParams.source);
 
-    if (navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
-    } else {
-      navigator.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
-    }
-
-    function setLocalStream() {
-      $.get('/api/user').then(function (usr) {
-        user = usr;
-        if (!user.username) {
-          user.username = user.email.split('@')[0];
-        }
-        socket.emit('user:init', {
-          username: user.username,
-          nhsNumber: user.nhsNumber,
-          role: user.role,
-          surname: user.family_name,
-          name: user.given_name,
-          token: token
-        });
-      })
-        .fail(function(error) {
-          console.log('error! ' + JSON.stringify(error.responseJSON));
-          if (error.responseJSON.error && error.responseJSON.error) {
-            console.log('You are not logged in or your session has expired');
-            return;
-          }
-        });
-    }
-
-    function errorHandler(err) {
-      console.error('errorHandler', err);
-    }
-
-    socket.on('user:init', function(data) {
-      if (data.ok) {
-        console.log('user:init response - ', data);
-        console.log('appointmentId - ', appointmentId, ' --token - ', token);
+    if (socketService.userInitResponse) {
+      console.log('userInitResponse ', socketService.userInitResponse);
         socket.emit('call:init', {
           appointmentId: appointmentId,
           token: token
         });
-      }
-    });
+    }
 
     socket.on('call:text:messages:history', function (data) {
       var role = isDoctor(user) ? 'doctor' : 'patient';

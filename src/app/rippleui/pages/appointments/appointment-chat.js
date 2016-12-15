@@ -54,6 +54,107 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
             video: true
           };
 
+
+          function gotStream(stream) {
+            $('#localVideo').toggleClass('inactive').attr('src', URL.createObjectURL(stream));
+
+            pc = new PeerConnection({
+              "iceServers": [{url: 'stun:stun01.sipphone.com'},
+                {url: 'stun:stun.ekiga.net'},
+                {url: 'stun:stun.fwdnet.net'},
+                {url: 'stun:stun.ideasip.com'},
+                {url: 'stun:stun.iptel.org'},
+                {url: 'stun:stun.rixtelecom.se'},
+                {url: 'stun:stun.schlund.de'},
+                {url: 'stun:stun.l.google.com:19302'},
+                {url: 'stun:stun1.l.google.com:19302'},
+                {url: 'stun:stun2.l.google.com:19302'},
+                {url: 'stun:stun3.l.google.com:19302'},
+                {url: 'stun:stun4.l.google.com:19302'},
+                {url: 'stun:stunserver.org'},
+                {url: 'stun:stun.softjoys.com'},
+                {url: 'stun:stun.voiparound.com'},
+                {url: 'stun:stun.voipbuster.com'},
+                {url: 'stun:stun.voipstunt.com'},
+                {url: 'stun:stun.voxgratia.org'},
+                {url: 'stun:stun.xten.com'},
+                {
+                  url: 'turn:numb.viagenie.ca',
+                  credential: 'muazkh',
+                  username: 'webrtc@live.com'
+                },
+                {
+                  url: 'turn:192.158.29.39:3478?transport=udp',
+                  credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+                  username: '28224511:1379330808'
+                },
+                {
+                  url: 'turn:192.158.29.39:3478?transport=tcp',
+                  credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+                  username: '28224511:1379330808'
+                }]
+            });
+
+            pc.addStream(stream);
+            pc.onicecandidate = gotIceCandidate;
+            pc.onaddstream = gotRemoteStream;
+            // window.localStream = stream;
+
+            if ($('#muteAudio').hasClass('inactive')) {
+              toggleAudioStreams(false);
+            }
+            if ($('#muteVideo').hasClass('inactive')) {
+              toggleVideoStreams(false);
+              toggleVideo('#localVideo');
+            }
+          }
+
+          function createOffer() {
+            var options = {
+              'mandatory': {
+                'OfferToReceiveAudio': true,
+                'OfferToReceiveVideo': true
+              }
+            };
+            pc.createOffer(options)
+              .then(gotLocalDescription)
+              .catch(errorHandler);
+          }
+
+          function createAnswer() {
+            var options = {
+              'mandatory': {
+                'OfferToReceiveAudio': true,
+                'OfferToReceiveVideo': true
+              }
+            };
+            pc.createAnswer(options)
+              .then(gotLocalDescription)
+              .catch(errorHandler);
+          }
+
+
+          function gotLocalDescription(description) {
+            pc.setLocalDescription(description);
+            sendWebRTCMessage(description);
+          }
+
+          function gotIceCandidate(event) {
+            if (event.candidate) {
+              sendWebRTCMessage({
+                type: 'candidate',
+                label: event.candidate.sdpMLineIndex,
+                id: event.candidate.sdpMid,
+                candidate: event.candidate.candidate
+              });
+            }
+          }
+
+          function gotRemoteStream(event) {
+            $('#remoteVideo').removeClass('inactive').attr('src', URL.createObjectURL(event.stream));
+            $('#noSound').hide();
+            socket.emit('call:remoteStreamProp:get', {appointmentId: appointmentId, token: token});
+          }
           
           /**
            * Socket.io
@@ -182,10 +283,10 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
           });
 
           socket.on('call:close', function (data) {
-            console.log('call:close on ', data);
-            if (pc.signalingState !== 'closed') {
-              pc.close();
-            }
+            console.log('call:close on ', data, pc);
+            // if (pc.signalingState !== 'closed') {
+            //   pc.close();
+            // }
             if (!data) return;
             if (data.user) {
               addTextMessage(data.timestamp, null, data.user + ' has ended the conversation');

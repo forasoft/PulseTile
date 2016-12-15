@@ -77,11 +77,37 @@ class HeaderController {
     $scope.login = function () {
       serviceRequests.login().then(function (result) {
         $scope.setLoginData(result);
-
         
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
+        } else {
+          navigator.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
+        }
 
+        function setLocalStream() {
+          let user = result;
+            socket.emit('user:init', {
+              username: user.username,
+              nhsNumber: user.nhsNumber,
+              role: user.role,
+              surname: user.family_name,
+              name: user.given_name,
+              token: token
+            });
+        }
+
+        function errorHandler(err) {
+          console.error('errorHandler', err);
+        }
       });
     };
+
+    socket.on('user:init', function(data) {
+      if (data.ok) {
+        console.log('user:init response - ', data);
+        socketService.userInitResponse = data;
+      }
+    });
 
     var auth0;
 
