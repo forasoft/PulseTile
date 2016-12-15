@@ -13,7 +13,7 @@
  ~  See the License for the specific language governing permissions and
  ~  limitations under the License.
  */
-export default function AppointmentChatModal($uibModal, serviceRequests, AppointmentChatConfirmModal) {
+export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequests, AppointmentChatConfirmModal) {
   var isModalClosed = true;
   var openModal = function (socket, appointmentId, token) {
     if (isModalClosed) {
@@ -26,13 +26,17 @@ export default function AppointmentChatModal($uibModal, serviceRequests, Appoint
           $scope.isCloseChat = false;
 
           this.closeChat = function (data) {
-            console.log('closeChat ', data);
             socket.emit('call:close', {appointmentId: appointmentId, token: token});
             $scope.isCloseChat = data.close;
           };
           serviceRequests.subscriber('close-chat', this.closeChat);
 
-          var ROLE_DOCTOR = 'IDCR';
+          this.setCurrentPageData = function (data) {
+            if (data.patientsGet.data) {
+              this.currentPatient = data.patientsGet.data;
+            }
+          };
+          
           var user;
           var PeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
           var IceCandidate = window.RTCIceCandidate || window.mozRTCIceCandidate;
@@ -50,10 +54,23 @@ export default function AppointmentChatModal($uibModal, serviceRequests, Appoint
             video: true
           };
 
-          socket.on('call:init', function(data) {
-            console.log('call:init --- ', data);
-          });
           
+          /**
+           * Socket.io
+           */
+
+          function sendWebRTCMessage(message) {
+            socket.emit('call:webrtc:message', {message: message, appointmentId: appointmentId, token: token});
+          }
+
+          socket.on('call:webrtc:init', function (data) {
+            console.log('webrtc:init response - ' + JSON.stringify(data));
+            $('#remoteVideo').removeClass('inactive');
+            if (data.isInitiator) {
+              createOffer();
+            }
+          });
+
           socket.on('call:getPatientInfo', function (data) {
             $.get('/api/patients/' + data.patientId).then(function (data) {
               $('#patientName').text(data.name);
@@ -81,8 +98,48 @@ export default function AppointmentChatModal($uibModal, serviceRequests, Appoint
             });
           });
 
+          socket.on('call:opponent:join', function (data) {
+            addTextMessage(data.timestamp, null, data.message + ' has entered the chat room');
+            createNotification({title: data.message + ' has entered the chat room'});
+          });
+
+          socket.on('call:busy', function () {
+            if (pc.signalingState !== 'closed') {
+              pc.close();
+            }
+            toggleVideo('#remoteVideo');
+            window.close();
+          });
+
+          socket.on('call:opponent:left', function (data) {
+            addTextMessage(data.timestamp, null, data.message + ' has left the chat room');
+            if ($(window).data('isBlur')) {
+              createNotification({
+                title: data.message + ' has left the chat room'
+              });
+            }
+            if (pc.signalingState !== 'closed') {
+              pc.close();
+            }
+            $('#remoteVideo').attr('src', '').addClass('inactive');
+            $('#noSound').hide();
+            cretePeerConnection();
+          });
+
+          socket.on('call:webrtc:message', function (message) {
+            if (message.type === 'offer') {
+              pc.setRemoteDescription(new SessionDescription(message));
+              createAnswer();
+            } else if (message.type === 'answer') {
+              pc.setRemoteDescription(new SessionDescription(message));
+            } else if (message.type === 'candidate') {
+              var candidate = new IceCandidate({sdpMLineIndex: message.label, candidate: message.candidate});
+              pc.addIceCandidate(candidate);
+            }
+          });
+
           socket.on('call:text:message', function (data) {
-            console.log('call:text:message ', data);
+            console.log('call:text:message');
             addTextMessage(data.timestamp, data.author, data.message);
             if ($(window).data('isBlur')) {
               createNotification({
@@ -92,23 +149,40 @@ export default function AppointmentChatModal($uibModal, serviceRequests, Appoint
             }
           });
 
-          socket.on('call:text:messages:history', function (data) {
-            console.log('messages:history === ', data);
-            var role = isDoctor(user) ? 'doctor' : 'patient';
-            var opponent = data.appointment[(isDoctor(user) ? 'patient' : 'doctor')];
-            for (var i = 0; i < data.messages.length; i++) {
-              addTextMessage(data.messages[i].timestamp, (data.messages[i].author) ? ((role == data.messages[i].author) ? 'You' : opponent) : null, data.messages[i].message, true);
-            }
-          });
+         
 
           socket.on('call:timer', function (data) {
-            console.log('call:timer', data);
+            console.log(data);
             clearInterval(timer);
             initTimer(data.timestamp);
           });
 
+          socket.on('call:remoteStreamProp:get', function () {
+            var remoteStreamProp = {};
+            remoteStreamProp.audio = localStream.getAudioTracks()[0].enabled;
+            remoteStreamProp.video = localStream.getVideoTracks()[0].enabled;
+            socket.emit('call:remoteStreamProp:post', {appointmentId: appointmentId, remoteStreamProp: remoteStreamProp, token: token})
+          });
+
+          socket.on('call:remoteStreamProp:post', function (data) {
+            if (!data.remoteStreamProp.audio) {
+              toggleAudio();
+            }
+            if (!data.remoteStreamProp.video) {
+              toggleVideo('#remoteVideo');
+            }
+          });
+
+          socket.on('call:video:toggle', function () {
+            toggleVideo('#remoteVideo');
+          });
+
+          socket.on('call:audio:toggle', function () {
+            toggleAudio();
+          });
+
           socket.on('call:close', function (data) {
-            console.log('call:close', data, pc);
+            console.log('call:close on ', data);
             if (pc.signalingState !== 'closed') {
               pc.close();
             }
@@ -148,17 +222,147 @@ export default function AppointmentChatModal($uibModal, serviceRequests, Appoint
             initTimer(endedIn, true);
           });
 
-          function addTextMessage(timestamp, author, message, prepend) {
-            var msg = {};
-            msg.time = moment.utc(timestamp).local().format('HH:mm');
-            msg.author = ( (author !== null) ? (author + ': ') : '');
-            msg.text = message;
-            messages.push(msg);
+          /**
+           * Events
+           */
+
+          $('#muteAudio').off('click').on('click', function () {
+            $(this).toggleClass('inactive').toggleClass('fa-microphone').toggleClass('fa-microphone-slash');
+            toggleAudioStreams();
+            socket.emit('call:audio:toggle', {appointmentId: appointmentId, token: token});
+          });
+
+          $('#muteVideo').off('click').on('click', function () {
+            $(this).toggleClass('inactive').toggleClass('fa-video-camera-2').toggleClass('fa-video-camera-slash-2');
+            toggleVideoStreams();
+            toggleVideo('#localVideo');
+            socket.emit('call:video:toggle', {appointmentId: appointmentId, token: token});
+          });
+
+
+          $('#restartCall').off('click').on('click', function () {
+            clearTimeout(restartCallTimer);
+            restartCallTimer = null;
+
+            socket.emit('call:restart', {appointmentId: appointmentId, token: token});
+          });
+
+          $(window).on("blur focus", function (e) {
+            var prevType = $(this).data("isBlur") ? 'blur' : 'focus';
+
+            if (prevType != e.type) {
+              switch (e.type) {
+                case 'blur':
+                  break;
+                case 'focus':
+                  while (notifications.length) {
+                    var notification = notifications.pop();
+                    notification.close();
+                  }
+                  break;
+              }
+            }
+
+            $(this).data('isBlur', e.type == 'blur');
+          });
+
+          function toggleVideo(video_selector) {
+            var $video = $(video_selector);
+            $video.toggleClass('inactive');
+            if (video_selector.indexOf('remote') !== -1) return;
+            var src = $video.attr('src');
+            if (!src) {
+              src = $video.data('src');
+              $video.attr('src', src);
+            } else {
+              $video.data('src', src);
+              $video.attr('src', '');
+            }
           }
 
-          function isDoctor(user) {
-            return user && user.role == ROLE_DOCTOR;
+          function toggleAudio() {
+            $('#noSound').toggle();
           }
+
+          function toggleAudioStreams(enabled) {
+            localStream.getAudioTracks().forEach(function (stream) {
+              stream.enabled = (enabled !== undefined) ? enabled : !stream.enabled;
+            });
+          }
+
+          function toggleVideoStreams(enabled) {
+            localStream.getVideoTracks().forEach(function (stream) {
+              stream.enabled = (enabled !== undefined) ? enabled : !stream.enabled;
+            });
+          }
+
+          function addTextMessage(timestamp, author, message, prepend) {
+            console.log('addTextMessage ---> ', timestamp, author, message, prepend);
+            var $list = $('.list-messages');
+            var li = document.createElement('li');
+            var textNode = document.createTextNode(moment.utc(timestamp).local().format('HH:mm') + ' - ' + ( (author !== null) ? (author + ': ') : '') + message);
+            $(li).append(textNode);
+            $list[(prepend) ? 'prepend' : 'append'](li);
+            var height = $list[0].scrollHeight;
+            $list.scrollTop(height);
+          }
+
+          function createNotification(data) {
+            if (!('Notification' in window)) {
+              console.log('This browser does not support desktop notification');
+            } else if (Notification.permission === 'granted') {
+              _createNotification(data);
+            } else if (Notification.permission !== 'denied') {
+              Notification.requestPermission(function (permission) {
+                if (permission === 'granted') {
+                  _createNotification(data)
+                }
+              });
+            }
+          }
+
+          function _createNotification(data) {
+            try {
+              notifications.push(new Notification(data.title, {
+                body: data.body,
+                icon: '../images/ripple-icon.png'
+              }));
+              playSound('alert');
+            } catch (err) {
+              if (err.name == 'TypeError') { // if browser doesn't support new Notification syntax (Chrome Android)
+                if (notificationServiceWorker === null) {
+                  notificationServiceWorker = navigator.serviceWorker.register('/scripts/chat/sw.js');
+                }
+                notificationServiceWorker.then(function (registration) {
+                  registration.showNotification(data.title, {
+                    body: data.body,
+                    icon: '../images/ripple-icon.png',
+                    vibrate: [200, 100, 200, 100, 200, 100, 200],
+                  });
+                  registration.getNotifications().then(function (data) {
+                    notifications = [].concat(data);
+                  });
+                });
+              }
+            }
+          }
+
+          function getNotificationPermission(cb) {
+            if (!('Notification' in window)) return;
+            if (Notification.permission !== 'denied' || Notification.permission !== 'granted') {
+              Notification.requestPermission(cb);
+            }
+          }
+
+          function playSound(filename) {
+            $('#notificationSound').empty().html('<audio autoplay="autoplay">' +
+              '<source src="sounds/' + filename + '.mp3" type="audio/mpeg" />' +
+              '<source src="sounds/' + filename + '.ogg" type="audio/ogg" />' +
+              '<embed hidden="true" autostart="true" loop="false" src="sounds/' + filename + '.mp3" />' +
+              '</audio>');
+          }
+
+         
 
           function initTimer(time, withoutHours) {
             console.log('initTimer', time);
@@ -184,8 +388,7 @@ export default function AppointmentChatModal($uibModal, serviceRequests, Appoint
             console.log('----messageForm---- ', $scope.msgText);
             var message = $scope.msgText;
             // addTextMessage(appointment, 'You', message);
-            socket.emit('appointment:text:message', {appointmentId: appointmentId, message: message, token: token});
-            // socket.emit('call:text:message', {appointmentId: appointmentId, message: message, token: token});
+            socket.emit('call:text:message', {appointmentId: appointmentId, message: message, token: token});
           };
           
           $scope.confirmCall = function () {
@@ -195,6 +398,12 @@ export default function AppointmentChatModal($uibModal, serviceRequests, Appoint
           $scope.close = function () {
             $uibModalInstance.dismiss('cancel');
           };
+
+          let unsubscribe = $ngRedux.connect(state => ({
+            getStoreData: this.setCurrentPageData(state)
+          }))(this);
+
+          $scope.$on('$destroy', unsubscribe);
         }
       });
     }
@@ -211,4 +420,4 @@ export default function AppointmentChatModal($uibModal, serviceRequests, Appoint
     openModal: openModal
   };
 }
-AppointmentChatModal.$inject = ['$uibModal', 'serviceRequests', 'AppointmentChatConfirmModal'];
+AppointmentChatModal.$inject = ['$uibModal', '$ngRedux', 'serviceRequests', 'AppointmentChatConfirmModal'];

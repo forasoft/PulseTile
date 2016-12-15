@@ -26,7 +26,8 @@ class AppointmentsDetailController {
     ];
 
     $scope.formDisabled = true;
-
+    $scope.messagesHistory = [];
+    
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
@@ -45,11 +46,18 @@ class AppointmentsDetailController {
       e.returnValue = dialogText;
       return dialogText;
     };
-    
+
+    var constraints = {
+      audio: true,
+      video: true
+    };
     var socket = socketService.socket;    
     var appointmentId = $stateParams.appointmentIndex;
     var token = getCookie('JSESSIONID');
-    console.log('socket 222=> ',  socket);
+    var user;
+    var ROLE_DOCTOR = 'IDCR';
+
+    
     function getCookie(name) {
       var nameEQ = name + "=";
       var ca = document.cookie.split(';');
@@ -70,25 +78,84 @@ class AppointmentsDetailController {
     this.appointmentsLoad = appointmentsActions.get;
     this.appointmentsLoad($stateParams.patientId, $stateParams.appointmentIndex, $stateParams.source);
 
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
+    } else {
+      navigator.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
+    }
+
+    function setLocalStream() {
+      $.get('/api/user').then(function (usr) {
+        user = usr;
+        if (!user.username) {
+          user.username = user.email.split('@')[0];
+        }
+        socket.emit('user:init', {
+          username: user.username,
+          nhsNumber: user.nhsNumber,
+          role: user.role,
+          surname: user.family_name,
+          name: user.given_name,
+          token: token
+        });
+      })
+        .fail(function(error) {
+          console.log('error! ' + JSON.stringify(error.responseJSON));
+          if (error.responseJSON.error && error.responseJSON.error) {
+            console.log('You are not logged in or your session has expired');
+            return;
+          }
+        });
+    }
+
+    function errorHandler(err) {
+      console.error('errorHandler', err);
+    }
+
     socket.on('user:init', function(data) {
       if (data.ok) {
         console.log('user:init response - ', data);
+        console.log('appointmentId - ', appointmentId, ' --token - ', token);
         socket.emit('call:init', {
           appointmentId: appointmentId,
           token: token
         });
       }
     });
-    
+
+    socket.on('call:text:messages:history', function (data) {
+      var role = isDoctor(user) ? 'doctor' : 'patient';
+      var opponent = data.appointment[(isDoctor(user) ? 'patient' : 'doctor')];
+      console.log('call:text:message:history ', data);
+      console.log('role, opponent ', role, opponent);
+      for (var i = 0; i < data.messages.length; i++) {
+        addTextMessage(data.messages[i].timestamp, (data.messages[i].author) ? ((role == data.messages[i].author) ? 'You' : opponent) : null, data.messages[i].message, true);
+      }
+    });
+
+    function isDoctor(user) {
+      return user && user.role == ROLE_DOCTOR;
+    }
+
+    function addTextMessage(timestamp, author, message, prepend) {
+      console.log('addTextMessage1111 ---> ', timestamp, author, message, prepend);
+      var msg = {};
+      msg.timestamp = moment.utc(timestamp).local().format('HH:mm');
+      msg.author = ( (author !== null) ? (author + ': ') : '');
+      msg.message = message;
+      $scope.messagesHistory.push(msg);
+    }
+
     $scope.patient =  this.currentPatient;
     $scope.appt =  this.appointment;
     $scope.startAppointment = function () {
       console.log('startAppointment ==222=> ',  $scope.patient, $scope.appt);
-      socket.emit('appointment:init', {
-        patientId: $scope.patient.id,
-        appointmentId: $scope.appt.sourceId,
-        token: token
-      });
+      if (!$scope.appt) return;
+      // socket.emit('appointment:init', {
+      //   patientId: $scope.patient.id,
+      //   appointmentId: $scope.appt.sourceId,
+      //   token: token
+      // });
 
       openPopup($scope.appt.sourceId);
     };
