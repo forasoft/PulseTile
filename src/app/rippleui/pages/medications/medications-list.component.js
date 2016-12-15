@@ -32,6 +32,27 @@ class MedicationsListController {
       this.currentPage = $stateParams.page;
     }
 
+
+    this.sort = function (field) {
+      var reverse = this.reverse;
+
+      if (this.order === field) {
+        this.reverse = !reverse;
+      } else {
+        this.order = field;
+        this.reverse = false;
+      }
+    };
+
+    this.sortClass = function (field) {
+      if (this.order === field) {
+        return this.reverse ? 'sorted desc' : 'sorted asc';
+      }
+    };
+
+    this.order = $stateParams.order || 'name';
+    this.reverse = $stateParams.reverse === 'true';
+
     this.go = function (id, medicationSource) {
       $state.go('medications-detail', {
         patientId: $stateParams.patientId,
@@ -58,6 +79,11 @@ class MedicationsListController {
       }
       if (data.medication.data) {
         this.medications = data.medication.data;
+        /*
+          TODO: Remove. Only for demo
+        */
+        this.medications[0].warning = true;
+        this.medications[1].danger = true;
       }
       if (data.user.data) {
         this.currentUser = data.user.data;

@@ -1,3 +1,9 @@
+$highlighterColor: (
+  default: #ccc,
+  warning: #FFBF00,
+  danger: #FF2626
+);
+
 .highlighter {
   position: relative;
   &:after {
@@ -8,18 +14,18 @@
     left: 0;
     width: 4px;
     height: 100%;
-    background-color: #ccc;
+    background-color: map-get($highlighterColor, 'default');
   }
 }
 .highlighter-warning {
   @extend .highlighter;
   &:after {
-    background-color: #FFBF00;
+    background-color: map-get($highlighterColor, 'warning');
   }
 }
 .highlighter-danger {
   @extend .highlighter;
   &:after {
-    background-color: #FF2626;
+    background-color: map-get($highlighterColor, 'danger');
   }
 }
