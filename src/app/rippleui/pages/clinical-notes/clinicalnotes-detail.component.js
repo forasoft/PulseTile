@@ -12,6 +12,7 @@ class ClinicalnotesDetailController {
       if (data.clinicalnotes.dataGet) {
         this.clinicalNote = data.clinicalnotes.dataGet;
         this.dateCreated = moment(this.clinicalNote.dateCreated).format('DD-MMM-YYYY');
+
         usSpinnerService.stop("clinicalNoteDetail-spinner");
       }
     };
@@ -44,31 +45,6 @@ class ClinicalnotesDetailController {
     this.cancelEdit = function () {
       $scope.isEdit = false;
     };
-    $scope.confirmEdit = function (medicationForm, medication) {
-      
-      $scope.formSubmitted = true;
-      let toAdd = {
-        sourceId: '',
-        doseAmount: medication.doseAmount,
-        doseDirections: medication.doseDirections,
-        doseTiming: medication.doseTiming,
-        medicationCode: medication.medicationCode,
-        medicationTerminology: medication.medicationTerminology,
-        name: medication.name,
-        route: medication.route,
-        startDate: medication.startDate,
-        startTime: medication.startTime,
-        author: medication.author,
-        dateCreated: medication.dateCreated
-      };
-
-      if (medicationForm.$valid) {
-        this.clinicalNote = Object.assign(this.clinicalNote, $scope.clinicalNoteEdit);
-        $scope.isEdit = false;
-        $scope.medicationsUpdate($scope.patient.id, toAdd);
-
-      }
-    }.bind(this);
 
     $scope.confirmEdit = function (clinicalNoteForm, clinicalNote) {
       $scope.formSubmitted = true;

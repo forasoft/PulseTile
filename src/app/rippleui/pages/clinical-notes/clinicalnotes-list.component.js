@@ -24,6 +24,9 @@ class ClinicalnotesListController {
         source: clinicalNoteSource
       });
     };
+    /*
+      TODO: Remove. Only for demo
+    */
     this.go(1,null);
 
     this.pageChangeHandler = function (newPage) {
