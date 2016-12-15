@@ -14,7 +14,7 @@
   ~  limitations under the License.
 -->
 <div class="panel-group accordion">
-  <div class="panel panel-secondary" ng-if="!isEdit" ng-class="panelOpen == 'medication' || !panelOpen ? 'open' : ''">
+  <div class="panel panel-secondary" ng-if="!isMedicationEdit" ng-class="panelOpen == 'medication' || !panelOpen ? 'open' : ''">
     <div class="panel-heading">
       <div class="control-group left">
         <button class="btn btn-success btn-inverse hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
@@ -90,22 +90,22 @@
             <button class="btn btn-success"><i class="fa fa-share"></i> Order</button>
           </div>
           <div class="control-group with-indent right">
-            <button class="btn btn-success btn-inverse btn-edit" ng-click="$ctrl.edit();"><i class="fa fa-edit"></i> Edit</button>
+            <button class="btn btn-success btn-inverse btn-edit" ng-click="$ctrl.editMedication();"><i class="fa fa-edit"></i> Edit</button>
           </div>
         </div>
       </div>
     </div>
   </div>
   
-  <div class="panel panel-secondary" ng-if="isEdit" ng-class="panelOpen == 'medication' || !panelOpen ? 'open' : ''">
+  <div class="panel panel-secondary" ng-if="isMedicationEdit" ng-class="panelOpen == 'medication' || !panelOpen ? 'open' : ''">
     <div class="panel-heading">
       <div class="control-group left">
         <button class="btn btn-success btn-inverse hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
         <button class="btn btn-success btn-inverse btn-toggle-rotate" ng-click="$ctrl.openPanel('medication')"><i class="fa fa-chevron-up"></i></button>
       </div>
       <div class="control-group right">
-        <a class="btn btn-danger" ng-click="$ctrl.cancelEdit()"><i class="fa fa-ban"></i></a>
-        <button class="btn btn-success" ng-click="confirmEdit(medicationForm, medicationEdit)"><i class="fa fa-check"></i></button>
+        <a class="btn btn-danger" ng-click="$ctrl.cancelEditMedication()"><i class="fa fa-ban"></i></a>
+        <button class="btn btn-success" ng-click="confirmEditMedication(medicationForm, medicationEdit)"><i class="fa fa-check"></i></button>
       </div>
       <h3 class="panel-title">Medication</h3>
     </div>
@@ -220,8 +220,8 @@
       <div class="panel-control" ng-if="$ctrl.currentUser.permissions.indexOf('WRITE') !== -1">
         <div class="wrap-control-group">
           <div class="control-group right">
-            <a class="btn btn-danger" ng-click="$ctrl.cancelEdit()"><i class="fa fa-ban"></i> Cancel</a>
-            <button class="btn btn-success" ng-click="confirmEdit(medicationForm, medicationEdit)"><i class="fa fa-check"></i> Complete</button>
+            <a class="btn btn-danger" ng-click="$ctrl.cancelEditMedication()"><i class="fa fa-ban"></i> Cancel</a>
+            <button class="btn btn-success" ng-click="confirmEditMedication(medicationForm, medicationEdit)"><i class="fa fa-check"></i> Complete</button>
           </div>
         </div>
       </div>
@@ -229,12 +229,7 @@
   </div>
 
 
-
-
-
-
-
-  <div class="panel panel-secondary" ng-class="panelOpen == 'prescription' ? 'open' : ''">
+  <div class="panel panel-secondary" ng-if="!isPrescriptionEdit" ng-class="panelOpen == 'prescription' ? 'open' : ''">
     <div class="panel-heading">
       <div class="control-group left">
         <button class="btn btn-success btn-inverse hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
@@ -259,12 +254,55 @@
       <div class="panel-control" ng-if="$ctrl.currentUser.permissions.indexOf('WRITE') !== -1">
         <div class="wrap-control-group hide-indent-bottom">
           <div class="control-group with-indent right">
-            <button class="btn btn-success btn-inverse" ng-click="$ctrl.edit();"><i class="fa fa-edit"></i> Edit</button>
+            <button class="btn btn-success btn-inverse" ng-click="$ctrl.editPrescription();"><i class="fa fa-edit"></i> Edit</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="panel panel-secondary" ng-if="isPrescriptionEdit" ng-class="panelOpen == 'prescription' ? 'open' : ''">
+    <div class="panel-heading">
+      <div class="control-group left">
+        <button class="btn btn-success btn-inverse hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
+        <button class="btn btn-success btn-inverse btn-toggle-rotate" ng-click="$ctrl.openPanel('prescription')"><i class="fa fa-chevron-up"></i></button>
+      </div>
+      <div class="control-group right">
+        <a class="btn btn-danger" ng-click="$ctrl.cancelEditPrescription()"><i class="fa fa-ban"></i></a>
+        <button class="btn btn-success" ng-click="confirmEditPrescription(medicationForm, medicationEdit)"><i class="fa fa-check"></i></button>
+      </div>
+      <h3 class="panel-title">Prescription (1)</h3>
+    </div>
+    <div class="panel-body">
+      <div class="panel-body-inner">
+        <div class="form">
+          <div class="form-group">
+            <label class="control-label">Name:</label>
+            <div class="input-holder">
+                <input type="text" class="form-control input-sm" id="name" name="name" ng-model="$ctrl.medicationEdit.name" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Dose Amount:</label>
+            <div class="input-holder">
+                <input type="text" class="form-control input-sm" id="doseAmount" name="doseAmount" ng-model="$ctrl.medicationEdit.doseAmount" required />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-control" ng-if="$ctrl.currentUser.permissions.indexOf('WRITE') !== -1">
+        <div class="wrap-control-group">
+          <div class="control-group right">
+            <a class="btn btn-danger" ng-click="$ctrl.cancelEditPrescription()"><i class="fa fa-ban"></i> Cancel</a>
+            <button class="btn btn-success" ng-click="confirmEditPrescription(medicationForm, medicationEdit)"><i class="fa fa-check"></i> Complete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div class="panel panel-secondary" ng-class="panelOpen == 'warning' ? 'open' : ''">
     <div class="panel-heading">
       <div class="control-group left">

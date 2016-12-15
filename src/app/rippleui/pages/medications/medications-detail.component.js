@@ -66,14 +66,12 @@ class MedicationsDetailController {
       'IM Intra Muscular'
     ];
     
-    $scope.isEdit = false;
-    
-    this.edit = function () {
-      $scope.isEdit = true;
+    $scope.isMedicationEdit = false;
+    this.editMedication = function () {
+      $scope.isMedicationEdit = true;
 
       $scope.currentUser = this.currentUser;
-      // $scope.medicationEdit = this.medication;
-      $scope.medicationEdit = Object.assign({}, this.medication)
+      $scope.medicationEdit = Object.assign({}, this.medication);
       $scope.patient = this.currentPatient;
 
       $scope.medicationEdit.startTime = new Date($scope.medicationEdit.startTime);
@@ -81,16 +79,23 @@ class MedicationsDetailController {
       $scope.medicationEdit.dateCreated = new Date($scope.medicationEdit.dateCreated);
       // MedicationsModal.openModal(this.currentPatient, {title: 'Edit Medication'}, this.medication, this.currentUser);
     };
+
+    $scope.isPrescriptionEdit = false;
+    this.editPrescription = function () {
+      $scope.isPrescriptionEdit = true;
+    };
+
+
     $scope.openDatepicker = function ($event, name) {
       $event.preventDefault();
       $event.stopPropagation();
 
       $scope[name] = true;
     };
-    this.cancelEdit = function () {
-      $scope.isEdit = false;
+    this.cancelEditMedication = function () {
+      $scope.isMedicationEdit = false;
     };
-    $scope.confirmEdit = function (medicationForm, medication) {
+    $scope.confirmEditMedication = function (medicationForm, medication) {
       
       $scope.formSubmitted = true;
       let toAdd = {
@@ -110,10 +115,17 @@ class MedicationsDetailController {
 
       if (medicationForm.$valid) {
         this.medication = Object.assign(this.medication, $scope.medicationEdit);
-        $scope.isEdit = false;
+        $scope.isMedicationEdit = false;
         $scope.medicationsUpdate($scope.patient.id, toAdd);
 
       }
+    }.bind(this);
+
+    this.cancelEditPrescription = function () {
+      $scope.isPrescriptionEdit = false;
+    };
+    $scope.confirmEditPrescription = function (medicationForm, medication) {
+      $scope.isPrescriptionEdit = false;
     }.bind(this);
 
     $scope.medicationsLoad = medicationsActions.all;
