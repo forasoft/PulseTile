@@ -18,8 +18,14 @@ let templatePatientsBanner = require('./patients-banner.html');
 class PatientsBannerController {
   constructor($scope, $state, $stateParams, $ngRedux, patientsActions) {
     
+    this.setCurrentPageData = function (data) {
+      if (data.patientsGet.data) {
+        this.patient = data.patientsGet.data;
+      }
+    };
+
     let unsubscribe = $ngRedux.connect(state => ({
-      patient: state.patientsGet.data
+      getPatient:  this.setCurrentPageData(state)
     }))(this);
 
     $scope.$on('$destroy', unsubscribe);
