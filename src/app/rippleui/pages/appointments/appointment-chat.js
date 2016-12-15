@@ -33,7 +33,7 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
 
           this.setCurrentPageData = function (data) {
             if (data.patientsGet.data) {
-              this.currentPatient = data.patientsGet.data;
+              $scope.currentPatient = data.patientsGet.data;
             }
           };
           

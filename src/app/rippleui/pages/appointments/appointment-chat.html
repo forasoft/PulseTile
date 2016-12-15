@@ -25,9 +25,9 @@
     </div>
     <div class="panel-body">
       <div class="row">
-        <div class="col-xs-4"><span>DOB:</span> <strong id="patientDob">{{$ctrl.currentPatient.dateOfBirth | date:'dd-MMM-yyyy' }}</strong></div>
-        <div class="col-xs-4"><span>Gender:</span> <strong id="patientGender">{{$ctrl.currentPatient.gender}}</strong></div>
-        <div class="col-xs-4"><span>NHS No.:</span> <strong id="patientNhs" ng-bind="$ctrl.currentPatient.nhsNumber | formatNHSNumber"></strong></div>
+        <div class="col-xs-4"><span>DOB:</span> <strong id="patientDob">{{currentPatient.dateOfBirth | date:'dd-MMM-yyyy' }}</strong></div>
+        <div class="col-xs-4"><span>Gender:</span> <strong id="patientGender">{{currentPatient.gender}}</strong></div>
+        <div class="col-xs-4"><span>NHS No.:</span> <strong id="patientNhs" ng-bind="currentPatient.nhsNumber | formatNHSNumber"></strong></div>
       </div>
     </div>
   </div>
