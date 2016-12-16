@@ -20,7 +20,7 @@ class PatientsSummaryController {
 
     serviceRequests.publisher('headerTitle', {title: 'Patients Summary'});
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-summary'});
-    
+
     this.goToSection = function (section) {
       var requestHeader = {
         patientId: $stateParams.patientId,
@@ -47,25 +47,33 @@ class PatientsSummaryController {
       }
       $state.go(toState, requestHeader);
     };
+
+    function fillPatientArray(arr, count) {
+      for (var i = 0; i < count; i++) {
+        arr.push({});
+      }
+      return arr;
+    }
     this.getPatientData = function (data) {
       if (!data || !data.id) return false;
+
+      var countPatientArr = 4;
       usSpinnerService.stop('patientSummary-spinner');
 
       this.patient = data;
 
-      this.allergiesCount = this.patient.allergies.length;
-      this.allergies = this.patient.allergies.slice(0, 5);
+      this.allergies   = this.patient.allergies.slice(0, countPatientArr);
+      this.allergies   = fillPatientArray(this.allergies, countPatientArr - this.allergies.length);
+
+      this.diagnoses   = this.patient.problems.slice(0, countPatientArr);
+      this.diagnoses   = fillPatientArray(this.diagnoses, countPatientArr - this.diagnoses.length);
       
-      this.diagnosesCount = this.patient.problems.length;
-      this.diagnoses = this.patient.problems.slice(0, 5);
+      this.medications = this.patient.medications.slice(0, countPatientArr);
+      this.medications = fillPatientArray(this.medications, countPatientArr - this.medications.length);
       
-      this.medicationsCount = this.patient.medications.length;
-      this.medications = this.patient.medications.slice(0, 5);
-      
-      this.contactsCount = this.patient.contacts.length;
-      this.contacts = this.patient.contacts.slice(0, 5);
-      
-      this.transferofCaresCount = this.patient.transfers.length;
+      this.contacts    = this.patient.contacts.slice(0, countPatientArr);
+      this.contacts    = fillPatientArray(this.contacts, countPatientArr - this.contacts.length);
+
       this.transferofCareComposition = this.patient;
       
       var descendingTransferofCareComposition = [];

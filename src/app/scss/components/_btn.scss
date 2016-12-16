@@ -20,12 +20,12 @@
 }
 
 @each $button, $color in $colored-buttons {
-  .btn-#{$button} {
+  .btn-#{$button},
+  .btn-#{$button}:focus,
+  .btn-#{$button}:active {
     background-color: $color;
     border-color: $color;
     &:hover,
-    &:focus,
-    &:active,
     &.active {
       background-color: darken($color, 10%);
       border-color: darken($color, 10%);
@@ -63,12 +63,13 @@
   background: transparent;
   border: 1px solid #ccc;
   @each $button, $color in $colored-buttons {
-    &.btn-#{$button} {
+    &.btn-#{$button},
+    &.btn-#{$button}:focus,
+    &.btn-#{$button}:active {
       color: $color;
       border-color: $color;
+      background: transparent;
       &:hover,
-      &:focus,
-      &:active,
       &.active {
         color: darken($color, 10%);
         background: transparent;
@@ -110,6 +111,9 @@
     font-weight: 400;
   }
 }
+.btn-board-more {
+  width: 43px;
+}
 .btn-pause i {
   font-size: 15px;
   font-weight: 400;
@@ -123,12 +127,12 @@
     margin-right: 3px;
   }
 }
-.btn-success.btn-create {
+.btn-success.btn-create,
+.btn-success.btn-create:focus,
+.btn-success.btn-create:active {
   font-weight: 600;
   background: #fff;
   &:hover,
-  &:focus,
-  &:active,
   &.active {
     background: #fff;
   }

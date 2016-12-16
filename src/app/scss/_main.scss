@@ -132,10 +132,6 @@ li {
 
 /* Index */
 
-tr[ng-click] {
-  cursor: pointer;
-}
-
 a[ui-sref] {
   cursor: pointer;
 }
@@ -254,13 +250,7 @@ legend {
   border-bottom: 1px solid #ddd;
 }
 
-.dashboard.row {
-  margin-right: -20px;
-}
 
-.patient-dashboard {
-  width: 98%;
-}
 
 .panel-appointment {
   position: fixed;
@@ -545,28 +535,7 @@ legend {
 }
 
 
-/* Dashboard */
 
-.button-icons:before {
-  color: #82BE36;
-  font-size: 70px;
-}
-
-.dashboard-button {
-  text-align: center;
-  border: solid 2px #D0D0D0;
-  padding: 20px;
-  background-color: #FFF;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.dashboard-button-text {
-  margin-top: 20px;
-  color: #000000;
-  display: block;
-  font-size: 25px;
-}
 
 .button-icons-stack:before {
   color: #000066;
@@ -804,35 +773,6 @@ svg {
   border-radius: 20px;
   border:1px solid $rounded-connected-background;
   background-color: $rounded-connected-background;
-}
-
-/* Summary Icons */
-
-.board:nth-child(4) {
-  /* 4th board should always clear left */
-  clear: left;
-}
-
-.board h2 {
-  font-size: 20px;
-  font-weight: 400;
-}
-
-.board h2 a:hover {
-  color: #7dbe31;
-  text-decoration: none;
-}
-
-.board h2 .resultcount {
-  float: right;
-  font-size: 12px;
-  color: #106333;
-  line-height: 2.4em;
-}
-
-.board h2 i {
-  color: #7dbf31;
-  margin-right: 4px;
 }
 
 

@@ -62,7 +62,8 @@
 .table-striped {
   tbody {
     tr {
-      &:hover td {
+      &[ng-click]:hover td,
+      &:hover td[ng-click] {
         background-color: $table-row-background-hover;
       }
       &:nth-of-type(odd) {
@@ -71,14 +72,18 @@
     }
   }
 }
-
+tr[ng-click],
+td[ng-click] {
+  cursor: pointer;
+}
 .table-hover > tbody > tr > td.info:hover,
 .table-hover > tbody > tr > th.info:hover,
 .table-hover > tbody > tr.info:hover > td,
 .table-hover > tbody > tr:hover > .info,
 .table-hover > tbody > tr.info:hover > th,
-.table-hover > tbody > tr:hover > td,
-.table-hover > tbody > tr:hover {
+.table-hover > tbody > tr[ng-click]:hover > td,
+.table-hover > tbody > tr:hover > td[ng-click],
+.table-hover > tbody > tr[ng-click]:hover {
   background-color: $table-row-background-hover;
 }
 
