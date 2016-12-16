@@ -13,10 +13,6 @@ body {
   min-width: $min-width; 
   background: #fff;
   font-family: $font-family-main;
-  @include respond-to(xs) {
-    background: #fff img('site-bg2.png') center 100px no-repeat;
-    background-size: 100% auto;
-  }
 }
 
 
