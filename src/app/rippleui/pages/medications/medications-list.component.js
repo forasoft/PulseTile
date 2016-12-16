@@ -35,12 +35,11 @@ class MedicationsListController {
 
     this.sort = function (field) {
       var reverse = this.reverse;
-
       if (this.order === field) {
         this.reverse = !reverse;
       } else {
         this.order = field;
-        this.reverse = false;
+        this.reverse = false || serviceRequests.currentSort.reverse;
       }
     };
 
@@ -50,10 +49,12 @@ class MedicationsListController {
       }
     };
 
-    this.order = $stateParams.order || 'name';
-    this.reverse = $stateParams.reverse === 'true';
+    this.order = serviceRequests.currentSort.order || 'name';
+    this.reverse = serviceRequests.currentSort.reverse === 'true';
 
     this.go = function (id, medicationSource) {
+      serviceRequests.currentSort.order = this.order;
+      serviceRequests.currentSort.reverse = this.reverse;
       $state.go('medications-detail', {
         patientId: $stateParams.patientId,
         medicationIndex: id,

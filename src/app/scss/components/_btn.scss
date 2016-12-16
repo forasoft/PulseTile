@@ -92,8 +92,11 @@
   border-color: #a94442 !important;
 }
 
+.btn-toggle-rotate i {
+  transform: rotate(0) translateY(-1px);
+}
 .open .btn-toggle-rotate i {
-  transform: rotate(180deg);
+  transform: rotate(180deg) translateY(-2px);
 }
 
 .btn-table i {
@@ -111,12 +114,17 @@
   font-size: 15px;
   font-weight: 400;
 }
-.btn-edit i {
-  font-size: 17px;
-  font-weight: 400;
-  margin-right: 3px;
+
+.btn-edit {
+  font-weight: 600;
+  i {
+    font-size: 17px;
+    font-weight: 400;
+    margin-right: 3px;
+  }
 }
 .btn-success.btn-create {
+  font-weight: 600;
   background: #fff;
   &:hover,
   &:focus,
@@ -130,3 +138,7 @@
     margin-right: 3px;
   }
 } 
+.btn-square {
+  padding: 0;
+  width: 36px;
+}

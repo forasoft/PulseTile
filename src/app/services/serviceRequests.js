@@ -21,6 +21,10 @@ class ServiceRequests {
         this.evCache = {};
         this.cbCache = {};
         this.debug = false;
+        this.currentSort = {
+          order: '',
+          reverse: true
+        }
     
         this.publisher = function(eventName, data) {
             if (this.debug) { console.log('PUBLISH', eventName, data); }
