@@ -72,6 +72,7 @@ class AppointmentsDetailController {
     
     var socket = socketService.socket;
     var appointmentId = $stateParams.appointmentIndex;
+    var user = serviceRequests.currentUserData;
     var ROLE_DOCTOR = 'IDCR';
     var token = getCookie('JSESSIONID');
     
