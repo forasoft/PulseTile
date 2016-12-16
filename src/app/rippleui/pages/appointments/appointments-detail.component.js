@@ -16,7 +16,7 @@
 let templateAppointmentsDetail= require('./appointments-detail.html');
 
 class AppointmentsDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, appointmentsActions, AppointmentsModal, AppointmentChatModal, usSpinnerService, socketService) {
+  constructor($scope, $state, $stateParams, $ngRedux, appointmentsActions, AppointmentsModal, AppointmentChatModal, usSpinnerService, socketService, serviceRequests) {
     this.edit = function () {
       AppointmentsModal.openModal(this.currentPatient, {title: 'Edit Appointment'}, this.appointment, this.currentUser);
     };
@@ -24,7 +24,8 @@ class AppointmentsDetailController {
     $scope.UnlockedSources = [
       'handi.ehrscape.com'
     ];
-
+    this.currentUser = serviceRequests.currentUserData;
+    console.log('currentUser: ', this.currentUser);
     $scope.formDisabled = true;
     $scope.messagesHistory = [];
     
@@ -36,9 +37,10 @@ class AppointmentsDetailController {
         this.appointment = data.appointments.dataGet;
         usSpinnerService.stop('appointmentsDetail-spinner');
       }
-      if (data.user.data) {
-        this.currentUser = data.user.data;
-      }
+      // if (data.user.data) {
+      //   this.currentUser = serviceRequests.currentUserData;
+      //   console.log('currentUser: ', this.currentUser);
+      // }
     };
 
     window.onbeforeunload = function (e) {
@@ -80,17 +82,21 @@ class AppointmentsDetailController {
 
     if (socketService.userInitResponse) {
       console.log('userInitResponse ', socketService.userInitResponse);
+      console.log('appointmentId: ', appointmentId, ' -- ', 'token: ', token);
         socket.emit('call:init', {
           appointmentId: appointmentId,
           token: token
         });
     }
 
+    socket.on('call:timer', function (data) {
+      console.log('call:timer', data);
+    });
+
     socket.on('call:text:messages:history', function (data) {
       var role = isDoctor(user) ? 'doctor' : 'patient';
       var opponent = data.appointment[(isDoctor(user) ? 'patient' : 'doctor')];
       console.log('call:text:message:history ', data);
-      console.log('role, opponent ', role, opponent);
       for (var i = 0; i < data.messages.length; i++) {
         addTextMessage(data.messages[i].timestamp, (data.messages[i].author) ? ((role == data.messages[i].author) ? 'You' : opponent) : null, data.messages[i].message, true);
       }
@@ -114,11 +120,11 @@ class AppointmentsDetailController {
     $scope.startAppointment = function () {
       console.log('startAppointment ==222=> ',  $scope.patient, $scope.appt);
       if (!$scope.appt) return;
-      // socket.emit('appointment:init', {
-      //   patientId: $scope.patient.id,
-      //   appointmentId: $scope.appt.sourceId,
-      //   token: token
-      // });
+      socket.emit('appointment:init', {
+        patientId: $scope.patient.id,
+        appointmentId: $scope.appt.sourceId,
+        token: token
+      });
 
       openPopup($scope.appt.sourceId);
     };
@@ -173,7 +179,7 @@ class AppointmentsDetailController {
     }
 
     function onStatus(data) {
-      console.log('onStatus ---> ', data);
+      console.log('onStatus ---> ', data.appointmentId, ' == ', $stateParams.appointmentIndex);
       if (data.appointmentId == $stateParams.appointmentIndex) {
         $scope.isClosed = data.isClosed;
       }
@@ -187,5 +193,5 @@ const AppointmentsDetailComponent = {
   controller: AppointmentsDetailController
 };
 
-AppointmentsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'appointmentsActions', 'AppointmentsModal', 'AppointmentChatModal', 'usSpinnerService', 'socketService'];
+AppointmentsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'appointmentsActions', 'AppointmentsModal', 'AppointmentChatModal', 'usSpinnerService', 'socketService', 'serviceRequests'];
 export default AppointmentsDetailComponent;

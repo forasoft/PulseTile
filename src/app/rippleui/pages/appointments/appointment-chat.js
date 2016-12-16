@@ -253,7 +253,7 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
          
 
           socket.on('call:timer', function (data) {
-            console.log(data);
+            console.log('call:timer', data);
             clearInterval(timer);
             initTimer(data.timestamp);
           });

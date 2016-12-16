@@ -77,6 +77,7 @@ class HeaderController {
     $scope.login = function () {
       serviceRequests.login().then(function (result) {
         $scope.setLoginData(result);
+        serviceRequests.currentUserData = result.data;
         
         if (navigator.mediaDevices.getUserMedia) {
           navigator.mediaDevices.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
