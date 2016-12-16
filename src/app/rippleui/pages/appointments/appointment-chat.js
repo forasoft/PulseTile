@@ -13,7 +13,7 @@
  ~  See the License for the specific language governing permissions and
  ~  limitations under the License.
  */
-export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequests, AppointmentChatConfirmModal) {
+export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequests, socketService, AppointmentChatConfirmModal) {
   var isModalClosed = true;
   var openModal = function (socket, appointmentId, token) {
     if (isModalClosed) {
@@ -36,8 +36,23 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
               $scope.currentPatient = data.patientsGet.data;
             }
           };
-          
+
+          function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+              var c = ca[i];
+              while (c.charAt(0)==' ') c = c.substring(1,c.length);
+              if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+          }
+
+          var socket = socketService.socket;
+          // var appointmentId = $stateParams.appointmentIndex;
+          var ROLE_DOCTOR = 'IDCR';
           var user;
+
           var PeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
           var IceCandidate = window.RTCIceCandidate || window.mozRTCIceCandidate;
           var SessionDescription = window.RTCSessionDescription || window.mozRTCSessionDescription;
@@ -47,13 +62,56 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
           var localStream = null;
           var timer;
           var notifications = [];
-          var messages = [];
           var restartCallTimer = null;
           var constraints = {
             audio: true,
             video: true
           };
+          // var token = getCookie('JSESSIONID');
 
+          getNotificationPermission();
+
+          if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
+          } else {
+            navigator.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
+          }
+
+          /**
+           * WebRTC
+           */
+          function cretePeerConnection() {
+            gotStream(localStream);
+          }
+
+          function setLocalStream(stream) {
+
+            $.get('/api/user').then(function (usr) {
+              user = usr;
+              if (!user.username) {
+                user.username = user.email.split('@')[0];
+              }
+              socket.emit('user:init', {
+                username: user.username,
+                nhsNumber: user.nhsNumber,
+                role: user.role,
+                surname: user.family_name,
+                name: user.given_name,
+                token: token
+              });
+            })
+              .fail(function(error) {
+                console.log('error! ' + JSON.stringify(error.responseJSON));
+                if (error.responseJSON.error && error.responseJSON.error) {
+                  console.log('You are not logged in or your session has expired');
+                  return;
+                }
+              });
+
+
+            localStream = stream;
+            cretePeerConnection();
+          }
 
           function gotStream(stream) {
             $('#localVideo').toggleClass('inactive').attr('src', URL.createObjectURL(stream));
@@ -155,7 +213,11 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
             $('#noSound').hide();
             socket.emit('call:remoteStreamProp:get', {appointmentId: appointmentId, token: token});
           }
-          
+
+          function errorHandler(err) {
+            console.error(err);
+          }
+
           /**
            * Socket.io
            */
@@ -164,8 +226,17 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
             socket.emit('call:webrtc:message', {message: message, appointmentId: appointmentId, token: token});
           }
 
+          socket.on('user:init', function(data) {
+            console.log('user:init response - ' + JSON.stringify(data));
+            if (data.ok) {
+              socket.emit('call:init', {
+                appointmentId: appointmentId,
+                token: token
+              });
+            }
+          });
+
           socket.on('call:webrtc:init', function (data) {
-            console.log('webrtc:init response - ' + JSON.stringify(data));
             $('#remoteVideo').removeClass('inactive');
             if (data.isInitiator) {
               createOffer();
@@ -191,7 +262,7 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
                   source: "Marand",
                   sourceId: "88536cbb-2f09-4624-a8da-fd468f045e60::ripple_osi.ehrscape.c4h::3",
                   status: "Scheduled",
-                  timeOfAppointment: 50400000
+                  timeOfAppointment: 50400000,
                 }
               }
               $('#appointmentCst').text(appointment.serviceTeam);
@@ -200,11 +271,13 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
           });
 
           socket.on('call:opponent:join', function (data) {
+            console.log('call:opponent:join ', data);
             addTextMessage(data.timestamp, null, data.message + ' has entered the chat room');
             createNotification({title: data.message + ' has entered the chat room'});
           });
 
           socket.on('call:busy', function () {
+            console.log('call:webrtc:message ', message);
             if (pc.signalingState !== 'closed') {
               pc.close();
             }
@@ -213,6 +286,7 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
           });
 
           socket.on('call:opponent:left', function (data) {
+            console.log('call:opponent:left ', data);
             addTextMessage(data.timestamp, null, data.message + ' has left the chat room');
             if ($(window).data('isBlur')) {
               createNotification({
@@ -228,6 +302,7 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
           });
 
           socket.on('call:webrtc:message', function (message) {
+            console.log('call:webrtc:message ', message);
             if (message.type === 'offer') {
               pc.setRemoteDescription(new SessionDescription(message));
               createAnswer();
@@ -240,7 +315,7 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
           });
 
           socket.on('call:text:message', function (data) {
-            console.log('call:text:message');
+            console.log('call:text:message', data);
             addTextMessage(data.timestamp, data.author, data.message);
             if ($(window).data('isBlur')) {
               createNotification({
@@ -483,6 +558,9 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
                 ('0' + (Math.abs(moment.utc(from).diff(to, 'seconds')) % 60)).slice(-2)
               ]).join(':');
           }
+          function isDoctor(user) {
+            return user && user.role == ROLE_DOCTOR;
+          }
 
           $scope.msgText = '';
           $scope.sendMsg = function (messageForm) {
@@ -521,4 +599,4 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
     openModal: openModal
   };
 }
-AppointmentChatModal.$inject = ['$uibModal', '$ngRedux', 'serviceRequests', 'AppointmentChatConfirmModal'];
+AppointmentChatModal.$inject = ['$uibModal', '$ngRedux', 'serviceRequests', 'socketService', 'AppointmentChatConfirmModal'];

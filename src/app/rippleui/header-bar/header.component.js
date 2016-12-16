@@ -79,13 +79,6 @@ class HeaderController {
         $scope.setLoginData(result);
         serviceRequests.currentUserData = result.data;
         
-        if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
-        } else {
-          navigator.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
-        }
-
-        function setLocalStream() {
           let user = result;
             socket.emit('user:init', {
               username: user.username,
@@ -95,11 +88,7 @@ class HeaderController {
               name: user.given_name,
               token: token
             });
-        }
 
-        function errorHandler(err) {
-          console.error('errorHandler', err);
-        }
       });
     };
 

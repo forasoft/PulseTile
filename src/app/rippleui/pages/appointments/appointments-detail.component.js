@@ -49,17 +49,6 @@ class AppointmentsDetailController {
       return dialogText;
     };
 
-    var constraints = {
-      audio: true,
-      video: true
-    };
-    var socket = socketService.socket;    
-    var appointmentId = $stateParams.appointmentIndex;
-    var token = getCookie('JSESSIONID');
-    var user;
-    var ROLE_DOCTOR = 'IDCR';
-
-    
     function getCookie(name) {
       var nameEQ = name + "=";
       var ca = document.cookie.split(';');
@@ -79,20 +68,13 @@ class AppointmentsDetailController {
 
     this.appointmentsLoad = appointmentsActions.get;
     this.appointmentsLoad($stateParams.patientId, $stateParams.appointmentIndex, $stateParams.source);
-
-    if (socketService.userInitResponse) {
-      console.log('userInitResponse ', socketService.userInitResponse);
-      console.log('appointmentId: ', appointmentId, ' -- ', 'token: ', token);
-        socket.emit('call:init', {
-          appointmentId: appointmentId,
-          token: token
-        });
-    }
-
-    socket.on('call:timer', function (data) {
-      console.log('call:timer', data);
-    });
-
+    
+    
+    var socket = socketService.socket;
+    var appointmentId = $stateParams.appointmentIndex;
+    var ROLE_DOCTOR = 'IDCR';
+    var token = getCookie('JSESSIONID');
+    
     socket.on('call:text:messages:history', function (data) {
       var role = isDoctor(user) ? 'doctor' : 'patient';
       var opponent = data.appointment[(isDoctor(user) ? 'patient' : 'doctor')];
