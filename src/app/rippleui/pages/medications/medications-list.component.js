@@ -23,9 +23,14 @@ class MedicationsListController {
     this.currentPage = 1;
 
     this.query = '';
+    this.isFilter = false;
 
     this.pageChangeHandler = function (newPage) {
       this.currentPage = newPage;
+    };
+
+    this.toggleFilter = function () {
+      this.isFilter = !this.isFilter;
     };
 
     if ($stateParams.page) {
