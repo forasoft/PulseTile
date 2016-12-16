@@ -29,6 +29,9 @@
   .patient-info-group-2 {
     margin-left: 5px;
     display: table-footer-group;
+    .patient-info-item {
+      white-space: nowrap;
+    }
   }
   
 }
@@ -48,15 +51,19 @@
     .patient-info-group-2 {
       display: block;
       float: right;
+      margin-top: 3px;
       margin-left: 5px;
+      .patient-info-item:first-child {
+        margin-bottom: 21px;
+      }
     }
     .column-1 {
       float: left;
-      margin-right: 5px;
+      margin-right: 34px;
     }
     .column-2 {
       float: right;
-      padding-right: 5px;
+      padding-right: 3px;
       text-align: right;
     }
   }
@@ -70,13 +77,14 @@
     font-weight: 400;
   }
   &.significant {
+    margin-bottom: 3px;
     font-size: 18px;
     font-weight: 400;
   }
 }
 @include respond-to(sm) {
   .patient-info-item {
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     .key {
       display: inline;
     }

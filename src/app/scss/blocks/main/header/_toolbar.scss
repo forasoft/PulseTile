@@ -3,12 +3,16 @@
 }
 
 .header-toolbar {
+  position: relative;
   overflow: hidden;
   padding: 7px 0 10px;
   font-size: 15px;
   line-height: 20px;
   color: #fff;
   @include respond-to(xs) {
-    padding: 10px 0 8px;
+    padding: 11px 0;
+  }
+  @include respond-to(sm) {
+    padding-left: 109px;
   }
 }
