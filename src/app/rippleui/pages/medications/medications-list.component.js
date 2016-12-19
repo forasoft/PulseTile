@@ -44,7 +44,7 @@ class MedicationsListController {
         this.reverse = !reverse;
       } else {
         this.order = field;
-        this.reverse = false || serviceRequests.currentSort.reverse;
+        this.reverse = false;
       }
     };
 
@@ -55,11 +55,16 @@ class MedicationsListController {
     };
 
     this.order = serviceRequests.currentSort.order || 'name';
-    this.reverse = serviceRequests.currentSort.reverse === 'true';
+    this.reverse = serviceRequests.currentSort.reverse || false;
+    if (serviceRequests.filter) {
+      this.query = serviceRequests.filter;
+      this.isFilter = true;
+    }
 
     this.go = function (id, medicationSource) {
       serviceRequests.currentSort.order = this.order;
       serviceRequests.currentSort.reverse = this.reverse;
+      serviceRequests.filter = this.query;
       $state.go('medications-detail', {
         patientId: $stateParams.patientId,
         medicationIndex: id,

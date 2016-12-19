@@ -132,7 +132,7 @@
                     <div class="col-md-6">
                         <div class="form-group" ng-class="{'has-error': (formSubmitted || medicationForm.terminologyCode.$dirty) && medicationForm.terminologyCode.$invalid, 'has-success': medicationForm.terminologyCode.$valid && medicationForm.terminologyCode.$dirty}">
                             <label for="terminologyCode" class="control-label codeLabel">Terminology Code</label>
-                            <div class="nonEditValue">
+                            <div class="non-edit-value">
                                 {{medication.medicationCode}}
                             </div>
                             <span class="help-block animate-fade" ng-show="formSubmitted && medicationForm.terminologyCode.$error.required">You must enter a value.</span>
