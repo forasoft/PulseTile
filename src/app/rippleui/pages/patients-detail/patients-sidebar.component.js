@@ -16,7 +16,7 @@
 let templatePatientsSidebar = require('./patients-sidebar.html');
 
 class PatientsSidebarController {
-  constructor($scope, $state, $stateParams, $ngRedux, patientsActions) {
+  constructor($scope, $state, $stateParams, $ngRedux, patientsActions, serviceRequests) {
     this.linksCollection = [
       {
         name: 'summary',
@@ -113,6 +113,9 @@ class PatientsSidebarController {
     $scope.myVar = $state.router.globals.$current.name;
     
     this.goTo = function (section) {
+      serviceRequests.currentSort.order = '';
+      serviceRequests.currentSort.reverse = false;
+      serviceRequests.filter = '';
       var requestHeader = {
         patientId: $stateParams.patientId,
         reportType: $stateParams.reportType,
@@ -132,5 +135,5 @@ const PatientsSidebarComponent = {
   controller: PatientsSidebarController
 };
 
-PatientsSidebarController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions'];
+PatientsSidebarController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions', 'serviceRequests'];
 export default PatientsSidebarComponent;

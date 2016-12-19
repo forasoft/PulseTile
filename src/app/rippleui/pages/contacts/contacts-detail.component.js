@@ -17,9 +17,24 @@ let templateContactsDetail= require('./contacts-detail.html');
 
 class ContactsDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, patientsActions, contactsActions, ContactsModal, usSpinnerService) {
+    $scope.isEdit = false;
     this.edit = function () {
-      ContactsModal.openModal(this.currentPatient, {title: 'Edit Contact'}, this.contact, this.currentUser);
+      $scope.isEdit = true;
+
+      $scope.contactEdit = Object.assign({}, this.contact);
+      $scope.contactEdit.dateSubmitted = new Date();
     };
+    this.cancelEdit = function () {
+      $scope.isEdit = false;
+    };
+    $scope.confirmEdit = function (contactForm, contact) {
+      $scope.formSubmitted = true;
+      if (contactForm.$valid) {
+        $scope.isEdit = false;
+        this.contact = Object.assign(this.contact, $scope.contactEdit);
+        $scope.contactsUpdate($scope.patient.id, $scope.contact);
+      }
+    }.bind(this);
 
     this.setCurrentPageData = function (data) {
       if (data.contacts.dataGet) {
@@ -42,6 +57,7 @@ class ContactsDetailController {
 
     this.contactsLoad = contactsActions.get;
     this.contactsLoad($stateParams.patientId, $stateParams.contactIndex);
+    $scope.contactsUpdate = contactsActions.update;
   }
 }
 

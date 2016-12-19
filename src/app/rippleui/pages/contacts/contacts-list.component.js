@@ -23,6 +23,35 @@ class ContactsListController {
     this.query = {};
     this.queryBy = '$';
     this.currentPage = 1;
+    this.isFilter = false;
+
+    this.toggleFilter = function () {
+      this.isFilter = !this.isFilter;
+    };
+
+    this.sort = function (field) {
+      debugger
+      var reverse = this.reverse;
+      if (this.order === field) {
+        this.reverse = !reverse;
+      } else {
+        this.order = field;
+        this.reverse = false;
+      }
+    };
+
+    this.sortClass = function (field) {
+      if (this.order === field) {
+        return this.reverse ? 'sorted desc' : 'sorted asc';
+      }
+    };
+
+    this.order = serviceRequests.currentSort.order || 'name';
+    this.reverse = serviceRequests.currentSort.reverse || false;
+    if (serviceRequests.filter) {
+      this.query[this.queryBy] = serviceRequests.filter;
+      this.isFilter = true;
+    }
 
     this.create = function () {
       this.currentUser.query = this.query;
@@ -31,6 +60,10 @@ class ContactsListController {
     };
 
     this.go = function (id) {
+      serviceRequests.currentSort.order = this.order;
+      serviceRequests.currentSort.reverse = this.reverse;
+      serviceRequests.filter = this.query[this.queryBy] || '';
+
       $state.go('contacts-detail', {
         patientId: $stateParams.patientId,
         contactIndex: id,

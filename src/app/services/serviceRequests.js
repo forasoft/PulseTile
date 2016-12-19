@@ -23,8 +23,9 @@ class ServiceRequests {
         this.debug = false;
         this.currentSort = {
           order: '',
-          reverse: true
+          reverse: false
         }
+        this.filter = '';
     
         this.publisher = function(eventName, data) {
             if (this.debug) { console.log('PUBLISH', eventName, data); }
