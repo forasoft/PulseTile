@@ -41,18 +41,18 @@
           <video id="remoteVideo" class="inactive" autoplay></video>
           <video id="localVideo" class="inactive" autoplay muted></video>
           <div class="video-controller">
-            <i class="fa fa-round fa-microphone" aria-hidden="true" id="muteAudio"></i>
+            <i class="fa fa-round fa-microphone" aria-hidden="true" id="muteAudio" ng-click="muteAudio()"></i>
             <!--<i class="fa fa-round fa-video-camera" aria-hidden="true"id="muteVideo"></i>-->
-            <i class="fa fa-round fa-video-camera-2" aria-hidden="true" id="muteVideo"></i>
+            <i class="fa fa-round fa-video-camera" aria-hidden="true" id="muteVideo" ng-click="muteVideo()"></i>
           </div>
-          <i class="fa fa-volume-off fa-2x" aria-hidden="true" id="noSound" title="No sound"></i>
+          <i class="fa fa-volume-off fa-2x" aria-hidden="true" id="noSound" title="No sound" ></i>
 
         </div>
         <div class="video-chat-controller">
           <!--<p>Please press End Call to close this appointment when you are finished</p>-->
           <button class="btn btn-danger" id="endCall" ng-click="confirmCall()" ng-if="!isCloseChat">End Call</button>
           <button class="btn btn-danger" id="closeWindow" ng-click="close()" ng-if="isCloseChat"><i class="fa fa-times-circle"></i> Close Window</button>
-          <button class="btn btn-success" id="restartCall" ng-if="isCloseChat">Restart the call</button>
+          <button class="btn btn-success" id="restartCall" ng-if="isCloseChat" ng-click="restartCall()">Restart the call</button>
           <span id="callDuration">Connected - <span id="timer">00:00:00</span></span>
         </div>
       </div>

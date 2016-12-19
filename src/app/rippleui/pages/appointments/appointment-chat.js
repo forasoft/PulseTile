@@ -402,26 +402,26 @@ export default function AppointmentChatModal($uibModal, $ngRedux, serviceRequest
            * Events
            */
 
-          $('#muteAudio').off('click').on('click', function () {
-            $(this).toggleClass('inactive').toggleClass('fa-microphone').toggleClass('fa-microphone-slash');
+          $scope.muteAudio = function () {
+            $('#muteAudio').toggleClass('inactive').toggleClass('fa-microphone').toggleClass('fa-microphone-slash');
             toggleAudioStreams();
             socket.emit('call:audio:toggle', {appointmentId: appointmentId, token: token});
-          });
+          };
 
-          $('#muteVideo').off('click').on('click', function () {
-            $(this).toggleClass('inactive').toggleClass('fa-video-camera-2').toggleClass('fa-video-camera-slash-2');
+          $scope.muteVideo = function () {
+            $('#muteVideo').toggleClass('inactive').toggleClass('fa-video-camera-2').toggleClass('fa-video-camera-slash-2');
             toggleVideoStreams();
             toggleVideo('#localVideo');
             socket.emit('call:video:toggle', {appointmentId: appointmentId, token: token});
-          });
+          };
 
 
-          $('#restartCall').off('click').on('click', function () {
+          $scope.restartCall =  function () {
             clearTimeout(restartCallTimer);
             restartCallTimer = null;
 
             socket.emit('call:restart', {appointmentId: appointmentId, token: token});
-          });
+          };
 
           $(window).on("blur focus", function (e) {
             var prevType = $(this).data("isBlur") ? 'blur' : 'focus';
