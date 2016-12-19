@@ -90,7 +90,6 @@ class AppointmentsDetailController {
     }
 
     function addTextMessage(timestamp, author, message, prepend) {
-      console.log('addTextMessage1111 ---> ', timestamp, author, message, prepend);
       var msg = {};
       msg.timestamp = moment.utc(timestamp).local().format('HH:mm');
       msg.author = ( (author !== null) ? (author + ': ') : '');
@@ -101,7 +100,7 @@ class AppointmentsDetailController {
     $scope.patient =  this.currentPatient;
     $scope.appt =  this.appointment;
     $scope.startAppointment = function () {
-      console.log('startAppointment ==222=> ',  $scope.patient, $scope.appt);
+      console.log('startAppointment ===> ',  $scope.patient, $scope.appt);
       if (!$scope.appt) return;
       socket.emit('appointment:init', {
         patientId: $scope.patient.id,
@@ -156,13 +155,13 @@ class AppointmentsDetailController {
       console.log('onClose ---> ', data);
       socket.data('showJoinAppointment', null);
       if (data.appointmentId == $stateParams.appointmentIndex) {
-        socket.emit('appointment:status', {appointmentId: $stateParams.appointmentIndex});
-        socket.emit('appointment:messages', {appointmentId: $stateParams.appointmentIndex});
+        socket.emit('appointment:status', {appointmentId: $stateParams.appointmentIndex, token: token});
+        socket.emit('appointment:messages', {appointmentId: $stateParams.appointmentIndex, token: token});
       }
     }
 
     function onStatus(data) {
-      console.log('onStatus ---> ', data.appointmentId, ' == ', $stateParams.appointmentIndex);
+      console.log('onStatus ---> ', data, data.appointmentId, ' == ', $stateParams.appointmentIndex);
       if (data.appointmentId == $stateParams.appointmentIndex) {
         $scope.isClosed = data.isClosed;
       }
