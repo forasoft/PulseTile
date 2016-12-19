@@ -17,9 +17,37 @@ let templateAllergiesDetail= require('./allergies-detail.html');
 
 class AllergiesDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, AllergiesModal, usSpinnerService) {
-    this.edit = function () {
-      AllergiesModal.openModal(this.currentPatient, {title: 'Edit Allergy'}, this.allergy, this.currentUser);
+    $scope.isEdit = false;
+    $scope.panelOpen = '';
+
+    this.openPanel = function (namePanel) {
+      $scope.panelOpen = namePanel;
     };
+    this.edit = function () {
+      $scope.isEdit = true;
+      $scope.allergyEdit = Object.assign({}, this.allergy);
+      $scope.allergyEdit.dateCreated = new Date(this.allergy.dateCreated);
+    };
+    this.cancelEdit = function () {
+      $scope.isEdit = false;
+    };
+    $scope.confirmEdit = function (allergyForm, allergies) {
+      $scope.formSubmitted = true;
+
+      let toAdd = {
+        sourceId: '',
+        cause: allergies.cause,
+        causeCode: allergies.causeCode,
+        causeTerminology: allergies.causeTerminology,
+        reaction: allergies.reaction,
+        source: allergies.source
+      };
+      if (allergyForm.$valid) {
+        $scope.isEdit = false;
+        this.allergy = Object.assign(this.allergy, $scope.allergyEdit);
+        $scope.allergiesUpdate($scope.patient.id, toAdd);
+      }
+    }.bind(this);
 
     $scope.UnlockedSources = [
       'handi.ehrscape.com'
