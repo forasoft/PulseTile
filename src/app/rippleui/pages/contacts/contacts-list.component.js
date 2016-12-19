@@ -30,7 +30,6 @@ class ContactsListController {
     };
 
     this.sort = function (field) {
-      debugger
       var reverse = this.reverse;
       if (this.order === field) {
         this.reverse = !reverse;
