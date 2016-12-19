@@ -1219,35 +1219,6 @@ textarea#procedureNotes {
   width: 280px;
 }
 
-.resultTable {
-  width: 100%;
-  border: 1px solid #bebcbd;
-}
-
-.resultTable .fa-info-circle {
-  color: #00753E;
-  cursor: pointer;
-}
-
-.resultTableOuterDiv {
-  width: 95%;
-  padding-bottom: 25px;
-}
-
-.resultTableMainrow {
-  border-top: 1px solid #bebcbd;
-}
-
-.resultTableMainrow td:first-child {
-  padding-left: 9px;
-}
-
-
-
-.resultTable .firstHeading {
-  padding-left: 10px;
-}
-
 .orderForm {
   padding-right: 20px;
 }
@@ -1265,26 +1236,6 @@ textarea#procedureNotes {
   color: black;
 }
 
-// div.transbox {
-//   background-color: #fff;
-//   opacity: 0.7;
-//   filter: alpha(opacity=70);
-//   color: #000000;
-// }
-
-// div.transbox .innerTransbox {
-//   padding-left: 0;
-//   padding-right: 0;
-//   padding-bottom: 15px;
-// }
-
-// /* disable transbox padding on mobile to alins when stacked */
-// @media (min-width: 992px) {
-//   div.transbox .innerTransbox {
-//     padding-right: 20px;
-//     padding-left: 20px;
-//   }
-// }
 
 td.dateTime {
   width: 130px;

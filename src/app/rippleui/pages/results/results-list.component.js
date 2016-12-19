@@ -22,7 +22,35 @@ class ResultsListController {
 
     this.currentPage = 1;
 
-    $scope.query = '';
+    this.query = '';
+    this.isFilter = false;
+
+    this.toggleFilter = function () {
+      this.isFilter = !this.isFilter;
+    };
+
+    this.sort = function (field) {
+      var reverse = this.reverse;
+      if (this.order === field) {
+        this.reverse = !reverse;
+      } else {
+        this.order = field;
+        this.reverse = false;
+      }
+    };
+
+    this.sortClass = function (field) {
+      if (this.order === field) {
+        return this.reverse ? 'sorted desc' : 'sorted asc';
+      }
+    };
+
+    this.order = serviceRequests.currentSort.order || 'name';
+    this.reverse = serviceRequests.currentSort.reverse || false;
+    if (serviceRequests.filter) {
+      this.query = serviceRequests.filter;
+      this.isFilter = true;
+    }
 
     this.pageChangeHandler = function (newPage) {
       this.currentPage = newPage;
@@ -33,6 +61,10 @@ class ResultsListController {
     }
 
     this.go = function (id, resultSource) {
+      serviceRequests.currentSort.order = this.order;
+      serviceRequests.currentSort.reverse = this.reverse;
+      serviceRequests.filter = this.query || '';
+
       $state.go('results-detail', {
         patientId: $stateParams.patientId,
         resultIndex: id,
