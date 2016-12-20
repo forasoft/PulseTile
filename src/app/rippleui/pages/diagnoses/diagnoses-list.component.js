@@ -22,7 +22,35 @@ class DiagnosesListController {
 
     this.currentPage = 1;
 
-    $scope.query = '';
+    this.query = '';
+    this.isFilter = false;
+
+    this.toggleFilter = function () {
+      this.isFilter = !this.isFilter;
+    };
+
+    this.sort = function (field) {
+      var reverse = this.reverse;
+      if (this.order === field) {
+        this.reverse = !reverse;
+      } else {
+        this.order = field;
+        this.reverse = false;
+      }
+    };
+
+    this.sortClass = function (field) {
+      if (this.order === field) {
+        return this.reverse ? 'sorted desc' : 'sorted asc';
+      }
+    };
+
+    this.order = serviceRequests.currentSort.order || 'diagnoses';
+    this.reverse = serviceRequests.currentSort.reverse || false;
+    if (serviceRequests.filter) {
+      this.query = serviceRequests.filter;
+      this.isFilter = true;
+    }
     
     this.pageChangeHandler = function (newPage) {
       this.currentPage = newPage;
@@ -33,10 +61,13 @@ class DiagnosesListController {
     }
 
     this.go = function (id, diagnosisSource) {
+      serviceRequests.currentSort.order = this.order;
+      serviceRequests.currentSort.reverse = this.reverse;
+      serviceRequests.filter = this.query || '';
       $state.go('diagnoses-detail', {
         patientId: $stateParams.patientId,
         diagnosisIndex: id,
-        filter: $scope.query,
+        filter: this.query,
         page: this.currentPage,
         source: diagnosisSource
       });
@@ -52,9 +83,9 @@ class DiagnosesListController {
 
     this.search = function (row) {
       return (
-          row.problem.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
-          row.dateOfOnset.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
-          row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
+          row.problem.toLowerCase().indexOf(this.query.toLowerCase() || '') !== -1 ||
+          row.dateOfOnset.toLowerCase().indexOf(this.query.toLowerCase() || '') !== -1 ||
+          row.source.toLowerCase().indexOf(this.query.toLowerCase() || '') !== -1
       );
     };
 

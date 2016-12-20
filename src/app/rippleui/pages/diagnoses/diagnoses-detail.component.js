@@ -17,9 +17,40 @@ let templateDiagnosesDetail= require('./diagnoses-detail.html');
 
 class DiagnosesDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, patientsActions, diagnosesActions, DiagnosesModal, usSpinnerService) {
-    this.edit = function () {
-      DiagnosesModal.openModal(this.currentPatient, {title: 'Edit Problem / Diagnosis'}, this.diagnosis, this.currentUser);
+    $scope.isEdit = false;
+    $scope.panelOpen = '';
+    $scope.protocol = 'http://';
+
+    this.openPanel = function (namePanel) {
+      $scope.panelOpen = namePanel;
     };
+    this.edit = function () {
+      $scope.isEdit = true;
+      $scope.diagnosisEdit = Object.assign({}, this.diagnosis);
+      $scope.diagnosisEdit.dateCreated = new Date(this.diagnosis.dateCreated);
+      $scope.diagnosisEdit.dateSubmitted = new Date();
+    };
+    this.cancelEdit = function () {
+      $scope.isEdit = false;
+    };
+    $scope.confirmEdit = function (diagnosisForm, diagnosis) {
+      $scope.formSubmitted = true;
+
+      let toAdd = {
+        code: $scope.diagnosis.code,
+        dateOfOnset: $scope.diagnosis.dateOfOnset.toISOString().slice(0, 10),
+        description: $scope.diagnosis.description,
+        problem: $scope.diagnosis.problem,
+        source: $scope.diagnosis.source,
+        sourceId: '',
+        terminology: $scope.diagnosis.terminology
+      };
+      if (diagnosisForm.$valid) {
+        $scope.isEdit = false;
+        diagnosis = Object.assign(diagnosis, $scope.diagnosisEdit);
+        $scope.diagnosesUpdate($scope.patient.id, toAdd);
+      }
+    }.bind(this);
 
     $scope.UnlockedSources = [
       'handi.ehrscape.com'
@@ -39,6 +70,18 @@ class DiagnosesDetailController {
 
       return true;
     };
+    $scope.changeProtocol = function (protocol) {
+      switch (protocol) {
+        case 'http':
+          $scope.protocol = 'http://';
+          break;
+        case 'https':
+          $scope.protocol = 'https://';
+          break;
+        default:
+          $scope.protocol = 'http://';
+      }
+    };
 
     this.convertToLabel = function (text) {
       var result = text.replace(/([A-Z])/g, ' $1');
@@ -50,9 +93,20 @@ class DiagnosesDetailController {
         this.currentPatient = data.patientsGet.data;
       }
       if (data.diagnoses.dataGet) {
-        this.diagnosis = data.diagnoses.dataGet;
-        usSpinnerService.stop('diagnosisDetail-spinner');
+        // this.diagnosis = data.diagnoses.dataGet;
+        // usSpinnerService.stop('diagnosisDetail-spinner');
       }
+      this.diagnosis = {
+        problem: 'Myocardial Infarction',
+        description: 'Myocardial Infarction',
+        dateOfOnset: new Date(),
+        terminology: 'SNOMED-CT',
+        code : 1,
+        author: 'Dr Tony Shannon',
+        dateCreated: new Date(),
+        source: 'EtherCIS'
+      }
+      usSpinnerService.stop('diagnosisDetail-spinner');
       if (data.user.data) {
         this.currentUser = data.user.data;
       }
@@ -66,6 +120,7 @@ class DiagnosesDetailController {
 
     this.diagnosesLoad = diagnosesActions.get;
     this.diagnosesLoad($stateParams.patientId, $stateParams.diagnosisIndex, $stateParams.source);
+    $scope.diagnosesUpdate = diagnosesActions.update;
   }
 }
 

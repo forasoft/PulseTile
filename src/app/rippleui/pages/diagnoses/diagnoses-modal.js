@@ -58,7 +58,7 @@ export default function DiagnosesModal($uibModal, diagnosesActions, $ngRedux) {
             $scope.isEdit = true;
             $scope.diagnosis.dateSubmitted = new Date();
             $scope.diagnosis.dateOfOnset = new Date($scope.diagnosis.dateOfOnset);
-          }else {
+          } else {
             $scope.isEdit = false;
             $scope.diagnosis.dateSubmitted = new Date();
             $scope.diagnosis.code = '12393890';
