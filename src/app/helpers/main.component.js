@@ -24,7 +24,13 @@ class MainController {
     $scope.mainWidth = 0;
     $scope.detailWidth = 0;
     $scope.getState = function (state) {
+      console.log('state.name');
+      console.log(state.name);
       switch (state.name) {
+        case 'profile':
+          $scope.mainWidth = 12;
+          $scope.detailWidth = 0;
+          break;
         case 'main-search':
           $scope.previousState = '';
           $scope.pageHeader = 'Welcome';

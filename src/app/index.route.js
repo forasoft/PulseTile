@@ -30,6 +30,12 @@ function routeConfig($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/search');
   console.log('routing test');
   $stateProvider
+      .state('profile', {
+        url: '/profile',
+        views: {
+          main: {template: '<profile-component></profile-component>'},
+        }
+      })
       .state('main-search', {
         url: '/search',
         views: {

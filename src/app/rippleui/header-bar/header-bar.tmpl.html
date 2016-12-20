@@ -31,7 +31,7 @@
         <li ng-class="$ctrl.activeNavTab('notifications')"><a class="btn-header" ng-click="$ctrl.changeNavTab('notifications')">
           <i class="fa fa-bell-o"><span class="count">2</span></i></a>
         </li>
-        <li ng-class="$ctrl.activeNavTab('user')"><a class="btn-header btn-user" ng-click="$ctrl.changeNavTab('user')">
+        <li ng-class="stateName === 'profile' ? 'active' : ''"><a class="btn-header btn-user" ng-click="$ctrl.goProfile()">
           <i class="fa fa-user"></i></a>
         </li>
       </ul>
@@ -124,12 +124,12 @@
       <!-- /.Notification -->
 
       <!-- User Profile -->
-      <div ng-if="$ctrl.currentNavTab==='user'" class="pane row" id="tab-user">
+      <!-- <div ng-if="$ctrl.currentNavTab==='user'" class="pane row" id="tab-user">
         <div class="col-xs-12">
 
           <div class="user-type superuser">Super User</div>
-          <!--<div class="user-type clinician">Clinician</div>-->
-          <!--<div class="user-type patient">Patient</div>-->
+          <div class="user-type clinician">Clinician</div>
+          <div class="user-type patient">Patient</div>
 
           <div class="user-profile-image"><i class="fa fa-user"></i></div>
           <p class="header-title-mobile"><strong>User Name:</strong>{{$ctrl.user.given_name}} {{$ctrl.user.family_name}}</p>
@@ -138,15 +138,15 @@
           <p>10/05/2099</p>
         </div>
         <div class="col-xs-12 options">
-          <!-- <ul>
+          <ul>
             <li><a href="" class="btn">Settings</a></li>
             <li><a href="" class="btn">Admin Console</a></li>
-          </ul> -->
+          </ul>
           <ul>
             <li><a href="https://ripple-identity-uat.answerappcloud.com/signout" class="signout btn btn-danger">SIGN OUT  <i class="fa fa-sign-out"></i></a></li>
           </ul>
         </div>
-      </div>
+      </div> -->
       <!-- /.User Profile -->
 
     </div>

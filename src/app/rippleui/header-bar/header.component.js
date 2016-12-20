@@ -22,9 +22,11 @@ class HeaderController {
       $scope.pageHeader = data.title;
       $scope.searchBar = data.title === 'Welcome' ? false : true;
     };
-
     this.goHome = function () {
       $state.go('patients-charts');
+    };
+    this.goProfile = function () {
+      $state.go('profile');
     };
   
     this.setTitle = function (data) {
@@ -249,20 +251,23 @@ class HeaderController {
         this.currentNavTab = newTab;
       }
     };
-
     this.activeNavTab = function(thisTab){
       if( thisTab == this.currentNavTab ){
         return 'active';
       }
     };
+    $scope.setStateName = function(state) {
+      $scope.stateName = state.name;
+    }
     this.getPageComponents = function (data) {
       $scope.userContextViewExists = ('banner' in data.state);
+      $scope.setStateName(data);
     };
     this.clickSidebarBtn = function () {
       serviceRequests.publisher('setHeightSidebar');
       serviceRequests.publisher('changeStateSidebar', {click: true});
     }
-
+    
     serviceRequests.subscriber('routeState', this.getPageComponents);
     serviceRequests.subscriber('populateHeaderSearch', this.getPopulateHeaderSearch);
     serviceRequests.subscriber('headerTitle', this.getPageHeader);

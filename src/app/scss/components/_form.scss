@@ -27,7 +27,17 @@ label.control-label {
   font-size: 12px;
   line-height: 18px;
   color: #000000;
+  em {
+    color: #959595;
+  }
 }
+.next-separate {
+  display: inline-block;
+  color: #9393a0;
+  padding: 0 7px;
+}
+
+
 .non-edit-value {
   min-height: 30px;
   line-height: 30px;

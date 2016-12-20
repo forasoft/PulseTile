@@ -54,6 +54,7 @@ import GenericMdtModal from './rippleui/pages/generic-mdt/generic-mdt-modal';
 import TransferOfCareModal from './rippleui/pages/transfer-of-care/transfer-of-care-modal';
 
 //components 
+import ProfileComponent from './rippleui/pages/profile/profile.component';
 import HeaderComponent from './rippleui/header-bar/header.component.js';
 import PatientsChartsComponent from './rippleui/pages/patients-charts/patients-charts.component';
 import PatientsComponent from './rippleui/pages/patients-list/patients.component';
@@ -136,6 +137,7 @@ const app = angular
     .factory('GenericMdtModal', GenericMdtModal)
     .factory('TransferOfCareModal', TransferOfCareModal)
     .service('serviceRequests', ServiceRequests)
+    .component('profileComponent', ProfileComponent)
     .component('patientsComponent', PatientsComponent)
     .component('headerComponent', HeaderComponent)
     .component('patientsChartsComponent', PatientsChartsComponent)
