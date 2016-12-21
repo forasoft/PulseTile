@@ -232,7 +232,6 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'contacts'
         }]
       })
-
       .state('contacts-detail', {
         url: '/patients/{patientId:int}/contacts/{contactIndex}?filter&page&reportType&searchString&queryType',
         views: {
@@ -261,7 +260,6 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<orders-list-component></orders-list-component>'}
         }
       })
-
       .state('orders-detail', {
         url: '/patients/{patientId:int}/orders/{orderId}?filter&page&reportType&searchString&queryType&source',
         views: {
@@ -367,11 +365,11 @@ function routeConfig($stateProvider, $urlRouterProvider) {
       .state('appointments', {
         url: '/patients/{patientId:int}/appointments?reportType&searchString&queryType',
         views: {
-            banner: {template: '<patients-banner-component></patients-banner-component>'},
-            actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
-            main: {template: '<appointments-list-component></appointments-list-component>'}
-          }
-        })
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<appointments-list-component></appointments-list-component>'}
+        }
+      })
       .state('appointments-detail', {
         url: '/patients/{patientId:int}/appointments/{appointmentIndex}?filter&page&reportType&searchString&queryType',
         views: {

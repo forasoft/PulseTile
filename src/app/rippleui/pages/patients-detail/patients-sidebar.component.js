@@ -26,86 +26,103 @@ class PatientsSidebarController {
       {
         name: 'contacts',
         link: 'contacts',
+        linkDetail: 'contacts-detail',
         title: 'Contacts'
       },
       {
         name: 'diagnosis',
         link: 'diagnoses-list',
+        linkDetail: 'diagnoses-detail',
         title: 'Problems / Diagnosis'
       },
       {
         name: 'allergies',
         link: 'allergies',
+        linkDetail: 'allergies-detail',
         title: 'Allergies'
       },
       {
         name: 'medications',
         link: 'medications',
+        linkDetail: 'medications-detail',
         title: 'Medications'
       },
       {
         name: 'orders',
         link: 'orders',
+        linkDetail: 'orders-detail',
         title: 'Orders'
       },
       {
         name: 'results',
         link: 'results',
+        linkDetail: 'results-detail',
         title: 'Results'
       },
       {
         name: 'procedures',
         link: 'procedures',
+        linkDetail: 'procedures-detail',
         title: 'Procedures'
       },
       {
         name: 'referrals',
         link: 'referrals',
+        linkDetail: 'referrals-detail',
         title: 'Referrals'
       },
       {
         name: 'appointments',
         link: 'appointments',
+        linkDetail: 'appointments-detail',
         title: 'Appointments'
       },
       {
         name: 'transfers',
         link: 'transferOfCare',
+        linkDetail: 'transferOfCare-detail',
         title: 'Transfer of Care'
       },
       {
         name: 'careplans',
         link: 'eolcareplans',
+        linkDetail: 'eolcareplans-detail',
         title: 'Care Plans'
       },
       {
         name: 'mdt',
         link: 'genericMdt',
+        linkDetail: 'genericMdt-detail',
         title: 'MDT'
       },
       {
         name: 'images',
         link: 'images',
+        linkDetail: 'images-detail',
         title: 'Images'
       },
       {
         name: 'clinicalNotes',
         link: 'clinicalNotes',
+        linkDetail: 'clinicalNotes-detail',
         title: 'Personal Notes'
       },
       {
         name: 'heightAndWeights',
         link: 'heightAndWeights',
+        linkDetail: 'heightAndWeights-detail',
         title: 'Height & Weight'
       },
       {
         name: 'documents',
         link: 'documents',
+        linkDetail: 'documents-detail',
         title: 'Documents'
       },
       {
         name: 'tags',
         link: 'tags',
+        linkDetail: 'tags-detail',
         title: 'Tags'
       }
     ];
