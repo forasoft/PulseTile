@@ -23,7 +23,8 @@ class HeaderController {
       $scope.searchBar = data.title === 'Welcome' ? false : true;
     };
     this.goHome = function () {
-      $state.go('patients-charts');
+      // $state.go('patients-charts');
+      $state.go('patients-list');
     };
     this.goProfile = function () {
       $state.go('profile');
