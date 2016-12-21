@@ -107,6 +107,12 @@ class PatientsSidebarController {
         linkDetail: 'clinicalNotes-detail',
         title: 'Personal Notes'
       },
+      {
+        name: 'vaccinations',
+        link: 'vaccinations',
+        linkDetail: 'vaccinations-detail',
+        title: 'Vaccinations'
+      },
       // {
       //   name: 'heightAndWeights',
       //   link: 'heightAndWeights',

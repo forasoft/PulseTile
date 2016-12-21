@@ -251,6 +251,43 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'contacts'
         }]
       })
+      .state('vaccinations', {
+        url: '/patients/{patientId:int}/vaccinations?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<vaccinations-list-component></vaccinations-list-component>'}
+        },
+        breadcrumbs: [{
+          title: 'Patient Listings',
+          state: 'patients-list'
+        }, {
+          title: 'Patient Summary',
+          state: 'patients-summary'
+        }, {
+          title: 'Vaccinations',
+          state: 'vaccinations'
+        }]
+      })
+      .state('vaccinations-detail', {
+        url: '/patients/{patientId:int}/vaccinations/{vaccinationIndex}?filter&page&reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<vaccinations-list-component></vaccinations-list-component>'},
+          detail: {template: '<vaccinations-detail-component></vaccinations-detail-component>'}
+        },
+        breadcrumbs: [{
+          title: 'Patient Listings',
+          state: 'patients-list'
+        }, {
+          title: 'Patient Summary',
+          state: 'patients-summary'
+        }, {
+          title: 'Vaccinations',
+          state: 'vaccinations'
+        }]
+      })
 
       .state('orders', {
         url: '/patients/{patientId:int}/orders?reportType&searchString&queryType',
