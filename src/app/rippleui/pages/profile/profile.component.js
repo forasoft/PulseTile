@@ -17,7 +17,7 @@ let templateProfile = require('./profile.html');
 
 class ProfileController {
   constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, serviceRequests, AllergiesModal, usSpinnerService) {
-    serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'profile'});
+    serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, breadcrumbs: $state.router.globals.current.breadcrumbs, name: 'profile'});
     serviceRequests.publisher('headerTitle', {title: 'Profile'});
 
     $scope.panelOpen = '';

@@ -20,6 +20,7 @@ class MainController {
     $scope.previousPage = '';
     $scope.isSidebar = false;
     $scope.classShowSidebar = '';
+    $scope.breadcrumbs;
 
     $scope.mainWidth = 0;
     $scope.detailWidth = 0;
@@ -89,9 +90,16 @@ class MainController {
           break;
         }
     };
+    $scope.setBreadcrumbs = function (breadcrumbs) {
+      $scope.breadcrumbs = breadcrumbs || [];
+    };
+    this.goBreadcrumb = function (state) {
+      $state.go(state);
+    }
     
     this.getPageComponents = function (data) {
       $scope.getState(data);
+      $scope.setBreadcrumbs(data.breadcrumbs);
       $scope.userContextViewExists = ('banner' in data.state);
       $scope.actionsExists = ('actions' in data.state);
     };

@@ -17,7 +17,7 @@ let templateMedicationsList = require('./medications-list.html');
 
 class MedicationsListController {
   constructor($scope, $state, $stateParams, $ngRedux, medicationsActions, serviceRequests, MedicationsModal, usSpinnerService) {
-    serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-details'});
+    serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, breadcrumbs: $state.router.globals.current.breadcrumbs, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
     this.currentPage = 1;

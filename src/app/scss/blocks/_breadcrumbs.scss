@@ -5,18 +5,19 @@
 	padding: 9px 2px;
 	font-size: 0;
 	color: #313131;
-	& > * {
+	.breadcrumb-link,
+	.breadcrumb-separate {
 		display: inline-block;
 		vertical-align: middle;
 		margin-right: 8px;
 		font-size: 14px;
 		line-height: 20px;
 	}
-	span:not(.separate) {
+	span:not(.breadcrumb-separate) {
 		font-weight: 700;
 		letter-spacing: -1px;
 	}
-	.separate {
+	.breadcrumb-separate {
 		width: 0; 
 		height: 0;
 		border-style: solid;
