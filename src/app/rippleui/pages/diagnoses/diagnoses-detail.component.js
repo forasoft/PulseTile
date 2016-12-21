@@ -52,6 +52,13 @@ class DiagnosesDetailController {
       }
     }.bind(this);
 
+    $scope.openDatepicker = function ($event, name) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope[name] = true;
+    };
+    
     $scope.UnlockedSources = [
       'handi.ehrscape.com'
     ];
@@ -93,20 +100,9 @@ class DiagnosesDetailController {
         this.currentPatient = data.patientsGet.data;
       }
       if (data.diagnoses.dataGet) {
-        // this.diagnosis = data.diagnoses.dataGet;
-        // usSpinnerService.stop('diagnosisDetail-spinner');
+        this.diagnosis = data.diagnoses.dataGet;
+        usSpinnerService.stop('diagnosisDetail-spinner');
       }
-      this.diagnosis = {
-        problem: 'Myocardial Infarction',
-        description: 'Myocardial Infarction',
-        dateOfOnset: new Date(),
-        terminology: 'SNOMED-CT',
-        code : 1,
-        author: 'Dr Tony Shannon',
-        dateCreated: new Date(),
-        source: 'EtherCIS'
-      }
-      usSpinnerService.stop('diagnosisDetail-spinner');
       if (data.user.data) {
         this.currentUser = data.user.data;
       }

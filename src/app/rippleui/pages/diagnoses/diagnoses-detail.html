@@ -148,7 +148,7 @@
             </div>
             <div class="form-group">
               <label for="code" class="control-label codeLabel">Terminology Code</label>
-              <div class="non-edit-value">{{ diagnosis.code }}</div>
+              <div class="non-edit-value">{{ diagnosisEdit.code }}</div>
             </div>
             <div class="form-group" ng-class="{'has-error': (formSubmitted || diagnosisForm.author.$dirty) && diagnosisForm.author.$invalid, 'has-success': diagnosisForm.author.$valid && diagnosisForm.author.$dirty}">
               <label for="author" class="control-label">Author</label>
