@@ -32,9 +32,6 @@ class PatientsBannerController {
 
     $scope.mobileShowInfo = '';
 
-    this.loadPatient = patientsActions.getPatient;
-    this.loadPatient($stateParams.patientId);
-    
     this.showInfo = function() {
       if ($scope.mobileShowInfo === 'show') {
         $scope.mobileShowInfo = '';

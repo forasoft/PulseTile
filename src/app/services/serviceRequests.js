@@ -21,10 +21,11 @@ class ServiceRequests {
         this.evCache = {};
         this.cbCache = {};
         this.debug = false;
+        this.currentUserData = {};
         this.currentSort = {
           order: '',
           reverse: false
-        }
+        };
         this.filter = '';
     
         this.publisher = function(eventName, data) {
@@ -68,6 +69,14 @@ class ServiceRequests {
                 method: 'GET',
                 url: '/api/initialise',
                 dataType: 'json'
+            };
+            return $http(options);
+        };
+        
+        this.login = function() {
+            var options = {
+                method: 'GET',
+                url: '/api/user'
             };
             return $http(options);
         };

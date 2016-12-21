@@ -16,7 +16,7 @@
 let templateProfile = require('./profile.html');
 
 class ProfileController {
-  constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, serviceRequests, AllergiesModal, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, serviceRequests, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, breadcrumbs: $state.router.globals.current.breadcrumbs, name: 'profile'});
     serviceRequests.publisher('headerTitle', {title: 'Profile'});
 
@@ -60,21 +60,14 @@ class ProfileController {
 
       $scope[name] = true;
     };
-    
 
+    this.setProfileData = function () {
+      let tempProfileData = serviceRequests.currentUserData;
 
-    this.setCurrentPageData = function (data) {
-      if (data.patientsGet.data) {
-        this.currentPatient = data.patientsGet.data;
-        usSpinnerService.stop('patientSummary-spinner');
-      }
-      // if (data.profile.data) {
-      //   this.profile = data.profile.data;
-      // }
       this.profile = {
-        firstname: 'Freya',
-        lastname: 'Blackwell',
-        nhs: '99999999003',
+        firstname: tempProfileData.given_name,
+        lastname: tempProfileData.family_name,
+        nhs: tempProfileData.nhsNumber,
         birthday: new Date(),
         gender: 'Female',
         doctor: 'Dr Emma Huston',
@@ -85,7 +78,7 @@ class ProfileController {
         postalCode: 'Box 306',
         country: 'USA',
         phone: '07624 647524',
-        email: 'patient@gmail.com',
+        email: tempProfileData.email,
 
         historyChanges: [
           {
@@ -100,11 +93,23 @@ class ProfileController {
             valueNew: '6801 Tellus Street'
           }
         ]
+      };
+    };
+
+    this.setCurrentPageData = function (data) {
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
       }
+      // if (data.profile.data) {
+      //   this.profile = data.profile.data;
+      // }
       if (data.user.data) {
         this.currentUser = data.user.data;
       }
     };
+
+    this.setProfileData();
 
     let unsubscribe = $ngRedux.connect(state => ({
       getStoreData: this.setCurrentPageData(state)
@@ -122,5 +127,5 @@ const ProfileComponent = {
   controller: ProfileController
 };
 
-ProfileController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'allergiesActions', 'serviceRequests', 'AllergiesModal', 'usSpinnerService'];
+ProfileController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'allergiesActions', 'serviceRequests', 'usSpinnerService'];
 export default ProfileComponent;
