@@ -2,8 +2,6 @@ let templateClinicalnotesDetail = require('./clinicalnotes-detail.html');
 
 class ClinicalnotesDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, clinicalnotesActions, serviceRequests, ClinicalnotesModal, usSpinnerService) {
-    serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-details'});
-    serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
     
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {

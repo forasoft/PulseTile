@@ -16,7 +16,7 @@
 let templateHeader = require('./header-bar.tmpl.html');
 
 class HeaderController {
-  constructor($rootScope, $scope, $state, $stateParams, $ngRedux, userActions, AdvancedSearch, serviceRequests) {
+  constructor($rootScope, $scope, $state, $stateParams, $ngRedux, patientsActions, AdvancedSearch, serviceRequests) {
 
     this.getPageHeader = function (data) {
       $scope.pageHeader = data.title;
@@ -24,12 +24,13 @@ class HeaderController {
     };
     this.goHome = function () {
       // $state.go('patients-charts');
+      if ($scope.title === 'PHR POC') return; 
       $state.go('patients-list');
     };
     this.goProfile = function () {
       $state.go('profile');
     };
-  
+
     $scope.switchDirectByRole = function (currentUser) {
       if (!currentUser) return;
       // Direct different roles to different pages at login
@@ -38,6 +39,11 @@ class HeaderController {
           $state.go('main-search');
           break;
         case 'PHR':
+          //Trick for PHR user login
+          $scope.loadPatientsAll = patientsActions.loadPatients;
+          $scope.loadPatient = patientsActions.getPatient;
+          $scope.loadPatientsAll();
+          $scope.loadPatient($stateParams.patientId);
           $state.go('patients-summary', {
             patientId: currentUser.nhsNumber
           });
@@ -307,5 +313,5 @@ const HeaderComponent = {
   controller: HeaderController
 };
 
-HeaderController.$inject = ['$rootScope', '$scope', '$state', '$stateParams', '$ngRedux', 'userActions', 'AdvancedSearch', 'serviceRequests'];
+HeaderController.$inject = ['$rootScope', '$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions', 'AdvancedSearch', 'serviceRequests'];
 export default HeaderComponent;
