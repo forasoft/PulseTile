@@ -476,6 +476,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<clinicalnotes-list-component></clinicalnotes-list-component>'},
           detail: {template: '<clinicalnotes-detail-component></clinicalnotes-detail-component>'}
         },
+        params: { source: '{}' },
         breadcrumbs: [{
           title: 'Patient Listings',
           state: 'patients-list'

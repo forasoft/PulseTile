@@ -13,6 +13,10 @@ class ClinicalnotesListController {
     };
     
     this.go = function (id, clinicalNoteSource) {
+      /*
+        TODO: Only for demo
+      */
+      id = id || 1;
       $state.go('clinicalNotes-detail', {
         patientId: $stateParams.patientId,
         clinicalNoteIndex: id,
@@ -21,13 +25,9 @@ class ClinicalnotesListController {
         reportType: $stateParams.reportType,
         searchString: $stateParams.searchString,
         queryType: $stateParams.queryType,
-        source: clinicalNoteSource
+        source: JSON.stringify(clinicalNoteSource)
       });
     };
-    /*
-      TODO: Remove. Only for demo
-    */
-    this.go(1,null);
 
     this.pageChangeHandler = function (newPage) {
       $scope.currentPage = newPage;
@@ -62,12 +62,34 @@ class ClinicalnotesListController {
         console.log(this.currentPatient);
       }
       if (data.clinicalnotes.data) {
-        this.clinicalNotes = data.clinicalnotes.data;
-        for (var i = 0; i < this.clinicalNotes.length; i++) {
-          this.clinicalNotes[i].dateCreated = moment(this.clinicalNotes[i].dateCreated).format('DD-MMM-YYYY');
-        }
-        usSpinnerService.stop("patientSummary-spinner");
+        // this.clinicalNotes = data.clinicalnotes.data;
+        // for (var i = 0; i < this.clinicalNotes.length; i++) {
+        //   this.clinicalNotes[i].dateCreated = moment(this.clinicalNotes[i].dateCreated).format('DD-MMM-YYYY');
+        // }
       }
+      this.clinicalNotes = [{
+        type: 'Top 3 Things',
+        note: '1) Concern re memory 2) Eyesight issues 3) Heart Pains',
+        author: 'Ivor Cox',
+        dateCreated: new Date(),
+        source: 'ethercis'
+      }, {
+        type: 'Reflection',
+        note: 'After GP visit today I have a better understanding of my mild dementia and am going to manage it positively, its up to me!',
+        author: 'Ivor Cox',
+        dateCreated: new Date(),
+        source: 'marand'
+      }, {
+        type: 'Goal',
+        note: 'Goal is better fitness. So will walk 3 k around the local park 3 times a week.',
+        author: 'Ivor Cox',
+        dateCreated: new Date(),
+        source: 'ethercis'
+      }];
+      for (var i = 0; i < this.clinicalNotes.length; i++) {
+        this.clinicalNotes[i].dateCreated = moment(this.clinicalNotes[i].dateCreated).format('DD-MMM-YYYY');
+      }
+      usSpinnerService.stop("patientSummary-spinner");
       if (data.user.data) {
         this.currentUser = data.user.data;
       }

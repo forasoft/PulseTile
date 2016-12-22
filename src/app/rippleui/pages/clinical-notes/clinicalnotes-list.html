@@ -37,25 +37,10 @@
       </thead>
 
       <tbody>
-        <tr>
-          <td data-th="Type" class="sorted">Ward note</td>
-          <td data-th="Author">Dr Tony Stark</td>
-          <td data-th="Date" class="orderDateTime">17-Nov-2016</td>
-          <td data-th="Source">openehr</td>
-        </tr>
-        <tr>
-          <td data-th="Type" class="sorted">Clinic note</td>
-          <td data-th="Author">Dr Mary Jones</td>
-          <td data-th="Date" class="orderDateTime">25-Nov-2016</td>
-          <td data-th="Source">openehr</td>
-        </tr>
-        <tr>
-          <td data-th="Type" class="sorted">Ward note</td>
-          <td data-th="Author">Dr Monica Black</td>
-          <td data-th="Date" class="orderDateTime">10-Nov-2016</td>
-          <td data-th="Source">openehr</td>
-        </tr>
-        <!-- <tr dir-paginate="clinicalNote in $ctrl.clinicalNotes | filter:$ctrl.search | itemsPerPage: 9" current-page="$ctrl.currentPage"  ng-click="$ctrl.go(clinicalNote.sourceId, clinicalNote.source)" ng-class="{info: $ctrl.selected(clinicalNote.sourceId)}">
+        <!-- 
+        clinicalNote.source - It should actually transmitted
+        <tr dir-paginate="clinicalNote in $ctrl.clinicalNotes | filter:$ctrl.search | itemsPerPage: 9" current-page="$ctrl.currentPage"  ng-click="$ctrl.go(clinicalNote.sourceId, clinicalNote.source)" ng-class="{info: $ctrl.selected(clinicalNote.sourceId)}"> -->
+        <tr dir-paginate="clinicalNote in $ctrl.clinicalNotes | filter:$ctrl.search | itemsPerPage: 9" current-page="$ctrl.currentPage"  ng-click="$ctrl.go(clinicalNote.sourceId, clinicalNote)" ng-class="{info: $ctrl.selected(clinicalNote.sourceId)}">
           <td data-th="Type">{{ clinicalNote.type }}</td>
           <td data-th="Author">{{ clinicalNote.author }}</td>
           <td data-th="Date" class="orderDateTime">{{ clinicalNote.dateCreated }}</td>
@@ -64,7 +49,7 @@
 
         <tr ng-if="!$ctrl.clinicalNotes.length">
           <td colspan="4"><span class="label label-default">No personal notes</span></td>
-        </tr> -->
+        </tr>
       </tbody>
     </table>
 
