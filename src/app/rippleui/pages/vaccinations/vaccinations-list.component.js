@@ -52,8 +52,9 @@ class VaccinationsListController {
     }
 
     this.create = function () {
-      this.currentUser.query = this.query;
-      this.currentUser.currentPage = this.currentPage;
+      
+      // this.currentUser.query = this.query;
+      // this.currentUser.currentPage = this.currentPage;
       VaccinationsModal.openModal(this.currentPatient, {title: 'Create Vaccination'}, {}, this.currentUser);
     };
 
