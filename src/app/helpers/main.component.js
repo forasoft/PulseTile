@@ -91,11 +91,14 @@ class MainController {
         }
     };
     $scope.setBreadcrumbs = function (breadcrumbs) {
+      if (serviceRequests.currentUserData.role === "PHR" && breadcrumbs) {
+        breadcrumbs.shift();
+      }
       $scope.breadcrumbs = breadcrumbs || [];
     };
     this.goBreadcrumb = function (state) {
       $state.go(state);
-    }
+    };
     
     this.getPageComponents = function (data) {
       $scope.getState(data);

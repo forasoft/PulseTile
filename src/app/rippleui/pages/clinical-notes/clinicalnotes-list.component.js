@@ -58,8 +58,6 @@ class ClinicalnotesListController {
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
-        console.log('this.currentPatient');
-        console.log(this.currentPatient);
       }
       if (data.clinicalnotes.data) {
         // this.clinicalNotes = data.clinicalnotes.data;

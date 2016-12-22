@@ -55,7 +55,7 @@ class PatientsSummaryController {
       return arr;
     }
     this.getPatientData = function (data) {
-      if (!data || !data.id) return false;
+      if (!data || !data.nhsNumber) return false;
 
       var countPatientArr = 4;
       usSpinnerService.stop('patientSummary-spinner');
