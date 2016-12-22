@@ -2,17 +2,21 @@ let templateClinicalnotesDetail = require('./clinicalnotes-detail.html');
 
 class ClinicalnotesDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, clinicalnotesActions, serviceRequests, ClinicalnotesModal, usSpinnerService) {
+    /*
+      TODO: Only for demo
+    */
+    this.clinicalNote = JSON.parse($stateParams.source);
     
     this.setCurrentPageData = function (data) {
-      if (data.patientsGet.data) {
-        this.currentPatient = data.patientsGet.data;
-      }
-      if (data.clinicalnotes.dataGet) {
-        this.clinicalNote = data.clinicalnotes.dataGet;
-        this.dateCreated = moment(this.clinicalNote.dateCreated).format('DD-MMM-YYYY');
+      // if (data.patientsGet.data) {
+      //   this.currentPatient = data.patientsGet.data;
+      // }
+      // if (data.clinicalnotes.dataGet) {
+      //   this.clinicalNote = data.clinicalnotes.dataGet;
+      //   this.dateCreated = moment(this.clinicalNote.dateCreated).format('DD-MMM-YYYY');
 
-        usSpinnerService.stop("clinicalNoteDetail-spinner");
-      }
+      //   usSpinnerService.stop("clinicalNoteDetail-spinner");
+      // }
     };
 
     let unsubscribe = $ngRedux.connect(state => ({
@@ -23,8 +27,8 @@ class ClinicalnotesDetailController {
 
 
 
-    this.clinicalnotesLoad = clinicalnotesActions.get;
-    this.clinicalnotesLoad($stateParams.patientId, $stateParams.clinicalNoteIndex, $stateParams.source);
+    // this.clinicalnotesLoad = clinicalnotesActions.get;
+    // this.clinicalnotesLoad($stateParams.patientId, $stateParams.clinicalNoteIndex, $stateParams.source);
   
     //Edit Clinical Note
     
