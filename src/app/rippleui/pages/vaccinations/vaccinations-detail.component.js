@@ -18,6 +18,12 @@ let templateVaccinationsDetail= require('./vaccinations-detail.html');
 class VaccinationsDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, patientsActions, vaccinationsActions, VaccinationsModal, usSpinnerService) {
     $scope.isEdit = false;
+
+    /*
+      TODO: Only for demo
+    */
+    this.vaccination = $stateParams.source;
+
     this.edit = function () {
       $scope.isEdit = true;
 
@@ -48,15 +54,15 @@ class VaccinationsDetailController {
       //   this.vaccination = data.vaccinations.dataGet;
       //   usSpinnerService.stop('vaccinationDetail-spinner');
       // }
-      this.vaccination = {
-        name: 'Influenza',
-        date: new Date(),
-        seriesNumber: 1,
-        source: 'EtherCIS',
-        comment: 'Hospital staff',
-        author: 'ripple_osi',
-        dateCreated: new Date()
-      };
+      // this.vaccination = {
+      //   name: 'Influenza',
+      //   date: new Date(),
+      //   seriesNumber: 1,
+      //   source: 'EtherCIS',
+      //   comment: 'Hospital staff',
+      //   author: 'ripple_osi',
+      //   dateCreated: new Date()
+      // };
       usSpinnerService.stop('vaccinationDetail-spinner');
       // if (data.patientsGet.data) {
       //   this.currentPatient = data.patientsGet.data;

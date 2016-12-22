@@ -67,23 +67,24 @@ class ClinicalnotesListController {
         //   this.clinicalNotes[i].dateCreated = moment(this.clinicalNotes[i].dateCreated).format('DD-MMM-YYYY');
         // }
       }
+      var date = new Date();
       this.clinicalNotes = [{
         type: 'Top 3 Things',
         note: '1) Concern re memory 2) Eyesight issues 3) Heart Pains',
         author: 'Ivor Cox',
-        dateCreated: new Date(),
+        dateCreated: date.setDate(date.getDate() - 4),
         source: 'ethercis'
       }, {
         type: 'Reflection',
         note: 'After GP visit today I have a better understanding of my mild dementia and am going to manage it positively, its up to me!',
         author: 'Ivor Cox',
-        dateCreated: new Date(),
+        dateCreated: date,
         source: 'marand'
       }, {
         type: 'Goal',
         note: 'Goal is better fitness. So will walk 3 k around the local park 3 times a week.',
         author: 'Ivor Cox',
-        dateCreated: new Date(),
+        dateCreated: date.setDate(date.getDate() - 2),
         source: 'ethercis'
       }];
       for (var i = 0; i < this.clinicalNotes.length; i++) {

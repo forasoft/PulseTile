@@ -58,11 +58,11 @@ class VaccinationsListController {
       VaccinationsModal.openModal(this.currentPatient, {title: 'Create Vaccination'}, {}, this.currentUser);
     };
 
-    this.go = function (id) {
+    this.go = function (id, vaccination) {
       serviceRequests.currentSort.order = this.order;
       serviceRequests.currentSort.reverse = this.reverse;
       serviceRequests.filter = this.query || '';
-
+      id = id || 1;
       $state.go('vaccinations-detail', {
         // patientId: $stateParams.patientId,
         // vaccinationIndex: id,
@@ -78,14 +78,10 @@ class VaccinationsListController {
         page: this.currentPage,
         reportType: null,
         searchString: null,
-        queryType: null
+        queryType: null,
+        source: vaccination
       });
     };
-    /*
-      TODO: Remove. Only for demo
-    */
-    this.go(1);
-
     this.pageChangeHandler = function (newPage) {
       this.currentPage = newPage;
     };
@@ -95,19 +91,32 @@ class VaccinationsListController {
       //   this.vaccinations = data.vaccinations.data;
       //   usSpinnerService.stop('patientSummary-spinner');
       // }
+      var date = new Date();
       this.vaccinations = [
         {
-          name: 'New Vaccination',
+          name: 'Inactivated Poliovirus Vaccine',
           source: 'Marand',
-          dataCreate: new Date()
+          seriesNumber: 1,
+          comment: 'Hospital staff',
+          date: date.setDate(date.getDate() - 1),
+          author: 'ripple_osi',
+          dataCreate: date.setDate(date.getDate() - 1)
         }, {
-          name: 'Influenza',
+          name: 'Cell-Culture Influenza Vaccine',
           source: 'EtherCIS',
-          dataCreate: new Date()
+          seriesNumber: 2,
+          comment: 'Hospital staff',
+          date: date,
+          author: 'ripple_osi',
+          dataCreate: date
         }, {
-          name: 'Tetanus',
+          name: 'Varicella Vaccine',
           source: 'Marand',
-          dataCreate: new Date()
+          seriesNumber: 3,
+          comment: 'Hospital staff',
+          date: date.setDate(date.getDate() - 4),
+          author: 'ripple_osi',
+          dataCreate: date.setDate(date.getDate() - 4)
         }
       ];
       usSpinnerService.stop('patientSummary-spinner');
