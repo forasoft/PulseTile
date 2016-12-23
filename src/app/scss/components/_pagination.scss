@@ -2,12 +2,14 @@
   margin: 0;
   border: 0;
   & > li {
-    & > a {
+    & > a,
+    & > a:focus,
+    &.disabled > a:focus {
       display: block;
       min-width: 28px;
       height: 34px;
       padding: 4px;
-      font-size: 13px;
+      font-size: 12px;
       line-height: 24px;
       color: #313131;
       text-align: center;
@@ -16,15 +18,17 @@
       background: #fff;
       border-radius: 0 !important;
     }
-    &.arrow > a {
+    &.arrow > a,
+    &.arrow > a:focus,
+    &.arrow.disabled > a:focus {
       font-size: 24px;
       line-height: 20px;
     }
     & > a:hover,
-    & > a:focus,
-    &.disabled > a:focus,
     &.active > a,
-    &.active > a:hover {
+    &.active > a:hover,
+    &.active > a:focus,
+    &.active.disabled > a:focus {
       color: #fff;
       border-color: $secondary-color;
       background-color: $secondary-color;

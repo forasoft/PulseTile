@@ -219,6 +219,23 @@ const app = angular
         }
       }
     })
+    .directive('mcAccordion', function($timeout) {
+      return {
+        link: function(scope, element, attrs) {
+            scope.panelOpen = '';
+            scope.openPanel = function (namePanel) {
+                if (scope.panelOpen === namePanel) {
+                    scope.panelOpen = '';
+                } else {
+                    scope.panelOpen = namePanel;
+                }
+            };
+            scope.$watch(attrs.mcOpenPanel, function() {
+                scope.panelOpen = attrs.mcOpenPanel;
+            });
+        }
+      }
+    })
     .filter('formatNHSNumber', function() {
         return function(number) {
             if (number === undefined) {

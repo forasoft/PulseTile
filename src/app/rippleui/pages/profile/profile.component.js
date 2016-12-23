@@ -20,13 +20,9 @@ class ProfileController {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, breadcrumbs: $state.router.globals.current.breadcrumbs, name: 'profile'});
     serviceRequests.publisher('headerTitle', {title: 'Profile'});
 
-    $scope.panelOpen = '';
     $scope.isPersonalEdit = false;
     $scope.isContactEdit = false;
-    
-    this.openPanel = function (namePanel) {
-      $scope.panelOpen = namePanel;
-    };
+ 
     this.personalEdit = function () {
       $scope.personalEdit = Object.assign({}, this.profile);
       $scope.isPersonalEdit = true;

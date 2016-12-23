@@ -18,11 +18,7 @@ let templateAllergiesDetail= require('./allergies-detail.html');
 class AllergiesDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, AllergiesModal, usSpinnerService) {
     $scope.isEdit = false;
-    $scope.panelOpen = '';
-
-    this.openPanel = function (namePanel) {
-      $scope.panelOpen = namePanel;
-    };
+    
     this.edit = function () {
       $scope.isEdit = true;
       $scope.allergyEdit = Object.assign({}, this.allergy);

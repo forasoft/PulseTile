@@ -41,6 +41,9 @@
   }
 }
 .btn-header-prev {float: left;}
+.btn-header.btn-user {
+  font-size: 21px;
+}
 @include respond-to(xs) {
   .btn-header.btn-user {width: 38px;}
 }

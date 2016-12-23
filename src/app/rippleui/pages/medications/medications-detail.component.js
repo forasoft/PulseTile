@@ -39,12 +39,6 @@ class MedicationsDetailController {
       }
     };
 
-    $scope.panelOpen = '';
-
-    this.openPanel = function (namePanel) {
-      $scope.panelOpen = namePanel;
-    };
-
     let unsubscribe = $ngRedux.connect(state => ({
       getStoreData: this.setCurrentPageData(state)
     }))(this);

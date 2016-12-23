@@ -33,7 +33,7 @@
       </thead>
 
       <tbody>
-        <tr dir-paginate="image in $ctrl.images | filter:$ctrl.earch | itemsPerPage: 9 " current-page="$ctrl.currentPage" ng-click="$ctrl.go(image.studyId, image.source)" ng-class="{info: $ctrl.selected(image.studyId)}">
+        <tr dir-paginate="image in $ctrl.images | filter:$ctrl.earch | itemsPerPage: 10 " current-page="$ctrl.currentPage" ng-click="$ctrl.go(image.studyId, image.source)" ng-class="{info: $ctrl.selected(image.studyId)}">
           <td data-th="Image Description">{{ image.studyDescription }}</td>
           <td data-th="Date" class="dateTime">{{ image.dateRecorded }}</td>
           <td data-th="Source">{{ image.source }}</td>

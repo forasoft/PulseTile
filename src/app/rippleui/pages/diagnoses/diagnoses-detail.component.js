@@ -18,12 +18,8 @@ let templateDiagnosesDetail= require('./diagnoses-detail.html');
 class DiagnosesDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, patientsActions, diagnosesActions, DiagnosesModal, usSpinnerService) {
     $scope.isEdit = false;
-    $scope.panelOpen = '';
     $scope.protocol = 'http://';
 
-    this.openPanel = function (namePanel) {
-      $scope.panelOpen = namePanel;
-    };
     this.edit = function () {
       $scope.isEdit = true;
       $scope.diagnosisEdit = Object.assign({}, this.diagnosis);

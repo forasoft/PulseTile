@@ -15,7 +15,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr dir-paginate="mdt in $ctrl.genericMdtComposition | filter:$ctrl.search | itemsPerPage: 9" current-page="$ctrl.currentPage" ng-click="$ctrl.go(mdt.sourceId)" ng-class="{info: $ctrl.selected(mdt.sourceId)}">
+  <tr dir-paginate="mdt in $ctrl.genericMdtComposition | filter:$ctrl.search | itemsPerPage: 10" current-page="$ctrl.currentPage" ng-click="$ctrl.go(mdt.sourceId)" ng-class="{info: $ctrl.selected(mdt.sourceId)}">
     <td data-th="Date of Request" class="dateTime">{{mdt.dateOfRequest}}</td>
     <td data-th="Service / Team">{{mdt.serviceTeam}}</td>
     <td data-th="Date of Meeting" class="dateTime">{{mdt.dateOfMeeting}}</td>

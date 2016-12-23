@@ -44,7 +44,7 @@
       </thead>
 
       <tbody>
-        <tr dir-paginate="allergy in $ctrl.allergies | filter:$ctrl.query | orderBy:[$ctrl.order] : $ctrl.reverse | itemsPerPage: 9" current-page="$ctrl.currentPage" ng-click="$ctrl.go(allergy.sourceId, allergy.source)" ng-class="{info: $ctrl.selected(allergy.sourceId)}">
+        <tr dir-paginate="allergy in $ctrl.allergies | filter:$ctrl.query | orderBy:[$ctrl.order] : $ctrl.reverse | itemsPerPage: 10" current-page="$ctrl.currentPage" ng-click="$ctrl.go(allergy.sourceId, allergy.source)" ng-class="{info: $ctrl.selected(allergy.sourceId)}">
           <td data-th="Cause" ng-class="$ctrl.sortClass('cause');">{{ allergy.cause }}</td>
           <td data-th="Reaction" ng-class="$ctrl.sortClass('reaction')">{{ allergy.reaction }}</td>
           <td data-th="Source" ng-class="$ctrl.sortClass('source')">{{ allergy.source }}</td>

@@ -53,6 +53,7 @@ class ContactsListController {
     }
 
     this.create = function () {
+      this.currentUser = this.currentUser || {};
       this.currentUser.query = this.query;
       this.currentUser.currentPage = this.currentPage;
       ContactsModal.openModal(this.currentPatient, {title: 'Create Contact'}, {}, this.currentUser);
@@ -87,6 +88,8 @@ class ContactsListController {
         this.currentPatient = data.patientsGet.data;
       }
       if (data.user.data) {
+        console.log('data.user.data');
+        console.log(data.user.data);
         this.currentUser = data.user.data;
       }
     };

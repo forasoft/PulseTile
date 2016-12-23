@@ -14,12 +14,12 @@
   ~  limitations under the License.
   -->
 
-  <div class="panel-group accordion">
-    <div class="panel panel-secondary" ng-if="!isPersonalEdit" ng-class="panelOpen == 'personal' || !panelOpen ? 'open' : ''">
+  <div mc-accordion mc-open-panel="personal" class="panel-group accordion">
+    <div class="panel panel-secondary" ng-if="!isPersonalEdit" ng-class="panelOpen == 'personal'  ? 'open' : ''">
       <div class="panel-heading">
         <div class="control-group right">
           <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
-          <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="$ctrl.openPanel('personal')"><i class="fa fa-chevron-up"></i></button>
+          <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="openPanel('personal')"><i class="fa fa-chevron-up"></i></button>
         </div>
         <h3 class="panel-title">Personal Information</h3>
       </div>
@@ -75,11 +75,11 @@
       </div>
     </div>
     
-    <div class="panel panel-secondary" ng-if="isPersonalEdit" ng-class="panelOpen == 'personal' || !panelOpen ? 'open' : ''">
+    <div class="panel panel-secondary" ng-if="isPersonalEdit" ng-class="panelOpen == 'personal'  ? 'open' : ''">
       <div class="panel-heading">
         <div class="control-group right">
           <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
-          <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="$ctrl.openPanel('personal')"><i class="fa fa-chevron-up"></i></button>
+          <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="openPanel('personal')"><i class="fa fa-chevron-up"></i></button>
         </div>
         <h3 class="panel-title">Personal Information</h3>
       </div>
@@ -161,7 +161,7 @@
       <div class="panel-heading">
         <div class="control-group right">
           <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
-          <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="$ctrl.openPanel('contact')"><i class="fa fa-chevron-up"></i></button>
+          <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="openPanel('contact')"><i class="fa fa-chevron-up"></i></button>
         </div>
         <h3 class="panel-title">Contact Information</h3>
       </div>
@@ -226,7 +226,7 @@
       <div class="panel-heading">
         <div class="control-group right">
           <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
-          <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="$ctrl.openPanel('contact')"><i class="fa fa-chevron-up"></i></button>
+          <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="openPanel('contact')"><i class="fa fa-chevron-up"></i></button>
         </div>
         <h3 class="panel-title">Contact Information</h3>
       </div>
@@ -321,7 +321,7 @@
       <div class="panel-heading">
         <div class="control-group right">
           <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
-          <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="$ctrl.openPanel('history')"><i class="fa fa-chevron-up"></i></button>
+          <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="openPanel('history')"><i class="fa fa-chevron-up"></i></button>
         </div>
         <h3 class="panel-title">Change History</h3>
       </div>

@@ -31,7 +31,7 @@
   </thead>
 
   <tbody>
-    <tr dir-paginate="referral in $ctrl.referrals | filter:$ctrl.search | itemsPerPage: 9" current-page="$ctrl.currentPage"  ng-click="$ctrl.go(referral.sourceId)" ng-class="{info: $ctrl.selected(referral.sourceId)}">
+    <tr dir-paginate="referral in $ctrl.referrals | filter:$ctrl.search | itemsPerPage: 10" current-page="$ctrl.currentPage"  ng-click="$ctrl.go(referral.sourceId)" ng-class="{info: $ctrl.selected(referral.sourceId)}">
       <td data-th="Date of Referral" class="dateTime">{{ referral.dateOfReferral}}</td>
       <td data-th="Referral From">{{ referral.referralFrom }}</td>
       <td data-th="Referral To">{{ referral.referralTo }}</td>

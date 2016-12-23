@@ -90,6 +90,9 @@ class MedicationsListController {
       }
       if (data.medication.data) {
         this.medications = data.medication.data;
+        // for (var i = 0; i < this.medications.length; i++) {
+        //   this.medications[i].startDate = moment(this.medications[i].startDate).format('DD-MMM-YYYY');
+        // }
         /*
           TODO: Remove. Only for demo
         */

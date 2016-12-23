@@ -43,7 +43,7 @@
       </thead>
 
       <tbody>
-        <tr dir-paginate="diagnosis in $ctrl.diagnoses | filter:$ctrl.query | orderBy:[$ctrl.order] : $ctrl.reverse | itemsPerPage: 9" current-page="$ctrl.currentPage" ng-click="$ctrl.go(diagnosis.sourceId, diagnosis.source)" ng-class="{info: $ctrl.selected(diagnosis.sourceId)}">
+        <tr dir-paginate="diagnosis in $ctrl.diagnoses | filter:$ctrl.query | orderBy:[$ctrl.order] : $ctrl.reverse | itemsPerPage: 10" current-page="$ctrl.currentPage" ng-click="$ctrl.go(diagnosis.sourceId, diagnosis.source)" ng-class="{info: $ctrl.selected(diagnosis.sourceId)}">
           <td data-th="Problems / Diagnoses" ng-class="$ctrl.sortClass('diagnoses');">{{ diagnosis.problem }}</td>
           <td data-th="Date" ng-class="$ctrl.sortClass('date')">{{ diagnosis.dateOfOnset }}</td>
           <td data-th="Source" ng-class="$ctrl.sortClass('source')">{{ diagnosis.source }}</td>

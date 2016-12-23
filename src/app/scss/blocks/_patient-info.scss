@@ -1,19 +1,21 @@
 .wrap-patient-info.show {
   .patient-info {display: table;}
 }
-.patient-info-btn {
+.patient-info-caption {
   display: block;
   position: relative;
   overflow: hidden;
   height: 34px;
-  padding-right: 20px;
   font-size: 18px;
   font-weight: 700;
   line-height: 34px;
   color: #fff;
-  cursor: pointer;
-  &.dropdown-toggle:after {
-    font-size: 14px;
+  .patient-info-caption-btn {
+    float: right;
+    height: 34px;
+    padding-right: 30px;
+    cursor: pointer;
+    &:after { font-size: 14px; }
   }
 }
 .patient-info {
@@ -36,11 +38,10 @@
   
 }
 @include respond-to(sm) {
-  .patient-info-btn {margin-top: 6px;}
   .wrap-patient-info {
     overflow: hidden;
   }
-  .patient-info-btn {display: none;}
+  .patient-info-caption {display: none;}
   .patient-info {
     display: block;
     padding-top: 0;

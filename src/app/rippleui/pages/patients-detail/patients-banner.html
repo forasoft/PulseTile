@@ -23,7 +23,10 @@
       <strong>{{ $ctrl.patient.pasNumber }}</strong>
   </div> -->
 <div class="wrap-patient-info" ng-class="mobileShowInfo">
-  <div ng-click="$ctrl.showInfo()"  class="patient-info-btn dropdown-toggle text-truncate">{{ $ctrl.patient.name }}</div>
+  <div class="patient-info-caption">
+    <div class="patient-info-caption-btn dropdown-toggle" ng-click="$ctrl.showInfo()"></div>
+    <div class="patient-info-caption-text text-truncate">{{ $ctrl.patient.name }}</div>
+  </div>
   <div class="patient-info">
     <div class="patient-info-group-2">
       <div class="column-1">

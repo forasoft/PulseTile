@@ -20,7 +20,8 @@
 .showSidebar .sidebar {display: block;}
 
 
-.btn-toggle-sidebar {
+.btn-toggle-sidebar,
+.btn-toggle-sidebar:focus {
   float: left;
   height: 34px;
   margin: 0 10px 0 0;
@@ -43,12 +44,13 @@
   }
 }
 .showSidebar .btn-toggle-sidebar,
-.btn-toggle-sidebar:hover {
+.showSidebar .btn-toggle-sidebar:focus {
   color: $secondary-color;
   background: #fff;
 }
 @include respond-to(xs) {
-  .btn-toggle-sidebar {
+  .btn-toggle-sidebar,
+  .btn-toggle-sidebar:focus, {
     margin-right: 18px;
     padding: 6px 14px 6px 11px;
     i {margin-right: 9px;}
@@ -56,12 +58,17 @@
   }
 }
 @include respond-to(sm) {
-  .btn-toggle-sidebar {
+  .btn-toggle-sidebar,
+  .btn-toggle-sidebar:focus, {
     position: absolute;
     top: 50%;
     left: 0;
     transform: translateY(-50%);
     margin-right: 0;
+  }
+  .btn-toggle-sidebar:hover {
+    color: $secondary-color;
+    background: #fff;
   }
 }
 

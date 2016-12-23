@@ -13,12 +13,12 @@
   ~  See the License for the specific language governing permissions and
   ~  limitations under the License.
   -->
-<div class="panel-group accordion">
-  <div class="panel panel-secondary" ng-if="!isEdit" ng-class="panelOpen == 'allergy' || !panelOpen ? 'open' : ''">
+<div mc-accordion mc-open-panel="allergy" class="panel-group accordion">
+  <div class="panel panel-secondary" ng-if="!isEdit" ng-class="panelOpen == 'allergy' ? 'open' : ''">
     <div class="panel-heading">
       <div class="control-group left">
         <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
-        <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="$ctrl.openPanel('allergy')"><i class="fa fa-chevron-up"></i></button>
+        <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="openPanel('allergy')"><i class="fa fa-chevron-up"></i></button>
       </div>
       <h3 class="panel-title">Allergy</h3>
     </div>
@@ -70,11 +70,11 @@
     </div>
   </div>
   
-  <div class="panel panel-secondary" ng-if="isEdit" ng-class="panelOpen == 'allergy' || !panelOpen ? 'open' : ''">
+  <div class="panel panel-secondary" ng-if="isEdit" ng-class="panelOpen == 'allergy' ? 'open' : ''">
     <div class="panel-heading">
       <div class="control-group left">
         <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
-        <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="$ctrl.openPanel('allergy')"><i class="fa fa-chevron-up"></i></button>
+        <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="openPanel('allergy')"><i class="fa fa-chevron-up"></i></button>
       </div>
       <div class="control-group right">
         <button class="btn btn-danger btn-square" ng-click="$ctrl.cancelEdit()"><i class="fa fa-ban"></i></button>
@@ -146,7 +146,7 @@
     <div class="panel-heading">
       <div class="control-group left">
         <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
-        <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="$ctrl.openPanel('metadata')"><i class="fa fa-chevron-up"></i></button>
+        <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="openPanel('metadata')"><i class="fa fa-chevron-up"></i></button>
       </div>
       <h3 class="panel-title">Metadata</h3>
     </div>

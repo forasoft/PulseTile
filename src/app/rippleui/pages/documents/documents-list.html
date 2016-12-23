@@ -31,7 +31,7 @@
     </thead>
 
     <tbody>
-    <tr dir-paginate="document in $ctrl.documents | filter:$ctrl.query | itemsPerPage: 9 " current-page="$ctrl.currentPage" ng-click="$ctrl.go(document.sourceId, document.documentType, document.source)" ng-class="{info: $ctrl.selected(document.sourceId)}">
+    <tr dir-paginate="document in $ctrl.documents | filter:$ctrl.query | itemsPerPage: 10 " current-page="$ctrl.currentPage" ng-click="$ctrl.go(document.sourceId, document.documentType, document.source)" ng-class="{info: $ctrl.selected(document.sourceId)}">
         <td>{{ document.documentType }}</td>
         <td class="dateTime">{{ document.documentDate | date: 'dd-MMM-yyyy'}}</td>
         <td>{{ document.source }}</td>

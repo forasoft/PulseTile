@@ -19,11 +19,6 @@ class ResultsDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, resultsActions, usSpinnerService) {
 
     $scope.formDisabled = true;
-    $scope.panelOpen = '';
-
-    this.openPanel = function (namePanel) {
-      $scope.panelOpen = namePanel;
-    };
 
     this.setCurrentPageData = function (data) {
       if (data.results.dataGet) {
