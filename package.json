@@ -94,6 +94,7 @@
     "moment": "~2.15.0",
     "raphael": "^2.2.6",
     "redux": "^3.5.2",
+    "retinajs": "^2.1.0",
     "underscore": "^1.8.3"
   }
 }

@@ -1,6 +1,6 @@
 .wrap-logo {
   float: left;
-  padding: 6px 4px;
+  padding: 6px 9px;
 }
 .logo {
   line-height: 38px;
@@ -11,26 +11,19 @@
   text-transform: uppercase;
   white-space: nowrap;
   vertical-align: middle;
-  .logo-icon {
-    display: inline-block;
+  .logo-icon,
+  .logo-icon-mob {
+    display: block;
     width: auto;
-    height: 26px;
+    height: 37px;
     cursor: pointer;
-    content: img('ripple-icon.png');
-    margin-right: 4px;
   }
-  span {display: inline-block;}
+  .logo-icon {display: none;}
 }
 @include respond-to(xs) {
-  .wrap-logo {
-    padding-left: 9px;
-    padding-right: 9px;
-  }
   .logo {
     font-size: 23px;
-    .logo-icon {
-      height: 38px;
-      margin-right: 5px;
-    }
+    .logo-icon {display: block;}
+    .logo-icon-mob {display: none;}
   }
 }
