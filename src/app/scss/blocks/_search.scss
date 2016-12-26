@@ -1,39 +1,4 @@
-.wrap-header-search {
-  overflow: hidden;
-  width: 100%;
-  @include respond-to(sm) {
-    width: auto;
-  }
-}
 .wrap-search {
-  padding: 5px;
-  @include respond-to(sm) {
-    display: none !important;
-    .header-search {padding: 5px 0;}
-  }
-  .btn-search {
-    height: 44px;
-    line-height: 44px;
-  }
-}
-.header-search {
-  float: right;
-  width: 100%;
-  @include respond-to(sm) {
-    max-width: 452px;
-  }
-}
-.btn-search {
-  float: right;
-  width: 43px;
-}
-.header-search-inner {
-  overflow: hidden;
-  padding: 0;
-  position: relative;
-  @include respond-to(sm) {
-    padding: 7px 4px 9px;
-  }
   .form-control {
     display: block;
     width: 100%;
@@ -46,11 +11,6 @@
     background-image: none;
     border: 1px solid #C3C3C3;
     border-radius: 0;
-    // min-width: 230px;
-    @include respond-to(sm) {
-      height: 36px;
-      border-radius: 2px;
-    }
     &::-webkit-input-placeholder {
       color: #C5C5C5;
     }
@@ -76,102 +36,68 @@
   }
 }
 
-// /* Main search bar for patients-charts page */
-
-
-.main-search {
-  font-size: 20px;
-  color: #FFF;
-  font-family: 'MyriadPro';
-  padding-top: 5%;
+.btn-search {
+  float: right;
+  width: 43px;
 }
 
 .search-logo {
-  max-width: 180px;
-  width: 20%;
-  display: block;
-  margin: 0 auto 5% auto;
-  content: img('search-ripple-logo.png');
+  display: none;
+  max-width: 223px;
+  height: auto;
+  margin: 50px auto 65px;
+}
+@include respond-to(xs) {
+  .search-logo { display: block; }
 }
 
+.wrap-header-search {
+  overflow: hidden;
+  width: auto;
+  @include respond-to(sm) {
+    .form-control {
+      height: 36px;
+      border-radius: 2px;
+    }
+  }
+}
+.wrap-search-mobile {
+  width: 100%;
+  padding: 5px;
+  @include respond-to(sm) {
+    display: none !important;
+    .header-search {padding: 5px 0;}
+  }
+}
+.header-search {
+  float: right;
+  width: 100%;
+  @include respond-to(sm) {
+    max-width: 452px;
+  }
+}
+.header-search-inner {
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  @include respond-to(sm) {
+    padding: 7px 4px 9px;
+  }
+}
+.main-search {
+  max-width: 832px;
+  margin: 0 auto;
+}
 .main-search-inner {
-  padding-right: 110px;
+  overflow: hidden;
+  padding: 0;
   position: relative;
 }
-
-.main-search-inner .btn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100px;
-}
-
-/* Search button in mobile view*/
-@media (max-width: 768px) {
-
-  .main-search-inner {
-    padding-right: 60px;
-  }
-
-  .main-search-inner .btn {
-    width: 50px;
+.wrap-search-mobile,
+.main-search {
+  .btn-search {
+    height: 44px;
+    padding: 0;
+    line-height: 44px;
   }
 }
-
-
-// /* Header - Search Bar */
-// .searchBarHidden {
-//   visibility: hidden;
-// }
-
-// .advanced-search-text {
-//   font-size: 12px;
-//   margin-top: 11px;
-// }
-
-// .icon-searchbar:before {
-//   color: #82BE36;
-//   font-size: 20px;
-// }
-
-
-
-
-
-
-
-// /* Search button in tablet and small desktop view*/
-// @media (min-width: 768px) and (max-width: 1199px) {
-
-//   .header-search-inner .search-left-inner-addon {
-//     margin-right: 60px;
-//   }
-
-//   .header-search .searchButton {
-//     width: 50px;
-//   }
-
-//   i.clearAll {
-//     right: 67px;
-//   }
-// }
-
-// .glyphicon-user:before {
-//   color: $icon-user-color;
-// }
-
-// .glyphicon-chevron-down:before {
-//   color: $icon-chevron-color;
-// }
-
-// .glyphicon-chevron-right:before {
-//   float: right;
-//   font-size: 8px;
-//   color: $icon-chevron-color;
-//   line-height: 2.4em;
-// }
-
-// .glyphicon-chevron-right {
-//   float: right;
-//   color: $icon-chevron-color;
-// }

@@ -18,7 +18,7 @@ let templateSearch = require('./search.html');
 class SearchController {
   constructor($scope, serviceRequests, AdvancedSearch, $state) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'main-search'});
-    serviceRequests.publisher('headerTitle', {title: 'Welcome'});
+    serviceRequests.publisher('headerTitle', {title: 'Welcome', isShowTitle: true});
 
     this.mainSearchEnabled = true;
     this.searchExpression = '';

@@ -161,25 +161,6 @@ a[ui-sref] {
   height: 0;
 }
 
-
-
-// @media (min-width: 768px) {
-//   .form-horizontal .form-group-sm .control-label {
-//     padding-top: 2px;
-//   }
-// }
-
-// .form-horizontal .radio,
-// .form-horizontal .checkbox,
-// .form-horizontal .radio-inline,
-// .form-horizontal .checkbox-inline {
-//   padding-top: 1px;
-// }
-
-// .form-horizontal label {
-//   font-weight: bold;
-// }
-
 .radio label,
 .checkbox label {
   color: #555;
@@ -852,11 +833,6 @@ svg {
   padding-bottom: 10px;
 }
 
-@media (min-width: 768px) {
-  .form-horizontal .control-label {
-    text-align: left;
-  }
-}
 
 .validation-error {
   color: #a94442;
@@ -1162,16 +1138,7 @@ textarea#procedureNotes {
   width: 100%;
   margin-bottom: 15px;
 }
-
-.advancedSearchForm .input-group {
-  padding-top: 5px;
-  width: 100%; }
-
-
 /* enable absolute positioning */
-
-
-
 
 .fa-ellipsis-h {
   color: black;
@@ -1327,24 +1294,6 @@ tr.ng-scope.selectedItemLeft {
   border: 1px solid #bdbdbd;
   border-radius: 4px;
   background-color: #fff;
-}
-
-.col-inline-label {
-  width: auto;
-  height: 30px;
-  padding-top: 8px;
-  font-size: 14px;
-  font-weight: normal;
-  color: #a9a9a9;
-}
-
-.required-label {
-  width: auto;
-  height: 30px;
-  padding-top: 8px;
-  font-size: 14px;
-  font-weight: normal;
-  color: #a32d44;
 }
 
 .patient-list-full-subheader {

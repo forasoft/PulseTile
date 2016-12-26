@@ -19,8 +19,6 @@ class ReportChartController {
   constructor($scope, $rootScope, $window, $uibModal, $state, $stateParams, searchReport, $timeout, $ngRedux, serviceRequests) {
     var vm = this;
 
-    serviceRequests.publisher('headerTitle', {title: 'Report Search'});
-
     $rootScope.searchMode = true;
     $rootScope.reportMode = true;
     $rootScope.reportTypeSet = true;

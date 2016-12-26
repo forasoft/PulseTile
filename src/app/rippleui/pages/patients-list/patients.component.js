@@ -20,7 +20,8 @@ class PatientsController {
     let vm = this;
 
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-list'});
-
+    serviceRequests.publisher('headerTitle', {title: 'Patients Lists', isShowTitle: true});
+    
     vm.sort = function (field) {
       var reverse = vm.reverse;
 
@@ -97,8 +98,6 @@ class PatientsController {
       $location.url($location.path());
 
     }
-
-    serviceRequests.publisher('headerTitle', {title: 'Patients Lists'});
   }
 }
 
