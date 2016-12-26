@@ -22,20 +22,27 @@ class PatientsController {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-list'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Lists', isShowTitle: true});
     
+    vm.query = '';
+    vm.isFilter = false;
+
+    vm.toggleFilter = function () {
+      vm.isFilter = !vm.isFilter;
+    };
+
     vm.sort = function (field) {
       var reverse = vm.reverse;
-
+      
       if (vm.order === field) {
         vm.reverse = !reverse;
       } else {
         vm.order = field;
-        vm.reverse = !reverse;
+        vm.reverse = false;
       }
     };
 
     vm.sortClass = function (field) {
       if (vm.order === field) {
-        return vm.reverse ? 'sort-desc' : 'sort-asc';
+        return vm.reverse ? 'sorted desc' : 'sorted asc';
       }
     };
 

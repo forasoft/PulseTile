@@ -1307,104 +1307,12 @@ tr.ng-scope.selectedItemLeft {
   display: inline-block;
 }
 
-.patient-details-tabs {
-  text-align: right;
-}
-
-.patient-details-tabs span {
-  font-weight: bold;
-  background-color: #EEEEEE;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-right: 19px;
-  padding-left: 20px;
-  line-height: 3;
-}
-
-.patient-details-tabs span:hover {
-  cursor: pointer;
-  background-color: $tab-background;
-  color: white;
-}
-
-span.selectedTab {
-  background-color: $tab-background;
-  color: white;
-}
 
 .report-label {
   background-color: #6AB123;
 }
 
-.patient-details-tabs span.countsTab {
-  padding-right: 33px;
-  padding-left: 32px;
-}
 
-.patient-details-tabs span.patientInfoTab {
-  padding-right: 18px;
-  padding-left: 18px;
-}
-
-.pagination {
-  border: 1px solid #CCCCCC;
-}
-
-.pagination > li > a,
-.pagination > li > a:hover {
-  background-color: #EDF6E3;
-  color: #030303;
-  text-decoration: underline;
-  border: 1px solid #CCCCCC;
-  font-weight: normal;
-}
-
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
-  background-color: #EDF6E3;
-  color: #030303;
-  font-weight: bolder;
-  text-decoration: none;
-  border: 1px solid #CCCCCC;
-}
-
-.pagination > .disabled > span,
-.pagination > .disabled > span:hover,
-.pagination > .disabled > span:focus,
-.pagination > .disabled > a:hover,
-.pagination > .disabled > a:focus,
-.pagination > .disabled > a {
-  background-color: #EDF6E3;
-  text-decoration: underline;
-  color: #030303;
-}
-
-.no-results {
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.pagination > li:first-child > a,
-.pagination > li:first-child > a .active,
-.pagination > li:first-child > a .disabled,
-.pagination > li:first-child > span,
-.pagination > li:last-child > a,
-.pagination > li:last-child > a .active,
-.pagination > li:last-child > a .disabled,
-.pagination > li:last-child > span {
-  background-color: white;
-  text-decoration: none;
-  color: #030303;
-}
-
-.orderDateTime {
-  //   width: 23%;
-}
 
 .reportTypeSet {
   background-color: #6AB123;
@@ -1433,11 +1341,6 @@ div#age-chart div.morris-hover.morris-default-style {
 
 .hoverChart div#age-chart div.morris-hover.morris-default-style {
   display: block !important;
-}
-
-.patients-list-context a:hover{
-  color: black;
-  text-decoration: underline;
 }
 
 .dicom-image {

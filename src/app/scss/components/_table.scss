@@ -114,11 +114,13 @@ td[ng-click] {
 @media (max-width: map-get($breakpoints, 'xs') - 1) {
   // Responsive Tables - http://codepen.io/geoffyuen/pen/FCBEg
   .rwd-table {
+    display: block;
     min-width: 300px; // adjust to your needs
 
     th {
       display: none; // for accessibility, use a visually hidden method here instead! Thanks, reddit!
     }
+    & > tbody {display: block;}
     & > tbody > tr {
       position: relative;
       display: block;
@@ -128,12 +130,15 @@ td[ng-click] {
         display: block;
         padding: 0 10px;
         line-height: 20px;
+        &.cell-truncate {
+          @include text-truncate;
+        }
         &:before {
           content: attr(data-th)": "; // who knew you could do this? The internet, that's who.
           font-weight: bold;
 
           // optional stuff to make it look nicer
-          width: 7em; // magic number :( adjust according to your own content
+          width: 7.3em; // magic number :( adjust according to your own content
           display: inline-block;
           padding-right: 10px;
           // end options
