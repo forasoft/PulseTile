@@ -26,7 +26,6 @@
           <i class="fa fa-filter"></i>
         </div>
         <input type="text" class="form-control" placeholder="Filter..." ng-model="$ctrl.query" />
-        <!-- <input type="search" class="form-control" placeholder=" Filter..." ng-model="search" /> -->
       </div>
     </div>
   </div>
@@ -57,12 +56,10 @@
       </tbody>
     </table>
 
-    <!-- <span class="patientSummary-spinner" us-spinner="{radius:20, width:8, length: 16}" spinner-key="patientSummary-spinner" spinner-start-active="true"></span> -->
-    
     <div class="panel-control">
       <div class="wrap-control-group">
         <div class="control-group with-indent left">
-          <dir-pagination-controls boundary-links="false"></dir-pagination-controls>
+          <dir-pagination-controls max-size="6" boundary-links="false"></dir-pagination-controls>
         </div>
       </div>
     </div>

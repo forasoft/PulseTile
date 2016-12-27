@@ -1,7 +1,7 @@
 .table {
   width: 100%;
   margin-bottom: 5px;
-  font-size: 14px;
+  font-size: 11px;
   line-height: 20px;
   color: #303030;
   border: none;
@@ -42,7 +42,9 @@
     }
   }
 }
-
+@include respond-to(xs) {
+  .table { font-size: 14px; }
+}
 .table > thead > tr > td.info,
 .table > tbody > tr > td.info,
 .table > tfoot > tr > td.info,
@@ -124,7 +126,7 @@ td[ng-click] {
     & > tbody > tr {
       position: relative;
       display: block;
-      padding: 5px 0;
+      padding: 6px 0;
       & > td {
         position: static;
         display: block;
@@ -138,7 +140,7 @@ td[ng-click] {
           font-weight: bold;
 
           // optional stuff to make it look nicer
-          width: 7.3em; // magic number :( adjust according to your own content
+          width: 100px;
           display: inline-block;
           padding-right: 10px;
           // end options

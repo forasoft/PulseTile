@@ -62,7 +62,7 @@
     <div class="panel-control" ng-if="$ctrl.currentUser.permissions.indexOf('WRITE') !== -1">
       <div class="wrap-control-group">
         <div class="control-group with-indent left">
-          <dir-pagination-controls on-page-change="$ctrl.pageChangeHandler(newPageNumber)" boundary-links="false"></dir-pagination-controls>
+          <dir-pagination-controls max-size="6" on-page-change="$ctrl.pageChangeHandler(newPageNumber)" boundary-links="false"></dir-pagination-controls>
         </div>
         <div class="control-group with-indent right">
           <button class="btn btn-success btn-inverse btn-create" ng-click="$ctrl.create();"><i class="fa fa-plus"></i> <span>Create</span></button>

@@ -44,7 +44,7 @@
           <td data-th="Type">{{ clinicalNote.type }}</td>
           <td data-th="Author">{{ clinicalNote.author }}</td>
           <td data-th="Date" class="orderDateTime">{{ clinicalNote.dateCreated }}</td>
-          <td data-th="Source">{{ clinicalNote.source }}</td>
+          <td data-th="Source" class="hidden-xs">{{ clinicalNote.source }}</td>
         </tr>
 
         <tr ng-if="!$ctrl.clinicalNotes.length">
@@ -58,7 +58,7 @@
     <div class="panel-control" ng-if="$ctrl.currentUser.permissions.indexOf('WRITE') !== -1">
       <div class="wrap-control-group">
         <div class="control-group with-indent left">
-          <dir-pagination-controls on-page-change="$ctrl.pageChangeHandler($ctrl.newPageNumber)" boundary-links="false"></dir-pagination-controls>
+          <dir-pagination-controls max-size="6" on-page-change="$ctrl.pageChangeHandler($ctrl.newPageNumber)" boundary-links="false"></dir-pagination-controls>
         </div>
         <div class="control-group with-indent right">
           <button class="btn btn-success btn-inverse btn-create" ng-click="$ctrl.create();"><i class="fa fa-plus"></i> <span>Create</span></button>
