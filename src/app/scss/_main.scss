@@ -38,98 +38,6 @@
   margin-top: 150px;
 }
 
-
-/* Global Styles */
-
-s a,
-a:hover,
-a:focus,
-a:active {
-  color: #283536;
-  cursor: pointer;
-}
-
-a {
-  color: #000000;
-  text-decoration: none;
-}
-
-a:hover {
-  color: $link-color-hover;
-  text-decoration: none;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  list-style: none;
-}
-
-
-/* User Profile (Mobile) */
-
-#tab-user .user-type {
-  text-transform: uppercase;
-  display: block;
-  padding: 2px 5px 0px 5px;
-  float: right;
-  font-size: 12px;
-}
-
-#tab-user .user-type.superuser {
-  background-color: orange;
-  color: #fff;
-}
-
-#tab-user .user-type.clinician {
-  background-color: blue;
-  color: #fff;
-}
-
-#tab-user .user-type.patient {
-  background-color: green;
-  color: #fff;
-}
-
-#tab-user .options ul {
-  margin-top: 10px;
-  margin-bottom: 5px;
-}
-
-#tab-user .options a.btn {
-  background-color: #fff;
-  width: 100%;
-  border-radius: 0;
-  border-color: #e7e7e7;
-  border-style: solid;
-  border-bottom-width: 1px;
-  border-left-width: 1px;
-  border-right-width: 1px;
-  border-top-width: 0;
-  font-weight: 400;
-}
-
-#tab-user .options a.btn:hover {
-  background-color: #f7f7f7;
-}
-
-#tab-user .options li:first-child a.btn {
-  border-top-width: 1px;
-}
-
-#tab-user .options a.btn.signout {
-  border-color: #057BC0;
-  background-color: #057BC0;
-  color: #fff;
-}
-
-#tab-user .options a.btn.signout:hover {
-  background-color: #096498;
-}
-
 /* Index */
 
 a[ui-sref] {
@@ -377,20 +285,6 @@ legend {
 
 /* Header */
 
-.header-background {
-  background-color: #FFFFFF;
-  padding-top: 20px;
-  padding-bottom: 5px;
-  line-height: 0;
-  margin-right: 0px;
-}
-
-.header-background-mobile {
-  background-color: #FFFFFF;
-  padding-top: 0px;
-  z-index: -1;
-}
-
 .header-title-1 {
   color: $header-color;
   white-space: nowrap;
@@ -404,109 +298,6 @@ legend {
 .header-title-3 {
   color: #000000;
 }
-
-
-
-/* User Profile (Mobile) */
-
-#tab-user .user-type {
-  text-transform: uppercase;
-  display: block;
-  padding: 2px 5px 0px 5px;
-  float: right;
-  font-size: 12px;
-}
-
-#tab-user .user-type.superuser {
-  background-color: orange;
-  color: #fff;
-}
-
-#tab-user .user-type.clinician {
-  background-color: blue;
-  color: #fff;
-}
-
-#tab-user .user-type.patient {
-  background-color: green;
-  color: #fff;
-}
-
-#tab-user .options ul {
-  margin-top: 10px;
-  margin-bottom: 5px;
-}
-
-#tab-user .options a.btn {
-  background-color: #fff;
-  width: 100%;
-  border-radius: 0;
-  border-color: #e7e7e7;
-  border-style: solid;
-  border-bottom-width: 1px;
-  border-left-width: 1px;
-  border-right-width: 1px;
-  border-top-width: 0;
-  font-weight: 400;
-}
-
-#tab-user .options a.btn:hover {
-  background-color: #f7f7f7;
-}
-
-#tab-user .options li:first-child a.btn {
-  border-top-width: 1px;
-}
-
-#tab-user .options a.btn.signout {
-  border-color: #057BC0;
-  background-color: #057BC0;
-  color: #fff;
-}
-
-#tab-user .options a.btn.signout:hover {
-  background-color: #096498;
-}
-
-/* Notifications */
-
-#tab-notifications {
-  padding-top: 5px;
-  padding-bottom: 0;
-}
-
-#tab-notifications .notifications-header {
-  border-bottom: 1px solid #e7e7e7;
-  padding: 0 15px 5px 15px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-#tab-notifications .notifications-body {
-  font-size: 12px;
-  background-color: #fff;
-}
-
-#tab-notifications .notifications-body li {
-  padding: 10px 15px 10px 15px;
-  border-bottom: 1px solid #e7e7e7;
-  cursor: pointer;
-}
-
-#tab-notifications .notifications-body li:hover {
-  background-color: #f7f7f7;
-}
-
-#tab-notifications .notifications-body .notification-info {
-  margin-bottom: 5px;
-}
-
-#tab-notifications .notifications-body .notification-time {
-  font-size: 11px;
-  color: #999;
-}
-
-
 
 
 .button-icons-stack:before {
@@ -699,31 +490,6 @@ svg {
   font-family: 'MyriadPro';
   font-size: 14px;
   padding-top: 10px;
-}
-
-.user-profile-image {
-  margin-bottom: 0;
-  color: #82BE36;
-  font-size: 60px;
-  border: 1px solid #c0c2be;
-  border-radius: 3px;
-  background-color: #eef8e7;
-  text-align: center;
-  width: 80px;
-  line-height: 1.2em;
-  float: left;
-  margin-right: 15px;
-}
-
-#tab-user p {
-  margin: 0 0 8px 0;
-}
-
-
-/* Patient List */
-
-.glyphicon-list-patients:before {
-  color: #7cbe31;
 }
 
 /* Patient Landing */

@@ -18,7 +18,7 @@ let templateProfile = require('./profile.html');
 class ProfileController {
   constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, serviceRequests, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, breadcrumbs: $state.router.globals.current.breadcrumbs, name: 'profile'});
-    serviceRequests.publisher('headerTitle', {title: 'Profile'});
+    serviceRequests.publisher('headerTitle', {title: 'Personal Information', isShowTitle: true});
 
     $scope.isPersonalEdit = false;
     $scope.isContactEdit = false;

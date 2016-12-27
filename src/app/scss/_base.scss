@@ -30,6 +30,34 @@ img {
 textarea {
   resize: vertical;
 }
+
+a,
+a:hover,
+a:focus,
+a:active {
+  color: #283536;
+  cursor: pointer;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $link-color-hover;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
 .wrap-overflow {overflow: hidden;}
 .wrap-icon {
   font-size: 0;

@@ -39,7 +39,7 @@
   background-color: #C3C3C3 !important;
   border-color: #C3C3C3 !important;
 }
-.dropdown-toggle {
+.btn-dropdown-toggle {
   position: relative;
   padding-right: 32px;
   &:after {
@@ -54,7 +54,7 @@
   }
 }
 .open, .show {
-  .dropdown-toggle:after {
+  .btn-dropdown-toggle:after {
     transform: translateY(-50%) rotate(180deg);
   }
 }
