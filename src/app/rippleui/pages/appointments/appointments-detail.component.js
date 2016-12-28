@@ -21,9 +21,9 @@ class AppointmentsDetailController {
       AppointmentsModal.openModal(this.currentPatient, {title: 'Edit Appointment'}, this.appointment, this.currentUser);
     };
 
-    $scope.UnlockedSources = [
-      'handi.ehrscape.com'
-    ];
+    // $scope.UnlockedSources = [
+    //   'handi.ehrscape.com'
+    // ];
 
     $scope.formDisabled = true;
 
