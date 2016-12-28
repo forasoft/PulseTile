@@ -17,6 +17,10 @@ script:
   - npm test
   - npm run build
 
+branches:
+  only:
+    - develop
+
 notifications:
   email:
     on_failure: change
