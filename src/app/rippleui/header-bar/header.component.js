@@ -34,7 +34,7 @@ class HeaderController {
 
     $scope.switchDirectByRole = function (currentUser) {
       if (!currentUser) return;
-      Direct different roles to different pages at login
+      // Direct different roles to different pages at login
       switch (currentUser.role) {
         case 'IDCR':
           $state.go('main-search');
