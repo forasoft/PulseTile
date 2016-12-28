@@ -18,7 +18,6 @@ let templateDiagnosesDetail= require('./diagnoses-detail.html');
 class DiagnosesDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, patientsActions, diagnosesActions, DiagnosesModal, usSpinnerService) {
     $scope.isEdit = false;
-    $scope.protocol = 'http://';
 
     this.edit = function () {
       $scope.isEdit = true;
@@ -72,18 +71,6 @@ class DiagnosesDetailController {
       }
 
       return true;
-    };
-    $scope.changeProtocol = function (protocol) {
-      switch (protocol) {
-        case 'http':
-          $scope.protocol = 'http://';
-          break;
-        case 'https':
-          $scope.protocol = 'https://';
-          break;
-        default:
-          $scope.protocol = 'http://';
-      }
     };
 
     this.convertToLabel = function (text) {

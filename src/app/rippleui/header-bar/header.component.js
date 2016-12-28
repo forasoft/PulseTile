@@ -34,26 +34,26 @@ class HeaderController {
 
     $scope.switchDirectByRole = function (currentUser) {
       if (!currentUser) return;
-      // Direct different roles to different pages at login
-      // switch (currentUser.role) {
-      //   case 'IDCR':
-      //     $state.go('main-search');
-      //     break;
-      //   case 'PHR':
-      //     //Trick for PHR user login
-      //     $scope.loadPatientsAll = patientsActions.loadPatients;
-      //     $scope.loadPatient = patientsActions.getPatient;
-      //     $scope.loadPatientsAll();
-      //     $scope.loadPatient($stateParams.patientId);
-      //     $state.go('patients-summary', {
-      //       patientId: currentUser.nhsNumber
-      //     });
-      //     break;
-      //   default:
-      //     $state.go('patients-summary', {
-      //       patientId: currentUser.nhsNumber
-      //     });
-      // }
+      Direct different roles to different pages at login
+      switch (currentUser.role) {
+        case 'IDCR':
+          $state.go('main-search');
+          break;
+        case 'PHR':
+          //Trick for PHR user login
+          $scope.loadPatientsAll = patientsActions.loadPatients;
+          $scope.loadPatient = patientsActions.getPatient;
+          $scope.loadPatientsAll();
+          $scope.loadPatient($stateParams.patientId);
+          $state.go('patients-summary', {
+            patientId: currentUser.nhsNumber
+          });
+          break;
+        default:
+          $state.go('patients-summary', {
+            patientId: currentUser.nhsNumber
+          });
+      }
     };
 
     $scope.setTitle = function (data) {

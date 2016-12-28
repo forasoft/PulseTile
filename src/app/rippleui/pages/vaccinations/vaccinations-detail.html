@@ -16,9 +16,9 @@
 <div mc-accordion mc-open-panel="vaccinations" class="panel-group accordion">
   <div class="panel panel-secondary" ng-if="!isEdit" ng-class="getOpenPanelClass('vaccinations')">
     <div class="panel-heading">
-      <div class="control-group left">
+      <div class="control-group right">
         <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
-        <!-- <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="openPanel('vaccination')"><i class="fa fa-chevron-up"></i></button> -->
+        <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="openPanel('vaccinations')"><i class="fa fa-chevron-up"></i></button>
       </div>
       <h3 class="panel-title">Vaccination</h3>
     </div>
@@ -76,22 +76,18 @@
   
   <div class="panel panel-secondary" ng-if="isEdit" ng-class="getOpenPanelClass('vaccinations')">
     <div class="panel-heading">
-      <div class="control-group left">
-        <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
-        <!-- <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="openPanel('vaccination')"><i class="fa fa-chevron-up"></i></button> -->
-      </div>
       <div class="control-group right">
-        <button class="btn btn-danger btn-square" ng-click="$ctrl.cancelEdit()"><i class="fa fa-ban"></i></button>
-        <button class="btn btn-success btn-square" ng-click="confirmEdit(vaccinationForm, vaccinationEdit)"><i class="fa fa-check"></i></button>
+        <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
+        <button class="btn btn-success btn-inverse btn-square btn-toggle-rotate" ng-click="openPanel('vaccinations')"><i class="fa fa-chevron-up"></i></button>
       </div>
-      <h3 class="panel-title">Vaccination</h3>
+      <h3 class="panel-title">Edit Vaccination</h3>
     </div>
     <div class="panel-body">
       <div class="panel-body-inner">
         <form name="vaccinationForm" class="form">
           <div class="form-group-wrapper">
             <div class="form-group" ng-class="{'has-error': (formSubmitted || vaccinationForm.name.$dirty) && vaccinationForm.name.$invalid, 'has-success': vaccinationForm.name.$valid && vaccinationForm.name.$dirty}">
-              <label for="name" class="control-label">Name</label>
+              <label for="name" class="control-label">Vaccination Name</label>
               <div class="input-holder">
                 <input type="text" class="form-control input-sm" id="name" name="name" ng-model="vaccinationEdit.name" required />
               </div>
@@ -101,10 +97,10 @@
               <div class="col-xs-12 col-md-6">
                 <div class="form-group form-group-sm" ng-class="{'has-error': (formSubmitted || vaccinationForm.date.$dirty) && vaccinationForm.date.$invalid, 'has-success': vaccinationForm.date.$valid && vaccinationForm.date.$dirty}">
                     <label for="date" class="control-label">Vaccination Date</label>
-                    <div class="input-holder input-group">
-                        <span class="input-group-btn">
-                          <button type="button" class="btn btn-inverse btn-rounded btn-sm" ng-click="openDatepicker($event, 'date')"><i class="fa fa-calendar"></i></button>
-                        </span>
+                    <div class="inner-addon addon-left">
+                        <div class="addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>
                         <input type="text" class="form-control" id="date" name="date" ng-model="vaccinationEdit.startDate" ng-click="openDatepicker($event, 'date')" uib-datepicker-popup="dd-MMM-yyyy" is-open="date" required />
                     </div>
                     <span class="help-block animate-fade" ng-show="formSubmitted && vaccinationForm.date.$error.required">You must enter a valid date.</span>
@@ -144,10 +140,10 @@
            
             <div class="form-group form-group-sm" ng-class="{'has-error': (formSubmitted || vaccinationForm.dateCreated.$dirty) && vaccinationForm.dateCreated.$invalid, 'has-success': vaccinationForm.dateCreated.$valid && vaccinationForm.dateCreated.$dirty}">
               <label for="Date" class="control-label">Date</label>
-              <div class="input-holder input-group">
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default btn-sm" ng-click="dateofSubmittedDatepicker($event, 'dateCreated')" disabled><i class="fa fa-calendar"></i></button>
-                </span>
+              <div class="inner-addon addon-left">
+                <div class="addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
                 <input type="text" class="form-control" id="dateCreated" name="dateCreated" ng-model="vaccinationEdit.dateCreated" ng-click="dateofSubmittedDatepicker($event, 'dateCreated')" uib-datepicker-popup="dd-MMM-y" is-open="dateCreated" required disabled />
               </div>
               <span class="help-block animate-fade" ng-show="formSubmitted && vaccinationForm.dateCreated.$error.required">You must enter a valid date.</span>
