@@ -27,7 +27,8 @@
     "server:dev": "cross-env NODE_ENV=development webpack-dev-server --progress --host 0.0.0.0",
     "start": "npm run server:dev",
     "test": "cross-env NODE_ENV=test karma start --single-run",
-    "test:watch": "cross-env NODE_ENV=test karma start"
+    "test:watch": "cross-env NODE_ENV=test karma start",
+    "codecov": "cat coverage/*/lcov.info | codecov"
   },
   "devDependencies": {
     "autoprefixer": "~6.3.6",
@@ -43,6 +44,7 @@
     "babelify": "^7.3.0",
     "bootstrap-loader": "^1.1.6",
     "bower-webpack-plugin": "^0.1.9",
+    "codecov.io": "^0.1.6",
     "copy-webpack-plugin": "^3.0.1",
     "cross-env": "~1.0.8",
     "css-loader": "~0.23.1",
@@ -57,6 +59,7 @@
     "karma": "~1.1.0",
     "karma-babel-preprocessor": "^6.0.1",
     "karma-chrome-launcher": "~1.0.1",
+    "karma-coverage": "^1.1.1",
     "karma-jasmine": "~1.0.2",
     "karma-sourcemap-loader": "~0.3.7",
     "karma-spec-reporter": "0.0.26",

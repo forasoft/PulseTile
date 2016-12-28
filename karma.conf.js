@@ -16,7 +16,7 @@ module.exports = config => {
     ],
 
     preprocessors: {
-      'karma.entry.js': ['webpack', 'sourcemap']
+      'karma.entry.js': ['webpack', 'sourcemap', 'coverage']
     },
 
     webpack: require('./webpack.config'),
@@ -38,7 +38,11 @@ module.exports = config => {
       suite: 'unit'
     },
 
-    reporters: [ 'html', 'spec'],
+    reporters: [ 'html', 'spec', 'coverage'],
+
+    coverageReporter: {
+      reporters: [{type: 'lcov'}]
+    },
 
     htmlReporter: {
       outputFile: 'tests/units.html',
