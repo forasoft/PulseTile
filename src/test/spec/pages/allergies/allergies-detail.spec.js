@@ -46,6 +46,9 @@ describe('Allergies Detail', function() {
   it('UnlockedSources', function() {
     expect(scope.UnlockedSources[0]).toBe('handi.ehrscape.com');
   });
+  it('Controller exist', function() {
+    expect(ctrl).toBeDefined();
+  });
   it('Template exist', function() {
     expect(template).toBeDefined();
   });
