@@ -85,7 +85,7 @@
             <span class="input-group-btn">
               <button type="button" class="btn btn-default btn-sm" ng-click="openDatepicker($event, 'dateOfOnsetOpen')" disabled><i class="fa fa-calendar"></i></button>
             </span>
-              <input type="text" class="form-control" id="date" name="date" ng-model="eolcareplan.careDocument.dateCreated" uib-datepicker-popup="yyyy-MM-dd" is-open="$parent.dateOfOnsetOpen" disabled/>
+              <input type="text" class="form-control" id="date" name="date" ng-model="eolcareplan.careDocument.dateCreated" uib-datepicker-popup="dd-MMM-yyyy" is-open="$parent.dateOfOnsetOpen" disabled/>
             </div>
             <span class="help-block animate-fade" ng-show="formSubmitted && eolcareplanForm.date.$error.required">You must enter a valid date.</span>
           </div>
@@ -156,7 +156,7 @@
             <span class="input-group-btn">
               <button type="button" class="btn btn-default btn-sm" ng-click="openDatePicker($event, 'dateOfDecision')"><i class="fa fa-calendar"></i></button>
             </span>
-              <input type="text" class="form-control" id="dateofdecision" name="dateofdecision" ng-model="eolcareplan.treatmentDecision.dateOfDecision" ng-click="openDatePicker($event, 'dateOfDecision')" uib-datepicker-popup="yyyy-MM-dd" is-open="$parent.dateOfDecision" required />
+              <input type="text" class="form-control" id="dateofdecision" name="dateofdecision" ng-model="eolcareplan.treatmentDecision.dateOfDecision" ng-click="openDatePicker($event, 'dateOfDecision')" uib-datepicker-popup="dd-MMM-yyyy" is-open="$parent.dateOfDecision" required />
             </div>
             <span class="help-block animate-fade" ng-show="formSubmitted && eolcareplanForm.dateofdecision.$error.required">You must enter a valid date.</span>
           </div>
@@ -203,7 +203,7 @@
             <span class="input-group-btn">
               <button type="button" class="btn btn-default btn-sm" ng-click="openDatePicker($event, 'dateOfCprDecision')"><i class="fa fa-calendar"></i></button>
             </span>
-              <input type="text" class="form-control" id="dateofcprdecision" name="dateofcprdecision" ng-model="eolcareplan.cprDecision.dateOfDecision" ng-click="openDatePicker($event, 'dateOfCprDecision')" uib-datepicker-popup="yyyy-MM-dd" is-open="$parent.dateOfCprDecision" required />
+              <input type="text" class="form-control" id="dateofcprdecision" name="dateofcprdecision" ng-model="eolcareplan.cprDecision.dateOfDecision" ng-click="openDatePicker($event, 'dateOfCprDecision')" uib-datepicker-popup="dd-MMM-yyyy" is-open="$parent.dateOfCprDecision" required />
             </div>
             <span class="help-block animate-fade" ng-show="formSubmitted && eolcareplanForm.dateofcprdecision.$error.required">You must enter a valid date.</span>
           </div>

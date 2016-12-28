@@ -34,7 +34,7 @@
     <tr dir-paginate="eolcareplan in $ctrl.eolcareplans | filter:$ctrl.search | itemsPerPage: 10" current-page="$ctrl.currentPage"  ng-click="$ctrl.go(eolcareplan.sourceId)" ng-class="{info: $ctrl.selected(eolcareplan.sourceId)}">
       <td data-th="Name">{{ eolcareplan.name }}</td>
       <td data-th="Type">{{ eolcareplan.type }}</td>
-      <td data-th="Date" class="dateTime">{{ eolcareplan.date | date:'y-MM-dd'}}</td>
+      <td data-th="Date" class="dateTime">{{ eolcareplan.date | date:'dd-MMM-yyyy'}}</td>
       <td data-th="Source">{{ eolcareplan.source }}</td>
     </tr>
 

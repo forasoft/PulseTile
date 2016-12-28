@@ -18,6 +18,7 @@ let templateAllergiesDetail= require('./allergies-detail.html');
 class AllergiesDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, AllergiesModal, usSpinnerService) {
     $scope.isEdit = false;
+    $scope.isEditMeta = false;
     
     this.edit = function () {
       $scope.isEdit = true;
@@ -41,6 +42,34 @@ class AllergiesDetailController {
       if (allergyForm.$valid) {
         $scope.isEdit = false;
         this.allergy = Object.assign(this.allergy, $scope.allergyEdit);
+        $scope.allergiesUpdate($scope.patient.id, toAdd);
+      }
+    }.bind(this);
+
+    this.editMeta = function () {
+      $scope.isEditMeta = true;
+      /*
+        TODO: Later Understand the logic for storing data when editing both panels
+      */
+      $scope.allergyEditMeta = Object.assign({}, this.allergy);
+    };
+    this.cancelEditMeta = function () {
+      $scope.isEditMeta = false;
+    };
+    $scope.confirmEditMeta = function (allergyForm, allergies) {
+      $scope.formSubmitted = true;
+
+      let toAdd = {
+        sourceId: '',
+        cause: allergies.cause,
+        causeCode: allergies.causeCode,
+        causeTerminology: allergies.causeTerminology,
+        reaction: allergies.reaction,
+        source: allergies.source
+      };
+      if (allergyForm.$valid) {
+        $scope.isEditMeta = false;
+        this.allergy = Object.assign(this.allergy, $scope.allergyEditMeta);
         $scope.allergiesUpdate($scope.patient.id, toAdd);
       }
     }.bind(this);

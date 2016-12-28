@@ -14,7 +14,7 @@
   ~  limitations under the License.
   -->
 <div mc-accordion mc-open-panel="vaccinations" class="panel-group accordion">
-  <div class="panel panel-secondary" ng-if="!isEdit" ng-class="panelOpen == 'vaccinations'  ? 'open' : ''">
+  <div class="panel panel-secondary" ng-if="!isEdit" ng-class="getOpenPanelClass('vaccinations')">
     <div class="panel-heading">
       <div class="control-group left">
         <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
@@ -33,7 +33,7 @@
 
             <div class="form-group">
               <label class="control-label">Vaccination Date</label>
-              <div class="form-control-static">{{ $ctrl.vaccination.date | date:'y-MM-dd' }}</div>
+              <div class="form-control-static">{{ $ctrl.vaccination.date | date:'dd-MMM-yyyy' }}</div>
             </div>
 
             <div class="form-group">
@@ -58,7 +58,7 @@
 
             <div class="form-group">
               <label class="control-label">Date</label>
-              <div class="form-control-static">{{ $ctrl.vaccination.dateCreated | date:'y-MM-dd'}}</div>
+              <div class="form-control-static">{{ $ctrl.vaccination.dateCreated | date:'dd-MMM-yyyy'}}</div>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@
     </div>
   </div>
   
-  <div class="panel panel-secondary" ng-if="isEdit" ng-class="panelOpen == 'vaccinations'  ? 'open' : ''">
+  <div class="panel panel-secondary" ng-if="isEdit" ng-class="getOpenPanelClass('vaccinations')">
     <div class="panel-heading">
       <div class="control-group left">
         <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
@@ -105,7 +105,7 @@
                         <span class="input-group-btn">
                           <button type="button" class="btn btn-inverse btn-rounded btn-sm" ng-click="openDatepicker($event, 'date')"><i class="fa fa-calendar"></i></button>
                         </span>
-                        <input type="text" class="form-control" id="date" name="date" ng-model="vaccinationEdit.startDate" ng-click="openDatepicker($event, 'date')" uib-datepicker-popup="yyyy-MM-dd" is-open="date" required />
+                        <input type="text" class="form-control" id="date" name="date" ng-model="vaccinationEdit.startDate" ng-click="openDatepicker($event, 'date')" uib-datepicker-popup="dd-MMM-yyyy" is-open="date" required />
                     </div>
                     <span class="help-block animate-fade" ng-show="formSubmitted && vaccinationForm.date.$error.required">You must enter a valid date.</span>
                 </div>

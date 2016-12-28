@@ -16,12 +16,12 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <div class="control-group left" ng-if="!$ctrl.isFilter">
-      <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
-      <button class="btn btn-success btn-inverse btn-dropdown-toggle btn-table"><i class="fa fa-table"></i></button>
-    </div>
     <div class="control-group right">
       <button class="btn btn-success btn-inverse btn-filter" ng-click="$ctrl.toggleFilter()"><i class="fa fa-filter"></i></button>
+    </div>
+    <div class="control-group right" ng-if="!$ctrl.isFilter">
+      <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
+      <button class="btn btn-success btn-inverse btn-dropdown-toggle btn-table"><i class="fa fa-table"></i></button>
     </div>
     <h3 class="panel-title" ng-if="!$ctrl.isFilter">Contacts</h3>
     <div class="panel-filter" ng-if="$ctrl.isFilter">

@@ -230,6 +230,10 @@ const app = angular
                     scope.panelOpen = namePanel;
                 }
             };
+            scope.getOpenPanelClass = function (namePanel, openClass) {
+                openClass = openClass ? openClass : 'open';
+                return scope.panelOpen === namePanel ? openClass : '';
+            };
             scope.$watch(attrs.mcOpenPanel, function() {
                 scope.panelOpen = attrs.mcOpenPanel;
             });

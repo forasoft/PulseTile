@@ -7,7 +7,12 @@ class ClinicalnotesListController {
 
     this.currentPage = 1;
     $scope.query = '';
+    this.isFilter = false;
 
+    this.toggleFilter = function () {
+      this.isFilter = !this.isFilter;
+    };
+    
     this.create = function () {
       ClinicalnotesModal.openModal(this.currentPatient, {title: 'Create Clinical Note'}, {}, this.currentUser);
     };

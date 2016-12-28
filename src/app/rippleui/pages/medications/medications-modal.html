@@ -93,7 +93,7 @@
                                         <span class="input-group-btn">
                                           <button type="button" class="btn btn-inverse btn-rounded btn-sm" ng-click="openDatepicker($event, 'startDateTime')"><i class="fa fa-calendar"></i></button>
                                         </span>
-                                        <input type="text" class="form-control" id="startDateTime" name="startDateTime" ng-model="medication.startDate" ng-click="openDatepicker($event, 'startDateTime')" uib-datepicker-popup="yyyy-MM-dd" is-open="startDateTime" required />
+                                        <input type="text" class="form-control" id="startDateTime" name="startDateTime" ng-model="medication.startDate" ng-click="openDatepicker($event, 'startDateTime')" uib-datepicker-popup="dd-MMM-yyyy" is-open="startDateTime" required />
                                     </div>
                                     <span class="help-block animate-fade" ng-show="formSubmitted && medicationForm.startDateTime.$error.required">You must enter a valid date.</span>
                                 </div>

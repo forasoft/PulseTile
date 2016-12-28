@@ -15,12 +15,12 @@
   -->
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <div class="control-group left" ng-if="!$ctrl.isFilter">
-      <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
-      <button class="btn btn-success btn-inverse btn-dropdown-toggle btn-table"><i class="fa fa-table"></i></button>
-    </div>
     <div class="control-group right">
       <button class="btn btn-success btn-inverse btn-filter" ng-click="$ctrl.toggleFilter()"><i class="fa fa-filter"></i></button>
+    </div>
+    <div class="control-group right" ng-if="!$ctrl.isFilter">
+      <button class="btn btn-success btn-inverse btn-square hidden-xs hidden-sm"><i class="fa fa-expand"></i></button>
+      <button class="btn btn-success btn-inverse btn-dropdown-toggle btn-table"><i class="fa fa-table"></i></button>
     </div>
     <h3 class="panel-title" ng-if="!$ctrl.isFilter">All Medications</h3>
     <div class="panel-filter" ng-if="$ctrl.isFilter">
@@ -38,7 +38,7 @@
         <tr>
             <th ng-click="$ctrl.sort('name')" ng-class="$ctrl.sortClass('name')">Name</th>
             <th ng-click="$ctrl.sort('dose')" ng-class="$ctrl.sortClass('dose')">Dose</th>
-            <th ng-click="$ctrl.sort('from')" ng-class="$ctrl.sortClass('from')">From</th>
+            <th ng-click="$ctrl.sort('supply')" ng-class="$ctrl.sortClass('supply')">Supply</th>
             <th ng-click="$ctrl.sort('source')" ng-class="$ctrl.sortClass('source')">Source</th>
         </tr>
       </thead>
@@ -47,7 +47,7 @@
         <tr dir-paginate="medication in $ctrl.medications| filter:$ctrl.query | orderBy:[$ctrl.order] : $ctrl.reverse | itemsPerPage: 10" current-page="$ctrl.currentPage"  ng-click="$ctrl.go(medication.sourceId, medication.source)" ng-class="{info: $ctrl.selected(medication.sourceId)}">
             <td data-th="Name" ng-class="$ctrl.sortClass('name');" class=" {{medication.warning ? 'highlighter-warning' : medication.danger ? 'highlighter-danger' : ''}}"><span >{{ medication.name }}</span></td>
             <td data-th="Dose" ng-class="$ctrl.sortClass('dose')">{{ medication.doseAmount }}</td>
-            <td data-th="From" ng-class="$ctrl.sortClass('from')">10-Nov-2016<!-- {{ medication.startDate | date:'dd-MMM-yyyy' }} --></td>
+            <td data-th="Supply" ng-class="$ctrl.sortClass('supply')">10-Nov-2016<!-- {{ medication.startDate | date:'dd-MMM-yyyy' }} --></td>
             <td class="hidden-xs-cell" ng-class="$ctrl.sortClass('source')">{{ medication.source}}</td>
         </tr>
 
