@@ -1,11 +1,2 @@
 codecov:
   branch: develop
-
-coverage:
-  precision: 2
-  round: down
-  range: 70...100
-
-comment:
-  layout: "header, diff"
-  behavior: default  # update if exists else create new
