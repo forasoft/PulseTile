@@ -18,6 +18,7 @@ let templateHeader = require('./header-bar.tmpl.html');
 class HeaderController {
   constructor($rootScope, $scope, $state, $stateParams, $ngRedux, patientsActions, AdvancedSearch, serviceRequests) {
 
+    var self = this;
     this.getPageHeader = function (data) {
       $scope.pageHeader = data.title;
       $scope.isPageHeader = data.isShowTitle;
@@ -217,9 +218,9 @@ class HeaderController {
     };
 
     this.searchFunction = function () {
-      if (this.autoAdvancedSearch) {
-        AdvancedSearch.openAdvancedSearch();
-      }
+      // if (this.autoAdvancedSearch) {
+      //   AdvancedSearch.openAdvancedSearch();
+      // }
 
       if ($rootScope.reportTypeSet && $scope.search.searchExpression !== '') {
         var tempExpression = $rootScope.reportTypeString + ': ' + $scope.search.searchExpression;
@@ -263,13 +264,6 @@ class HeaderController {
       $rootScope.reportTypeSet = false;
     };
 
-    this.getPopulateHeaderSearch = function (expression) {
-      $scope.search.searchExpression = expression.headerSearch;
-      $scope.searchFocused = true;
-      this.searchBarEnabled = expression.headerSearchEnabled;
-      $scope.searchBar = expression.headerSearchEnabled;
-    };
-
     this.currentNavTab = ''; // search, notifications or user
 
     this.changeNavTab = function(newTab){
@@ -295,6 +289,14 @@ class HeaderController {
     this.clickSidebarBtn = function () {
       serviceRequests.publisher('setHeightSidebar');
       serviceRequests.publisher('changeStateSidebar', {click: true});
+    };
+
+    this.getPopulateHeaderSearch = function (expression) {
+      $scope.search.searchExpression = expression.headerSearch;
+      $scope.searchFocused = true;
+      self.searchBarEnabled = expression.headerSearchEnabled;
+      $scope.searchBar = expression.headerSearchEnabled;
+      self.currentNavTab = 'searchBar';
     };
     
     serviceRequests.subscriber('routeState', this.getPageComponents);

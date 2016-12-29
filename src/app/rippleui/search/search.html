@@ -14,18 +14,16 @@
   ~  limitations under the License.
   -->
 <div class="container-fluid">
-  <div ng-class="{'searchBarHidden' : !$ctrl.mainSearchEnabled }">
-    <img class="search-logo" src="../../assets/images/search-ripple-logo.png" alt="" />
-    <div class="wrap-search main-search">
-      <button class="btn btn-success btn-search" ng-click="$ctrl.searchFunction()"><i class="fa fa-search"></i></button>
-      <div class="main-search-inner">
-        <div class="holder">
-          <input class="form-control" placeholder="Search..." type="text" ng-keyup="$ctrl.hideSearch()" ng-model="$ctrl.searchExpression"/>
-        </div>
+  <img class="search-logo" src="../../assets/images/search-ripple-logo.png" alt="" />
+  <div class="wrap-search main-search" ng-show="$ctrl.mainSearchEnabled">
+    <button class="btn btn-success btn-search" ng-click="$ctrl.searchFunction()"><i class="fa fa-search"></i></button>
+    <div class="main-search-inner">
+      <div class="holder">
+        <input class="form-control" placeholder="Search..." type="text" ng-keyup="$ctrl.hideSearch()" ng-model="$ctrl.searchExpression"/>
       </div>
     </div>
-    <!-- <div class="text-right form-group search-left-inner-addon">
-      <a ng-click="$ctrl.openAdvancedSearch()">Advanced search</a>
-    </div> -->
   </div>
+  <!-- <div class="text-right form-group search-left-inner-addon">
+    <a ng-click="$ctrl.openAdvancedSearch()">Advanced search</a>
+  </div> -->
 </div>
