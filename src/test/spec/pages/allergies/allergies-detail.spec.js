@@ -47,6 +47,10 @@ describe('Allergies Detail', function() {
     var strong = element.find('strong');
     expect(strong.text()).toBe('Allergy');
   });
+  it('should render a label', function() {
+    var label = element.find('label');
+    expect(label).toBeDefined();
+  });
   it('spinner exist', function() {
     var spinner = element.find('.patientSummary-spinner');
     expect(spinner).toBeDefined();

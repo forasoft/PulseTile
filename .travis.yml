@@ -25,9 +25,9 @@ script:
 after_success:
   - npm run codecov
 
-#branches:
-#  only:
-#    - develop
+branches:
+  only:
+    - develop
 
 notifications:
   email:
