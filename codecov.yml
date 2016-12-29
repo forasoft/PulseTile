@@ -1,0 +1,5 @@
+coverage:
+  flags:
+    integration:
+      branches:
+        - develop
