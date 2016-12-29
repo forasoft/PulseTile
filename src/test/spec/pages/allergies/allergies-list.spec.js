@@ -49,6 +49,10 @@ describe('Allergies List', function() {
     spyOn(ctrl, 'selected');
     spyOn(ctrl, 'create');
     spyOn(ctrl, 'setCurrentPageData');
+    spyOn(actions, 'all');
+    spyOn(actions, 'get');
+    spyOn(actions, 'create');
+    spyOn(actions, 'update');
 
     fakeCall.callAllergies({}, types.ALLERGIES);
 
@@ -57,6 +61,10 @@ describe('Allergies List', function() {
     ctrl.selected();
     ctrl.create();
     ctrl.setCurrentPageData();
+    actions.all();
+    actions.get();
+    actions.create();
+    actions.update();
   });
 
   it('Query is empty', function() {
@@ -67,6 +75,12 @@ describe('Allergies List', function() {
   });
   it('Include allergiesActions in index actions file', function() {
     expect(actions).toBeDefined();
+  });
+  it("allergiesActions methods was called", function() {
+    expect(actions.all).toHaveBeenCalled();
+    expect(actions.get).toHaveBeenCalled();
+    expect(actions.create).toHaveBeenCalled();
+    expect(actions.update).toHaveBeenCalled();
   });
   it("Allergies reducer was called", function() {
     expect(fakeCall.callAllergies).toHaveBeenCalled();
