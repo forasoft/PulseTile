@@ -21,9 +21,12 @@ install:
 script:
   - npm test
   - npm run build
-
-after_success:
+  - istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec
   - npm run codecov
+
+#after_success:
+#  - istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec
+#  - npm run codecov
 
 branches:
   only:
