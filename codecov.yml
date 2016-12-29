@@ -3,4 +3,4 @@ codecov:
 
 coverage:
   ignore:          # files and folders that will be removed during processing
-    - "./src/test/spec/pages/**/*.spec.js"
+    - "./src/test/spec/pages/**/*"
