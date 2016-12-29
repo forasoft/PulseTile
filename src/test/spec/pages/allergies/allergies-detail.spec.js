@@ -35,25 +35,37 @@ describe('Allergies Detail', function() {
 
   beforeEach(function() {
     spyOn(ctrl, 'edit');
-    spyOn(ctrl, 'setCurrentPageData');
     spyOn(ctrl, 'allergiesLoad');
+    spyOn(ctrl, 'setCurrentPageData');
+    spyOn(allergiesActions, 'all');
+    spyOn(allergiesActions, 'get');
+    spyOn(allergiesActions, 'create');
+    spyOn(allergiesActions, 'update');
 
     ctrl.edit();
     ctrl.allergiesLoad();
     ctrl.setCurrentPageData();
+    allergiesActions.all();
+    allergiesActions.get();
+    allergiesActions.create();
+    allergiesActions.update();
   });
 
   it('should render a strong', function() {
     var strong = element.find('strong');
     expect(strong.text()).toBe('Allergy');
   });
-  it('should render a label', function() {
+  it('spinner, label exist', function() {
+    var spinner = element.find('.patientSummary-spinner');
     var label = element.find('label');
     expect(label).toBeDefined();
-  });
-  it('spinner exist', function() {
-    var spinner = element.find('.patientSummary-spinner');
     expect(spinner).toBeDefined();
+  });  
+  it("allergiesActions methods was called", function() {
+    expect(allergiesActions.all).toHaveBeenCalled();
+    expect(allergiesActions.get).toHaveBeenCalled();
+    expect(allergiesActions.create).toHaveBeenCalled();
+    expect(allergiesActions.update).toHaveBeenCalled();
   });
   it('formDisabled', function() {
     expect(scope.formDisabled).toBe(true);
