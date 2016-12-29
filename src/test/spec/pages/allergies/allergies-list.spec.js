@@ -6,23 +6,10 @@ import allergies from '../../../../app/rippleui/pages/allergies/allergies-reduce
 import '../../../../app/index';
 
 describe('Allergies List', function() {
-
   beforeEach(angular.mock.module('ripple-ui'));
   beforeEach(angular.mock.module('app.actions'));
 
-  let scope, 
-      ctrl, 
-      controller, 
-      template, 
-      stateParams, 
-      state, 
-      ngRedux, 
-      allergiesActions, 
-      serviceRequests, 
-      AllergiesModal, 
-      usSpinnerService,
-      actions,
-      fakeCall;
+  let scope, ctrl, controller, template, stateParams, state, ngRedux, allergiesActions, serviceRequests, AllergiesModal, usSpinnerService, actions, fakeCall;
 
   beforeEach(inject(($injector, $controller, _$state_, _$stateParams_, _$ngRedux_, _allergiesActions_, _serviceRequests_, _AllergiesModal_, _usSpinnerService_) => {
     controller = $controller;

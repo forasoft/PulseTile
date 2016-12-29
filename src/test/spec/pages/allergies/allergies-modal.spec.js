@@ -18,10 +18,8 @@ describe('Allergies Modal', function() {
   }));
 
   beforeEach(function() {
-    AllergiesModal = scope;
-    
+    AllergiesModal = scope;    
     spyOn(AllergiesModal, 'openModal');
-
     AllergiesModal.openModal();
   });
 
