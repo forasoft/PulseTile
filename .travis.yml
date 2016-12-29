@@ -24,7 +24,7 @@ install:
   - bower install
 
 script:
-#  - npm test
+  - npm test
 #  - npm run build
   - npm run codecov
 
