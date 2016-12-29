@@ -6,9 +6,9 @@ describe('Allergies Detail', function() {
 
   beforeEach(angular.mock.module('ripple-ui'));
 
-  let scope, ctrl, controller, template, stateParams, state, ngRedux, allergiesActions, AllergiesModal, usSpinnerService;
+  let scope, ctrl, controller, template, stateParams, state, ngRedux, allergiesActions, AllergiesModal, usSpinnerService, element;
 
-  beforeEach(inject(($injector, $controller, _$state_, _$stateParams_, _$ngRedux_, _allergiesActions_, _AllergiesModal_, _usSpinnerService_) => {
+  beforeEach(inject(($injector, $controller, $compile, _$state_, _$stateParams_, _$ngRedux_, _allergiesActions_, _AllergiesModal_, _usSpinnerService_) => {
     controller = $controller;
     scope = $injector.get('$rootScope').$new();
     state = _$state_;
@@ -17,6 +17,9 @@ describe('Allergies Detail', function() {
     allergiesActions = _allergiesActions_;
     AllergiesModal = _AllergiesModal_;
     usSpinnerService = _usSpinnerService_;
+
+    element = angular.element('<allergies-detail-component></allergies-detail-component>');
+    element = $compile(element)(scope);
 
     template = AllergiesDetailComponent.template;
     ctrl = controller(AllergiesDetailComponent.controller, {
@@ -40,6 +43,10 @@ describe('Allergies Detail', function() {
     ctrl.setCurrentPageData();
   });
 
+  it('should render a button', function() {
+    var strong = element.find('strong');
+    expect(strong.text()).toBe('Allergy');
+  });
   it('formDisabled', function() {
     expect(scope.formDisabled).toBe(true);
   });
