@@ -38,10 +38,10 @@ module.exports = config => {
       suite: 'unit'
     },
 
-    reporters: [ 'html', 'spec', 'progress', 'coverage'],
+    reporters: [ 'html', 'spec', 'coverage'],
 
     coverageReporter: {
-      type : 'lcov'
+      reporters: [{type: 'lcov'}]
     },
 
     htmlReporter: {

@@ -43,9 +43,13 @@ describe('Allergies Detail', function() {
     ctrl.setCurrentPageData();
   });
 
-  it('should render a button', function() {
+  it('should render a strong', function() {
     var strong = element.find('strong');
     expect(strong.text()).toBe('Allergy');
+  });
+  it('spinner exist', function() {
+    var spinner = element.find('.patientSummary-spinner');
+    expect(spinner).toBeDefined();
   });
   it('formDisabled', function() {
     expect(scope.formDisabled).toBe(true);
