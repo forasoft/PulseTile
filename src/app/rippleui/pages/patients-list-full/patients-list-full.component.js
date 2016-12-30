@@ -33,6 +33,7 @@ class PatientsListFullController {
     this.patients = [];
     $rootScope.searchMode = true;
     this.query = '';
+    this.isFilter = false;   
 
     function getPageInfo(info) {
       var from = (15 * info.page - 14);
@@ -104,35 +105,25 @@ class PatientsListFullController {
       }
     }
 
-    this.orderBy = function () {
-      return this.pagingInfo.orderType === 'ASC' ? 'sort-asc' : 'sort-desc';
+    this.toggleFilter = function () {
+      this.isFilter = !this.isFilter;
     };
-
-    this.sort = function () {
-      if ($stateParams.orderType === 'ASC') {
-        $stateParams.orderType = 'DESC';
-      } else {
-        $stateParams.orderType = 'ASC';
-      }
-      $stateParams.pageNumber = 1;
-      getData();
-    };
-    // this.sort = function (field) {
-    //   var reverse = this.reverse;
+    this.sort = function (field) {
+      var reverse = this.reverse;
       
-    //   if (this.order === field) {
-    //     this.reverse = !reverse;
-    //   } else {
-    //     this.order = field;
-    //     this.reverse = false;
-    //   }
-    // };
+      if (this.order === field) {
+        this.reverse = !reverse;
+      } else {
+        this.order = field;
+        this.reverse = false;
+      }
+    };
 
-    // this.sortClass = function (field) {
-    //   if (this.order === field) {
-    //     return this.reverse ? 'sorted desc' : 'sorted asc';
-    //   }
-    // };
+    this.sortClass = function (field) {
+      if (this.order === field) {
+        return this.reverse ? 'sorted desc' : 'sorted asc';
+      }
+    };
 
     this.processCounts = function (countString) {
       return countString === null ? 0 : countString;
@@ -205,8 +196,6 @@ class PatientsListFullController {
               var patients = [];
 
               angular.forEach(result.data.patientDetails, function (patient) {
-                console.log('patient');
-                console.log(patient);
                 var curPatient = new Patient.patient(patient);
                 patients.push(curPatient);
               });
@@ -347,8 +336,6 @@ class PatientsListFullController {
     this.setPatients = function (patients) {
       var curPatients = [];
 
-      console.log('patients');
-      console.log(patients);
       angular.forEach(patients.patients.data, function (patient) {
         var curPatient = new Patient.patient(patient);
         curPatients.push(curPatient);
@@ -356,10 +343,6 @@ class PatientsListFullController {
 
       this.patients = curPatients.slice();
     };
-
-    
-    console.log('$stateParams.patientsList');
-    console.log($stateParams.patientsList);
 
     let unsubscribe = $ngRedux.connect(state => ({
       isFetching: state.patients.isFetching,
