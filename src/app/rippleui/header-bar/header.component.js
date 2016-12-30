@@ -177,11 +177,12 @@ class HeaderController {
     this.checkExpression = function (expression) {
       $scope.search.searchExpression = expression;
 
-      if (this.autoAdvancedSearch) {
-        if ($scope.search.searchExpression.length >= 3) {
-          AdvancedSearch.openAdvancedSearch($scope.search.searchExpression);
-        }
-      } else if ($rootScope.searchMode) {
+      // if (this.autoAdvancedSearch) {
+      //   if ($scope.search.searchExpression.length >= 3) {
+      //     AdvancedSearch.openAdvancedSearch($scope.search.searchExpression);
+      //   }
+      // } else 
+      if ($rootScope.searchMode) {
         if ($rootScope.reportMode && !$rootScope.reportTypeSet) {
           this.reportTypes = [
             'Diagnosis: ',

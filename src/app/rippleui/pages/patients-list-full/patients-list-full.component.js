@@ -16,7 +16,9 @@
 let templatePatientsListFull = require('./patients-list-full.html');
 
 class PatientsListFullController {
-  constructor($scope, $window, $rootScope, $state, $stateParams, $ngRedux, searchReport, Patient) {
+  constructor($scope, $window, $rootScope, $state, $stateParams, $ngRedux, searchReport, Patient, serviceRequests, patientsActions) {
+    serviceRequests.publisher('headerTitle', {title: 'Search results', isShowTitle: true});
+
     var searchType;
 
     this.pagingInfo = {
@@ -30,6 +32,7 @@ class PatientsListFullController {
     this.tabName = 'Patient Info';
     this.patients = [];
     $rootScope.searchMode = true;
+    this.query = '';
 
     function getPageInfo(info) {
       var from = (15 * info.page - 14);
@@ -96,7 +99,7 @@ class PatientsListFullController {
           searchString: $stateParams.searchString
         };
 
-        searchReport.searchByPatient(searchPatientQuery);
+        // searchReport.searchByPatient(searchPatientQuery);
         searchType = 'patient';
       }
     }
@@ -114,6 +117,22 @@ class PatientsListFullController {
       $stateParams.pageNumber = 1;
       getData();
     };
+    // this.sort = function (field) {
+    //   var reverse = this.reverse;
+      
+    //   if (this.order === field) {
+    //     this.reverse = !reverse;
+    //   } else {
+    //     this.order = field;
+    //     this.reverse = false;
+    //   }
+    // };
+
+    // this.sortClass = function (field) {
+    //   if (this.order === field) {
+    //     return this.reverse ? 'sorted desc' : 'sorted asc';
+    //   }
+    // };
 
     this.processCounts = function (countString) {
       return countString === null ? 0 : countString;
@@ -186,6 +205,8 @@ class PatientsListFullController {
               var patients = [];
 
               angular.forEach(result.data.patientDetails, function (patient) {
+                console.log('patient');
+                console.log(patient);
                 var curPatient = new Patient.patient(patient);
                 patients.push(curPatient);
               });
@@ -313,13 +334,42 @@ class PatientsListFullController {
       $state.go(toState, requestHeader);
     };
 
+    // let unsubscribe = $ngRedux.connect(state => ({
+    //   error: state.user.error,
+    //   user: state.user.data,
+    //   getDataRequest: this.setDataRequest(state.search)
+    // }))(this);
+
+
+    /*
+      TODO: Only for demo
+    */
+    this.setPatients = function (patients) {
+      var curPatients = [];
+
+      console.log('patients');
+      console.log(patients);
+      angular.forEach(patients.patients.data, function (patient) {
+        var curPatient = new Patient.patient(patient);
+        curPatients.push(curPatient);
+      });
+
+      this.patients = curPatients.slice();
+    };
+
+    
+    console.log('$stateParams.patientsList');
+    console.log($stateParams.patientsList);
+
     let unsubscribe = $ngRedux.connect(state => ({
-      error: state.user.error,
-      user: state.user.data,
-      getDataRequest: this.setDataRequest(state.search)
+      isFetching: state.patients.isFetching,
+      error: state.patients.error,
+      getPatients: this.setPatients(state)
     }))(this);
 
     $scope.$on('$destroy', unsubscribe);
+
+    patientsActions.loadPatients();
 
     getData();
   }
@@ -330,5 +380,5 @@ const PatientsSummaryComponent = {
   controller: PatientsListFullController
 };
 
-PatientsListFullController.$inject = ['$scope', '$window', '$rootScope', '$state', '$stateParams', '$ngRedux', 'searchReport', 'Patient'];
+PatientsListFullController.$inject = ['$scope', '$window', '$rootScope', '$state', '$stateParams', '$ngRedux', 'searchReport', 'Patient', 'serviceRequests', 'patientsActions'];
 export default PatientsSummaryComponent;
