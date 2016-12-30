@@ -28,9 +28,10 @@
     "start": "npm run server:dev",
     "test": "cross-env NODE_ENV=test karma start --single-run",
     "test:watch": "cross-env NODE_ENV=test karma start",
-    "check-coverage": "nyc check-coverage",
-    "report-coverage": "cat ./coverage/lcov.info | codecov",
-    "cover": "nyc --reporter=lcov npm t"
+    "check-coverage": "nyc check-coverage --statements 60 --branches 60 --functions 60 --lines 60",
+    "report-coverage": "cat ./coverage/*/lcov.info | codecov",
+    "cover": "nyc --reporter=lcov npm t",
+    "validate": "npm run cover && npm run check-coverage"
   },
   "devDependencies": {
     "autoprefixer": "~6.3.6",
@@ -97,7 +98,9 @@
     "bootstrap": "^3.3.7",
     "bootstrap-sass": "^3.3.7",
     "bower-webpack-plugin": "^0.1.9",
+    "commitizen": "^2.9.3",
     "copy-webpack-plugin": "^3.0.1",
+    "cz-conventional-changelog": "^1.2.0",
     "fullcalendar": "^3.0.0",
     "istanbul": "^0.4.5",
     "jquery": "~2.1.4",
@@ -108,5 +111,13 @@
     "raphael": "^2.2.6",
     "redux": "^3.5.2",
     "underscore": "^1.8.3"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run validate"
+    },
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   }
 }

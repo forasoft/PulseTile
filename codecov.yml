@@ -1,6 +1,6 @@
 codecov:
   branch: develop
 
-coverage:
-  ignore:          # files and folders that will be removed during processing
-    - "./src/test/spec/pages/**/*"
+#coverage:
+#  ignore:          # files and folders that will be removed during processing
+#    - "./src/test/spec/pages/**/*"
