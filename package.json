@@ -28,7 +28,7 @@
     "start": "npm run server:dev",
     "test": "cross-env NODE_ENV=test karma start --single-run",
     "test:watch": "cross-env NODE_ENV=test karma start",
-    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "check-coverage": "nyc check-coverage",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "cover": "nyc --reporter=lcov npm t"
   },
