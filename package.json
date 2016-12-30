@@ -28,7 +28,7 @@
     "start": "npm run server:dev",
     "test": "cross-env NODE_ENV=test karma start -w --compilers js:babel-register --single-run",
     "test:watch": "cross-env NODE_ENV=test karma start",
-    "check-coverage": "nyc check-coverage --statements 70 --branches 70 --lines 70",
+    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "report-coverage": "cat ./coverage/*/lcov.info | codecov",
     "cover": "nyc npm t",
     "validate": "npm run cover && npm run check-coverage"
