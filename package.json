@@ -28,8 +28,9 @@
     "start": "npm run server:dev",
     "test": "cross-env NODE_ENV=test karma start --single-run",
     "test:watch": "cross-env NODE_ENV=test karma start",
-    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
-    "report-coverage": "cat ./coverage/*/lcov.info | codecov",
+    "check-coverage": "nyc check-coverage ",
+    "report-coverage2": "cat ./coverage/*/lcov.info | codecov",
+    "report-coverage": "nyc report --reporter=text-lcov | coveralls",
     "cover": "nyc npm t",
     "validate": "npm run cover && npm run check-coverage"
   },
@@ -111,5 +112,18 @@
     "raphael": "^2.2.6",
     "redux": "^3.5.2",
     "underscore": "^1.8.3"
+  },
+  "nyc": {
+    "lines": 99,
+    "statements": 99,
+    "functions": 99,
+    "branches": 99,
+    "exclude": [
+      "src/app/**/*.spec.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ]
   }
 }
