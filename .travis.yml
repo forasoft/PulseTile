@@ -29,7 +29,6 @@ script:
   - npm run build
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -t 9827f542-fe3c-4acd-9f3c-9b70ed2a9f10
   - npm run report-coverage
 
 branches:
