@@ -29,7 +29,7 @@ script:
   - npm run build
 
 after_success:
-  - npm run nyc-report-coverage
+  - npm run report-coverage
 
 branches:
   only:
