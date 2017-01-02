@@ -16,7 +16,7 @@
 let templateMedicationsDetail= require('./medications-detail.html');
 
 class MedicationsDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, medicationsActions, MedicationsModal, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, medicationsActions, usSpinnerService) {
     $scope.UnlockedSources = [
       'handi.ehrscape.com'
     ];
@@ -45,8 +45,8 @@ class MedicationsDetailController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.allergiesLoad = medicationsActions.get;
-    this.allergiesLoad($stateParams.patientId, $stateParams.medicationIndex, $stateParams.source);
+    this.medicationsLoad = medicationsActions.get;
+    this.medicationsLoad($stateParams.patientId, $stateParams.medicationIndex, $stateParams.source);
 
     //Edit Medication
 
@@ -71,7 +71,6 @@ class MedicationsDetailController {
       $scope.medicationEdit.startTime = new Date($scope.medicationEdit.startTime);
       $scope.medicationEdit.startDate = new Date($scope.medicationEdit.startDate);
       $scope.medicationEdit.dateCreated = new Date($scope.medicationEdit.dateCreated);
-      // MedicationsModal.openModal(this.currentPatient, {title: 'Edit Medication'}, this.medication, this.currentUser);
     };
 
     $scope.isPrescriptionEdit = false;
@@ -132,5 +131,5 @@ const MedicationsDetailComponent = {
   controller: MedicationsDetailController
 };
 
-MedicationsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'medicationsActions', 'MedicationsModal', 'usSpinnerService'];
+MedicationsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'medicationsActions', 'usSpinnerService'];
 export default MedicationsDetailComponent;

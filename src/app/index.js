@@ -38,7 +38,6 @@ import AdvancedSearch from './helpers/advancedSearch';
 import Patient from './helpers/patient';
 import DiagnosesModal from './rippleui/pages/diagnoses/diagnoses-modal';
 import AllergiesModal from './rippleui/pages/allergies/allergies-modal';
-import MedicationsModal from './rippleui/pages/medications/medications-modal';
 import ContactsModal from './rippleui/pages/contacts/contacts-modal';
 import VaccinationsModal from './rippleui/pages/vaccinations/vaccinations-modal';
 import OrdersModal from './rippleui/pages/orders/orders-modal';
@@ -69,8 +68,11 @@ import DiagnosesListComponent from './rippleui/pages/diagnoses/diagnoses-list.co
 import DiagnosesDetailComponent from './rippleui/pages/diagnoses/diagnoses-detail.component';
 import AllergiesListComponent from './rippleui/pages/allergies/allergies-list.component';
 import AllergiesDetailComponent from './rippleui/pages/allergies/allergies-detail.component';
+
 import MedicationsListComponent from './rippleui/pages/medications/medications-list.component';
+import MedicationsCreateComponent from './rippleui/pages/medications/medications-create.component';
 import MedicationsDetailComponent from './rippleui/pages/medications/medications-detail.component';
+
 import ContactsListComponent from './rippleui/pages/contacts/contacts-list.component';
 import ContactsDetailComponent from './rippleui/pages/contacts/contacts-detail.component';
 import VaccinationsListComponent from './rippleui/pages/vaccinations/vaccinations-list.component';
@@ -124,7 +126,6 @@ const app = angular
     .factory('AdvancedSearch', AdvancedSearch)
     .factory('DiagnosesModal', DiagnosesModal)
     .factory('AllergiesModal', AllergiesModal)
-    .factory('MedicationsModal', MedicationsModal)
     .factory('ContactsModal', ContactsModal)
     .factory('VaccinationsModal', VaccinationsModal)
     .factory('OrdersModal', OrdersModal)
@@ -152,8 +153,11 @@ const app = angular
     .component('diagnosesDetailComponent', DiagnosesDetailComponent)
     .component('allergiesListComponent', AllergiesListComponent)
     .component('allergiesDetailComponent', AllergiesDetailComponent)
+
     .component('medicationsListComponent', MedicationsListComponent)
+    .component('medicationsCreateComponent', MedicationsCreateComponent)
     .component('medicationsDetailComponent', MedicationsDetailComponent)
+
     .component('contactsListComponent', ContactsListComponent)
     .component('contactsDetailComponent', ContactsDetailComponent)
     .component('vaccinationsListComponent', VaccinationsListComponent)

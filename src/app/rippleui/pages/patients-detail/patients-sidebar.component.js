@@ -57,7 +57,7 @@ class PatientsSidebarController {
         name: 'results',
         link: 'results',
         linkDetail: 'results-detail',
-        title: 'Results'
+        title: 'Test Results'
       },
       // {
       //   name: 'procedures',

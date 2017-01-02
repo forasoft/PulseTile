@@ -194,6 +194,26 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'medications'
         }]
       })
+      .state('medications-create', {
+        url: '/patients/{patientId:int}/medications/create?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<medications-list-component></medications-list-component>'},
+          detail: {template: '<medications-create-component></medications-create-component>'}
+        },
+        params: {patientId: null, reportType: null},
+        breadcrumbs: [{
+          title: 'Patient Listings',
+          state: 'patients-list'
+        }, {
+          title: 'Patient Summary',
+          state: 'patients-summary'
+        }, {
+          title: 'Medications',
+          state: 'medications'
+        }]
+      })
       .state('medications-detail', {
         url: '/patients/{patientId:int}/medications/{medicationIndex}?filter&page&reportType&searchString&queryType&source',
         views: {
@@ -214,6 +234,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'medications'
         }]
       })
+      
       .state('contacts', {
         url: '/patients/{patientId:int}/contacts?reportType&searchString&queryType',
         views: {
@@ -251,6 +272,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'contacts'
         }]
       })
+      
       .state('vaccinations', {
         url: '/patients/{patientId:int}/vaccinations?reportType&searchString&queryType',
         views: {

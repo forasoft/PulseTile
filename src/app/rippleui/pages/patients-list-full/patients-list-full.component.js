@@ -33,7 +33,7 @@ class PatientsListFullController {
     this.patients = [];
     $rootScope.searchMode = true;
     this.query = '';
-    this.isFilter = false;   
+    this.isFilter = false;
 
     function getPageInfo(info) {
       var from = (15 * info.page - 14);

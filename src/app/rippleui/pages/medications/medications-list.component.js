@@ -16,7 +16,7 @@
 let templateMedicationsList = require('./medications-list.html');
 
 class MedicationsListController {
-  constructor($scope, $state, $stateParams, $ngRedux, medicationsActions, serviceRequests, MedicationsModal, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, medicationsActions, serviceRequests, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, breadcrumbs: $state.router.globals.current.breadcrumbs, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
@@ -24,6 +24,8 @@ class MedicationsListController {
 
     this.query = '';
     this.isFilter = false;
+    this.isShowCreateBtn = $state.router.globals.$current.name !== 'medications-create';
+
 
     this.pageChangeHandler = function (newPage) {
       this.currentPage = newPage;
@@ -80,8 +82,11 @@ class MedicationsListController {
 
 
     this.create = function () {
-      MedicationsModal.openModal(this.currentPatient, {title: 'Create Medication'}, {}, this.currentUser);
-
+      $state.go('medications-create', {
+        patientId: $stateParams.patientId,
+        filter: this.query,
+        page: this.currentPage
+      });
     };
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
@@ -99,8 +104,8 @@ class MedicationsListController {
         this.medications[0].warning = true;
         this.medications[1].danger = true;
       }
-      if (data.user.data) {
-        this.currentUser = data.user.data;
+      if (serviceRequests.currentUserData) {
+        this.currentUser = serviceRequests.currentUserData;
       }
     };
 
@@ -120,5 +125,5 @@ const MedicationsListComponent = {
   controller: MedicationsListController
 };
 
-MedicationsListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'medicationsActions', 'serviceRequests', 'MedicationsModal', 'usSpinnerService'];
+MedicationsListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'medicationsActions', 'serviceRequests', 'usSpinnerService'];
 export default MedicationsListComponent;
