@@ -16,14 +16,16 @@
 let templateContactsList = require('./contacts-list.html');
 
 class ContactsListController {
-  constructor($scope, $state, $stateParams, $ngRedux, contactsActions, serviceRequests, ContactsModal, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, contactsActions, serviceRequests, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, breadcrumbs: $state.router.globals.current.breadcrumbs, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
-    this.query = {};
     this.queryBy = '$';
+    this.query = {};
+    this.query[this.queryBy] = '';
     this.currentPage = 1;
     this.isFilter = false;
+    this.isShowCreateBtn = $state.router.globals.$current.name !== 'contacts-create';
 
     this.toggleFilter = function () {
       this.isFilter = !this.isFilter;
@@ -53,10 +55,11 @@ class ContactsListController {
     }
 
     this.create = function () {
-      this.currentUser = this.currentUser || {};
-      this.currentUser.query = this.query;
-      this.currentUser.currentPage = this.currentPage;
-      ContactsModal.openModal(this.currentPatient, {title: 'Create Contact'}, {}, this.currentUser);
+      $state.go('contacts-create', {
+        patientId: $stateParams.patientId,
+        filter: this.query.$,
+        page: this.currentPage
+      });
     };
 
     this.go = function (id) {
@@ -87,10 +90,8 @@ class ContactsListController {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
       }
-      if (data.user.data) {
-        console.log('data.user.data');
-        console.log(data.user.data);
-        this.currentUser = data.user.data;
+      if (serviceRequests.currentUserData) {
+        this.currentUser = serviceRequests.currentUserData;
       }
     };
 
@@ -122,5 +123,5 @@ const ContactsListComponent = {
   controller: ContactsListController
 };
 
-ContactsListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'contactsActions', 'serviceRequests', 'ContactsModal', 'usSpinnerService'];
+ContactsListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'contactsActions', 'serviceRequests', 'usSpinnerService'];
 export default ContactsListComponent;

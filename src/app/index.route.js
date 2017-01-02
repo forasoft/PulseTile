@@ -253,6 +253,25 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'contacts'
         }]
       })
+      .state('contacts-create', {
+        url: '/patients/{patientId:int}/contacts/create?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<contacts-list-component></contacts-list-component>'},
+          detail: {template: '<contacts-create-component></contacts-create-component>'}
+        },
+        breadcrumbs: [{
+          title: 'Patient Listings',
+          state: 'patients-list'
+        }, {
+          title: 'Patient Summary',
+          state: 'patients-summary'
+        }, {
+          title: 'Contacts',
+          state: 'contacts'
+        }]
+      })
       .state('contacts-detail', {
         url: '/patients/{patientId:int}/contacts/{contactIndex}?filter&page&reportType&searchString&queryType',
         views: {

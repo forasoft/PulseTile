@@ -38,7 +38,6 @@ import AdvancedSearch from './helpers/advancedSearch';
 import Patient from './helpers/patient';
 import DiagnosesModal from './rippleui/pages/diagnoses/diagnoses-modal';
 import AllergiesModal from './rippleui/pages/allergies/allergies-modal';
-import ContactsModal from './rippleui/pages/contacts/contacts-modal';
 import VaccinationsModal from './rippleui/pages/vaccinations/vaccinations-modal';
 import OrdersModal from './rippleui/pages/orders/orders-modal';
 import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
@@ -74,7 +73,9 @@ import MedicationsCreateComponent from './rippleui/pages/medications/medications
 import MedicationsDetailComponent from './rippleui/pages/medications/medications-detail.component';
 
 import ContactsListComponent from './rippleui/pages/contacts/contacts-list.component';
+import ContactsCreateComponent from './rippleui/pages/contacts/contacts-create.component';
 import ContactsDetailComponent from './rippleui/pages/contacts/contacts-detail.component';
+
 import VaccinationsListComponent from './rippleui/pages/vaccinations/vaccinations-list.component';
 import VaccinationsDetailComponent from './rippleui/pages/vaccinations/vaccinations-detail.component';
 import OrdersListComponent from './rippleui/pages/orders/orders-list.component';
@@ -126,7 +127,6 @@ const app = angular
     .factory('AdvancedSearch', AdvancedSearch)
     .factory('DiagnosesModal', DiagnosesModal)
     .factory('AllergiesModal', AllergiesModal)
-    .factory('ContactsModal', ContactsModal)
     .factory('VaccinationsModal', VaccinationsModal)
     .factory('OrdersModal', OrdersModal)
     .factory('ReferralsModal', ReferralsModal)
@@ -159,7 +159,9 @@ const app = angular
     .component('medicationsDetailComponent', MedicationsDetailComponent)
 
     .component('contactsListComponent', ContactsListComponent)
+    .component('contactsCreateComponent', ContactsCreateComponent)
     .component('contactsDetailComponent', ContactsDetailComponent)
+    
     .component('vaccinationsListComponent', VaccinationsListComponent)
     .component('vaccinationsDetailComponent', VaccinationsDetailComponent)
     .component('ordersListComponent', OrdersListComponent)

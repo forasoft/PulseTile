@@ -16,7 +16,7 @@
 let templateContactsDetail= require('./contacts-detail.html');
 
 class ContactsDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, patientsActions, contactsActions, ContactsModal, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, patientsActions, contactsActions, serviceRequests, usSpinnerService) {
     $scope.isEdit = false;
     this.edit = function () {
       $scope.isEdit = true;
@@ -32,7 +32,7 @@ class ContactsDetailController {
       if (contactForm.$valid) {
         $scope.isEdit = false;
         this.contact = Object.assign(this.contact, $scope.contactEdit);
-        $scope.contactsUpdate($scope.patient.id, $scope.contact);
+        $scope.contactsUpdate(this.currentPatient.id, $scope.contact);
       }
     }.bind(this);
 
@@ -44,8 +44,8 @@ class ContactsDetailController {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
       }
-      if (data.user.data) {
-        this.currentUser = data.user.data;
+      if (serviceRequests.currentUserData) {
+        this.currentUser = serviceRequests.currentUserData;
       }
     };
 
@@ -66,5 +66,5 @@ const ContactsDetailComponent = {
   controller: ContactsDetailController
 };
 
-ContactsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions', 'contactsActions', 'ContactsModal', 'usSpinnerService'];
+ContactsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions', 'contactsActions', 'serviceRequests', 'usSpinnerService'];
 export default ContactsDetailComponent;
