@@ -65,8 +65,6 @@ class ContactsCreateController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.contactsLoad = contactsActions.get;
-    this.contactsLoad($stateParams.patientId, $stateParams.contactIndex);
     $scope.contactsCreate = contactsActions.create;
   }
 }

@@ -55,6 +55,7 @@ class ContactsListController {
     }
 
     this.create = function () {
+      debugger
       $state.go('contacts-create', {
         patientId: $stateParams.patientId,
         filter: this.query.$,

@@ -175,6 +175,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'allergies'
         }]
       })
+
       .state('medications', {
         url: '/patients/{patientId:int}/medications?reportType&searchString&queryType',
         views: {
