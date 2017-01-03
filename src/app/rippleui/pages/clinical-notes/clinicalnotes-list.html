@@ -63,20 +63,15 @@
 
     <span class="patientSummary-spinner" us-spinner="{radius:20, width:8, length: 16}" spinner-key="patientSummary-spinner" spinner-start-active="true"></span>
 
-    <div class="panel-control" ng-if="$ctrl.currentUser.permissions.indexOf('WRITE') !== -1">
+    <div class="panel-control">
       <div class="wrap-control-group">
         <div class="control-group with-indent left">
           <dir-pagination-controls max-size="6" on-page-change="$ctrl.pageChangeHandler($ctrl.newPageNumber)" boundary-links="false"></dir-pagination-controls>
         </div>
-        <div class="control-group with-indent right">
+        <div class="control-group with-indent right" ng-if="$ctrl.currentUser.permissions.indexOf('WRITE') !== -1 && $ctrl.isShowCreateBtn">
           <button class="btn btn-success btn-inverse btn-create" ng-click="$ctrl.create();"><i class="fa fa-plus"></i> <span>Create</span></button>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <div class="inner-addon left-addon filterInput">
-    <i class="fa fa-filter"></i>
-    <input type="text" class="form-control" placeholder="Filter..." ng-model="query"/>
-</div> -->

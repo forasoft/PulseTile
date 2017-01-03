@@ -17,7 +17,7 @@
 import uiRouter from 'angular-ui-router';
 import ngAnimate from 'angular-animate';
 import uiBootstrap from 'angular-ui-bootstrap';
-// import 'bootstrap';
+import 'bootstrap';
 import ngRedux from 'ng-redux';
 import dirPagination from 'angular-utils-pagination';
 import createLogger from 'redux-logger';
@@ -45,7 +45,6 @@ import ProceduresModal from './rippleui/pages/procedures/procedures-modal';
 import ImageModal from './rippleui/pages/dicom/image-modal';
 import EolcareplansModal from './rippleui/pages/care-plans/eolcareplans-modal';
 import LookupModal from './rippleui/pages/patients-lookup/patients-lookup-modal';
-import ClinicalnotesModal from './rippleui/pages/clinical-notes/clinicalnotes-modal';
 import HeightAndWeightModal from './rippleui/pages/height-and-weight/heightAndWeight-modal';
 import GenericMdtModal from './rippleui/pages/generic-mdt/generic-mdt-modal';
 import TransferOfCareModal from './rippleui/pages/transfer-of-care/transfer-of-care-modal';
@@ -98,8 +97,11 @@ import EolcareplansListComponent from './rippleui/pages/care-plans/eolcareplans-
 import EolcareplansDetailComponent from './rippleui/pages/care-plans/eolcareplans-detail.component';
 import MainComponent from './helpers/main.component';
 import HomeSidebarComponent from './rippleui/pages/patients-lookup/home-sidebar.component';
+
 import ClinicalnotesListComponent from './rippleui/pages/clinical-notes/clinicalnotes-list.component';
+import ClinicalnotesCreateComponent from './rippleui/pages/clinical-notes/clinicalnotes-create.component';
 import ClinicalnotesDetailComponent from './rippleui/pages/clinical-notes/clinicalnotes-detail.component';
+
 import HeightAndWeightListComponent from './rippleui/pages/height-and-weight/heightAndWeight-list.component';
 import HeightAndWeightDetailComponent from './rippleui/pages/height-and-weight/heightAndWeight-detail.component';
 import GenericMdtListComponent from './rippleui/pages/generic-mdt/generic-mdt-list.component';
@@ -137,7 +139,6 @@ const app = angular
     .factory('EolcareplansModal', EolcareplansModal)
     .factory('LookupModal', LookupModal)
     .factory('Patient', Patient)
-    .factory('ClinicalnotesModal', ClinicalnotesModal)
     .factory('HeightAndWeightModal', HeightAndWeightModal)
     .factory('GenericMdtModal', GenericMdtModal)
     .factory('TransferOfCareModal', TransferOfCareModal)
@@ -189,8 +190,11 @@ const app = angular
     .component('homeSidebarComponent', HomeSidebarComponent)
     .component('searchComponent', SearchComponent)
     .component('reportChartComponent', ReportChartComponent)
+
     .component('clinicalnotesListComponent', ClinicalnotesListComponent)
+    .component('clinicalnotesCreateComponent', ClinicalnotesCreateComponent)
     .component('clinicalnotesDetailComponent', ClinicalnotesDetailComponent)
+
     .component('heightAndWeightListComponent', HeightAndWeightListComponent)
     .component('heightAndWeightDetailComponent', HeightAndWeightDetailComponent)
     .component('genericMdtListComponent', GenericMdtListComponent)

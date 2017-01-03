@@ -24,7 +24,7 @@ class DiagnosesListController {
 
     this.query = '';
     this.isFilter = false;
-    this.isShowCreateBtn = $state.router.globals.$current.name !== 'allergies-create';
+    this.isShowCreateBtn = $state.router.globals.$current.name !== 'diagnoses-create';
 
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {

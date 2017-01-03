@@ -93,7 +93,6 @@ class AllergiesListController {
     };
 
     this.create = function () {
-      console.log('12312')
       $state.go('allergies-create', {
         patientId: $stateParams.patientId,
         filter: this.query,

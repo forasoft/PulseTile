@@ -535,12 +535,32 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           detail: {template: '<eolcareplans-detail-component></eolcareplans-detail-component>'}
         }
       })
+
       .state('clinicalNotes', {
         url: '/patients/{patientId:int}/clinicalNotes?reportType&searchString&queryType',
         views: {
           banner: {template: '<patients-banner-component></patients-banner-component>'},
           actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
           main: {template: '<clinicalnotes-list-component></clinicalnotes-list-component>'}
+        },
+        breadcrumbs: [{
+          title: 'Patient Listings',
+          state: 'patients-list'
+        }, {
+          title: 'Patient Summary',
+          state: 'patients-summary'
+        }, {
+          title: 'Personal Notes',
+          state: 'clinicalNotes'
+        }]
+      })
+      .state('clinicalNotes-create', {
+        url: '/patients/{patientId:int}/clinicalNotes/create?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<clinicalnotes-list-component></clinicalnotes-list-component>'},
+          detail: {template: '<clinicalnotes-create-component></clinicalnotes-create-component>'}
         },
         breadcrumbs: [{
           title: 'Patient Listings',
@@ -573,6 +593,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'clinicalNotes'
         }]
       })
+
       .state('heightAndWeights', {
         url: '/patients/{patientId:int}/heightAndWeights?reportType&searchString&queryType',
         views: {
