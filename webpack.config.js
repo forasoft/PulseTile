@@ -21,7 +21,6 @@ const ENV_PRODUCTION_EXTENSION = NODE_ENV === 'extension';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 9000;
 
-// const API_URL = process.env.API_URL || 'http://localhost:19191';
 // const API_URL =  'http://138.68.134.7';
 const API_URL =  'http://139.59.187.100';
 
@@ -48,15 +47,7 @@ const config = {
       {test: /\.(woff|woff2)/, loader: 'url?prefix=fonts/&limit=10000&mimetype=application/font-woff&name=assets/fonts/[name].[ext]'},
       {test: /\.(ttf|eot|svg)/, loader: 'file?name=assets/fonts/[name].[ext]'},
       {test: /\.(jpg|png|jpeg|gif)$/, loader: 'url-loader?limit=25000/&name=assets/images/[name].[ext]' },
-      {test: /\.css$/, loader: "style-loader!css-loader!"},
-      // {test: /\.scss$/, loaders: ["style", "css", "sass"]}
-      /*{test: /\.woff(\?.*)?$/,loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'},
-       {test: /\.woff2(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2' },
-       {test: /\.otf(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype' },
-       {test: /\.ttf(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream' },
-       {test: /\.eot(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]' },
-       {test: /\.svg(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
-       {test: /\.(png|jpg)$/, loader: 'url?limit=8192'}*/
+      {test: /\.css$/, loader: "style-loader!css-loader!"}
     ]
   },
 
@@ -186,18 +177,7 @@ if (ENV_PRODUCTION || ENV_PRODUCTION_EXTENSION) {
 
   config.plugins.push(
     new webpack.optimize.OccurenceOrderPlugin(),
-    // new ExtractTextPlugin('styles.css'),
     new webpack.optimize.DedupePlugin()
-    // new webpack.optimize.UglifyJsPlugin({
-    //   mangle: true,
-    //   beautify: true,
-    //   compress: {
-    //     dead_code: true, // eslint-disable-line camelcase
-    //     screw_ie8: true, // eslint-disable-line camelcase
-    //     unused: true,
-    //     warnings: false
-    //   }
-    // })
   );
 }
 

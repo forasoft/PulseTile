@@ -9,10 +9,7 @@ module.exports = config => {
       'node_modules/babel-polyfill/dist/polyfill.js',
       'node_modules/sinon/pkg/sinon.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      // './src/app/index.js',
-      'karma.entry.js',
-      // './src/app/rippleui/pages/**/*.js',
-      // './src/test/spec/**/*spec.js'
+      'karma.entry.js'
     ],
 
     preprocessors: {
@@ -68,13 +65,6 @@ module.exports = config => {
 
     logLevel: config.LOG_INFO,
 
-    // plugins: [
-    //   'karma-htmlfile-reporter',
-    //   'karma-phantomjs-launcher',
-    //   'karma-chrome-launcher',
-    //   'karma-jasmine','webpack', 'sourcemap'
-    // ],
-
     singleRun: false,
 
     customLaunchers: {
@@ -82,8 +72,6 @@ module.exports = config => {
         base: 'Chrome',
         flags: ['--no-sandbox']
       }
-    },
-    //
-    // browsers: process.env.TRAVIS ? ['TRAVIS_CHROME'] : ['Chrome']
+    }
   });
 };
