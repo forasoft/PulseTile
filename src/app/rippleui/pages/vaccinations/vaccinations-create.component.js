@@ -52,7 +52,7 @@ class VaccinationsCreateController {
         comment: vaccination.comment,
         seriesNumber: vaccination.seriesNumber,
         dateCreated: vaccination.dateCreated,
-        startDate: vaccination.startDate
+        startDate: vaccination.startDate,
         source: vaccination.source,
       };
 
