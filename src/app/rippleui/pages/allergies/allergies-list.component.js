@@ -16,7 +16,7 @@
 let templateAllergiesList = require('./allergies-list.html');
 
 class AllergiesListController {
-  constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, serviceRequests, AllergiesModal, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, serviceRequests, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, breadcrumbs: $state.router.globals.current.breadcrumbs, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
@@ -24,6 +24,20 @@ class AllergiesListController {
 
     this.query = '';
     this.isFilter = false;
+    this.isShowCreateBtn = $state.router.globals.$current.name !== 'allergies-create';
+
+    this.setCurrentPageData = function (data) {
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
+      }
+      if (data.allergies.data) {
+        this.allergies = data.allergies.data;
+      }
+      if (serviceRequests.currentUserData) {
+        this.currentUser = serviceRequests.currentUserData;
+      }
+    };
 
     this.toggleFilter = function () {
       this.isFilter = !this.isFilter;
@@ -79,20 +93,12 @@ class AllergiesListController {
     };
 
     this.create = function () {
-      AllergiesModal.openModal(this.currentPatient, {title: 'Create Allergy'}, {}, this.currentUser);
-
-    };
-    this.setCurrentPageData = function (data) {
-      if (data.patientsGet.data) {
-        this.currentPatient = data.patientsGet.data;
-        usSpinnerService.stop('patientSummary-spinner');
-      }
-      if (data.allergies.data) {
-        this.allergies = data.allergies.data;
-      }
-      if (data.user.data) {
-        this.currentUser = data.user.data;
-      }
+      console.log('12312')
+      $state.go('allergies-create', {
+        patientId: $stateParams.patientId,
+        filter: this.query,
+        page: this.currentPage
+      });
     };
 
     let unsubscribe = $ngRedux.connect(state => ({
@@ -111,5 +117,5 @@ const AllergiesListComponent = {
   controller: AllergiesListController
 };
 
-AllergiesListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'allergiesActions', 'serviceRequests', 'AllergiesModal', 'usSpinnerService'];
+AllergiesListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'allergiesActions', 'serviceRequests', 'usSpinnerService'];
 export default AllergiesListComponent;

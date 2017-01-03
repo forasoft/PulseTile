@@ -25,11 +25,7 @@ class ContactsCreateController {
 
     this.setCurrentPageData = function (data) {
       if (data.contacts.dataCreate !== null) {
-        $state.go('contacts', {
-          patientId: $scope.currentPatient.id,
-          filter: '',
-          page: 1,
-        });
+        this.goList();
       }
       if (data.patientsGet.data) {
         $scope.currentPatient = data.patientsGet.data;

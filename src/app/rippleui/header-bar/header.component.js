@@ -59,7 +59,7 @@ class HeaderController {
 
     $scope.setTitle = function (data) {
       $scope.title = data ? data.role + ' POC' : '';
-      $scope.switchDirectByRole(data);
+      // $scope.switchDirectByRole(data);
     };
 
     $scope.setLoginData = function (loginResult) {

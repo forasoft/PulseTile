@@ -37,7 +37,6 @@ import httpMiddleware from './helpers/httpMiddleware';
 import AdvancedSearch from './helpers/advancedSearch';
 import Patient from './helpers/patient';
 import DiagnosesModal from './rippleui/pages/diagnoses/diagnoses-modal';
-import AllergiesModal from './rippleui/pages/allergies/allergies-modal';
 import VaccinationsModal from './rippleui/pages/vaccinations/vaccinations-modal';
 import OrdersModal from './rippleui/pages/orders/orders-modal';
 import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
@@ -65,7 +64,9 @@ import SearchComponent from './rippleui/search/search.component';
 import ReportChartComponent from './rippleui/search/report-chart.component';
 import DiagnosesListComponent from './rippleui/pages/diagnoses/diagnoses-list.component';
 import DiagnosesDetailComponent from './rippleui/pages/diagnoses/diagnoses-detail.component';
+
 import AllergiesListComponent from './rippleui/pages/allergies/allergies-list.component';
+import AllergiesCreateComponent from './rippleui/pages/allergies/allergies-create.component';
 import AllergiesDetailComponent from './rippleui/pages/allergies/allergies-detail.component';
 
 import MedicationsListComponent from './rippleui/pages/medications/medications-list.component';
@@ -126,7 +127,6 @@ const app = angular
     .factory('httpMiddleware', httpMiddleware)
     .factory('AdvancedSearch', AdvancedSearch)
     .factory('DiagnosesModal', DiagnosesModal)
-    .factory('AllergiesModal', AllergiesModal)
     .factory('VaccinationsModal', VaccinationsModal)
     .factory('OrdersModal', OrdersModal)
     .factory('ReferralsModal', ReferralsModal)
@@ -151,7 +151,9 @@ const app = angular
     .component('patientsBannerComponent', PatientsBannerComponent)
     .component('diagnosesListComponent', DiagnosesListComponent)
     .component('diagnosesDetailComponent', DiagnosesDetailComponent)
+
     .component('allergiesListComponent', AllergiesListComponent)
+    .component('allergiesCreateComponent', AllergiesCreateComponent)
     .component('allergiesDetailComponent', AllergiesDetailComponent)
 
     .component('medicationsListComponent', MedicationsListComponent)

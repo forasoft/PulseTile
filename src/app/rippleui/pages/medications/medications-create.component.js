@@ -21,12 +21,7 @@ class MedicationsCreateController {
 
     this.setCurrentPageData = function (data) {
       if (data.medication.dataCreate !== null) {
-        // $scope.medicationsLoad($stateParams.patientId);
-        $state.go('medications', {
-          patientId: $scope.patient.id,
-          filter: $scope.query,
-          page: $scope.currentPage
-        });
+        this.goList();
       }
       if (data.patientsGet.data) {
         $scope.currentPatient = data.patientsGet.data;

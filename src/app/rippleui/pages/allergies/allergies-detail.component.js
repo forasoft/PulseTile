@@ -16,9 +16,22 @@
 let templateAllergiesDetail= require('./allergies-detail.html');
 
 class AllergiesDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, AllergiesModal, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, serviceRequests, usSpinnerService) {
     $scope.isEdit = false;
     $scope.isEditMeta = false;
+    
+    this.setCurrentPageData = function (data) {
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
+      }
+      if (data.allergies.dataGet) {
+        this.allergy = data.allergies.dataGet;
+        usSpinnerService.stop('allergiesDetail-spinner');
+      }
+      if (serviceRequests.currentUserData) {
+        this.currentUser = serviceRequests.currentUserData;
+      }
+    };
     
     this.edit = function () {
       $scope.isEdit = true;
@@ -39,10 +52,11 @@ class AllergiesDetailController {
         reaction: allergies.reaction,
         source: allergies.source
       };
+
       if (allergyForm.$valid) {
         $scope.isEdit = false;
         this.allergy = Object.assign(this.allergy, $scope.allergyEdit);
-        $scope.allergiesUpdate($scope.patient.id, toAdd);
+        $scope.allergiesUpdate(this.currentPatient.id, toAdd);
       }
     }.bind(this);
 
@@ -70,7 +84,7 @@ class AllergiesDetailController {
       if (allergyForm.$valid) {
         $scope.isEditMeta = false;
         this.allergy = Object.assign(this.allergy, $scope.allergyEditMeta);
-        $scope.allergiesUpdate($scope.patient.id, toAdd);
+        $scope.allergiesUpdate(this.currentPatient.id, toAdd);
       }
     }.bind(this);
 
@@ -80,19 +94,6 @@ class AllergiesDetailController {
 
     $scope.formDisabled = true;
 
-    this.setCurrentPageData = function (data) {
-      if (data.patientsGet.data) {
-        this.currentPatient = data.patientsGet.data;
-      }
-      if (data.allergies.dataGet) {
-        this.allergy = data.allergies.dataGet;
-        usSpinnerService.stop('allergiesDetail-spinner');
-      }
-      if (data.user.data) {
-        this.currentUser = data.user.data;
-      }
-    };
-
     let unsubscribe = $ngRedux.connect(state => ({
       getStoreData: this.setCurrentPageData(state)
     }))(this);
@@ -101,6 +102,7 @@ class AllergiesDetailController {
 
     this.allergiesLoad = allergiesActions.get;
     this.allergiesLoad($stateParams.patientId, $stateParams.allergyIndex, $stateParams.source);
+    $scope.allergiesUpdate = allergiesActions.update;
   }
 }
 
@@ -109,5 +111,5 @@ const AllergiesDetailComponent = {
   controller: AllergiesDetailController
 };
 
-AllergiesDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'allergiesActions', 'AllergiesModal', 'usSpinnerService'];
+AllergiesDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'allergiesActions', 'serviceRequests', 'usSpinnerService'];
 export default AllergiesDetailComponent;
