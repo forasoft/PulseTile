@@ -36,7 +36,6 @@ import actions from './actions';
 import httpMiddleware from './helpers/httpMiddleware';
 import AdvancedSearch from './helpers/advancedSearch';
 import Patient from './helpers/patient';
-import VaccinationsModal from './rippleui/pages/vaccinations/vaccinations-modal';
 import OrdersModal from './rippleui/pages/orders/orders-modal';
 import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
 import AppointmentsModal from './rippleui/pages/appointments/appointments-modal';
@@ -78,7 +77,9 @@ import ContactsCreateComponent from './rippleui/pages/contacts/contacts-create.c
 import ContactsDetailComponent from './rippleui/pages/contacts/contacts-detail.component';
 
 import VaccinationsListComponent from './rippleui/pages/vaccinations/vaccinations-list.component';
+import VaccinationsCreateComponent from './rippleui/pages/vaccinations/vaccinations-create.component';
 import VaccinationsDetailComponent from './rippleui/pages/vaccinations/vaccinations-detail.component';
+
 import OrdersListComponent from './rippleui/pages/orders/orders-list.component';
 import OrdersDetailComponent from './rippleui/pages/orders/orders-detail.component';
 import ReferralsListComponent from './rippleui/pages/referrals/referrals-list.component';
@@ -129,7 +130,6 @@ const app = angular
     ])
     .factory('httpMiddleware', httpMiddleware)
     .factory('AdvancedSearch', AdvancedSearch)
-    .factory('VaccinationsModal', VaccinationsModal)
     .factory('OrdersModal', OrdersModal)
     .factory('ReferralsModal', ReferralsModal)
     .factory('ProceduresModal', ProceduresModal)
@@ -168,7 +168,9 @@ const app = angular
     .component('contactsDetailComponent', ContactsDetailComponent)
     
     .component('vaccinationsListComponent', VaccinationsListComponent)
+    .component('vaccinationsCreateComponent', VaccinationsCreateComponent)
     .component('vaccinationsDetailComponent', VaccinationsDetailComponent)
+
     .component('ordersListComponent', OrdersListComponent)
     .component('ordersDetailComponent', OrdersDetailComponent)
     .component('referralsListComponent', ReferralsListComponent)

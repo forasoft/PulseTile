@@ -16,7 +16,7 @@
 let templateVaccinationsList = require('./vaccinations-list.html');
 
 class VaccinationsListController {
-  constructor($scope, $state, $stateParams, $ngRedux, vaccinationsActions, serviceRequests, VaccinationsModal, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, vaccinationsActions, serviceRequests, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, breadcrumbs: $state.router.globals.current.breadcrumbs, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
@@ -52,10 +52,11 @@ class VaccinationsListController {
     }
 
     this.create = function () {
-      
-      // this.currentUser.query = this.query;
-      // this.currentUser.currentPage = this.currentPage;
-      VaccinationsModal.openModal(this.currentPatient, {title: 'Create Vaccination'}, {}, this.currentUser);
+      $state.go('vaccinations-create', {
+        patientId: $stateParams.patientId,
+        filter: this.query,
+        page: this.currentPage
+      });
     };
 
     this.go = function (id, vaccination) {
@@ -123,8 +124,8 @@ class VaccinationsListController {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
       }
-      if (data.user.data) {
-        this.currentUser = data.user.data;
+      if (serviceRequests.currentUserData) {
+        this.currentUser = serviceRequests.currentUserData;
       }
     };
 
@@ -156,5 +157,5 @@ const VaccinationsListComponent = {
   controller: VaccinationsListController
 };
 
-VaccinationsListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'vaccinationsActions', 'serviceRequests', 'VaccinationsModal', 'usSpinnerService'];
+VaccinationsListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'vaccinationsActions', 'serviceRequests', 'usSpinnerService'];
 export default VaccinationsListComponent;

@@ -353,6 +353,25 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'vaccinations'
         }]
       })
+      .state('vaccinations-create', {
+        url: '/patients/{patientId:int}/vaccinations/create?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<vaccinations-list-component></vaccinations-list-component>'},
+          detail: {template: '<vaccinations-create-component></vaccinations-create-component>'}
+        },
+        breadcrumbs: [{
+          title: 'Patient Listings',
+          state: 'patients-list'
+        }, {
+          title: 'Patient Summary',
+          state: 'patients-summary'
+        }, {
+          title: 'Vaccinations',
+          state: 'vaccinations'
+        }]
+      })
       .state('vaccinations-detail', {
         url: '/patients/{patientId:int}/vaccinations/{vaccinationIndex}?filter&page&reportType&searchString&queryType',
         views: {

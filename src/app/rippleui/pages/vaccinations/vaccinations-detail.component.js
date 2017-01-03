@@ -13,10 +13,10 @@
   ~  See the License for the specific language governing permissions and
   ~  limitations under the License.
 */
-let templateVaccinationsDetail= require('./vaccinations-detail.html');
+let templateVaccinationsDetail = require('./vaccinations-detail.html');
 
 class VaccinationsDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, patientsActions, vaccinationsActions, VaccinationsModal, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, patientsActions, vaccinationsActions, serviceRequests, usSpinnerService) {
     $scope.isEdit = false;
 
     /*
@@ -67,9 +67,9 @@ class VaccinationsDetailController {
       // if (data.patientsGet.data) {
       //   this.currentPatient = data.patientsGet.data;
       // }
-      // if (data.user.data) {
-      //   this.currentUser = data.user.data;
-      // }
+      if (serviceRequests.currentUserData) {
+        this.currentUser = serviceRequests.currentUserData;
+      }
     };
 
     let unsubscribe = $ngRedux.connect(state => ({
@@ -89,5 +89,5 @@ const VaccinationsDetailComponent = {
   controller: VaccinationsDetailController
 };
 
-VaccinationsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions', 'vaccinationsActions', 'VaccinationsModal', 'usSpinnerService'];
+VaccinationsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions', 'vaccinationsActions', 'serviceRequests', 'usSpinnerService'];
 export default VaccinationsDetailComponent;
