@@ -32,6 +32,14 @@ class HeaderController {
     this.goProfile = function () {
       $state.go('profile');
     };
+    function deleteCookie(name) {
+        document.cookie = name + 
+        '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
+    } 
+    this.signout = function () {
+      deleteCookie('JSESSIONID');
+      location.reload();
+    };
 
     $scope.switchDirectByRole = function (currentUser) {
       if (!currentUser) return;
@@ -59,7 +67,7 @@ class HeaderController {
 
     $scope.setTitle = function (data) {
       $scope.title = data ? data.role + ' POC' : '';
-      // $scope.switchDirectByRole(data);
+      $scope.switchDirectByRole(data);
     };
 
     $scope.setLoginData = function (loginResult) {
