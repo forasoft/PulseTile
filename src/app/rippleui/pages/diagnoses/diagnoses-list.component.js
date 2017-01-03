@@ -16,7 +16,7 @@
 let templateDiagnosesList = require('./diagnoses-list.html');
 
 class DiagnosesListController {
-  constructor($scope, $state, $stateParams, $ngRedux, diagnosesActions, serviceRequests, DiagnosesModal, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, diagnosesActions, serviceRequests, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, breadcrumbs: $state.router.globals.current.breadcrumbs, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
@@ -24,6 +24,24 @@ class DiagnosesListController {
 
     this.query = '';
     this.isFilter = false;
+    this.isShowCreateBtn = $state.router.globals.$current.name !== 'allergies-create';
+
+    this.setCurrentPageData = function (data) {
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
+        usSpinnerService.stop('patientSummary-spinner');
+      }
+      if (data.diagnoses.data) {
+        this.diagnoses = data.diagnoses.data;
+        for (var i = 0; i < this.diagnoses.length; i++) {
+          this.diagnoses[i].dateOfOnset = moment(this.diagnoses[i].dateOfOnset).format('DD-MMM-YYYY');
+        }
+      }
+      if (serviceRequests.currentUserData) {
+        this.currentUser = serviceRequests.currentUserData;
+      }
+    };
+
 
     this.toggleFilter = function () {
       this.isFilter = !this.isFilter;
@@ -74,7 +92,11 @@ class DiagnosesListController {
     };
 
     this.create = function () {
-      DiagnosesModal.openModal(this.currentPatient, {title: 'Create Problem / Diagnosis'}, {}, this.currentUser);
+      $state.go('diagnoses-create', {
+        patientId: $stateParams.patientId,
+        filter: this.query,
+        page: this.currentPage
+      });
     };
 
     this.selected = function (diagnosisIndex) {
@@ -87,22 +109,6 @@ class DiagnosesListController {
           row.dateOfOnset.toLowerCase().indexOf(this.query.toLowerCase() || '') !== -1 ||
           row.source.toLowerCase().indexOf(this.query.toLowerCase() || '') !== -1
       );
-    };
-
-    this.setCurrentPageData = function (data) {
-      if (data.patientsGet.data) {
-        this.currentPatient = data.patientsGet.data;
-        usSpinnerService.stop('patientSummary-spinner');
-      }
-      if (data.diagnoses.data) {
-        this.diagnoses = data.diagnoses.data;
-        for (var i = 0; i < this.diagnoses.length; i++) {
-          this.diagnoses[i].dateOfOnset = moment(this.diagnoses[i].dateOfOnset).format('DD-MMM-YYYY');
-        }
-      }
-      if (data.user.data) {
-        this.currentUser = data.user.data;
-      }
     };
 
     let unsubscribe = $ngRedux.connect(state => ({
@@ -121,5 +127,5 @@ const DiagnosesListComponent = {
   controller: DiagnosesListController
 };
 
-DiagnosesListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'diagnosesActions', 'serviceRequests', 'DiagnosesModal', 'usSpinnerService'];
+DiagnosesListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'diagnosesActions', 'serviceRequests', 'usSpinnerService'];
 export default DiagnosesListComponent;

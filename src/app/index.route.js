@@ -97,7 +97,8 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<patients-list-full-component><patients-list-full-component>'}
         }
       })
-      .state('diagnoses-list', {
+
+      .state('diagnoses', {
         url: '/patients/{patientId:int}/diagnoses?reportType&searchString&queryType',
         views: {
           banner: {template: '<patients-banner-component></patients-banner-component>'},
@@ -113,7 +114,27 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'patients-summary'
         }, {
           title: 'Problems / Diagnoses',
-          state: 'diagnoses-list'
+          state: 'diagnoses'
+        }]
+      })
+      .state('diagnoses-create', {
+        url: '/patients/{patientId:int}/diagnoses/create?reportType&searchString&queryType',
+        views: {
+          banner: {template: '<patients-banner-component></patients-banner-component>'},
+          actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
+          main: {template: '<diagnoses-list-component></diagnoses-list-component>'},
+          detail: {template: '<diagnoses-create-component></diagnoses-create-component>'}
+        },
+        params: {patientId: null, reportType: null},
+        breadcrumbs: [{
+          title: 'Patient Listings',
+          state: 'patients-list'
+        }, {
+          title: 'Patient Summary',
+          state: 'patients-summary'
+        }, {
+          title: 'Problems / Diagnoses',
+          state: 'diagnoses'
         }]
       })
       .state('diagnoses-detail', {
@@ -133,7 +154,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'patients-summary'
         }, {
           title: 'Problems / Diagnoses',
-          state: 'diagnoses-list'
+          state: 'diagnoses'
         }]
       })
 

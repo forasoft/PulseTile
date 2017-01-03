@@ -17,7 +17,7 @@
 import uiRouter from 'angular-ui-router';
 import ngAnimate from 'angular-animate';
 import uiBootstrap from 'angular-ui-bootstrap';
-import 'bootstrap';
+// import 'bootstrap';
 import ngRedux from 'ng-redux';
 import dirPagination from 'angular-utils-pagination';
 import createLogger from 'redux-logger';
@@ -36,7 +36,6 @@ import actions from './actions';
 import httpMiddleware from './helpers/httpMiddleware';
 import AdvancedSearch from './helpers/advancedSearch';
 import Patient from './helpers/patient';
-import DiagnosesModal from './rippleui/pages/diagnoses/diagnoses-modal';
 import VaccinationsModal from './rippleui/pages/vaccinations/vaccinations-modal';
 import OrdersModal from './rippleui/pages/orders/orders-modal';
 import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
@@ -62,7 +61,9 @@ import PatientsSidebarComponent from './rippleui/pages/patients-detail/patients-
 import PatientsBannerComponent from './rippleui/pages/patients-detail/patients-banner.component';
 import SearchComponent from './rippleui/search/search.component';
 import ReportChartComponent from './rippleui/search/report-chart.component';
+
 import DiagnosesListComponent from './rippleui/pages/diagnoses/diagnoses-list.component';
+import DiagnosesCreateComponent from './rippleui/pages/diagnoses/diagnoses-create.component';
 import DiagnosesDetailComponent from './rippleui/pages/diagnoses/diagnoses-detail.component';
 
 import AllergiesListComponent from './rippleui/pages/allergies/allergies-list.component';
@@ -126,7 +127,6 @@ const app = angular
     ])
     .factory('httpMiddleware', httpMiddleware)
     .factory('AdvancedSearch', AdvancedSearch)
-    .factory('DiagnosesModal', DiagnosesModal)
     .factory('VaccinationsModal', VaccinationsModal)
     .factory('OrdersModal', OrdersModal)
     .factory('ReferralsModal', ReferralsModal)
@@ -149,7 +149,9 @@ const app = angular
     .component('patientsSummaryComponent', PatientsSummaryComponent)
     .component('patientsSidebarComponent', PatientsSidebarComponent)
     .component('patientsBannerComponent', PatientsBannerComponent)
+
     .component('diagnosesListComponent', DiagnosesListComponent)
+    .component('diagnosesCreateComponent', DiagnosesCreateComponent)
     .component('diagnosesDetailComponent', DiagnosesDetailComponent)
 
     .component('allergiesListComponent', AllergiesListComponent)

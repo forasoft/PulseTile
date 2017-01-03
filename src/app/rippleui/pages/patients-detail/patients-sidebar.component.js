@@ -31,7 +31,7 @@ class PatientsSidebarController {
       },
       {
         name: 'diagnosis',
-        link: 'diagnoses-list',
+        link: 'diagnoses',
         linkDetail: 'diagnoses-detail',
         title: 'Problems / Diagnosis'
       },

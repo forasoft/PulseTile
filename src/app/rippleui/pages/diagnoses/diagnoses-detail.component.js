@@ -16,8 +16,21 @@
 let templateDiagnosesDetail= require('./diagnoses-detail.html');
 
 class DiagnosesDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, patientsActions, diagnosesActions, DiagnosesModal, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, patientsActions, diagnosesActions, serviceRequests, usSpinnerService) {
     $scope.isEdit = false;
+
+    this.setCurrentPageData = function (data) {
+      if (data.patientsGet.data) {
+        this.currentPatient = data.patientsGet.data;
+      }
+      if (data.diagnoses.dataGet) {
+        this.diagnosis = data.diagnoses.dataGet;
+        usSpinnerService.stop('diagnosisDetail-spinner');
+      }
+      if (serviceRequests.currentUserData) {
+        this.currentUser = serviceRequests.currentUserData;
+      }
+    };
 
     this.edit = function () {
       $scope.isEdit = true;
@@ -78,19 +91,6 @@ class DiagnosesDetailController {
       return result.charAt(0).toUpperCase() + result.slice(1);
     };
 
-    this.setCurrentPageData = function (data) {
-      if (data.patientsGet.data) {
-        this.currentPatient = data.patientsGet.data;
-      }
-      if (data.diagnoses.dataGet) {
-        this.diagnosis = data.diagnoses.dataGet;
-        usSpinnerService.stop('diagnosisDetail-spinner');
-      }
-      if (data.user.data) {
-        this.currentUser = data.user.data;
-      }
-    };
-
     let unsubscribe = $ngRedux.connect(state => ({
       getStoreData: this.setCurrentPageData(state)
     }))(this);
@@ -108,5 +108,5 @@ const DiagnosesDetailComponent = {
   controller: DiagnosesDetailController
 };
 
-DiagnosesDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions', 'diagnosesActions', 'DiagnosesModal', 'usSpinnerService'];
+DiagnosesDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions', 'diagnosesActions', 'serviceRequests', 'usSpinnerService'];
 export default DiagnosesDetailComponent;

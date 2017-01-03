@@ -14,7 +14,7 @@
   ~  limitations under the License.
 */
 
-let templateAllergiesCreate= require('./allergies-create.html');
+let templateAllergiesCreate = require('./allergies-create.html');
 
 class AllergiesCreateController {
   constructor($scope, $state, $stateParams, $ngRedux, allergiesActions, serviceRequests) {

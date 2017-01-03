@@ -65,7 +65,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label class="control-label">Terminology Code</label>
-                  <div class="form-control-static">{{ allergy.terminologyCode }}</div>
+                  <div class="non-edit-value">{{ allergy.terminologyCode }}</div>
                 </div>
               </div>
             </div>
@@ -92,7 +92,7 @@
           </div>
         </form>
       </div>
-      <div class="panel-control" ng-if="$ctrl.currentUser.permissions.indexOf('WRITE') !== -1">
+      <div class="panel-control">
         <div class="wrap-control-group">
           <div class="control-group right">
             <button class="btn btn-danger" ng-click="$ctrl.cancel()"><i class="fa fa-ban"></i> Cancel</button>

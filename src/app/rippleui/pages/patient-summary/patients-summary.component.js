@@ -30,7 +30,7 @@ class PatientsSummaryController {
       var toState = '';
       switch (section) {
         case 'Problems':
-          toState = 'diagnoses-list';
+          toState = 'diagnoses';
           break;
         case 'Allergies':
           toState = 'allergies';
