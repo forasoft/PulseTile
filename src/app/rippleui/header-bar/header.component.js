@@ -19,11 +19,7 @@ class HeaderController {
   constructor($rootScope, $scope, $state, $stateParams, $ngRedux, patientsActions, AdvancedSearch, serviceRequests) {
 
     var self = this;
-    this.getPageHeader = function (data) {
-      $scope.pageHeader = data.title;
-      $scope.isPageHeader = data.isShowTitle;
-      $scope.searchBar = data.title === 'Welcome' ? false : true;
-    };
+
     this.goHome = function () {
       // $state.go('patients-charts');
       if ($scope.title === 'PHR POC') return; 
@@ -307,10 +303,26 @@ class HeaderController {
       $scope.searchBar = expression.headerSearchEnabled;
       self.currentNavTab = 'searchBar';
     };
+    this.getPageHeader = function (data) {
+      $scope.pageHeader = data.title;
+      $scope.isPageHeader = data.isShowTitle;
+      $scope.searchBar = data.title === 'Welcome' ? false : true;
+    };
+    this.checkIsShowPreviousBtn = function () {
+      $scope.isShowPreviousBtn = $state.router.globals.$current.name !== 'main-search';
+    }
     
     serviceRequests.subscriber('routeState', this.getPageComponents);
     serviceRequests.subscriber('populateHeaderSearch', this.getPopulateHeaderSearch);
     serviceRequests.subscriber('headerTitle', this.getPageHeader);
+
+    angular.element(document).ready(function () {
+      this.checkIsShowPreviousBtn()
+    }.bind(this));
+    
+    $rootScope.$on('$locationChangeStart', function() {
+      this.checkIsShowPreviousBtn()
+    }.bind(this));
   }
 
 }

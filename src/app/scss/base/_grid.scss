@@ -21,8 +21,8 @@
     padding-right: $gutter-small;
   }
 }
-.col-page-1,
-.col-page-2, {
+.col-panel-main,
+.col-panel-details, {
   width: 100%;
   padding-left: $gutter-small;
   padding-right: $gutter-small;
@@ -37,13 +37,21 @@
       padding-right: $gutter-big;
     }
   }
-  .col-page-1,
-  .col-page-2, {
+  .col-panel-main,
+  .col-panel-details, {
     padding-left: $gutter-big;
     padding-right: $gutter-big;
   }
 }
 @include respond-to(md) {
-  .col-page-1  {width: 52.2%;}
-  .col-page-2 {width: 47.8%;}
+  .col-panel-main  {width: 52.2%;}
+  .col-panel-details {width: 47.8%;}
+  .full-panel-main {
+    .col-panel-main  {width: 100%;}
+    .col-panel-details {display: none;}
+  }
+  .full-panel-details {
+    .col-panel-main {display: none;}
+    .col-panel-details  {width: 100%;}
+  }
 }

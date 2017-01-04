@@ -24,7 +24,7 @@ class PatientsController {
     
     vm.query = '';
     vm.isFilter = false;
-
+    
     vm.toggleFilter = function () {
       vm.isFilter = !vm.isFilter;
     };
@@ -77,7 +77,7 @@ class PatientsController {
     };
 
     if ($stateParams.patientsList.length === 0 && !$stateParams.displayEmptyTable) {
-      vm.order = $stateParams.order || 'name';
+      vm.order = $stateParams.order || 'nhsNumber';
       vm.reverse = $stateParams.reverse === 'true';
       vm.filters = {
         department: $stateParams.department,

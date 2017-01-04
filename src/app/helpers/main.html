@@ -18,7 +18,7 @@
 
   <div class="content">
     <!-- Sidebar-->
-    <div class="sidebar" ng-if="isSidebar === true" role="navigation" >
+    <div class="sidebar" ng-if="isSidebar" role="navigation" >
         <div class="sidebar-nav">
           <div side-menu ui-view="actions"></div>
         </div>
@@ -45,16 +45,23 @@
       
       <!-- /page-wrapper -->
       <div class="page-wrapper">
-          <div class="section">
-              <div class="row">
-                  <div class="col-xs-12 col-md-{{mainWidth}}">
-                      <div class="section-main" ui-view="main"></div>
-                  </div>
-                  <div class="col-xs-12 col-md-{{detailWidth}}">
-                      <div class="section-detail" ui-view="detail"></div>
-                  </div>
-              </div>
+        <div class="section" ng-if="!isSecondPanel">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="section-main" ui-view="main"></div>
+            </div>
           </div>
+        </div>
+        <div class="section" ng-class="getFullPanelClass()" ng-if="isSecondPanel">
+          <div class="row">
+            <div class="col-xs-12 col-panel-main">
+              <div class="section-main" ui-view="main"></div>
+            </div>
+            <div class="col-xs-12 col-panel-details" ng-if="isSecondPanel">
+              <div class="section-detail" ui-view="detail"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

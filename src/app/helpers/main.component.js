@@ -16,77 +16,46 @@
 class MainController {
   constructor($window, $rootScope, $scope, $state, $stateParams, serviceRequests) {
     $scope.previousState = '';
-    $scope.pageHeader = '';
     $scope.previousPage = '';
     $scope.isSidebar = false;
+    $scope.isSecondPanel = false;
+    $scope.fullPanelClass = '';
     $scope.classShowSidebar = '';
     $scope.breadcrumbs;
 
-    $scope.mainWidth = 0;
-    $scope.detailWidth = 0;
     $scope.getState = function (state) {
-      console.log('state.name');
-      console.log(state.name);
       switch (state.name) {
-        case 'profile':
-          $scope.mainWidth = 12;
-          $scope.detailWidth = 0;
-          break;
         case 'main-search':
           $scope.previousState = '';
-          $scope.pageHeader = 'Welcome';
           $scope.previousPage = '';
-          $scope.mainWidth = 12;
-          $scope.detailWidth = 0;
           break;
         case 'patients-list':
           $scope.previousState = 'patients-charts';
-          $scope.pageHeader = 'Patient Lists';
           $scope.previousPage = 'Patient Dashboard';
-          $scope.mainWidth = 12;
-          $scope.detailWidth = 0;
           break;
         case 'patients-charts':
           $scope.previousState = '';
-          $scope.pageHeader = 'Patient Dashboard';
           $scope.previousPage = '';
-          $scope.mainWidth = 12;
-          $scope.detailWidth = 0;
           break;
         case 'patients-summary':
           $scope.previousState = 'patients-list';
-          $scope.pageHeader = 'Patient Summary';
           $scope.previousPage = 'Patient Lists';
-          $scope.mainWidth = 12;
-          $scope.detailWidth = 0;
           break;
         case 'patients-lookup':
           $scope.previousState = '';
-          $scope.pageHeader = 'Patients lookup';
           $scope.previousPage = '';
-          $scope.mainWidth = 6;
-          $scope.detailWidth = 6;
           break;
         case 'search-report':
           $scope.previousState = 'patients-charts';
-          $scope.pageHeader = 'Report Search';
           $scope.previousPage = 'Patient Dashboard';
-          $scope.mainWidth = 12;
-          $scope.detailWidth = 0;
           break;
         case 'patients-list-full':
           $scope.previousState = 'patients-charts';
-          $scope.pageHeader = 'Patients Details';
           $scope.previousPage = 'Patient Dashboard';
-          $scope.mainWidth = 12;
-          $scope.detailWidth = 0;
           break;
         default:
           $scope.previousState = 'patients-list';
-          $scope.pageHeader = 'Patients Details';
           $scope.previousPage = 'Patient Lists';
-          $scope.mainWidth = 6;
-          $scope.detailWidth = 6;
           break;
         }
     };
@@ -103,10 +72,22 @@ class MainController {
     this.getPageComponents = function (data) {
       $scope.getState(data);
       $scope.setBreadcrumbs(data.breadcrumbs);
-      $scope.userContextViewExists = ('banner' in data.state);
-      $scope.actionsExists = ('actions' in data.state);
+      // $scope.userContextViewExists = ('banner' in data.state);
+      // $scope.actionsExists = ('actions' in data.state);
     };
     serviceRequests.subscriber('routeState', this.getPageComponents);
+
+    $scope.getFullPanelClass = function () {
+      return $scope.fullPanelClass ? 'full-panel full-panel-' + $scope.fullPanelClass : '';
+    };
+    this.changeFullPanel = function (data) {
+      if ($scope.fullPanelClass === data.panelName) {
+        $scope.fullPanelClass = '';
+      } else {
+        $scope.fullPanelClass = data.panelName;
+      }
+    }
+    serviceRequests.subscriber('changeFullPanel', this.changeFullPanel);
 
     this.changeClassShowSidebar = function (data) {
       if (data.click) {
@@ -117,14 +98,16 @@ class MainController {
         }
       }
     };
+    this.hideSidebarOnMobile = function () {
+      if (window.innerWidth < 768) {
+        $scope.classShowSidebar = '';
+      }
+    };
     serviceRequests.subscriber('changeStateSidebar', this.changeClassShowSidebar);
 
-    this.checkIsSidebar = function() {
-      if($state.router.globals.$current.views.actions) {
-        $scope.isSidebar = true;
-      } else {
-        $scope.isSidebar = false;
-      }
+    this.checkIsViews = function() {
+      $scope.isSecondPanel = $state.router.globals.$current.views.detail ? true : false;
+      $scope.isSidebar = $state.router.globals.$current.views.actions ? true : false;
     };
 
     this.setHeightSidebarForMobile = function() {
@@ -145,16 +128,19 @@ class MainController {
     serviceRequests.subscriber('setHeightSidebar', this.setHeightSidebarForMobile);
     
     angular.element(document).ready(function () {
-      this.checkIsSidebar();
+      this.checkIsViews();
       this.setHeightSidebarForMobile();
     }.bind(this));
     
     $window.addEventListener('resize', function () {
       this.setHeightSidebarForMobile();
+      this.hideSidebarOnMobile();
     }.bind(this));
 
     $rootScope.$on('$locationChangeStart', function() {
-      this.checkIsSidebar();
+      $scope.fullPanelClass = '';
+      this.hideSidebarOnMobile();
+      this.checkIsViews();
     }.bind(this));
  
   }

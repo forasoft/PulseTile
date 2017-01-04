@@ -34,6 +34,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
         url: '/profile',
         views: {
           main: {template: '<profile-component></profile-component>'},
+          actions: {}
         },
         breadcrumbs: [{
           title: 'Patient Listings',
@@ -46,7 +47,8 @@ function routeConfig($stateProvider, $urlRouterProvider) {
       .state('main-search', {
         url: '/search',
         views: {
-          main: {template: '<search-component><search-component>'}
+          main: {template: '<search-component><search-component>'},
+          actions: {}
         }
 
       })
@@ -59,13 +61,15 @@ function routeConfig($stateProvider, $urlRouterProvider) {
       .state('patients-charts', {
         url: '/charts',
         views: {
-          main: {template: '<patients-charts-component><patients-charts-component>'}
+          main: {template: '<patients-charts-component><patients-charts-component>'},
+          actions: {}
         }
       })
       .state('patients-list', {
         url: '/patients?ageRange&department&order&reverse',
         views: {
-          main: {template: '<patients-component><patients-component>'}
+          main: {template: '<patients-component><patients-component>'},
+          actions: {}
         },
         params: { patientsList: [], advancedSearchParams: [], displayEmptyTable: false }
       })
@@ -88,13 +92,15 @@ function routeConfig($stateProvider, $urlRouterProvider) {
       .state('search-report', {
         url: '/search-report?searchString',
         views: {
-          main: {template: '<report-chart-component><report-chart-component>'}
+          main: {template: '<report-chart-component><report-chart-component>'},
+          actions: {}
         }
       })
       .state('patients-list-full', {
         url: '/patients-full-details?ageFrom&ageTo&orderType&pageNumber&reportType&searchString&queryType',
         views: {
-          main: {template: '<patients-list-full-component><patients-list-full-component>'}
+          main: {template: '<patients-list-full-component><patients-list-full-component>'},
+          actions: {}
         }
       })
 
@@ -419,7 +425,6 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<referrals-list-component></referrals-list-component>'}
         }
       })
-
       .state('referrals-detail', {
         url: '/patients/{patientId:int}/referrals/{referralId}?filter&page&reportType&searchString&queryType',
         views: {
@@ -438,7 +443,6 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           main: {template: '<procedures-list-component></procedures-list-component>'}
         }
       })
-
       .state('procedures-detail', {
         url: '/patients/{patientId:int}/procedures/{procedureId}?filter&page&reportType&searchString&queryType&source',
         views: {
@@ -486,6 +490,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'results'
         }]
       })
+
       .state('documents', {
         url: '/patients/{patientId:int}/documents?reportType&searchString&queryType',
         views: {
@@ -503,6 +508,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           detail: {template: '<documents-detail-component></documents-detail-component>'}
         }
       })
+
       .state('appointments', {
         url: '/patients/{patientId:int}/appointments?reportType&searchString&queryType',
         views: {
@@ -520,6 +526,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           detail: {template: '<appointments-detail-component></appointments-detail-component>'}
         }
       })
+
       .state('images', {
         url: '/patients/{patientId:int}/images?filter&page&reportType&searchString&queryType',
         views: {
@@ -537,6 +544,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           detail: {template: '<image-detail-component></image-detail-component>'}
         }
       })
+
       .state('eolcareplans', {
         url: '/patients/{patientId:int}/eolcareplans?reportType&searchString&queryType',
         views: {
@@ -630,6 +638,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           detail: {template: '<height-and-weight-detail-component></height-and-weight-detail-component>'}
         }
       })
+
       .state('genericMdt', {
         url: '/patients/{patientId:int}/generic-mdt-list?reportType&searchString&queryType',
         views: {
@@ -647,6 +656,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           detail: {template: '<generic-mdt-detail-component></generic-mdt-detail-component>'}
         }
       })
+      
       .state('transferOfCare', {
         url: '/patients/{patientId:int}/transfer-of-care-list?reportType&searchString&queryType',
         views: {

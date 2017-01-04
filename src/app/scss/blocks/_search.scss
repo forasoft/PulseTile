@@ -71,10 +71,10 @@
   }
 }
 .header-search {
-  float: right;
   width: 100%;
   @include respond-to(sm) {
     max-width: 452px;
+    margin: 0 auto;
   }
 }
 .header-search-inner {

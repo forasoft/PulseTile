@@ -146,3 +146,12 @@
   padding: 0;
   width: 36px;
 }
+
+.btn-expand-panel {
+  .fa.fa-expand {display: inline-block;}
+  .fa.fa-compress {display: none;}
+}
+.full-panel .btn-expand-panel {
+  .fa.fa-expand {display: none;}
+  .fa.fa-compress {display: inline-block;}
+}

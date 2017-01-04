@@ -17,7 +17,7 @@
 import uiRouter from 'angular-ui-router';
 import ngAnimate from 'angular-animate';
 import uiBootstrap from 'angular-ui-bootstrap';
-import 'bootstrap';
+// import 'bootstrap';
 import ngRedux from 'ng-redux';
 import dirPagination from 'angular-utils-pagination';
 import createLogger from 'redux-logger';
@@ -235,7 +235,7 @@ const app = angular
         }
       }
     })
-    .directive('mcAccordion', function($timeout) {
+    .directive('mcAccordion', function() {
       return {
         link: function(scope, element, attrs) {
             scope.panelOpen = '';
@@ -255,6 +255,15 @@ const app = angular
             });
         }
       }
+    })
+    .directive('mcFullPanel', function() {
+        return {
+            controller: ['$scope', 'serviceRequests', function($scope, serviceRequests) {
+                $scope.changeFullPanel = function (panelName) {
+                    serviceRequests.publisher('changeFullPanel', {panelName: panelName});
+                };
+            }]
+        };
     })
     .filter('formatNHSNumber', function() {
         return function(number) {
