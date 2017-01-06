@@ -32,7 +32,8 @@
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "nyc-report-coverage": "nyc report --reporter=text-lcov | coverage.lcov && codecov",
     "cover": "nyc --reporter=lcov npm t",
-    "validate": "npm run cover && npm run check-coverage"
+    "validate": "npm run cover && npm run check-coverage",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
     "autoprefixer": "~6.3.6",
@@ -111,6 +112,7 @@
     "nyc": "^10.0.0",
     "raphael": "^2.2.6",
     "redux": "^3.5.2",
+    "semantic-release": "^6.3.2",
     "underscore": "^1.8.3"
   }
 }
