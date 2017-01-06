@@ -17,12 +17,11 @@ let templatePatientsCharts = require('./patients-charts.html');
 
 class PatientsChartsController {
   constructor($scope, $state, $window, patientsActions, $ngRedux, $uibModal, serviceRequests, $timeout, Patient) {
-    serviceRequests.publisher('headerTitle', {title: 'Patient Dashboard'});
+    serviceRequests.publisher('headerTitle', {title: 'System Dashboard', isShowTitle: true});
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, name: 'patients-charts'});
     // Selected chart on page load
-    this.selectedChart = 'age';
-    var prevChartName = '';
 
+    //click on "View all Patients"
     var openModal = function (row, chartType) {
       $uibModal.open({
         template: require('app/rippleui/confirmation.html'),
@@ -40,6 +39,8 @@ class PatientsChartsController {
                 $state.go('patients-list');
                 break;
               case 'age':
+                console.log('row.series');
+                console.log(row.series);
                 $state.go('patients-list', { ageRange: row.series });
                 break;
               case 'summary':
@@ -57,20 +58,43 @@ class PatientsChartsController {
       });
     };
 
-    this.openModal = function (row, chartType) {
-      openModal(row, chartType);
+    //click on "Spine Lookup"
+    this.goToLookUp = function () {
+      $state.go('patients-lookup');
     };
+
+    var goToPatients = function (row, chartType) {
+      switch (chartType) {
+        case 'all':
+          $state.go('patients-list');
+          break;
+        case 'age':
+          $state.go('patients-list', { ageRange: row.series });
+          break;
+        case 'summary':
+          if (row.series === 'All') {
+            row.series = null;
+          }
+          $state.go('patients-list', { department: row.series });
+          break;
+        default:
+          $state.go('patients-list');
+          break;
+      }
+    };
+
 
     var ageChart = function (summaries) {
       $timeout(function () {
         $window.Morris.Bar({
-          element: 'age-chart',
+          element: 'chart-age',
           resize: true,
           data: summaries.age,
           ykeys: ['value'],
           xkey: 'series',
           labels: ['Patients'],
-          barColors: ['#7E28CD'],
+          hideHover: true,
+          barColors: ['#7e29cd'],
           ymin: 0,
           ymax: 46,
           barGap: 4,
@@ -78,7 +102,7 @@ class PatientsChartsController {
           xLabelAngle: 50,
           redraw: true
         }).on('click', function (i, row) {
-          openModal(row, 'age');
+          goToPatients(row, 'age');
         });
       }, 200);
     };
@@ -86,14 +110,14 @@ class PatientsChartsController {
     var departmentChart = function (summaries) {
       $timeout(function () {
         $window.Morris.Bar({
-          element: 'department-chart',
+          element: 'chart-department',
           resize: true,
           data: summaries.department,
           ykeys: ['value'],
           xkey: 'series',
           labels: ['Patients'],
           hideHover: true,
-          barColors: ['#25A174'],
+          barColors: ['#24a174'],
           ymin: 0,
           ymax: 40,
           barGap: 4,
@@ -101,7 +125,33 @@ class PatientsChartsController {
           xLabelAngle: 50,
           redraw: true
         }).on('click', function (i, row) {
-          openModal(row, 'summary');
+          goToPatients(row, 'summary');
+        });
+      }, 200);
+    };
+
+    /*
+      only for demo
+    */
+    var geographyChart = function (summaries) {
+      $timeout(function () {
+        $window.Morris.Bar({
+          element: 'chart-geography',
+          resize: true,
+          data: summaries.age,
+          ykeys: ['value'],
+          xkey: 'series',
+          labels: ['Patients'],
+          hideHover: true,
+          barColors: ['#ff6666'],
+          ymin: 0,
+          ymax: 40,
+          barGap: 4,
+          barSizeRatio: 0.55,
+          xLabelAngle: 50,
+          redraw: true
+        }).on('click', function (i, row) {
+          goToPatients(row, 'age');
         });
       }, 200);
     };
@@ -120,13 +170,10 @@ class PatientsChartsController {
       $state.go('patients-list');
     };
 
-    this.goToLookUp = function () {
-      $state.go('patients-lookup');
-    };
+
 
     this.getPatients = function (patients) {
-      if (this.selectedChart !== prevChartName && patients) {
-        prevChartName = this.selectedChart;
+      if (patients) {
         var summaries = {};
         var changedPatients = [];
 
@@ -148,9 +195,8 @@ class PatientsChartsController {
               value: value
             };
           })
-
-        .reverse()
-          .value();
+          .reverse()
+            .value();
 
         swapArrayElements(summaries.age, 3, 4);
 
@@ -172,11 +218,9 @@ class PatientsChartsController {
           })
           .value();
 
-        if (this.selectedChart === 'age') {
-          ageChart(summaries);
-        } else {
-          departmentChart(summaries);
-        }
+        ageChart(summaries);
+        departmentChart(summaries);
+        geographyChart(summaries);
 
         return summaries;
       } else {
@@ -186,10 +230,12 @@ class PatientsChartsController {
 
     // Clear previous chart
     this.toggleChart = function () {
-      angular.element(document.querySelector('#age-chart')).empty();
-      angular.element(document.querySelector('#department-chart')).empty();
-      angular.element(document.querySelector('#age-chart')).off('click');
-      angular.element(document.querySelector('#department-chart')).off('click');
+      angular.element(document.querySelector('#chart-age')).empty();
+      angular.element(document.querySelector('#chart-department')).empty();
+      angular.element(document.querySelector('#chart-geography')).empty();
+      angular.element(document.querySelector('#chart-age')).off('click');
+      angular.element(document.querySelector('#chart-department')).off('click');
+      angular.element(document.querySelector('#chart-geography')).off('click');
 
       let unsubscribe = $ngRedux.connect(state => ({
         setPatients: self.getPatients(state.patients.data)

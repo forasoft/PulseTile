@@ -15,71 +15,62 @@
   -->
 <!-- START Main Content Area -->
 <div class ="row">
-  <div class="col-md-3 col-sm-3 col-xs-12 text-center main-nav">
-    <a class="button viewall" ng-click="$ctrl.openModal()">
-        <i class="fi-results-demographics"></i><br> View all Patients
-    </a>
-    <a class="button spine" ng-click="$ctrl.goToLookUp()">
-        <i class="fi-magnifying-glass"></i><br> Spine Lookup
-    </a>
-  </div>
-  <div class="col-md-7 col-sm-7 col-xs-12 chart-inner">
-    <select ng-model="$ctrl.selectedChart" ng-change="$ctrl.toggleChart()" name="type" class="form-control chartSelectList">
-      <option value="age">Patients By Age</option>
-      <option value="setting">Patients By Setting</option>
-    </select>
-    <br>
-
-    <!-- Age Chart -->
-    <div class="chart age" ng-class="{hoverChart: hover}" ng-if="$ctrl.selectedChart==='age'" ng-mouseenter="hover = true" ng-mouseleave="hover = false" id="age">
-      <span class="fa-stack fa-lg pull-left chart-fa-stack hidden-xs" >
-        <i class="fa fa-circle fa-stack-2x cake-icon"></i>
-        <i class="fa fa-birthday-cake fa-stack-1x fa-inverse"></i>
-      </span>
-      <div class ="chart-title-group-container hidden-xs">
-        <div class="pull-left chart-title-group">
-          <h2 class="chart-title">Patients by <span class="chart-title-age">Age</span></h2>
-          <p class="chart-description">This is a brief description of patients by age.</p>
+  <div class="col-xs-12 col-md-6">
+    <div class="panel panel-secondary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-bar-chart"></i> Patients By Setting</h3>
+      </div>
+      <div class="panel-body">
+        <div class="panel-body-inner">
+          <div class="chart" ng-class="{hoverChart: hoverSettings}" ng-mouseenter="hoverSettings = true" ng-mouseleave="hoverSettings = false">
+            <div class="chart-title-group">
+              <h2 class="chart-title">Patients By Setting</h2>
+              <p class="chart-subtitle">This is a brief description of patients by setting.</p>
+            </div>
+            <div id="chart-department" class="chart-wrapper"></div>
+          </div>
         </div>
       </div>
-      <br><br>
-      <span class="fa-stack fa-lg pull-left chart-fa-stack visible-xs" style="margin-left:10px; ">
-        <i class="fa fa-circle fa-stack-2x cake-icon"></i>
-        <i class="fa fa-birthday-cake fa-stack-1x fa-inverse"></i>
-      </span>
-      <div class="chart-title-group-container">
-        <div class="pull-left chart-title-group-mobile visible-xs">
-          <h2 class="chart-title" >Patients by <span class="chart-title-age">Age</span></h2>
-          <p class="chart-description visible-xs">This is a brief description of patients by age.</p>
-        </div>
-      </div>
-      <div id="age-chart"></div>
     </div>
-    <!-- END Age Chart -->
-    <!--  Chart Setting -->
-    <div class="chart setting" ng-class="{hoverChart: hover}" ng-if="$ctrl.selectedChart==='setting'" ng-mouseenter="hover = true" ng-mouseleave="hover = false" id="setting">
-      <span class="fa-stack fa-lg pull-left chart-fa-stack hidden-xs" >
-        <i class="fa fa-circle fa-stack-2x map-marker-icon"></i>
-        <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
-      </span>
-      <div class="chart-title-group-container hidden-xs">
-        <div class="pull-left chart-title-group">
-          <h2 class="chart-title">Patients by <span class="chart-title-setting">Setting</span></h2>
-          <p class="chart-description">This is a brief description of patients by setting.</p>
+  </div>
+
+  <div class="col-xs-12 col-md-6">
+    <div class="panel panel-secondary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-bar-chart"></i> Patients By Age</h3>
+      </div>
+      <div class="panel-body">
+        <div class="panel-body-inner">
+          <div class="chart" ng-class="{hoverChart: hoverAge}" ng-mouseenter="hoverAge = true" ng-mouseleave="hoverAge = false">
+            <div class="chart-title-group">
+              <h2 class="chart-title">Patients By Age</h2>
+              <p class="chart-subtitle">This is a brief description of patients by age.</p>
+            </div>
+            <div id="chart-age" class="chart-wrapper"></div>
+          </div>
         </div>
       </div>
-      <br><br>
-      <span class="fa-stack fa-lg pull-left chart-fa-stack visible-xs" style="margin-left:10px; ">
-        <i class="fa fa-circle fa-stack-2x map-marker-icon"></i>
-        <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
-      </span>
-      <div class="chart-title-group-container visible-xs">
-        <div class="pull-left chart-title-group-mobile">
-          <h2 class="chart-title" >Patients by <span class="chart-title-setting">Setting</span></h2>
-          <p class="chart-description visible-xs" >This is a brief description of patients by setting.</p>
+    </div>
+  </div>
+</div>
+
+<div class ="row">
+  <div class="col-xs-12">
+    <div class="panel panel-secondary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-bar-chart"></i> Patients By Age</h3>
+      </div>
+      <div class="panel-body">
+        <div class="panel-body-inner">
+          <div class="chart age" ng-class="{hoverChart: hoverGeography}" ng-mouseenter="hoverGeography = true" ng-mouseleave="hoverGeography = false" id="age">
+            <div class="chart-title-group">
+              <h2 class="chart-title">Patients By Geography</h2>
+              <p class="chart-subtitle">This is a brief description of patients by geography.</p>
+            </div>
+            <div id="chart-geography" class="chart-wrapper"></div>
+          </div>
         </div>
       </div>
-      <div id="department-chart"></div>
     </div>
   </div>
 </div>

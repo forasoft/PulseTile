@@ -50,9 +50,6 @@
 .btn-header.btn-user {
   font-size: 21px;
 }
-@include respond-to(xs) {
-  .btn-header.btn-user {width: 38px;}
-}
 .btn-notification {
   font-size: 18px;
   @include respond-to(xs) {

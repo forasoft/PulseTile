@@ -25,7 +25,11 @@ import 'angular-loading-bar';
 import 'fullcalendar';
 import 'angular-ui-calendar';
 import 'jquery';
+
 import 'morrisjs';
+// import * as d3js from "d3";
+// import "d3";
+
 import 'angular-spinner';
 import 'jquery-timepicker-jt';
 import 'angular-jquery-timepicker';
@@ -126,7 +130,8 @@ const app = angular
         'angularSpinner',
         'ui.calendar',
         'ui.timepicker',
-        'angular-loading-bar'
+        'angular-loading-bar',
+        // d3js
     ])
     .factory('httpMiddleware', httpMiddleware)
     .factory('AdvancedSearch', AdvancedSearch)

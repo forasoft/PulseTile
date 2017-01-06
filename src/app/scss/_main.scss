@@ -304,110 +304,7 @@ legend {
   color: #000066;
 }
 
-#age-chart {
-  height: 350px;
-  align-content: center;
-  padding-bottom: 0;
-}
 
-#department-chart {
-  height: 350px;
-  align-content: center;
-  padding-bottom: 30px;
-}
-
-svg {
-  height: 350px;
-}
-
-.chart-inner {
-  border: 1px solid #bdbdbd;
-  border-radius: 4px;
-  background-color: #fff;
-  padding-top: 10px;
-  margin-bottom: 0;
-  padding-bottom: 20px;
-}
-
-.chart-inner select.form-control {
-  width: auto;
-}
-
-.chart-title {
-  color: #000000;
-  font-size: 22px;
-  margin-bottom: 5px;
-}
-
-.chart-description {
-  color: #767676;
-  font-size: 16px;
-}
-
-.chart-fa-stack {
-  padding-top: 18px;
-  font-size: 30px;
-}
-
-.chart-title-group-container {
-  overflow: hidden;
-}
-
-.chart-title-group {
-  margin-left: 30px;
-  font-size: 18px;
-  font-family: "MyriadPro";
-}
-
-.chart-title-age {
-  color: #7E28CD;
-}
-
-.chart-title-setting {
-  color: #25A174;
-}
-
-.cake-icon:before {
-  color: #7E28CD;
-}
-
-.map-marker-icon:before {
-  color: #25A174;
-}
-
-.chartSelectList {
-  float: right;
-}
-
-
-/* Charts in mobile view*/
-
-@media (max-width: 768px) {
-  .chart-inner {
-    display: inline-block;
-    padding-left: 0;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 0px;
-  }
-  #age-chart {
-    height: 300px;
-    padding-left: 20px;
-  }
-  #department-chart {
-    height: 300px;
-    padding-left: 20px;
-  }
-  .chart-title-group {
-    padding-top: 20px;
-  }
-  .chart-title-group-mobile {
-    padding-top: 10px;
-    padding-left: 10px;
-    font-size: 18px;
-    font-family: "MyriadPro";
-  }
-}
 
 .main-nav a.button {
   display: block;
@@ -512,9 +409,6 @@ svg {
   border:1px solid $rounded-connected-background;
   background-color: $rounded-connected-background;
 }
-
-
-/* Toggle Charts */
 
 
 /* Use this instead of hide as doesn't carry the '!important'a attribute.
@@ -1091,13 +985,7 @@ i.fa.cancel-reportType.fa-times {
   margin-top: -2px;
 }
 
-div#age-chart div.morris-hover.morris-default-style {
-  display: none !important;
-}
 
-.hoverChart div#age-chart div.morris-hover.morris-default-style {
-  display: block !important;
-}
 
 .dicom-image {
   margin: auto;

@@ -1,9 +1,5 @@
 .user-panel {
   float: right;
-  background: #f7f7f7;
-  @include respond-to(xs) {
-    padding-right: 14px;
-  }
   & > li {
     float: left;
     &.open .btn-header,

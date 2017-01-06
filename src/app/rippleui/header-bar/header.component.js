@@ -24,6 +24,7 @@ class HeaderController {
       // $state.go('patients-charts');
       if ($scope.title === 'PHR POC') return; 
       $state.go('patients-list');
+      // $state.go('patients-charts');
     };
     this.goProfile = function () {
       $state.go('profile');
