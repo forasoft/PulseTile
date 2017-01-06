@@ -1,8 +1,9 @@
 # Ripple OSI
 
-[![travis build]](https://travis-ci.org/RippleOSI/PulseTile)
-[![codecov coverage]](https://codecov.io/gh/RippleOSI/PulseTile)
-[![ISC License]](http://opensource.org/licenses/ISC)
+[![travis build](https://img.shields.io/travis/RippleOSI/PulseTile.svg)](https://travis-ci.org/RippleOSI/PulseTile)
+[![Codecov](https://img.shields.io/codecov/c/github/codecov/example-python.svg)](https://codecov.io/gh/RippleOSI/PulseTile)
+[![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)](https://github.com/RippleOSI/PulseTile)
+[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/RippleOSI/PulseTile/tree/develop)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
 Ripple is a clinically led team working with you to build an integrated digital care record platform for today and the future. Open source, open standards and underpinned by an open architecture that can be used worldwide.
