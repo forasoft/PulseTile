@@ -1,6 +1,6 @@
 {
   "name": "Org-Ripple-UI-rf3",
-  "version": "1.3.0",
+  "version": "0.5.0",
   "description": "Ripple OSI App UI built using Angular 1.5 and Redux",
   "homepage": "http://demo.rippleosi.org/",
   "main": "index.js",
