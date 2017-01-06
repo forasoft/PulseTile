@@ -74,8 +74,6 @@ class PatientsController {
       });
 
       vm.patients = curPatients.slice();
-      vm.patientFilter(vm.patients);
-      
     };
 
     if ($stateParams.patientsList.length === 0 && !$stateParams.displayEmptyTable) {
