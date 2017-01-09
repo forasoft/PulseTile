@@ -25,6 +25,7 @@ class ClinicalnotesListController {
     $scope.query = '';
     this.isFilter = false;
     this.isShowCreateBtn = $state.router.globals.$current.name !== 'clinicalNotes-create';
+    this.isShowExpandBtn = $state.router.globals.$current.name !== 'clinicalNotes';
 
 
     this.setCurrentPageData = function (data) {

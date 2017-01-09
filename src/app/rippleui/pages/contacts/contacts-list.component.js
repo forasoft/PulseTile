@@ -26,6 +26,7 @@ class ContactsListController {
     this.currentPage = 1;
     this.isFilter = false;
     this.isShowCreateBtn = $state.router.globals.$current.name !== 'contacts-create';
+    this.isShowExpandBtn = $state.router.globals.$current.name !== 'contacts';
 
     this.toggleFilter = function () {
       this.isFilter = !this.isFilter;

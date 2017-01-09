@@ -24,6 +24,9 @@ class VaccinationsListController {
     this.currentPage = 1;
     this.isFilter = false;
 
+    this.isShowCreateBtn = $state.router.globals.$current.name !== 'vaccinations-create';
+    this.isShowExpandBtn = $state.router.globals.$current.name !== 'vaccinations';
+    
     this.toggleFilter = function () {
       this.isFilter = !this.isFilter;
     };

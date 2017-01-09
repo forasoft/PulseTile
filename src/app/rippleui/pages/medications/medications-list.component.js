@@ -25,6 +25,7 @@ class MedicationsListController {
     this.query = '';
     this.isFilter = false;
     this.isShowCreateBtn = $state.router.globals.$current.name !== 'medications-create';
+    this.isShowExpandBtn = $state.router.globals.$current.name !== 'medications';
 
 
     this.pageChangeHandler = function (newPage) {

@@ -25,6 +25,8 @@ class AllergiesListController {
     this.query = '';
     this.isFilter = false;
     this.isShowCreateBtn = $state.router.globals.$current.name !== 'allergies-create';
+    this.isShowExpandBtn = $state.router.globals.$current.name !== 'allergies';
+    
 
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {

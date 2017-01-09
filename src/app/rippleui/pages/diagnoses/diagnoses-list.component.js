@@ -25,6 +25,7 @@ class DiagnosesListController {
     this.query = '';
     this.isFilter = false;
     this.isShowCreateBtn = $state.router.globals.$current.name !== 'diagnoses-create';
+    this.isShowExpandBtn = $state.router.globals.$current.name !== 'diagnoses';
 
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {

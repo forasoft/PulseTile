@@ -24,6 +24,7 @@ class ResultsListController {
 
     this.query = '';
     this.isFilter = false;
+    this.isShowExpandBtn = $state.router.globals.$current.name !== 'results';
 
     this.toggleFilter = function () {
       this.isFilter = !this.isFilter;
