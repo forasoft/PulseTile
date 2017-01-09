@@ -21,10 +21,11 @@ class HeaderController {
     var self = this;
 
     this.goHome = function () {
-      // $state.go('patients-charts');
       if ($scope.title === 'PHR POC') return; 
       $state.go('patients-list');
-      // $state.go('patients-charts');
+    };
+    this.goChart = function () {
+      $state.go('patients-charts');
     };
     this.goProfile = function () {
       $state.go('profile');
