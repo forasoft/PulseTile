@@ -12,6 +12,7 @@
   line-height: 0;
   margin-right: (-1) * $gutter-small;
   margin-left: (-1) * $gutter-small;
+  min-height: 300px;
   @include respond-to(xs) {
     margin-right: (-1) * $gutter-big;
     margin-left: (-1) * $gutter-big;

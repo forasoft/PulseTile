@@ -23,12 +23,12 @@
   .btn-#{$button},
   .btn-#{$button}:focus,
   .btn-#{$button}:active {
-    background-color: $color;
-    border-color: $color;
+    background-color: $color !important;
+    border-color: $color !important;
     &:hover,
     &.active {
-      background-color: darken($color, 10%);
-      border-color: darken($color, 10%);
+      background-color: darken($color, 10%) !important;
+      border-color: darken($color, 10%) !important;
     }
   }
 }
@@ -60,27 +60,27 @@
 }
 
 .btn-inverse {
-  background: transparent;
-  border: 1px solid #ccc;
+  background: transparent !important;
+  border: 1px solid #ccc !important;
   @each $button, $color in $colored-buttons {
     &.btn-#{$button},
     &.btn-#{$button}:focus,
     &.btn-#{$button}:active {
-      color: $color;
-      border-color: $color;
-      background: transparent;
+      color: $color !important;
+      border-color: $color !important;
+      background: transparent !important;
       &:hover,
       &.active {
         color: darken($color, 10%);
-        background: transparent;
-        border-color: darken($color, 10%);
+        background: transparent !important;
+        border-color: darken($color, 10%) !important;
       }
     }
   }
 
   .btn.disabled,
   .btn[disabled] {
-    color: #C3C3C3;
+    color: #C3C3C3 !important;
     background-color: transparent !important;
     border-color: #C3C3C3 !important;
   }
@@ -131,10 +131,10 @@
 .btn-success.btn-create:focus,
 .btn-success.btn-create:active {
   font-weight: 600;
-  background: #fff;
+  background: #fff !important;
   &:hover,
   &.active {
-    background: #fff;
+    background: #fff !important;
   }
   i {
     font-size: 17px;

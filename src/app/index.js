@@ -130,8 +130,7 @@ const app = angular
         'angularSpinner',
         'ui.calendar',
         'ui.timepicker',
-        'angular-loading-bar',
-        // d3js
+        'angular-loading-bar'
     ])
     .factory('httpMiddleware', httpMiddleware)
     .factory('AdvancedSearch', AdvancedSearch)
@@ -269,6 +268,27 @@ const app = angular
                 };
             }]
         };
+    })
+    .directive('mcDropwrap', function() {
+        return {
+            link: function(scope, element, attrs) {
+                scope.closeDropdown = function (ev) {
+                    angular.element('.dropdown').removeClass('open');
+                    if (ev.target.closest('.dropdown')) {
+                        ev.target.closest('.dropdown').classList.add('open')
+                    }
+                };
+            }
+        }
+    })
+    .directive('mcDropdown', function() {
+        return {
+            link: function(scope, element, attrs) {
+                scope.toggleDropdown = function (ev) {
+                    ev.currentTarget.parentElement.classList.toggle('open');
+                };
+            }
+        }
     })
     .filter('formatNHSNumber', function() {
         return function(number) {

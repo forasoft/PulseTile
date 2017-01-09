@@ -21,31 +21,51 @@ class PatientsSummaryController {
     serviceRequests.publisher('headerTitle', {title: 'Patients Summary'});
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, breadcrumbs: $state.router.globals.current.breadcrumbs, name: 'patients-summary'});
 
-    this.goToSection = function (section) {
-      var requestHeader = {
+    $scope.listsDashboards = {
+      problems: {
+        show: true,
+        title: 'Problems',
+        toState: 'diagnoses',
+        goNameIndex: 'diagnosisIndex'
+      },
+      contacts: {
+        show: true,
+        title: 'Contacts',
+        toState: 'contacts',
+        goNameIndex: 'contactIndex'
+      },
+      allergies: {
+        show: true,
+        title: 'Allergies',
+        toState: 'allergies',
+        goNameIndex: 'allergyIndex'
+      },
+      medications: {
+        show: true,
+        title: 'Medications',
+        toState: 'medications',
+        goNameIndex: 'medicationIndex'
+      }
+      // transfers: {
+      //   title: 'Transfer',
+      //   toState: 'transferOfCare'
+      // }
+    };
+    this.countPatientArr = 4;
+
+    this.goToSection = function (state) {
+      $state.go(state, {
         patientId: $stateParams.patientId,
         reportType: $stateParams.reportType
-      };
+      });
+    };
 
-      var toState = '';
-      switch (section) {
-        case 'Problems':
-          toState = 'diagnoses';
-          break;
-        case 'Allergies':
-          toState = 'allergies';
-          break;
-        case 'Medications':
-          toState = 'medications';
-          break;
-        case 'Contacts':
-          toState = 'contacts';
-          break;
-        case 'Transfer':
-          toState = 'transferOfCare';
-          break;
-      }
-      $state.go(toState, requestHeader);
+    $scope.go = function (state, sourceId, nameIndex) {
+      var headerRequest = {};
+      headerRequest.patientId = $stateParams.patientId;
+      headerRequest[nameIndex] = sourceId;
+
+      $state.go(state +'-detail', headerRequest);
     };
 
     function fillPatientArray(arr, count) {
@@ -57,22 +77,20 @@ class PatientsSummaryController {
     this.getPatientData = function (data) {
       if (!data || !data.nhsNumber) return false;
 
-      var countPatientArr = 4;
       usSpinnerService.stop('patientSummary-spinner');
 
       this.patient = data;
 
-      this.allergies   = this.patient.allergies.slice(0, countPatientArr);
-      this.allergies   = fillPatientArray(this.allergies, countPatientArr - this.allergies.length);
+      // Putting it all together dashboards
+      for (var dashboard in $scope.listsDashboards) {
+        $scope.listsDashboards[dashboard].array = this.patient[dashboard].slice(0, this.countPatientArr);;
+      }
 
-      this.diagnoses   = this.patient.problems.slice(0, countPatientArr);
-      this.diagnoses   = fillPatientArray(this.diagnoses, countPatientArr - this.diagnoses.length);
-      
-      this.medications = this.patient.medications.slice(0, countPatientArr);
-      this.medications = fillPatientArray(this.medications, countPatientArr - this.medications.length);
-      
-      this.contacts    = this.patient.contacts.slice(0, countPatientArr);
-      this.contacts    = fillPatientArray(this.contacts, countPatientArr - this.contacts.length);
+      // Fill dashboards empty elements
+      for (var dashboard in $scope.listsDashboards) {
+        var arr = $scope.listsDashboards[dashboard].array
+        arr = fillPatientArray(arr, this.countPatientArr - arr.length);
+      }
 
       this.transferofCareComposition = this.patient;
       
@@ -85,13 +103,9 @@ class PatientsSummaryController {
       this.transferofCareComposition = this.transferofCareComposition.transfers.slice(0, 5);
     };
 
-    $scope.go = function (path) {
-      $location.path(path);
-    };
-
     let unsubscribe = $ngRedux.connect(state => ({
-          patient: this.getPatientData(state.patientsGet.data)
-        }))(this);
+      patient: this.getPatientData(state.patientsGet.data)
+    }))(this);
 
     $scope.$on('$destroy', unsubscribe);
     
