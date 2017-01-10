@@ -51,6 +51,9 @@ describe('Allergies Detail', function() {
     allergiesActions.update();
   });
 
+  it('Template element exist', function() {
+    expect(element).toBeDefined();
+  });
   it('should render a strong', function() {
     var strong = element.find('strong');
     expect(strong.text()).toBe('Allergy');
