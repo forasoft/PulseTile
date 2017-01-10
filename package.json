@@ -109,6 +109,7 @@
     "istanbul": "^0.4.5",
     "jquery": "~2.1.4",
     "karma-htmlfile-reporter": "^0.3.4",
+    "last-release-git": "0.0.2",
     "mocha": "^3.2.0",
     "moment": "~2.15.0",
     "nyc": "^10.0.0",
