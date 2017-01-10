@@ -100,7 +100,7 @@ class PatientsListFullController {
           searchString: $stateParams.searchString
         };
 
-        // searchReport.searchByPatient(searchPatientQuery);
+        searchReport.searchByPatient(searchPatientQuery);
         searchType = 'patient';
       }
     }
@@ -323,12 +323,13 @@ class PatientsListFullController {
       $state.go(toState, requestHeader);
     };
 
-    // let unsubscribe = $ngRedux.connect(state => ({
-    //   error: state.user.error,
-    //   user: state.user.data,
-    //   getDataRequest: this.setDataRequest(state.search)
-    // }))(this);
-
+    let unsubscribe = $ngRedux.connect(state => ({
+      error: state.user.error,
+      user: state.user.data,
+      getDataRequest: this.setDataRequest(state.search)
+    }))(this);
+    
+    $scope.$on('$destroy', unsubscribe);
 
     /*
       TODO: Only for demo
@@ -343,16 +344,6 @@ class PatientsListFullController {
 
       this.patients = curPatients.slice();
     };
-
-    let unsubscribe = $ngRedux.connect(state => ({
-      isFetching: state.patients.isFetching,
-      error: state.patients.error,
-      getPatients: this.setPatients(state)
-    }))(this);
-
-    $scope.$on('$destroy', unsubscribe);
-
-    patientsActions.loadPatients();
 
     getData();
   }
