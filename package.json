@@ -119,7 +119,8 @@
   },
   "release": {
     "debug": false,
-    "branch": "develop"
+    "branch": "develop",
+    "getLastRelease": "last-release-git"
   },
   "config": {
     "ghooks": {

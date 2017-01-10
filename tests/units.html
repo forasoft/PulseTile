@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Unit Tests - A sample project description</title>
+    <style type="text/css">html,body{font-family:Arial,sans-serif;font-size:1rem;margin:0;padding:0;}body{padding:10px 40px;}h1{margin-bottom:0;}h2{margin-top:0;margin-bottom:0;color:#999;}table{width:100%;margin-top:20px;margin-bottom:20px;table-layout:fixed;}tr.header{background:#ddd;font-weight:bold;border-bottom:none;}td{padding:7px;border-top:none;border-left:1px black solid;border-bottom:1px black solid;border-right:none;word-break:break-all;word-wrap:break-word;}tr.pass td{color:#003b07;background:#86e191;}tr.skip td{color:#7d3a00;background:#ffd24a;}tr.fail td{color:#5e0e00;background:#ff9c8a;}tr:first-child td{border-top:1px black solid;}td:last-child{border-right:1px black solid;}tr.overview{font-weight:bold;color:#777;}tr.overview td{padding-bottom:0px;border-bottom:none;}tr.system-out td{color:#777;}tr.system-errors td{color:#f00;}hr{height:2px;margin:30px 0;background:#000;border:none;}section{margin-top:40px;}h3{margin:6px 0;}.overview{color:#333;font-weight:bold;}.system-out{margin:0.4rem 0;}.system-errors{color:#a94442}.spec{padding:0.8rem;margin:0.3rem 0;}.spec--pass{color:#3c763d;background-color:#dff0d8;border:1px solid #d6e9c6;}.spec--skip{color:#8a6d3b;background-color:#fcf8e3;border:1px solid #faebcc;}.spec--fail{color:#a94442;background-color:#f2dede;border:1px solid #ebccd1;}.spec--group{color:#636363;background-color:#f0f0f0;border:1px solid #e6e6e6;margin:0;}.spec--group:not(:first-of-type){margin:20px 0 0 0;}.spec__title{display:inline;}.spec__suite{display:inline;}.spec__descrip{font-weight:normal;}.spec__status{float:right;}.spec__log{padding-left: 2.3rem;}.hidden{display:none;}body.compact .spec p{margin-top:0;margin-bottom:0.5rem;}body.compact .spec,body.compact tr,body.compact .overview,body.compact .system-out,body.compact .system-errors{font-size:0.85rem;}body.compact .spec{padding:0.3rem 0.5rem;}body.compact section{margin-top:30px;}</style>
+  </head>
+  <body class="compact">
+    <h1>Unit Tests</h1>
+    <h2>A sample project description</h2>
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tr class="overview">
+        <td colspan="3" title="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36">Browser: Chrome 55.0.2883 (Mac OS X 10.11.6)</td>
+      </tr>
+      <tr class="overview">
+        <td colspan="3">Timestamp: 1/10/2017, 1:24:19 PM</td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          267 tests / 
+          0 errors / 
+          0 failures / 
+          0 skipped / 
+          runtime: 11.613s
+        </td>
+      </tr>
+      <tr class="header">
+        <td>Status</td>
+        <td>Spec</td>
+        <td>Suite / Results</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.002s</td>
+        <td>AllergiesActions exist</td>
+        <td>Allergies Actions</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.244s</td>
+        <td>Template element exist</td>
+        <td>Allergies Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.061s</td>
+        <td>should render a strong</td>
+        <td>Allergies Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.063s</td>
+        <td>spinner, label exist</td>
+        <td>Allergies Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.046s</td>
+        <td>allergiesActions methods was called</td>
+        <td>Allergies Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.043s</td>
+        <td>formDisabled</td>
+        <td>Allergies Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.065s</td>
+        <td>UnlockedSources</td>
+        <td>Allergies Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.042s</td>
+        <td>Controller exist</td>
+        <td>Allergies Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.04s</td>
+        <td>Template exist</td>
+        <td>Allergies Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.061s</td>
+        <td>edit was called</td>
+        <td>Allergies Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.046s</td>
+        <td>allergiesLoad was called</td>
+        <td>Allergies Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.042s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Allergies Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.044s</td>
+        <td>Query is empty</td>
+        <td>Allergies List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.049s</td>
+        <td>Template exist</td>
+        <td>Allergies List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.04s</td>
+        <td>Include allergiesActions in index actions file</td>
+        <td>Allergies List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.038s</td>
+        <td>allergiesActions methods was called</td>
+        <td>Allergies List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.047s</td>
+        <td>Allergies reducer was called</td>
+        <td>Allergies List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.056s</td>
+        <td>pageChangeHandler was called</td>
+        <td>Allergies List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.057s</td>
+        <td>route go was called</td>
+        <td>Allergies List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.039s</td>
+        <td>selected was called</td>
+        <td>Allergies List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.045s</td>
+        <td>create was called</td>
+        <td>Allergies List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.04s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Allergies List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.044s</td>
+        <td>Allergies Modal component exist</td>
+        <td>Allergies Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.046s</td>
+        <td>openModal was called</td>
+        <td>Allergies Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>formDisabled</td>
+        <td>Appointments Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.042s</td>
+        <td>UnlockedSources</td>
+        <td>Appointments Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>Template exist</td>
+        <td>Appointments Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.045s</td>
+        <td>edit was called</td>
+        <td>Appointments Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>appointmentsLoad was called</td>
+        <td>Appointments Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Appointments Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.049s</td>
+        <td>query</td>
+        <td>Appointments List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>Template exist</td>
+        <td>Appointments List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>Include appointmentsActions in index actions file</td>
+        <td>Appointments List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.044s</td>
+        <td>Appointments reducer was called</td>
+        <td>Appointments List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.046s</td>
+        <td>pageChangeHandler was called</td>
+        <td>Appointments List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.09s</td>
+        <td>route go was called</td>
+        <td>Appointments List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>selected was called</td>
+        <td>Appointments List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.054s</td>
+        <td>create was called</td>
+        <td>Appointments List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Appointments List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>search was called</td>
+        <td>Appointments List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.042s</td>
+        <td>appointmentsLoad was called</td>
+        <td>Appointments List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>Appointments Modal component exist</td>
+        <td>Appointments Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>openModal was called</td>
+        <td>Appointments Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>Modal exist</td>
+        <td>Care Plans Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.044s</td>
+        <td>Template exist</td>
+        <td>Care Plans Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>Controller exist</td>
+        <td>Care Plans Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>edit was called</td>
+        <td>Care Plans Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.041s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Care Plans Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>eolcareplansLoad was called</td>
+        <td>Care Plans Detail</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>openModal was called</td>
+        <td>Eolcareplans Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>Eolcareplans Modal component exist</td>
+        <td>Eolcareplans Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.052s</td>
+        <td>Query is empty</td>
+        <td>Care Plans List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>Template exist</td>
+        <td>Care Plans List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>Controller exist</td>
+        <td>Care Plans List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.042s</td>
+        <td>Include appointmentsActions in index actions file</td>
+        <td>Care Plans List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>Appointments reducer was called</td>
+        <td>Care Plans List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>pageChangeHandler was called</td>
+        <td>Care Plans List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>route go was called</td>
+        <td>Care Plans List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.046s</td>
+        <td>selected was called</td>
+        <td>Care Plans List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>create was called</td>
+        <td>Care Plans List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.053s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Care Plans List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.056s</td>
+        <td>search was called</td>
+        <td>Care Plans List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>appointmentsLoad was called</td>
+        <td>Care Plans List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.053s</td>
+        <td>Modal exist</td>
+        <td>Contacts Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>Template exist</td>
+        <td>Contacts Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.045s</td>
+        <td>Controller exist</td>
+        <td>Contacts Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.04s</td>
+        <td>edit was called</td>
+        <td>Contacts Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.054s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Contacts Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.05s</td>
+        <td>contactsLoad was called</td>
+        <td>Contacts Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.055s</td>
+        <td>Query is empty</td>
+        <td>Contacts List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.036s</td>
+        <td>Template exist</td>
+        <td>Contacts List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>Controller exist</td>
+        <td>Contacts List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.049s</td>
+        <td>Include contactsActions in index actions file</td>
+        <td>Contacts List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.045s</td>
+        <td>Contacts reducer was called</td>
+        <td>Contacts List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>pageChangeHandler was called</td>
+        <td>Contacts List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.053s</td>
+        <td>route go was called</td>
+        <td>Contacts List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>selected was called</td>
+        <td>Contacts List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.04s</td>
+        <td>create was called</td>
+        <td>Contacts List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.039s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Contacts List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.047s</td>
+        <td>contactsLoad was called</td>
+        <td>Contacts List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>openModal was called</td>
+        <td>Contacts Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.038s</td>
+        <td>ContactsModal Modal component exist</td>
+        <td>Contacts Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.098s</td>
+        <td>formDisabled</td>
+        <td>Diagnoses Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.108s</td>
+        <td>UnlockedSources</td>
+        <td>Diagnoses Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.053s</td>
+        <td>Template exist</td>
+        <td>Diagnoses Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.11s</td>
+        <td>edit was called</td>
+        <td>Diagnoses Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.143s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Diagnoses Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.043s</td>
+        <td>diagnosesLoad was called</td>
+        <td>Diagnoses Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.043s</td>
+        <td>Query is empty</td>
+        <td>Diagnoses List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.061s</td>
+        <td>Template exist</td>
+        <td>Diagnoses List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.055s</td>
+        <td>Controller exist</td>
+        <td>Diagnoses List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.039s</td>
+        <td>Include contactsActions in index actions file</td>
+        <td>Diagnoses List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.055s</td>
+        <td>Diagnoses reducer was called</td>
+        <td>Diagnoses List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.059s</td>
+        <td>pageChangeHandler was called</td>
+        <td>Diagnoses List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.042s</td>
+        <td>route go was called</td>
+        <td>Diagnoses List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.041s</td>
+        <td>selected was called</td>
+        <td>Diagnoses List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.064s</td>
+        <td>create was called</td>
+        <td>Diagnoses List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.041s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Diagnoses List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>diagnosesLoad was called</td>
+        <td>Diagnoses List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>Diagnoses Modal component exist</td>
+        <td>Diagnoses Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.052s</td>
+        <td>openModal was called</td>
+        <td>Diagnoses Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.039s</td>
+        <td>series is empty</td>
+        <td>Image Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.039s</td>
+        <td>Template exist</td>
+        <td>Image Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.064s</td>
+        <td>Controller exist</td>
+        <td>Image Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.049s</td>
+        <td>openImage was called</td>
+        <td>Image Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.039s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Image Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.038s</td>
+        <td>seriesDetailsLoad was called</td>
+        <td>Image Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.054s</td>
+        <td>instanceLoad was called</td>
+        <td>Image Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>imageLoad was called</td>
+        <td>Image Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.041s</td>
+        <td>Template exist</td>
+        <td>Image List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.038s</td>
+        <td>Controller exist</td>
+        <td>Image List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.055s</td>
+        <td>Include contactsActions in index actions file</td>
+        <td>Image List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>Series reducer was called</td>
+        <td>Image List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.038s</td>
+        <td>pageChangeHandler was called</td>
+        <td>Image List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.036s</td>
+        <td>route go was called</td>
+        <td>Image List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.049s</td>
+        <td>selected was called</td>
+        <td>Image List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.042s</td>
+        <td>search was called</td>
+        <td>Image List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.063s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Image List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.047s</td>
+        <td>imageLoad was called</td>
+        <td>Image List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>Template exist</td>
+        <td>Diagnoses Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.045s</td>
+        <td>Controller exist</td>
+        <td>Diagnoses Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.071s</td>
+        <td>Query is empty</td>
+        <td>Documents List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.044s</td>
+        <td>Template exist</td>
+        <td>Documents List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>Controller exist</td>
+        <td>Documents List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.052s</td>
+        <td>Include contactsActions in index actions file</td>
+        <td>Documents List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.038s</td>
+        <td>Documents reducer was called</td>
+        <td>Documents List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.036s</td>
+        <td>route go was called</td>
+        <td>Documents List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.046s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Documents List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.053s</td>
+        <td>documentsLoad was called</td>
+        <td>Documents List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.042s</td>
+        <td>formDisabled</td>
+        <td>Medications Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.04s</td>
+        <td>UnlockedSources</td>
+        <td>Medications Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.04s</td>
+        <td>Template exist</td>
+        <td>Medications Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.057s</td>
+        <td>edit was called</td>
+        <td>Medications Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>medicationsLoad was called</td>
+        <td>Medications Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Medications Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.044s</td>
+        <td>Query</td>
+        <td>Medications List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>Template exist</td>
+        <td>Medications List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>Controller exist</td>
+        <td>Medications List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.045s</td>
+        <td>Include ordersActions in index actions file</td>
+        <td>Medications List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.045s</td>
+        <td>Medications reducer was called</td>
+        <td>Medications List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>pageChangeHandler was called</td>
+        <td>Medications List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>route go was called</td>
+        <td>Medications List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.041s</td>
+        <td>selected was called</td>
+        <td>Medications List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>create was called</td>
+        <td>Medications List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Medications List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>Medications Modal component exist</td>
+        <td>Medications Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.046s</td>
+        <td>openModal was called</td>
+        <td>Medications Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.042s</td>
+        <td>Template exist</td>
+        <td>Orders Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.05s</td>
+        <td>ordersLoad was called</td>
+        <td>Orders Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.036s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Orders Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.054s</td>
+        <td>Query</td>
+        <td>Orders List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>Template exist</td>
+        <td>Orders List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>Controller exist</td>
+        <td>Orders List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.045s</td>
+        <td>Include ordersActions in index actions file</td>
+        <td>Orders List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>Orders reducer was called</td>
+        <td>Orders List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>pageChangeHandler was called</td>
+        <td>Orders List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>route go was called</td>
+        <td>Orders List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.042s</td>
+        <td>selected was called</td>
+        <td>Orders List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>create was called</td>
+        <td>Orders List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>search was called</td>
+        <td>Orders List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.046s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Orders List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.031s</td>
+        <td>Orders Modal component exist</td>
+        <td>Orders Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.031s</td>
+        <td>openModal was called</td>
+        <td>Orders Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.031s</td>
+        <td>Template exist</td>
+        <td>Patients Banner</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.04s</td>
+        <td>Controller exist</td>
+        <td>Patients Banner</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.036s</td>
+        <td>Template exist</td>
+        <td>Patients Charts</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>Controller exist</td>
+        <td>Patients Charts</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.048s</td>
+        <td>selectedChart exist</td>
+        <td>Patients Charts</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>openModal was called</td>
+        <td>Patients Charts</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>goToPatientsList was called</td>
+        <td>Patients Charts</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>goToLookUp was called</td>
+        <td>Patients Charts</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.062s</td>
+        <td>getPatients was called</td>
+        <td>Patients Charts</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.048s</td>
+        <td>toggleChart was called</td>
+        <td>Patients Charts</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.051s</td>
+        <td>Template exist</td>
+        <td>Patients List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>Controller exist</td>
+        <td>Patients List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.053s</td>
+        <td>Include patientsActions in index actions file</td>
+        <td>Patients List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.053s</td>
+        <td>Patients reducer was called</td>
+        <td>Patients List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>sort was called</td>
+        <td>Patients List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>sortClass was called</td>
+        <td>Patients List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.043s</td>
+        <td>route go was called</td>
+        <td>Patients List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>patientFilter was called</td>
+        <td>Patients List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.031s</td>
+        <td>setPatients was called</td>
+        <td>Patients List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>Template exist</td>
+        <td>Patients Sidebar</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.041s</td>
+        <td>Controller exist</td>
+        <td>Patients Sidebar</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.031s</td>
+        <td>linksCollection exist</td>
+        <td>Patients Sidebar</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>Template exist</td>
+        <td>Patients Summary</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>Controller exist</td>
+        <td>Patients Summary</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>goToSection was called</td>
+        <td>Patients Summary</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.045s</td>
+        <td>getPatientData was called</td>
+        <td>Patients Summary</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.036s</td>
+        <td>route go was called</td>
+        <td>Patients Summary</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>loadPatient was called</td>
+        <td>Patients Summary</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>Template exist</td>
+        <td>Procedures Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.05s</td>
+        <td>edit was called</td>
+        <td>Procedures Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>proceduresLoad was called</td>
+        <td>Procedures Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Procedures Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.045s</td>
+        <td>Query</td>
+        <td>Procedures List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>Template exist</td>
+        <td>Procedures List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>Controller exist</td>
+        <td>Procedures List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>Include proceduresActions in index actions file</td>
+        <td>Procedures List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.043s</td>
+        <td>procedures reducer was called</td>
+        <td>Procedures List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>pageChangeHandler was called</td>
+        <td>Procedures List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>route go was called</td>
+        <td>Procedures List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.048s</td>
+        <td>selected was called</td>
+        <td>Procedures List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>create was called</td>
+        <td>Procedures List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>search was called</td>
+        <td>Procedures List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Procedures List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.05s</td>
+        <td>Procedures Modal component exist</td>
+        <td>Procedures Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.043s</td>
+        <td>openModal was called</td>
+        <td>Procedures Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>Template exist</td>
+        <td>Referrals Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.048s</td>
+        <td>referralsLoad was called</td>
+        <td>Referrals Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Referrals Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>edit was called</td>
+        <td>Referrals Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>Query</td>
+        <td>Referrals List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.046s</td>
+        <td>Template exist</td>
+        <td>Referrals List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>Controller exist</td>
+        <td>Referrals List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>Include ReferralsActions in index actions file</td>
+        <td>Referrals List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.047s</td>
+        <td>Referrals reducer was called</td>
+        <td>Referrals List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>pageChangeHandler was called</td>
+        <td>Referrals List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>search was called</td>
+        <td>Referrals List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>route go was called</td>
+        <td>Referrals List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.053s</td>
+        <td>selected was called</td>
+        <td>Referrals List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>create was called</td>
+        <td>Referrals List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Referrals List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.052s</td>
+        <td>Referrals Modal component exist</td>
+        <td>Referrals Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.041s</td>
+        <td>openModal was called</td>
+        <td>Referrals Modal</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.036s</td>
+        <td>$scope.previousState exist</td>
+        <td>MainComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.031s</td>
+        <td>$scope.pageHeader exist</td>
+        <td>MainComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.04s</td>
+        <td>$scope.previousPage exist</td>
+        <td>MainComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>$scope.mainWidth exist</td>
+        <td>MainComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.039s</td>
+        <td>$scope.detailWidth</td>
+        <td>MainComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>Controller exist</td>
+        <td>MainComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.031s</td>
+        <td>Template exist</td>
+        <td>MainComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.043s</td>
+        <td>serviceRequests exist</td>
+        <td>MainComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>getState was called</td>
+        <td>MainComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>getPageComponents was called</td>
+        <td>MainComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.05s</td>
+        <td>$rootScope.searchMode exist</td>
+        <td>ReportChartComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.049s</td>
+        <td>$rootScope.reportMode exist</td>
+        <td>ReportChartComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>$rootScope.reportTypeSet exist</td>
+        <td>ReportChartComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.036s</td>
+        <td>resultSize</td>
+        <td>ReportChartComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.046s</td>
+        <td>noResults</td>
+        <td>ReportChartComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>Controller exist</td>
+        <td>ReportChartComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.04s</td>
+        <td>Template exist</td>
+        <td>ReportChartComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.039s</td>
+        <td>serviceRequests exist</td>
+        <td>ReportChartComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.049s</td>
+        <td>openModal was called</td>
+        <td>ReportChartComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.044s</td>
+        <td>setDataRequest was called</td>
+        <td>ReportChartComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.037s</td>
+        <td>ageChart was called</td>
+        <td>ReportChartComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.045s</td>
+        <td>formDisabled</td>
+        <td>Results Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>Template exist</td>
+        <td>Results Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.036s</td>
+        <td>resultsLoad was called</td>
+        <td>Results Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Results Details</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>Query</td>
+        <td>Results List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.045s</td>
+        <td>Template exist</td>
+        <td>Results List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.032s</td>
+        <td>Controller exist</td>
+        <td>Results List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>Include resultsActions in index actions file</td>
+        <td>Results List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.035s</td>
+        <td>results reducer was called</td>
+        <td>Results List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.047s</td>
+        <td>pageChangeHandler was called</td>
+        <td>Results List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>route go was called</td>
+        <td>Results List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>selected was called</td>
+        <td>Results List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>search was called</td>
+        <td>Results List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.069s</td>
+        <td>setCurrentPageData was called</td>
+        <td>Results List</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.083s</td>
+        <td>isClickToAdvancedSearch</td>
+        <td>SearchComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.14s</td>
+        <td>mainSearchEnabled</td>
+        <td>SearchComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.034s</td>
+        <td>Controller exist</td>
+        <td>SearchComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.039s</td>
+        <td>Template exist</td>
+        <td>SearchComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.033s</td>
+        <td>serviceRequests exist</td>
+        <td>SearchComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.042s</td>
+        <td>hideSearch was called</td>
+        <td>SearchComponent</td>
+      </tr>
+      <tr class="pass">
+        <td>Passed in 0.043s</td>
+        <td>searchFunction was called</td>
+        <td>SearchComponent</td>
+      </tr>
+      <tr class="system-out">
+        <td colspan="3"><strong>System output:</strong><br />Chrome 55.0.2883 (Mac OS X 10.11.6) LOG: 'WARNING: Tried to load angular more than once.'
+<br />Chrome 55.0.2883 (Mac OS X 10.11.6) LOG: 'app start'
+<br />Chrome 55.0.2883 (Mac OS X 10.11.6) LOG: '$stateParams.referralId', undefined
+<br />Chrome 55.0.2883 (Mac OS X 10.11.6) LOG: '$stateParams.referralId', undefined
+<br />Chrome 55.0.2883 (Mac OS X 10.11.6) LOG: '$stateParams.referralId', undefined
+<br />Chrome 55.0.2883 (Mac OS X 10.11.6) LOG: '$stateParams.referralId', undefined
+</td>
+      </tr>
+    </table>
+    <hr/>
+  </body>
+</html>
