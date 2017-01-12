@@ -84,7 +84,7 @@ export function update(patientId, composition) {
   };
 }
 
-export default function clinicalnotesActions($ngRedux) {
+export default function personalnotesActions($ngRedux) {
   let actionCreator = {
     all, get, create, update
   };
@@ -92,4 +92,4 @@ export default function clinicalnotesActions($ngRedux) {
   return bindActionCreators(actionCreator, $ngRedux.dispatch);
 }
 
-clinicalnotesActions.$inject = ['$ngRedux'];
+personalnotesActions.$inject = ['$ngRedux'];
