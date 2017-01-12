@@ -32,7 +32,7 @@ import documentsActions from '../rippleui/pages/documents/documents-actions.js';
 import appointmentsActions from '../rippleui/pages/appointments/appointments-actions';
 import imageActions from '../rippleui/pages/dicom/image-actions';
 import eolcareplansActions from '../rippleui/pages/care-plans/eolcareplans-actions';
-import clinicalnotesActions from '../rippleui/pages/clinical-notes/clinicalnotes-actions';
+import personalnotesActions from '../rippleui/pages/clinical-notes/clinicalnotes-actions';
 import heightAndWeightActions from '../rippleui/pages/height-and-weight/heightAndWeight-actions';
 import genericmdtActions from '../rippleui/pages/generic-mdt/generic-mdt-actions';
 import transferOfCareActions from '../rippleui/pages/transfer-of-care/transfer-of-care-actions';
@@ -56,7 +56,7 @@ export default angular
     .factory('appointmentsActions', appointmentsActions)
     .factory('imageActions', imageActions)
     .factory('eolcareplansActions', eolcareplansActions)
-    .factory('clinicalnotesActions', clinicalnotesActions)
+    .factory('personalnotesActions', personalnotesActions)
     .factory('heightAndWeightActions', heightAndWeightActions)
     .factory('genericmdtActions', genericmdtActions)
     .factory('transferOfCareActions', transferOfCareActions)

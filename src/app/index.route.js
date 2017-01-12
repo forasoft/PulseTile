@@ -563,8 +563,8 @@ function routeConfig($stateProvider, $urlRouterProvider) {
         }
       })
 
-      .state('clinicalNotes', {
-        url: '/patients/{patientId:int}/clinicalNotes?reportType&searchString&queryType',
+      .state('personalNotes', {
+        url: '/patients/{patientId:int}/personalNotes?reportType&searchString&queryType',
         views: {
           banner: {template: '<patients-banner-component></patients-banner-component>'},
           actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
@@ -578,11 +578,11 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'patients-summary'
         }, {
           title: 'Personal Notes',
-          state: 'clinicalNotes'
+          state: 'personalNotes'
         }]
       })
-      .state('clinicalNotes-create', {
-        url: '/patients/{patientId:int}/clinicalNotes/create?reportType&searchString&queryType',
+      .state('personalNotes-create', {
+        url: '/patients/{patientId:int}/personalNotes/create?reportType&searchString&queryType',
         views: {
           banner: {template: '<patients-banner-component></patients-banner-component>'},
           actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
@@ -597,11 +597,11 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'patients-summary'
         }, {
           title: 'Personal Notes',
-          state: 'clinicalNotes'
+          state: 'personalNotes'
         }]
       })
-      .state('clinicalNotes-detail', {
-        url: '/patients/{patientId:int}/clinicalNotes/{clinicalNoteIndex}?filter&page&reportType&searchString&queryType&source',
+      .state('personalNotes-detail', {
+        url: '/patients/{patientId:int}/personalNotes/{personalNoteIndex}?filter&page&reportType&searchString&queryType&source',
         views: {
           banner: {template: '<patients-banner-component></patients-banner-component>'},
           actions: {template: '<patients-sidebar-component></patients-sidebar-component>'},
@@ -617,7 +617,7 @@ function routeConfig($stateProvider, $urlRouterProvider) {
           state: 'patients-summary'
         }, {
           title: 'Personal Notes',
-          state: 'clinicalNotes'
+          state: 'personalNotes'
         }]
       })
 

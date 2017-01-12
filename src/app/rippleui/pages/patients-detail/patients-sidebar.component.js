@@ -102,9 +102,9 @@ class PatientsSidebarController {
       //   title: 'Images'
       // },
       {
-        name: 'clinicalNotes',
-        link: 'clinicalNotes',
-        linkDetail: 'clinicalNotes-detail',
+        name: 'personalNotes',
+        link: 'personalNotes',
+        linkDetail: 'personalNotes-detail',
         title: 'Personal Notes'
       },
       {

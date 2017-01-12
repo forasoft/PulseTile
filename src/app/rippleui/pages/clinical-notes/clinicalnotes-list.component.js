@@ -17,23 +17,23 @@
 let templateClinicalnotesList = require('./clinicalnotes-list.html');
 
 class ClinicalnotesListController {
-  constructor($scope, $state, $stateParams, $ngRedux, clinicalnotesActions, serviceRequests, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, personalnotesActions, serviceRequests, usSpinnerService) {
     serviceRequests.publisher('routeState', {state: $state.router.globals.current.views, breadcrumbs: $state.router.globals.current.breadcrumbs, name: 'patients-details'});
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
     this.currentPage = 1;
     $scope.query = '';
     this.isFilter = false;
-    this.isShowCreateBtn = $state.router.globals.$current.name !== 'clinicalNotes-create';
-    this.isShowExpandBtn = $state.router.globals.$current.name !== 'clinicalNotes';
+    this.isShowCreateBtn = $state.router.globals.$current.name !== 'personalNotes-create';
+    this.isShowExpandBtn = $state.router.globals.$current.name !== 'personalNotes';
 
 
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
       }
-      if (data.clinicalnotes.data) {
-        this.clinicalNotes = data.clinicalnotes.data;
+      if (data.personalnotes.data) {
+        this.personalNotes = data.personalnotes.data;
         // for (var i = 0; i < this.clinicalNotes.length; i++) {
         //   this.clinicalNotes[i].dateCreated = moment(this.clinicalNotes[i].dateCreated).format('DD-MMM-YYYY');
         // }
@@ -50,23 +50,23 @@ class ClinicalnotesListController {
     };
     
     this.create = function () {
-      $state.go('clinicalNotes-create', {
+      $state.go('personalNotes-create', {
         patientId: $stateParams.patientId,
         filter: this.query,
         page: this.currentPage
       });
     };
     
-    this.go = function (id, clinicalNoteSource) {
-      $state.go('clinicalNotes-detail', {
+    this.go = function (id, personalNoteSource) {
+      $state.go('personalNotes-detail', {
         patientId: $stateParams.patientId,
-        clinicalNoteIndex: id,
+        personalNoteIndex: id,
         filter: $scope.query,
         page: this.currentPage,
         reportType: $stateParams.reportType,
         searchString: $stateParams.searchString,
         queryType: $stateParams.queryType,
-        source: JSON.stringify(clinicalNoteSource)
+        source: JSON.stringify(personalNoteSource)
       });
     };
 
@@ -92,8 +92,8 @@ class ClinicalnotesListController {
     }
 
 
-    this.selected = function (clinicalNoteIndex) {
-      return clinicalNoteIndex === $stateParams.clinicalNoteIndex;
+    this.selected = function (personalNoteIndex) {
+      return personalNoteIndex === $stateParams.personalNoteIndex;
     };
 
     let unsubscribe = $ngRedux.connect(state => ({
@@ -102,8 +102,8 @@ class ClinicalnotesListController {
 
     $scope.$on('$destroy', unsubscribe);
 
-    this.clinicalnotesLoad = clinicalnotesActions.all;
-    this.clinicalnotesLoad($stateParams.patientId);
+    this.personalnotesLoad = personalnotesActions.all;
+    this.personalnotesLoad($stateParams.patientId);
   }
 }
 
@@ -112,5 +112,5 @@ const ClinicalnotesListComponent = {
   controller: ClinicalnotesListController
 };
 
-ClinicalnotesListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'clinicalnotesActions', 'serviceRequests', 'usSpinnerService'];
+ClinicalnotesListController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'personalnotesActions', 'serviceRequests', 'usSpinnerService'];
 export default ClinicalnotesListComponent;
