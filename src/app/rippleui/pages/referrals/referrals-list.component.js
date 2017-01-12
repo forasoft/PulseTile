@@ -22,6 +22,8 @@ class ReferralsListController {
 
     this.currentPage = 1;
     $scope.query = '';
+		this.isShowExpandBtn = true;//$state.router.globals.$current.name !== 'clinicalNotes'
+		this.isFilter = false;
 
     if ($stateParams.filter) {
       this.query = $stateParams.filter;
@@ -63,6 +65,10 @@ class ReferralsListController {
     this.create = function () {
       ReferralsModal.openModal(this.currentPatient, {title: 'Create Referral'}, {}, this.currentUser);
     };
+
+		this.toggleFilter = function () {
+			this.isFilter = !this.isFilter;
+		};
 
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {

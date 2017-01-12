@@ -17,8 +17,13 @@ let templateReferralsDetail= require('./referrals-detail.html');
 
 class ReferralsDetailController {
   constructor($scope, $state, $stateParams, $ngRedux, referralsActions, ReferralsModal, usSpinnerService) {
+
+		$scope.isEdit = false;
+
     this.edit = function () {
-      ReferralsModal.openModal(this.currentPatient, {title: 'Edit Referral'}, this.referral, this.currentUser);
+
+      $scope.isEdit = true;
+      // ReferralsModal.openModal(this.currentPatient, {title: 'Edit Referral'}, this.referral, this.currentUser);
     };
 
     this.setCurrentPageData = function (data) {
@@ -37,6 +42,7 @@ class ReferralsDetailController {
     let unsubscribe = $ngRedux.connect(state => ({
       getStoreData: this.setCurrentPageData(state)
     }))(this);
+
 
     $scope.$on('$destroy', unsubscribe);
 console.log('$stateParams.referralId', $stateParams.referralId);
