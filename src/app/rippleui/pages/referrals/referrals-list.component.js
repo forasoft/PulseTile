@@ -21,7 +21,7 @@ class ReferralsListController {
     serviceRequests.publisher('headerTitle', {title: 'Patients Details'});
 
     this.currentPage = 1;
-    $scope.query = '';
+    this.query = '';
 		this.isShowExpandBtn = true;//$state.router.globals.$current.name !== 'clinicalNotes'
 		this.isFilter = false;
 
@@ -37,14 +37,14 @@ class ReferralsListController {
       this.currentPage = $stateParams.page;
     }
 
-    this.search = function (row) {
-      return (
-        row.dateOfReferral.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
-        row.referralFrom.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
-        row.referralTo.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
-        row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
-      );
-    };
+    // $scope.search = function (row) {
+    //   return (
+    //     row.dateOfReferral.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+    //     row.referralFrom.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+    //     row.referralTo.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1 ||
+    //     row.source.toLowerCase().indexOf($scope.query.toLowerCase() || '') !== -1
+    //   );
+    // };
 
     this.go = function (id) {
       $state.go('referrals-detail', {

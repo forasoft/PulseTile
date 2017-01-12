@@ -20,12 +20,6 @@ class ReferralsDetailController {
 
 		$scope.isEdit = false;
 
-    this.edit = function () {
-
-      $scope.isEdit = true;
-      // ReferralsModal.openModal(this.currentPatient, {title: 'Edit Referral'}, this.referral, this.currentUser);
-    };
-
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
@@ -42,6 +36,48 @@ class ReferralsDetailController {
     let unsubscribe = $ngRedux.connect(state => ({
       getStoreData: this.setCurrentPageData(state)
     }))(this);
+
+		this.edit = function () {
+
+			$scope.isEdit = true;
+
+			$scope.currentUser = this.currentUser;
+			$scope.referralsEdit = Object.assign({}, this.referral);
+			$scope.patient = this.currentPatient;
+
+			$scope.referralsEdit.dateCreated = new Date(this.clinicalNote.dateCreated).toISOString().slice(0, 10);
+		};
+
+		this.cancelEdit = function () {
+			$scope.isEdit = false;
+		};
+
+		$scope.confirmEdit = function (referralsForm, referrals) {
+			$scope.formSubmitted = true;
+
+			if (referralsForm.$valid) {
+				let toUpdate = {
+					referralFrom: referrals.referralFrom,
+					referralTo: referrals.referralTo,
+					dateOfReferral: referrals.dateOfReferral,
+					reason: referrals.reason,
+					clinicalSummary: referrals.clinicalSummary,
+					author: referrals.author,
+					dateCreated: referrals.dateCreated,
+					source: referrals.source
+				};
+
+				this.referralsEdit = Object.assign(referrals, $scope.clinicalNoteEdit);
+				$scope.isEdit = false;
+				referralsActions.update($scope.patient.id, toUpdate);
+				setTimeout(function () {
+					$state.go('clinicalNotes-detail', {
+						patientId: $scope.patient.id,
+						clinicalNoteIndex: referrals.sourceId
+					});
+				}, 1000);
+			}
+		};
 
 
     $scope.$on('$destroy', unsubscribe);
