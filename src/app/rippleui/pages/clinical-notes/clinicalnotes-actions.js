@@ -25,7 +25,7 @@ export function all(patientId) {
 
     config: {
       method: 'get',
-      url: '/api/patients/' + patientId + '/clinicalNotes'
+      url: '/api/patients/' + patientId + '/personalnotes'
     },
 
     meta: {
@@ -41,7 +41,7 @@ export function get(patientId, compositionId, source) {
 
     config: {
       method: 'get',
-      url: '/api/patients/' + patientId + '/clinicalNotes/' + compositionId + '?source=' + source
+      url: '/api/patients/' + patientId + '/personalnotes/' + compositionId + '?source=' + source
     },
 
     meta: {
@@ -57,7 +57,7 @@ export function create(patientId, composition) {
 
     config: {
       method: 'post',
-      url: '/api/patients/' + patientId + '/clinicalNotes',
+      url: '/api/patients/' + patientId + '/personalnotes',
       data: composition
     },
 
@@ -74,7 +74,7 @@ export function update(patientId, composition) {
 
     config: {
       method: 'put',
-      url: '/api/patients/' + patientId + '/clinicalNotes',
+      url: '/api/patients/' + patientId + '/personalnotes',
       data: composition
     },
 

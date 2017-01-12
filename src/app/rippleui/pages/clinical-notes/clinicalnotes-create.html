@@ -27,18 +27,18 @@
       <div class="panel-body-inner">
         <form name="clinicalNoteForm" class="form">
           <div class="form-group-wrapper">
-            <div class="form-group" ng-class="{'has-error': (formSubmitted || clinicalNoteForm.type.$dirty) && clinicalNoteForm.type.$invalid, 'has-success': clinicalNoteForm.type.$valid && clinicalNoteForm.type.$dirty}">
-              <label for="type" class="control-label">Type</label>
+            <div class="form-group" ng-class="{'has-error': (formSubmitted || clinicalNoteForm.noteType.$dirty) && clinicalNoteForm.noteType.$invalid, 'has-success': clinicalNoteForm.noteType.$valid && clinicalNoteForm.noteType.$dirty}">
+              <label for="noteType" class="control-label">Type</label>
               <div class="input-holder">
-                <input class="form-control input-sm" id="type" name="type" ng-model="clinicalNote.type" required />
+                <input class="form-control input-sm" id="noteType" name="noteType" ng-model="clinicalNote.noteType" required />
               </div>
               <span class="help-block animate-fade" ng-show="formSubmitted && clinicalNoteForm.type.$error.required">You must enter a value.</span>
             </div>
 
-            <div class="form-group" ng-class="{'has-error': (formSubmitted || clinicalNoteForm.note.$dirty) && clinicalNoteForm.note.$invalid, 'has-success': clinicalNoteForm.note.$valid && clinicalNoteForm.note.$dirty}">
-              <label for="note" class="control-label">Note</label>
+            <div class="form-group" ng-class="{'has-error': (formSubmitted || clinicalNoteForm.notes.$dirty) && clinicalNoteForm.notes.$invalid, 'has-success': clinicalNoteForm.notes.$valid && clinicalNoteForm.notes.$dirty}">
+              <label for="notes" class="control-label">Note</label>
               <div class="input-holder">
-                <textarea class="form-control textarea-big input-sm" id="note" name="note" ng-model="clinicalNote.note" required></textarea>
+                <textarea class="form-control textarea-big input-sm" id="notes" name="notes" ng-model="clinicalNote.notes" required></textarea>
               </div>
               <span class="help-block animate-fade" ng-show="formSubmitted && clinicalNoteForm.note.$error.required">You must enter a value.</span>
             </div>

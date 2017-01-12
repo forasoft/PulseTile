@@ -49,9 +49,9 @@
         clinicalNote.source - It should actually transmitted
         <tr dir-paginate="clinicalNote in $ctrl.clinicalNotes | filter:$ctrl.search | itemsPerPage: 10" current-page="$ctrl.currentPage"  ng-click="$ctrl.go(clinicalNote.sourceId, clinicalNote.source)" ng-class="{info: $ctrl.selected(clinicalNote.sourceId)}"> -->
         <tr dir-paginate="clinicalNote in $ctrl.clinicalNotes | filter:$ctrl.search | itemsPerPage: 10" current-page="$ctrl.currentPage"  ng-click="$ctrl.go(clinicalNote.sourceId, clinicalNote)" ng-class="{info: $ctrl.selected(clinicalNote.sourceId)}">
-          <td data-th="Type">{{ clinicalNote.type }}</td>
+          <td data-th="Type">{{ clinicalNote.noteType }}</td>
           <td data-th="Author">{{ clinicalNote.author }}</td>
-          <td data-th="Date" class="orderDateTime">{{ clinicalNote.dateCreated }}</td>
+          <td data-th="Date" class="orderDateTime">{{ clinicalNote.dateCreated | date:'dd-MMM-yyyy' }}</td>
           <td data-th="Source" class="hidden-xs">{{ clinicalNote.source }}</td>
         </tr>
 

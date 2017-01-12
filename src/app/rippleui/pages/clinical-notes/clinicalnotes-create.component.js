@@ -48,8 +48,8 @@ class ClinicalnotesCreateController {
       $scope.formSubmitted = true;
 
       let toAdd = {
-        type: clinicalNote.type,
-        note: clinicalNote.note,
+        noteType: clinicalNote.noteType,
+        notes: clinicalNote.notes,
         dateCreated: clinicalNote.dateCreated,
         author: clinicalNote.author,
         source: 'openehr'
