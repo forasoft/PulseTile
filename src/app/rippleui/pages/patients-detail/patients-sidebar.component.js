@@ -65,12 +65,12 @@ class PatientsSidebarController {
       //   linkDetail: 'procedures-detail',
       //   title: 'Procedures'
       // },
-      // {
-      //   name: 'referrals',
-      //   link: 'referrals',
-      //   linkDetail: 'referrals-detail',
-      //   title: 'Referrals'
-      // },
+      {
+        name: 'referrals',
+        link: 'referrals',
+        linkDetail: 'referrals-detail',
+        title: 'Referrals'
+      },
       // {
       //   name: 'appointments',
       //   link: 'appointments',
