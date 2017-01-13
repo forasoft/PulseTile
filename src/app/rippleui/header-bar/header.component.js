@@ -100,7 +100,7 @@ class HeaderController {
     });
 
     var auth0;
-
+    
     serviceRequests.initialise().then(function (result){
       if (result.data.token) {
         // reset the JSESSIONID cookie with the new incoming cookie

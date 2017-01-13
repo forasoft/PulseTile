@@ -17,7 +17,7 @@ routeConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
 function routeConfig($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/search');
-  console.log('routing test');
+  
   $stateProvider
       .state('main-search', {
         url: '/search',

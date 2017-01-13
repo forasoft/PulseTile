@@ -14,7 +14,7 @@
   ~  limitations under the License.
 */
 class MainController {
-  constructor($rootScope, $scope, $state, $stateParams, serviceRequests) {
+  constructor($rootScope, $scope, serviceRequests) {
     $scope.previousState = '';
     $scope.pageHeader = '';
     $scope.previousPage = '';
@@ -97,5 +97,5 @@ const MainComponent = {
   controller: MainController
 };
 
-MainController.$inject = ['$rootScope', '$scope',  '$state', '$stateParams', 'serviceRequests'];
+MainController.$inject = ['$rootScope', '$scope', 'serviceRequests'];
 export default MainComponent;

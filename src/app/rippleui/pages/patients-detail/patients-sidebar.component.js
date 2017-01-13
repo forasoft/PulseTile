@@ -80,7 +80,7 @@ class PatientsSidebarController {
       },
       {
         name: 'mdt',
-        link: 'cancerMdt',
+        link: 'genericMdt',
         title: 'MDT'
       },
       {

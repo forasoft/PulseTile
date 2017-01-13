@@ -6,6 +6,9 @@
 src/old
 tmp/
 dist/
+coverage
+.nyc_output/
+tests/
 
 
 #---------------------------------

@@ -16,7 +16,7 @@
 let templateDiagnosesDetail= require('./diagnoses-detail.html');
 
 class DiagnosesDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, patientsActions, diagnosesActions, DiagnosesModal, usSpinnerService) {
+  constructor($scope, $state, $stateParams, $ngRedux, diagnosesActions, DiagnosesModal, usSpinnerService) {
     this.edit = function () {
       DiagnosesModal.openModal(this.currentPatient, {title: 'Edit Problem / Diagnosis'}, this.diagnosis, this.currentUser);
     };
@@ -74,5 +74,5 @@ const DiagnosesDetailComponent = {
   controller: DiagnosesDetailController
 };
 
-DiagnosesDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'patientsActions', 'diagnosesActions', 'DiagnosesModal', 'usSpinnerService'];
+DiagnosesDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'diagnosesActions', 'DiagnosesModal', 'usSpinnerService'];
 export default DiagnosesDetailComponent;

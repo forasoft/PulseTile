@@ -44,7 +44,7 @@ export default function EolcareplansModal($uibModal, eolcareplansActions, $ngRed
           if (modal.title === 'Create End of Life Care Document') {
             $scope.isEdit = false;
             $scope.eolcareplan.careDocument = {
-              dateCreated: new Date().toISOString().slice(0, 10)
+              dateCreated: new Date()
             };
           } else {
             $scope.isEdit = true;

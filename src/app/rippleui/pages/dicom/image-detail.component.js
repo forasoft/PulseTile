@@ -30,7 +30,7 @@ class ImageDetailController {
       if (data.patientsGet.data) {
         this.currentPatient = data.patientsGet.data;
       }
-      if (data.series.dataGet) {
+      if (data.series.dataGet !== null) {
         this.study = data.series.dataGet;
 
         var seriesIds = this.study.seriesIds;
@@ -42,7 +42,7 @@ class ImageDetailController {
           seriesIdsIndex = i;
         }
       }
-      if (data.instance.data) {
+      if (data.instance) {
         this.instance = data.instance.data.parentSeries;
         ImageModal.openModal(this.currentPatient, {title: 'View Dicom Image'}, this.imageId, this.series, this.instance);
       }

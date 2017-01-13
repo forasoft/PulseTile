@@ -51,7 +51,7 @@ import AppointmentChatConfirmModal from './rippleui/pages/appointments/appoinman
 import ProceduresModal from './rippleui/pages/procedures/procedures-modal';
 import ImageModal from './rippleui/pages/dicom/image-modal';
 import EolcareplansModal from './rippleui/pages/care-plans/eolcareplans-modal';
-import LookupModal from './rippleui/pages/patients-lookup/patients-lookup-modal'
+import LookupModal from './rippleui/pages/patients-lookup/patients-lookup-modal';
 
 //components 
 import HeaderComponent from './rippleui/header-bar/header.component.js';
@@ -97,7 +97,7 @@ import routeConfig from 'app/index.route';
 import 'app/scss/core.scss';
 
 const app = angular
-    .module('app', [
+    .module('ripple-ui', [
         uiRouter,
         ngAnimate,
         uiBootstrap,

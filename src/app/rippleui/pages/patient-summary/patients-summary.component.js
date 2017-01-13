@@ -57,26 +57,26 @@ class PatientsSummaryController {
         this.allergiesCount = this.patient.allergies.length;
         this.allergies = this.patient.allergies.slice(0, 5);
       }
-      
+
       if (this.patient.problems.length) {
         this.diagnosesCount = this.patient.problems.length;
         this.diagnoses = this.patient.problems.slice(0, 5);
       }
-      
+
       if (this.patient.medications.length) {
         this.medicationsCount = this.patient.medications.length;
         this.medications = this.patient.medications.slice(0, 5);
       }
-      
+
       if (this.patient.contacts.length) {
         this.contactsCount = this.patient.contacts.length;
         this.contacts = this.patient.contacts.slice(0, 5);
       }
-      
+
       if (this.patient.transfers.length) {
         this.transferofCaresCount = this.patient.transfers.length;
         this.transferofCareComposition = this.patient;
-        
+
         var descendingTransferofCareComposition = [];
         for (var x = this.transferofCareComposition.transfers.length - 1; x >= 0; x--) {
           descendingTransferofCareComposition.push(this.transferofCareComposition.transfers[x]);
