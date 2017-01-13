@@ -58,6 +58,7 @@ class HeaderController {
     
     $scope.login = function () {
       serviceRequests.login().then(function (result) {
+        serviceRequests.currentUserData = result.data;
         $scope.setLoginData(result);
       });
     };
