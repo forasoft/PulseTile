@@ -25,9 +25,10 @@ install:
   - bower install
 
 script:
-  - npm run cover
+#  - npm run cover
+  - npm run test
 #  - npm run check-coverage
-  - npm run build
+#  - npm run build
 
 after_success:
   - npm run report-coverage

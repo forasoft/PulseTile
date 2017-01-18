@@ -2,6 +2,7 @@ module.exports = config => {
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
+    // frameworks: ['mocha', 'chai', 'jasmine'],
 
     files: [
       'bower_components/angular/angular.js',
@@ -9,11 +10,15 @@ module.exports = config => {
       'node_modules/babel-polyfill/dist/polyfill.js',
       'node_modules/sinon/pkg/sinon.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      'karma.entry.js'
+      // 'karma.entry.js',
+      'src/app/rippleui/**/**/*.js',
+      'src/test/spec/pages/**/*.spec.js'
     ],
 
     preprocessors: {
-      'karma.entry.js': ['webpack', 'sourcemap', 'coverage']
+      'src/app/rippleui/**/**/*.js': ['webpack', 'coverage'],
+      'src/test/spec/pages/**/*.spec.js': ['webpack']
+      // 'karma.entry.js': ['webpack']
     },
 
     webpack: require('./webpack.config'),
@@ -35,10 +40,27 @@ module.exports = config => {
       suite: 'unit'
     },
 
-    reporters: [ 'html', 'spec', 'coverage'],
+    // reporters: [ 'html', 'spec', 'coverage'],
+    reporters: ['progress', 'coverage'],
 
     coverageReporter: {
-      reporters: [{type: 'lcov'}]
+      // check: {
+      //   global: {
+      //     statements: 11,
+      //     branches: 0,
+      //     functions: 0,
+      //     lines: 11
+      //   }
+      // },
+      reporters: [
+        {type: 'lcov', dir: 'coverage/', subdir: '.'},
+        {type: 'json', dir: 'coverage/', subdir: '.'},
+        {type: 'text-summary'}]
+
+    },
+
+    webpackMiddleware: {
+      noInfo: true
     },
 
     htmlReporter: {

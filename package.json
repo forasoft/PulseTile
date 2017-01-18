@@ -62,12 +62,15 @@
     "ghooks": "^2.0.0",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "~2.21.0",
+    "istanbul": "^1.1.0-alpha.1",
     "jasmine-core": "~2.4.1",
     "karma": "~1.1.0",
     "karma-babel-preprocessor": "^6.0.1",
     "karma-chrome-launcher": "~1.0.1",
     "karma-coverage": "^1.1.1",
     "karma-jasmine": "~1.0.2",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-sinon": "^1.0.5",
     "karma-sourcemap-loader": "~0.3.7",
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "~1.7.0",
@@ -87,7 +90,8 @@
     "style-loader": "~0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "~1.13.1",
-    "webpack-dev-server": "~1.14.1"
+    "webpack-dev-server": "~1.14.1",
+    "webpack-istanbul-plugin": "0.0.5"
   },
   "dependencies": {
     "angular": "~1.5.7",
@@ -102,13 +106,15 @@
     "bootstrap": "^3.3.7",
     "bootstrap-sass": "^3.3.7",
     "bower-webpack-plugin": "^0.1.9",
+    "chai": "^3.5.0",
     "commitizen": "^2.9.5",
     "copy-webpack-plugin": "^3.0.1",
     "cz-conventional-changelog": "^1.2.0",
     "fullcalendar": "^3.0.0",
-    "istanbul": "^0.4.5",
     "jquery": "~2.1.4",
+    "karma-chai": "^0.1.0",
     "karma-htmlfile-reporter": "^0.3.4",
+    "karma-mocha": "^1.3.0",
     "last-release-git": "0.0.2",
     "mocha": "^3.2.0",
     "moment": "~2.15.0",
@@ -124,9 +130,6 @@
     "getLastRelease": "last-release-git"
   },
   "config": {
-    "ghooks": {
-      "pre-commit": "npm run validate"
-    },
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
