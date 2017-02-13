@@ -94,8 +94,8 @@
   <!--<button class="btn btn-info" ng-click="$ctrl.edit();"><i class="fa fa-pencil"></i> Edit</button>-->
 <!--</div>-->
 <div class="form-group form-group-sm text-right" ng-if="currentUser.permissions.indexOf('WRITE') !== -1">
-  <button class="btn btn-primary ng-cloak" ng-cloak ng-click="startAppointment();" ng-show="!isClosed && !$root.socketData.showJoinAppointment">Start Appointment</button>
-  <button class="btn btn-primary ng-cloak" ng-cloak ng-click="joinAppointment();" ng-show="!isClosed && $root.socketData.showJoinAppointment == appointment.sourceId">Join Appointment</button>
+  <button class="btn btn-primary ng-cloak" ng-cloak ng-click="startAppointment();" ng-show="canStartAppointment();">Start Appointment</button>
+  <button class="btn btn-primary ng-cloak" ng-cloak ng-click="joinAppointment();" ng-show="canJoinAppointment();">Join Appointment</button>
   <button class="btn btn-info" ng-click="$ctrl.edit();"><i class="fa fa-pencil"></i> Edit</button>
 </div>
 <div class="form-group form-group-sm text-right" ng-if="currentUser.permissions.indexOf('WRITE') === -1">

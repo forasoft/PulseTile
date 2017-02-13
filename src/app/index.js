@@ -46,7 +46,6 @@ import OrdersModal from './rippleui/pages/orders/orders-modal';
 import ReferralsModal from './rippleui/pages/referrals/referrals-modal';
 import AppointmentsModal from './rippleui/pages/appointments/appointments-modal';
 import AppointmentConfirmModal from './rippleui/pages/appointments/appointments-confirm-modal';
-import AppointmentChatModal from './rippleui/pages/appointments/appointment-chat';
 import AppointmentChatConfirmModal from './rippleui/pages/appointments/appoinmant-chat-confirm';
 import ProceduresModal from './rippleui/pages/procedures/procedures-modal';
 import ImageModal from './rippleui/pages/dicom/image-modal';
@@ -121,7 +120,6 @@ const app = angular
     .factory('ProceduresModal', ProceduresModal)
     .factory('AppointmentsModal', AppointmentsModal)
     .factory('AppointmentConfirmModal', AppointmentConfirmModal)
-    .factory('AppointmentChatModal', AppointmentChatModal)
     .factory('AppointmentChatConfirmModal', AppointmentChatConfirmModal)
     .factory('ImageModal', ImageModal)
     .factory('EolcareplansModal', EolcareplansModal)

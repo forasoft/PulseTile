@@ -14,9 +14,10 @@
   ~  limitations under the License.
 */
 let templateAppointmentsDetail= require('./appointments-detail.html');
+const io = require('socket.io-client');
 
 class AppointmentsDetailController {
-  constructor($scope, $state, $stateParams, $ngRedux, appointmentsActions, AppointmentsModal, AppointmentChatModal, usSpinnerService, socketService, serviceRequests) {
+  constructor($scope, $state, $stateParams, $ngRedux, appointmentsActions, AppointmentsModal, usSpinnerService, socketService, serviceRequests) {
     this.edit = function () {
       AppointmentsModal.openModal(this.currentPatient, {title: 'Edit Appointment'}, this.appointment, this.currentUser);
     };
@@ -25,6 +26,7 @@ class AppointmentsDetailController {
       'handi.ehrscape.com'
     ];
     this.currentUser = serviceRequests.currentUserData;
+    $scope.currentUser = this.currentUser;
     console.log('currentUser: ', this.currentUser);
     $scope.formDisabled = true;
     $scope.messagesHistory = [];
@@ -35,6 +37,7 @@ class AppointmentsDetailController {
       }
       if (data.appointments.dataGet) {
         this.appointment = data.appointments.dataGet;
+        $scope.appt = this.appointment;
         usSpinnerService.stop('appointmentsDetail-spinner');
       }
       // if (data.user.data) {
@@ -42,6 +45,8 @@ class AppointmentsDetailController {
       //   console.log('currentUser: ', this.currentUser);
       // }
     };
+
+
 
     window.onbeforeunload = function (e) {
       var dialogText = 'Please, close the appointment by pressing "End call" or the appointment will stay active!';
@@ -70,12 +75,24 @@ class AppointmentsDetailController {
     this.appointmentsLoad($stateParams.patientId, $stateParams.appointmentIndex, $stateParams.source);
     
     
-    var socket = socketService.socket;
+    //var socket = socketService.socket;
+    var socket = io.connect('wss://' + window.location.hostname + ':' + 8070);
     var appointmentId = $stateParams.appointmentIndex;
     var user = serviceRequests.currentUserData;
     var ROLE_DOCTOR = 'IDCR';
     var token = getCookie('JSESSIONID');
-    
+
+    const currentUser = $scope.currentUser || $scope.patient;
+
+    // username field is used as ID !
+    socket.emit('user:init', {
+      username: currentUser.username || currentUser.sub,
+      nhsNumber: currentUser.nhsNumber,
+      role: currentUser.role,
+      surname: currentUser.family_name,
+      name: currentUser.given_name
+    });
+
     socket.on('call:text:messages:history', function (data) {
       var role = isDoctor(user) ? 'doctor' : 'patient';
       var opponent = data.appointment[(isDoctor(user) ? 'patient' : 'doctor')];
@@ -83,6 +100,11 @@ class AppointmentsDetailController {
       for (var i = 0; i < data.messages.length; i++) {
         addTextMessage(data.messages[i].timestamp, (data.messages[i].author) ? ((role == data.messages[i].author) ? 'You' : opponent) : null, data.messages[i].message, true);
       }
+    });
+
+    socket.on('appointment:init', function(data) {
+        $scope.showJoinAppointment = data.appointmentId;
+        console.log('ON appointment:init', $scope.showJoinAppointment);
     });
 
     function isDoctor(user) {
@@ -99,13 +121,24 @@ class AppointmentsDetailController {
 
     $scope.patient =  this.currentPatient;
     $scope.appt =  this.appointment;
+
+    $scope.canStartAppointment = function () {
+        return !$scope.isClosed && !$scope.showJoinAppointment;
+    }
+
+    $scope.canJoinAppointment = function () {
+        var canJoin = $scope.showJoinAppointment;
+        return !$scope.isClosed && Boolean(canJoin) && canJoin == $scope.appt.sourceId;
+    }
+
+
     $scope.startAppointment = function () {
       console.log('startAppointment ===> ',  $scope.patient, $scope.appt);
       if (!$scope.appt) return;
+
       socket.emit('appointment:init', {
         patientId: $scope.patient.id,
-        appointmentId: $scope.appt.sourceId,
-        token: token
+        appointmentId: $scope.appt.sourceId
       });
 
       openPopup($scope.appt.sourceId);
@@ -117,7 +150,28 @@ class AppointmentsDetailController {
     };
 
     function openPopup(id) {
-      AppointmentChatModal.openModal(socket, appointmentId, token);
+      window.windowObjectReference = window.windowObjectReference || null;
+      var center = popupCenter(972, 734);
+      var options = center + ',resizable=yes,scrollbars=yes,status=yes,minimizable=yes,location=no';
+      if (window.windowObjectReference == null || window.windowObjectReference.closed) {
+        window.windowObjectReference = window.open(window.location.origin + '/videochat/videochat.html?appointmentId=' + id,
+          'Video Chat', options);
+        window.windowObjectReference.focus();
+      } else {
+        window.windowObjectReference.focus();
+      }
+    }
+
+    function popupCenter(w, h) {
+      var dualScreenLeft = (window.screenLeft != undefined) ? window.screenLeft : screen.left;
+      var dualScreenTop = (window.screenTop != undefined) ? window.screenTop : screen.top;
+
+      var width = (window.innerWidth ? window.innerWidth : document.documentElement.clientWidth) ? document.documentElement.clientWidth : screen.width;
+      var height = (window.innerHeight ? window.innerHeight : document.documentElement.clientHeight) ? document.documentElement.clientHeight : screen.height;
+
+      var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+      var top = ((height / 2) - (h / 2)) + dualScreenTop;
+      return 'width=' + w + ', height=' + h + ', top=' + top + ', left=' + left;
     }
 
     socket.emit('appointment:status', {appointmentId: $stateParams.appointmentIndex, token: token});
@@ -153,7 +207,7 @@ class AppointmentsDetailController {
 
     function onClose(data) {
       console.log('onClose ---> ', data);
-      socket.data('showJoinAppointment', null);
+      $scope.showJoinAppointment = null;
       if (data.appointmentId == $stateParams.appointmentIndex) {
         socket.emit('appointment:status', {appointmentId: $stateParams.appointmentIndex, token: token});
         socket.emit('appointment:messages', {appointmentId: $stateParams.appointmentIndex, token: token});
@@ -175,5 +229,5 @@ const AppointmentsDetailComponent = {
   controller: AppointmentsDetailController
 };
 
-AppointmentsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'appointmentsActions', 'AppointmentsModal', 'AppointmentChatModal', 'usSpinnerService', 'socketService', 'serviceRequests'];
+AppointmentsDetailController.$inject = ['$scope', '$state', '$stateParams', '$ngRedux', 'appointmentsActions', 'AppointmentsModal', 'usSpinnerService', 'socketService', 'serviceRequests'];
 export default AppointmentsDetailComponent;
