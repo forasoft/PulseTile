@@ -123,12 +123,26 @@ class AppointmentsDetailController {
     $scope.appt =  this.appointment;
 
     $scope.canStartAppointment = function () {
+        if (!$scope.isDoctor())
+            return false;
+
         return !$scope.isClosed && !$scope.showJoinAppointment;
     }
 
+    $scope.isDoctor = function () {
+        return currentUser && currentUser.role === 'IDCR';
+    }
+
     $scope.canJoinAppointment = function () {
+        if (!$scope.isPatient())
+            return false;
+
         var canJoin = $scope.showJoinAppointment;
         return !$scope.isClosed && Boolean(canJoin) && canJoin == $scope.appt.sourceId;
+    }
+
+    $scope.isPatient = function () {
+        return !$scope.isDoctor();
     }
 
 
