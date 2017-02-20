@@ -22,6 +22,8 @@ class AppointmentsDetailController {
       AppointmentsModal.openModal(this.currentPatient, {title: 'Edit Appointment'}, this.appointment, this.currentUser);
     };
 
+    var socket = io.connect('wss://' + window.location.hostname + ':' + 8070);
+
     $scope.UnlockedSources = [
       'handi.ehrscape.com'
     ];
@@ -29,7 +31,7 @@ class AppointmentsDetailController {
     $scope.currentUser = this.currentUser;
     console.log('currentUser: ', this.currentUser);
     $scope.formDisabled = true;
-    $scope.messagesHistory = [];
+    $scope.messages = [];
     
     this.setCurrentPageData = function (data) {
       if (data.patientsGet.data) {
@@ -39,6 +41,8 @@ class AppointmentsDetailController {
         this.appointment = data.appointments.dataGet;
         $scope.appt = this.appointment;
         usSpinnerService.stop('appointmentsDetail-spinner');
+
+        socket.emit('appointment:messages', {appointmentId: this.appointment.sourceId});
       }
       // if (data.user.data) {
       //   this.currentUser = serviceRequests.currentUserData;
@@ -76,7 +80,6 @@ class AppointmentsDetailController {
     
     
     //var socket = socketService.socket;
-    var socket = io.connect('wss://' + window.location.hostname + ':' + 8070);
     var appointmentId = $stateParams.appointmentIndex;
     var user = serviceRequests.currentUserData;
     var ROLE_DOCTOR = 'IDCR';
@@ -93,15 +96,6 @@ class AppointmentsDetailController {
       name: currentUser.given_name
     });
 
-    socket.on('call:text:messages:history', function (data) {
-      var role = isDoctor(user) ? 'doctor' : 'patient';
-      var opponent = data.appointment[(isDoctor(user) ? 'patient' : 'doctor')];
-      console.log('call:text:message:history ', data);
-      for (var i = 0; i < data.messages.length; i++) {
-        addTextMessage(data.messages[i].timestamp, (data.messages[i].author) ? ((role == data.messages[i].author) ? 'You' : opponent) : null, data.messages[i].message, true);
-      }
-    });
-
     socket.on('appointment:init', function(data) {
         $scope.showJoinAppointment = data.appointmentId;
         console.log('ON appointment:init', $scope.showJoinAppointment);
@@ -109,14 +103,6 @@ class AppointmentsDetailController {
 
     function isDoctor(user) {
       return user && user.role == ROLE_DOCTOR;
-    }
-
-    function addTextMessage(timestamp, author, message, prepend) {
-      var msg = {};
-      msg.timestamp = moment.utc(timestamp).local().format('HH:mm');
-      msg.author = ( (author !== null) ? (author + ': ') : '');
-      msg.message = message;
-      $scope.messagesHistory.push(msg);
     }
 
     $scope.patient =  this.currentPatient;
@@ -207,8 +193,8 @@ class AppointmentsDetailController {
         if (!message.author) {
           message.author = '';
         } else {
-          var role = ($scope.currentUser.permissions.indexOf('WRITE') == -1) ? 'patient' : 'doctor';
-          var opponent = ($scope.currentUser.permissions.indexOf('WRITE') == -1) ? 'doctor' : 'patient';
+          var role = $scope.isDoctor(currentUser) ?  'doctor' : 'patient';
+          var opponent = $scope.isPatient(currentUser) ?  'doctor' : 'patient';
           if (message.author == role) {
             message.author = 'You: ';
           } else {
