@@ -23,22 +23,51 @@ $(document).ready(function () {
   var timer;
   var notifications = [];
   var restartCallTimer = null;
-  var constraints = {
-    audio: true,
-    video: true
-  };
+  var constraintsList = [
+    {
+      audio: true,
+      video: true
+    },
+    {
+      audio: true,
+      video: false
+    }
+  ];
 
   getNotificationPermission();
 
-  if (navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
-  } else {
-    navigator.getUserMedia(constraints).then(setLocalStream).catch(errorHandler);
-  }
+  findUserMediaStream(constraintsList)
+    .then(setLocalStream)
+    .catch(errorHandler);
+
 
   /**
    * WebRTC
    */
+
+  function findUserMediaStream(constraintsList) {
+    return new Promise(function (resolve, reject) {
+      getAnyUserMediaStream(constraintsList, 0, resolve, reject);
+    });
+  }
+
+  function getAnyUserMediaStream(constraintsList, index, resolve, reject) {
+    var constraints = constraintsList[index];
+
+    if (!constraints)
+      return reject(new Error('Cannot cam+mic or only mic devices stream'));
+
+    getUserMediaStream(constraints)
+      .then(resolve)
+      .catch(function() {
+        getAnyUserMediaStream(constraintsList, index + 1, resolve, reject);
+      });
+  }
+
+  function getUserMediaStream(constraints) {
+      return navigator.mediaDevices.getUserMedia(constraints)
+  }
+
   function cretePeerConnection() {
     gotStream(localStream);
   }
